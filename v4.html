@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eeeae2">
+  <meta name="description" content="Mohamed Sharaf. With computers since 1996, in security since 2000, running his own company since 2002. Still curious. Now helping teams make their systems safer and simpler.">
+  <meta property="og:title" content="Mohamed Sharaf — Still curious.">
+  <meta property="og:description" content="Three decades with computers. Security, infrastructure, software and AI, explained in plain words.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mohamedsharaf.com/">
+  <meta property="og:image" content="https://mohamedsharaf.com/v2-assets/portrait.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://mohamedsharaf.com/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23e85532'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='monospace' font-size='28' fill='%23eeeae2'%3Em.%3C/text%3E%3C/svg%3E">
+  <title>Mohamed Sharaf — Still curious.</title>
+  <style>
+    @font-face{font-family:Manrope;src:url('v2-assets/manrope-latin.woff2') format('woff2');font-style:normal;font-weight:200 800;font-display:swap}
+    :root{
+      --paper:#eeeae2;
+      --paper-card:#f6f4ee;
+      --ink:#242624;
+      --muted:#66675f;
+      --orange:#e85532;
+      --orange-soft:#f17a57;
+      --line:#cecdc4;
+      --terminal-bg:#242a25;
+      --terminal-text:#bed4a3;
+      --terminal-accent:#c4e5a4;
+      --mono:'SFMono-Regular',Consolas,'Liberation Mono',monospace;
+      --sans:Manrope,'Avenir Next','Segoe UI',sans-serif;
+      --serif:Georgia,'Times New Roman',serif
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:28px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23000' filter='url(%23n)' opacity='.5' d='M0 0h180v180H0z'/%3E%3C/svg%3E")}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer;color:inherit}
+    button,a,input,textarea,summary{-webkit-tap-highlight-color:transparent}
+    button:focus-visible,a:focus-visible,textarea:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--orange);outline-offset:5px}
+    ::selection{background:var(--orange);color:#fff}
+    [hidden]{display:none!important}
+    .shell{width:min(1280px,calc(100% - 112px));margin:auto}
+    .mono{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+    .skip{position:fixed;left:16px;top:-80px;background:var(--ink);color:white;padding:12px;z-index:100}
+    .skip:focus{top:16px}
+    .accent{color:var(--orange)}
+
+    /* HEADER */
+    .header{height:100px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-size:15px;font-weight:750;letter-spacing:-.6px;white-space:nowrap}
+    .brand-symbol{display:grid;grid-template-columns:repeat(2,7px);gap:3px;transform:rotate(-7deg)}
+    .brand-symbol i{width:7px;height:7px;background:var(--orange)}
+    .brand-symbol i:last-child{opacity:.35}
+    .nav{display:flex;gap:28px;align-items:center;font-size:12px;font-weight:600}
+    .nav a{position:relative;white-space:nowrap}
+    .nav a::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+    .nav a:hover::after{transform:scaleX(1)}
+    .nav-cta{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;background:var(--ink);color:var(--paper);transition:background .2s,transform .2s}
+    .nav-cta::after{display:none}
+    .nav-cta:hover{background:var(--orange);color:#fff;transform:translateY(-1px)}
+    .online{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.04em}
+    .online i{width:6px;height:6px;background:#648066;border-radius:50%;box-shadow:0 0 0 3px #64806616}
+
+    /* HERO */
+    .hero{position:relative;display:grid;grid-template-columns:1.15fr 1fr;gap:6%;align-items:center;padding:67px 0 66px}
+    .hero-copy{padding-bottom:5px;max-width:560px}
+    .eyebrow{display:flex;align-items:center;gap:9px;color:#66665e}
+    .eyebrow::before{content:'+';color:var(--orange);font-size:16px}
+    .hero h1{font-size:clamp(74px,8.5vw,126px);letter-spacing:-.085em;line-height:.98;margin:26px 0 24px;font-weight:650}
+    .hero h1 em{display:block;color:var(--orange);font-family:var(--serif);font-weight:400;letter-spacing:-.075em;line-height:1.05}
+    .intro-name{font-size:19px;font-weight:650;letter-spacing:-.6px;margin:0 0 12px}
+    .hero-description{font-size:14px;color:var(--muted);line-height:1.85;margin:0}
+    .hero-description p{margin:0 0 12px}
+    .hero-value-box{margin-top:18px;padding:16px 18px;border-left:2px solid var(--orange);background:rgba(232,85,50,.045)}
+    .hero-value-tag{display:block;font-size:10px;color:var(--orange);margin-bottom:8px;letter-spacing:.1em}
+    .hero-value-prop{font-size:14px;color:var(--ink);font-weight:550;line-height:1.75;margin:0}
+    .hero-actions{display:flex;align-items:center;gap:24px;margin-top:28px;flex-wrap:wrap}
+    .primary-link{background:var(--ink);color:var(--paper);display:inline-flex;align-items:center;justify-content:center;gap:20px;padding:16px 22px;font-size:13px;font-weight:600;transition:background .2s,transform .2s}
+    .primary-link:hover{background:var(--orange);transform:translateY(-2px)}
+    .secondary-link{display:inline-flex;align-items:center;justify-content:center;gap:20px;padding:15px 22px;border:1px solid var(--ink);font-size:13px;font-weight:600;transition:background .2s,color .2s,border-color .2s,transform .2s}
+    .secondary-link:hover{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-2px)}
+    .hero-footnote{margin-top:32px;color:#6f6f67;display:flex;align-items:center;gap:13px;font-size:10px;letter-spacing:.03em}
+    .hero-footnote::before{content:'';height:1px;width:25px;background:#aaa99e}
+
+    /* PORTRAIT */
+    .portrait-area{position:relative;min-width:0;margin:0 13px 0 0}
+    .portrait-frame{position:relative;aspect-ratio:.855;background:#222;overflow:hidden;transform:rotate(2deg)}
+    .portrait-frame img{width:100%;height:100%;object-fit:cover;object-position:center 43%;display:block;transition:transform .8s}
+    .portrait-area:hover img{transform:scale(1.025)}
+    .portrait-frame::after{position:absolute;inset:0;content:'';background:linear-gradient(0deg,#10101095,transparent 28%);pointer-events:none}
+    .portrait-corner{position:absolute;z-index:1;top:18px;left:19px;color:#ffffffc0;font-size:10px}
+    .portrait-corner::before{content:'+';font-size:17px;display:block;margin-bottom:6px}
+    .photo-note{position:absolute;z-index:2;bottom:18px;right:20px;text-align:right;color:#e8e7e0;font-size:10px;letter-spacing:.08em}
+    .photo-note span{color:#bbb;display:block;font-size:9px;margin-top:6px}
+    .portrait-caption{display:flex;justify-content:space-between;gap:12px;margin-top:19px;font-size:10px;color:#6f6f67}
+    .since-stamp{position:absolute;z-index:3;right:-32px;top:-26px;width:116px;height:116px;border-radius:50%;background:var(--orange);color:#f8eee2;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(12deg);border:1px dashed #f8eee280;outline:7px solid var(--orange);text-align:center}
+    .since-stamp strong{font-size:32px;line-height:1.2;font-weight:650;letter-spacing:-2px}
+    .since-stamp small{font-size:9px;letter-spacing:.08em;font-family:var(--mono)}
+    .sticker{position:absolute;left:-38px;bottom:47px;padding:14px 21px;background:#e4dca3;color:#3b3b2d;transform:rotate(-6deg);z-index:3;font-family:var(--mono);font-size:11px;box-shadow:0 3px 10px #0002}
+    .sticker b{font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:-.4px;display:block;margin-bottom:4px}
+    .sticker::before{content:'';position:absolute;top:-9px;left:calc(50% - 22px);width:45px;height:19px;background:#e4dca35c;transform:rotate(-5deg)}
+
+    /* NUMBERS */
+    .numbers{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .number{padding:26px 22px;border-left:1px solid var(--line)}
+    .number:first-child{border-left:0;padding-left:0}
+    .number strong{display:block;font-size:44px;font-weight:600;letter-spacing:-.06em;line-height:1;margin-bottom:10px}
+    .number strong sup{font-size:20px;color:var(--orange);font-weight:500;margin-left:2px}
+    .number-label{display:block;color:var(--muted);line-height:1.5}
+
+    /* SECTION SHARED */
+    .section-label{display:flex;gap:14px;align-items:center;color:#7d7d74}
+    .section-label span{color:var(--orange)}
+    .section-top{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-top:24px;margin-bottom:48px}
+    h2{font-size:clamp(36px,4.4vw,61px);font-weight:550;line-height:1.12;letter-spacing:-.065em;margin:0}
+    h2 em{font-family:var(--serif);font-weight:400}
+    .section-top>p{font-size:14px;color:var(--muted);line-height:1.85;max-width:360px;margin:0 0 4px}
+
+    /* 01 / STORY: TIMELINE */
+    .journey{padding-top:100px;padding-bottom:100px}
+    .timeline{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line)}
+    .timeline li{position:relative;padding:28px 24px 0 0}
+    .timeline li::before{content:'';position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:var(--orange)}
+    .timeline li:last-child::before{background:var(--paper);border:2px solid var(--orange)}
+    .timeline time{display:block;font:600 13px var(--mono);color:var(--orange);letter-spacing:.06em;margin-bottom:12px}
+    .timeline h3{font-size:20px;letter-spacing:-.6px;font-weight:650;margin:0 0 10px}
+    .timeline p{font-size:13.5px;line-height:1.75;color:var(--muted);margin:0}
+
+    /* 01 / STORY: PLAYGROUND */
+    .play{padding:100px 0;border-top:1px solid var(--line)}
+    .journey-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:58px}
+    .era-tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:30px}
+    .era-tab{border:0;background:none;color:#7d7d74;padding:15px 15px 13px;font-family:var(--mono);font-size:11px;border-bottom:2px solid transparent;margin-bottom:-1px;flex:1;text-align:left;transition:color .2s,border-color .2s}
+    .era-tab:first-child{padding-left:0}
+    .era-tab[aria-selected=true]{border-color:var(--orange);color:var(--ink)}
+    .era-tab span{font-size:10px;display:block;color:var(--orange);margin-bottom:8px}
+    .era-copy h3{font-size:25px;letter-spacing:-1px;font-weight:600;margin:0 0 15px}
+    .era-copy p{font-size:14px;line-height:1.85;color:var(--muted);max-width:380px;margin:0 0 23px}
+    .era-caption{display:flex;align-items:center;gap:10px;color:#66675f;margin-top:32px;font-size:10px;letter-spacing:.02em}
+    .era-caption span{font-size:17px;color:var(--orange)}
+    .era-tag{display:inline-block;border:1px solid #c8c9be;padding:7px 9px;font-size:10px;color:#66675f;margin:0 5px 5px 0}
+
+    .interactive{min-width:0;align-self:start}
+    .terminal{background:var(--terminal-bg);border:1px solid #363b34;color:var(--terminal-text);box-shadow:8px 8px 0 #d8d6cc;min-height:330px;position:relative}
+    .terminal-title{display:flex;align-items:center;justify-content:space-between;padding:13px 17px;border-bottom:1px solid #3d4339;font-size:10px;letter-spacing:.05em;color:#a6b59a}
+    .lights{display:flex;gap:5px}
+    .lights i{display:block;width:5px;height:5px;background:#66775a;border-radius:50%}
+    .terminal-body{padding:19px 21px 0}
+    .terminal-hint{font-size:11px;color:#9cb08a;margin:0 0 15px;font-family:var(--mono)}
+    .code-label{display:block;font-size:10px;color:#93a088;text-transform:uppercase;margin-bottom:8px;letter-spacing:.1em}
+    .code-editor{display:block;width:100%;min-height:95px;resize:vertical;border:0;padding:0 4px;background:transparent;color:var(--terminal-accent);font:13px/1.8 var(--mono);border-radius:0;tab-size:2}
+    .code-editor:focus-visible{outline-offset:3px;outline:1px solid #9bb78b}
+    .terminal-tools{display:flex;align-items:center;gap:15px;padding:13px 0 15px;border-bottom:1px solid #414737;flex-wrap:wrap}
+    .run-button{border:1px solid #adca91;color:#cee5b5;background:#a3c27a0d;padding:8px 12px;font:11px var(--mono);text-transform:uppercase}
+    .run-button:hover{background:#bad99e;color:#242524}
+    .reset-button{background:none;border:0;font:11px var(--mono);color:#a7b39b;padding:8px}
+    .reset-button:hover{color:white}
+    .terminal-output{font:12px/1.65 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;max-height:175px;overflow:auto;margin:12px 0 15px;min-height:42px;color:var(--terminal-text)}
+    .terminal-output::after{content:'▌';animation:cursor 1.2s steps(1) infinite;color:#bbd69b}
+    .terminal-bottom{display:flex;justify-content:space-between;gap:12px;padding:10px 17px;border-top:1px solid #3d4339;color:#93a585;font:10px var(--mono)}
+    .under-terminal{display:flex;align-items:center;justify-content:space-between;gap:18px;font-size:10px;color:#6f6f67;margin:20px 0 0;font-family:var(--mono)}
+
+    .browser-2006{min-height:330px;background:#c0c0c0;padding:4px;border:2px outset #ddd;font-family:Arial,sans-serif;box-shadow:8px 8px 0 #d8d6cc}
+    .old-title{display:flex;justify-content:space-between;background:#000080;color:white;font-size:12px;font-weight:bold;padding:6px}
+    .old-address{display:flex;gap:10px;font-size:11px;align-items:center;padding:8px 4px}
+    .old-address span{border:2px inset #fff;padding:4px 8px;flex:1;background:white;color:#222}
+    .old-page{padding:25px 12px 20px;text-align:center;background:#faf9e7;color:#222;min-height:245px;border:2px inset #ddd}
+    .old-page h3{font-family:Georgia,serif;font-size:25px;color:#000080;margin:8px 0 12px}
+    .old-page p{font-size:12px;line-height:1.6}
+    .old-page .old-rule{height:3px;background:linear-gradient(90deg,red,orange,yellow,green,blue,purple);margin:19px 10px}
+    .old-page button{background:#ddd;border:2px outset white;padding:5px 13px;font-size:12px}
+    .old-page .guest-message{font-family:var(--mono);font-size:11px;min-height:18px;margin-top:15px}
+    .era-disclaimer{margin-top:20px;font:10px/1.6 var(--mono);color:#6f6f67}
+
+    .generative{min-height:330px;background:var(--ink);position:relative;overflow:hidden;box-shadow:8px 8px 0 #d8d6cc}
+    .generative canvas{display:block;width:100%;height:274px}
+    .generative-title{position:absolute;top:18px;left:18px;font-size:10px;color:#c8c8b8}
+    .generative-tools{height:55px;border-top:1px solid #41443c;display:flex;align-items:center;justify-content:space-between;padding:0 17px;color:#aaa;font-size:10px}
+    .generative button{background:none;border:1px solid #72756b;color:#d7d8c8;padding:7px 9px;font:10px var(--mono)}
+    .generative button:hover{background:var(--orange);color:white;border-color:var(--orange)}
+
+    /* 02 / FIELD NOTES */
+    .notes-section{background:var(--ink);color:var(--paper);padding:88px 0 96px}
+    .notes-section .section-label{color:#9a9d90}
+    .notes-heading{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:50px;margin-top:26px}
+    .notes-heading p{font-size:14px;line-height:1.85;color:#b0b2a7;max-width:380px;margin:0 0 6px}
+    .notes-list{margin-top:50px;border-top:1px solid #4b4c45}
+    .note{border-bottom:1px solid #4b4c45}
+    .note summary{list-style:none;display:grid;grid-template-columns:50px 1.4fr 1fr 24px;align-items:center;gap:20px;padding:26px 0;cursor:pointer}
+    .note summary::-webkit-details-marker{display:none}
+    .note-number{font:11px var(--mono);color:#9a9d90}
+    .note-title{font-size:26px;font-weight:500;letter-spacing:-1px;transition:color .2s}
+    .note-tag{font-size:10px;color:#a4a89b;line-height:1.6}
+    .note-plus{font-size:24px;color:var(--orange);font-weight:300;transition:transform .25s ease}
+    .note[open] .note-plus{transform:rotate(45deg)}
+    .note[open] .note-title,.note summary:hover .note-title{color:var(--orange-soft)}
+    .note-detail{padding:0 30px 34px 70px}
+    .note-grid{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:26px;background:rgba(255,255,255,.025);border:1px solid #3c4037;padding:22px}
+    .note-kicker{display:block;font-size:10px;color:var(--orange);margin-bottom:10px;letter-spacing:.08em}
+    .note-grid p{font-size:13.5px;line-height:1.75;color:#c2c4b8;margin:0}
+    .note-grid .lesson{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.45;color:#f2ede4;letter-spacing:-.3px}
+    .notes-footnote{margin-top:26px;color:#8e9184;font-size:10px}
+
+    /* 03 / WHAT I DO */
+    .services{padding:100px 0}
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink)}
+    .service{padding:30px 26px 10px 0;border-right:1px solid var(--line);margin-right:26px}
+    .service:last-child{border-right:0;margin-right:0}
+    .service-number{display:block;color:var(--orange);margin-bottom:22px}
+    .service h3{font-size:24px;letter-spacing:-.8px;font-weight:650;margin:0 0 14px}
+    .service p{font-size:14px;line-height:1.8;color:var(--muted);margin:0 0 20px}
+    .service ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+    .service li{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.5}
+    .service li::before{content:'■';font-size:7px;color:var(--orange);margin-top:5px;flex-shrink:0}
+
+    /* 04 / WORKING TOGETHER */
+    .partner-section{padding:100px 0;border-top:1px solid var(--line)}
+    .partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+    .partner-card{background:var(--paper-card);border:1px solid var(--line);padding:32px 28px 26px;display:flex;flex-direction:column;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+    .partner-card:hover{transform:translateY(-4px);border-color:var(--ink);box-shadow:6px 6px 0 var(--ink)}
+    .partner-card.featured{background:#ebe7dc;border-color:#b4b3a8}
+    .partner-meta{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#6f6f67;margin-bottom:18px}
+    .partner-tag{color:var(--orange);background:rgba(232,85,50,.08);padding:3px 7px}
+    .partner-title{font-size:22px;letter-spacing:-.6px;font-weight:650;margin:0 0 14px;line-height:1.25}
+    .partner-desc{font-size:14px;line-height:1.75;color:var(--muted);margin:0 0 20px;flex-grow:1}
+    .partner-good{padding:16px 0;margin:0 0 20px;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);font-size:13px;line-height:1.6;color:#4f514a}
+    .partner-good b{display:block;font:10px var(--mono);letter-spacing:.08em;color:#6f6f67;margin-bottom:6px;font-weight:400}
+    .partner-cta-link{font-size:11px;font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:3px;transition:color .2s}
+    .partner-cta-link:hover{color:var(--orange)}
+    .partner-bottom-strip{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:32px;padding-top:20px;border-top:1px solid var(--line);font-size:10px;color:#6f6f67;letter-spacing:.05em}
+
+    /* 05 / OFF-SCREEN */
+    .offscreen{padding:104px 0;display:grid;grid-template-columns:1fr 1fr;gap:75px;align-items:center;border-top:1px solid var(--line)}
+    .offscreen-copy h2{margin-top:26px}
+    .offscreen-copy p{font-size:14px;color:var(--muted);line-height:1.9;max-width:360px;margin:25px 0 0}
+    .offscreen-copy p strong{color:var(--ink);font-weight:550}
+    .family-art{position:relative;min-height:297px;display:flex;justify-content:center;align-items:center;flex-direction:column;border:1px solid #d4d2c5;background:#e7e3d7;transform:rotate(-2deg);margin:6px 8px 0 15px;isolation:isolate}
+    .family-art::before{content:'';position:absolute;inset:13px;border:1px solid #c9c8b9;z-index:-1}
+    .family-top{position:absolute;top:27px;left:28px;font:10px var(--mono);color:#6f6f67;letter-spacing:.05em}
+    .family-characters{display:flex;align-items:flex-end;gap:27px;margin-top:25px}
+    .pixel-child{position:relative;width:54px;height:80px;border:0;background:none;transition:transform .25s;padding:0}
+    .pixel-child:hover,.pixel-child:focus-visible{transform:translateY(-9px) rotate(-5deg)}
+    .pixel-child svg{width:100%;height:100%;display:block;image-rendering:pixelated}
+    .pixel-child:nth-child(2){transform:rotate(4deg);height:69px;width:46px}
+    .pixel-child:nth-child(2):hover,.pixel-child:nth-child(2):focus-visible{transform:translateY(-9px) rotate(8deg)}
+    .pixel-child:nth-child(3){height:74px;width:49px}
+    .family-line{width:225px;border-top:1px solid #b6b6a5;margin-top:18px}
+    .family-label{font-family:var(--serif);font-style:italic;font-size:25px;letter-spacing:-1px;margin-top:18px}
+    .family-meta{font:10px var(--mono);margin:9px 0 0;color:#6f6f67}
+    .family-heart{position:absolute;right:26px;top:22px;color:var(--orange);font-size:21px;transform:rotate(12deg)}
+    .family-speech{position:absolute;top:56px;font:11px var(--mono);color:var(--orange);min-height:14px;text-align:center;padding-inline:18px}
+
+    /* 06 / CONTACT */
+    .contact{border-top:1px solid var(--line);padding:80px 0 84px;display:grid;grid-template-columns:1fr 1.05fr;align-items:start;gap:48px}
+    .contact h2{font-size:clamp(42px,5vw,69px);margin-top:20px}
+    .contact h2 em{color:var(--orange)}
+    .contact-status{display:inline-flex;align-items:center;gap:8px;font-size:10px;color:#55574f;margin-top:22px;letter-spacing:.06em}
+    .contact-status i{width:7px;height:7px;background:#44a352;border-radius:50%;box-shadow:0 0 0 3px rgba(68,163,82,.18)}
+    .contact-left>p{font-size:14px;line-height:1.85;color:var(--muted);max-width:380px;margin:24px 0 26px}
+    .contact-form{justify-self:end;max-width:520px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:18px;position:relative}
+    .field{display:flex;flex-direction:column;gap:8px;min-width:0}
+    .field.full{grid-column:1 / -1}
+    .field label{font-size:10px;color:#55574f}
+    .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:0;background:var(--paper-card);color:var(--ink);padding:13px 14px;font-size:15px;transition:border-color .2s}
+    .field textarea{resize:vertical;min-height:130px;line-height:1.6}
+    .field input:hover,.field select:hover,.field textarea:hover{border-color:#a9a89d}
+    .field select:focus-visible{outline:3px solid var(--orange);outline-offset:5px}
+    .honey{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+    .form-actions{grid-column:1 / -1;display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:4px}
+    .form-note{font-size:10px;color:#6f6f67;margin:0;line-height:1.6}
+    .form-note.ok{color:#3f7d48}
+    .form-note.error{color:#c2401f}
+    .book-button{display:inline-flex;align-items:center;justify-content:space-between;gap:28px;border:0;background:var(--ink);color:var(--paper);padding:18px 22px;font-size:14px;font-weight:600;box-shadow:5px 5px 0 #d8d6cc;transition:background .2s,transform .2s,box-shadow .2s}
+    .book-button:hover{background:var(--orange);transform:translateY(-2px);box-shadow:7px 7px 0 var(--ink)}
+    .book-button:disabled{opacity:.6;cursor:wait;transform:none}
+    .contact-secondary{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+    .email-link{display:inline-flex;gap:14px;align-items:center;font-size:16px;font-weight:600;letter-spacing:-.5px;border-bottom:1px solid var(--ink);padding-bottom:6px;transition:color .2s,border-color .2s}
+    .email-link:hover{color:var(--orange);border-color:var(--orange)}
+    .copy-email{border:0;background:none;font-family:var(--mono);font-size:10px;color:#6f6f67;padding:8px 0;transition:color .2s}
+    .copy-email:hover{color:var(--orange)}
+
+    /* FOOTER */
+    .footer{border-top:1px solid var(--line);padding:26px 0 30px;display:flex;align-items:center;justify-content:space-between;gap:25px;font-size:10px;color:#6f6f67}
+    .footer-links{display:flex;gap:24px;font-size:12px}
+    .footer-links a:hover{color:var(--orange)}
+    .footer .signoff{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink)}
+    .back-top{border:1px solid var(--line);width:30px;height:30px;display:grid;place-items:center;font-size:15px}
+    .back-top:hover{background:var(--ink);color:var(--paper)}
+
+    @keyframes cursor{50%{opacity:0}}
+    @keyframes enter{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+    .hero-copy{animation:enter .65s ease both}
+    .portrait-area{animation:enter .8s .1s ease both}
+
+    /* RESPONSIVE */
+    @media(min-width:1500px){
+      .hero{gap:8%;padding-top:84px;padding-bottom:80px}
+      .hero h1{font-size:136px}
+      .portrait-area{max-width:460px}
+    }
+    @media(max-width:1100px){
+      .shell{width:calc(100% - 72px)}
+      .online{display:none}
+      .nav{gap:22px}
+      .hero{gap:5%;padding-top:62px}
+      .hero h1{font-size:clamp(76px,9vw,104px)}
+      .since-stamp{width:96px;height:96px;right:-20px;top:-20px}
+      .since-stamp strong{font-size:28px}
+      .since-stamp small{font-size:8px}
+      .sticker{left:-25px;font-size:10px}
+      .sticker b{font-size:12px}
+      .number{padding:22px 14px}
+      .number strong{font-size:36px}
+      .timeline{grid-template-columns:repeat(3,1fr);row-gap:40px}
+      .journey-layout{gap:36px}
+      .note summary{grid-template-columns:35px 1.4fr 1fr 20px}
+      .note-title{font-size:23px}
+      .note-detail{padding-left:55px;padding-right:0}
+      .note-grid{grid-template-columns:1fr;gap:20px}
+      .services-grid{grid-template-columns:repeat(2,1fr);border-top:0}
+      .service{border-right:0;margin-right:0;padding:28px 26px 30px 0;border-top:1px solid var(--ink)}
+      .service:nth-child(odd){margin-right:26px;border-right:1px solid var(--line)}
+      .partner-grid{gap:18px}
+      .partner-card{padding:26px 20px 22px}
+      .partner-title{font-size:20px}
+      .offscreen{gap:45px}
+    }
+    @media(max-width:860px){
+      .numbers{grid-template-columns:repeat(2,1fr)}
+      .number{border-left:0;padding:22px 0;border-top:1px solid var(--line)}
+      .number:nth-child(-n+2){border-top:0}
+      .number:nth-child(even){border-left:1px solid var(--line);padding-left:20px}
+      .number:last-child{grid-column:1 / -1}
+    }
+    @media(max-width:760px){
+      .shell{width:calc(100% - 40px)}
+      .header{height:78px}
+      .brand{font-size:13px}
+      .nav{gap:16px;font-size:11px}
+      .nav a:nth-child(1),.nav a:nth-child(2){display:none}
+      .hero{gap:38px;grid-template-columns:1fr;padding:45px 0 38px}
+      .hero-copy{max-width:100%}
+      .hero h1{font-size:clamp(82px,15vw,120px);margin-top:22px;margin-bottom:22px}
+      .portrait-area{width:calc(100% - 30px);max-width:400px;margin:12px auto 0}
+      .portrait-frame{aspect-ratio:1.02}
+      .portrait-frame img{object-position:center 36%}
+      .since-stamp{right:-16px;top:-12px}
+      .sticker{left:-12px;bottom:36px}
+      .photo-note{right:13px}
+      .portrait-caption{font-size:9px}
+      .section-top{display:block;margin-top:20px;margin-bottom:32px}
+      .section-top>p{margin-top:18px;max-width:100%}
+      .journey{padding-block:66px}
+      .play{padding-block:66px}
+      .timeline{grid-template-columns:1fr;border-top:0;row-gap:0}
+      .timeline li{padding:0 0 28px 26px;border-left:1px solid var(--line)}
+      .timeline li:last-child{padding-bottom:0}
+      .timeline li::before{left:-5px;top:3px}
+      .journey-layout{grid-template-columns:1fr;gap:29px}
+      .era-tabs{margin-bottom:23px}
+      .era-copy p{max-width:100%}
+      .era-caption{margin-top:21px}
+      .terminal{min-height:310px}
+      .under-terminal{line-height:1.6}
+      .under-terminal span:last-child{text-align:right}
+      .notes-section{padding:62px 0}
+      .notes-heading{grid-template-columns:1fr;gap:20px;margin-top:22px}
+      .notes-list{margin-top:32px}
+      .note summary{grid-template-columns:28px 1fr 20px;gap:12px;padding:22px 0}
+      .note-tag{display:none}
+      .note-title{font-size:21px}
+      .note-detail{padding:0 0 26px}
+      .note-grid{padding:18px}
+      .services{padding-block:66px}
+      .services-grid{grid-template-columns:1fr}
+      .service,.service:nth-child(odd){margin-right:0;border-right:0;padding-right:0}
+      .partner-section{padding-block:66px}
+      .partner-grid{grid-template-columns:1fr;gap:20px}
+      .partner-bottom-strip{flex-direction:column;gap:10px;text-align:center}
+      .offscreen{padding-block:66px;grid-template-columns:1fr;gap:35px}
+      .offscreen-copy p{max-width:100%}
+      .family-art{max-width:430px;width:calc(100% - 18px);margin:0 auto;min-height:270px}
+      .family-label{font-size:clamp(20px,5vw,25px);text-align:center;padding-inline:14px}
+      .contact{padding-block:60px;grid-template-columns:1fr;gap:32px}
+      .contact-form{justify-self:stretch;max-width:100%;grid-template-columns:1fr}
+      .contact h2{margin-top:18px}
+      .footer{display:grid;grid-template-columns:1fr auto;gap:18px}
+      .footer-links{justify-self:end}
+      .footer .signoff{grid-column:1;font-size:14px;line-height:1.45}
+      .back-top{grid-column:2;justify-self:end}
+    }
+    @media(max-width:480px){
+      .nav a:nth-child(3),.nav a:nth-child(4){display:none}
+      .brand{gap:8px}
+      .hero-actions{gap:12px}
+      .primary-link,.secondary-link{width:100%;justify-content:space-between}
+      .hero-footnote{font-size:10px;gap:9px}
+      .footnote-extra{display:none}
+      .number strong{font-size:32px}
+      .book-button{width:100%}
+      .footer-links{gap:14px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation:none!important;transition:none!important}
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header shell">
+    <a class="brand" href="#top" aria-label="Mohamed Sharaf, home"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Mohamed Sharaf<span class="accent">.</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#story">The story</a>
+      <a href="#notes">Field notes</a>
+      <a href="#services">What I do</a>
+      <a href="#partner">Work together</a>
+      <a class="nav-cta" href="#contact">Say hello <span aria-hidden="true">↗</span></a>
+    </nav>
+    <div class="online mono"><i></i> At the keyboard since 1996</div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow mono">A small corner of a very big internet</div>
+        <h1 id="hero-title">Still<br><em>curious.</em></h1>
+        <p class="intro-name">I’m Mohamed Sharaf.</p>
+        <div class="hero-description">
+          <p>My first computer was in 1996. By 2000, I was doing security for a living. In 2002, I started my own company, and it’s still running.</p>
+          <p>Three decades on, I still enjoy the same thing: opening a system up, finding where it breaks, and making it hold.</p>
+          <div class="hero-value-box">
+            <span class="hero-value-tag mono">Security · Infrastructure · Software · AI</span>
+            <p class="hero-value-prop">These days I help startups, small businesses and government teams make their systems safer and simpler. Sometimes with an hour of advice. Sometimes with a proper review.</p>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a class="primary-link" href="#services">How I can help <span aria-hidden="true">↓</span></a>
+          <a class="secondary-link" href="#contact">Reach me <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-footnote mono">From Cairo &nbsp;·&nbsp; Living in Riyadh<span class="footnote-extra"> &nbsp;·&nbsp; Dad. Always a beginner.</span></div>
+      </div>
+      <figure class="portrait-area">
+        <div class="portrait-frame"><img src="v2-assets/portrait.jpg" alt="Black and white AI-styled portrait of Mohamed Sharaf" width="1120" height="1400" fetchpriority="high"><div class="portrait-corner mono" aria-hidden="true">The human behind the tabs</div><div class="photo-note mono">MOHAMED_SHARAF<span>An AI-reimagined portrait · the same human</span></div></div>
+        <div class="since-stamp" aria-label="At the keyboard since 1996"><small>AT THE KEYBOARD</small><strong>1996</strong><small>AND COUNTING</small></div>
+        <div class="sticker"><b>Curiosity never gets old.</b>Neither does “what if?”</div>
+        <figcaption class="portrait-caption mono"><span>FIG. 01 / A work in progress</span><span>Just like this website ↗</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- NUMBERS: computed from the year, so they stay true -->
+    <div class="numbers shell" aria-label="A few numbers">
+      <div class="number"><strong><span data-since="1996">30</span><sup>yrs</sup></strong><span class="number-label mono">With computers</span></div>
+      <div class="number"><strong><span data-since="2000">26</span><sup>yrs</sup></strong><span class="number-label mono">In security</span></div>
+      <div class="number"><strong><span data-since="2002">24</span><sup>yrs</sup></strong><span class="number-label mono">Running my own company</span></div>
+      <div class="number"><strong>100<sup>K</sup></strong><span class="number-label mono">People live at once, back in 2005</span></div>
+      <div class="number"><strong>0</strong><span class="number-label mono">Client names on this site. Ever.</span></div>
+    </div>
+
+    <!-- 01 / THE STORY -->
+    <section class="journey shell" id="story" aria-labelledby="journey-title">
+      <div class="section-label mono"><span>01 /</span> The long way here</div>
+      <div class="section-top"><h2 id="journey-title">A few decades.<br>Same <em>instinct.</em></h2><p>Technology keeps changing. The urge to open it up, understand how it works and see what happens? That part stays.</p></div>
+
+      <ol class="timeline">
+        <li><time class="mono" datetime="1996">1996</time><h3>First computer.</h3><p>BASIC, Windows 3.11 and a blinking cursor that did what I typed. That was enough. I was hooked.</p></li>
+        <li><time class="mono" datetime="2000">2000</time><h3>Security, for real.</h3><p>Curiosity turned into work: testing systems, finding the holes and helping people close them before someone else found them.</p></li>
+        <li><time class="mono" datetime="2002">2002</time><h3>My own company.</h3><p>Domains, hosting, managed dedicated servers, websites and voice chat rooms. By 2005: about 500 sites and 2,000+ rooms. It’s still running today.</p></li>
+        <li><time class="mono" datetime="2006">2006</time><h3>This domain.</h3><p>A small place on the internet that’s mine. It has been through a lot of redesigns. This is the newest one.</p></li>
+        <li><time class="mono">Today</time><h3>Still building.</h3><p>Leading technical work in the public sector, and finding out where AI actually helps, safely.</p></li>
+      </ol>
+    </section>
+
+    <!-- 02 / FIELD NOTES -->
+    <section class="notes-section" id="notes" aria-labelledby="notes-title"><div class="shell">
+      <div class="section-label mono"><span>02 /</span> Field notes</div>
+      <div class="notes-heading"><h2 id="notes-title">Things I’ve seen.<br>Things I <em>learned.</em></h2><p>Five stories from three decades of servers, systems and security. No client names, and the details are blurred on purpose. The lessons are real.</p></div>
+      <div class="notes-list">
+        <details class="note" open>
+          <summary><span class="note-number">01</span><span class="note-title">The server that started talking to strangers</span><span class="note-tag mono">Hosting · Incident response</span><span class="note-plus" aria-hidden="true">+</span></summary>
+          <div class="note-detail"><div class="note-grid">
+            <div><span class="note-kicker mono">The situation</span><p>Run hosting long enough and it happens: a customer’s server starts sending traffic it has no business sending. Usually at night. Usually on a weekend.</p></div>
+            <div><span class="note-kicker mono">What I did</span><p>Contain first, ask questions second. Cut it off, keep the evidence, find the way in, often an old forgotten script. Then rebuild clean and close that same hole on every other server, not just this one.</p></div>
+            <div><span class="note-kicker mono">What stayed with me</span><p class="lesson">Incidents aren’t solved at 3 a.m. They’re solved by what you prepared before 3 a.m.</p></div>
+          </div></div>
+        </details>
+        <details class="note">
+          <summary><span class="note-number">02</span><span class="note-title">The backup nobody had tested</span><span class="note-tag mono">Infrastructure · Resilience</span><span class="note-plus" aria-hidden="true">+</span></summary>
+          <div class="note-detail"><div class="note-grid">
+            <div><span class="note-kicker mono">The situation</span><p>Everyone says they have backups. Far fewer people have ever restored one. You find out which kind you are on the day a disk dies.</p></div>
+            <div><span class="note-kicker mono">What I did</span><p>Treat the restore as the real product. Scheduled restore tests, copies in more than one place, and a short written plan for what comes back first and who does what.</p></div>
+            <div><span class="note-kicker mono">What stayed with me</span><p class="lesson">A backup you’ve never restored is a hope, not a plan.</p></div>
+          </div></div>
+        </details>
+        <details class="note">
+          <summary><span class="note-number">03</span><span class="note-title">100,000 people talking at once. In 2005.</span><span class="note-tag mono">Hosting · Real-time scale</span><span class="note-plus" aria-hidden="true">+</span></summary>
+          <div class="note-detail"><div class="note-grid">
+            <div><span class="note-kicker mono">The situation</span><p>By 2005 we were running around 500 websites and more than 2,000 voice chat rooms. On a busy night, 50,000 to 100,000 people were live at the same moment, talking over the slow home internet of the time. No cloud. No autoscaling. Just our servers and us.</p></div>
+            <div><span class="note-kicker mono">What I did</span><p>Plan for the busiest night, not the average one. Spread the rooms across servers so one failure never took everyone down. Watch the load all evening, keep abusive users out, and keep the setup simple enough to fix while people were still talking.</p></div>
+            <div><span class="note-kicker mono">What stayed with me</span><p class="lesson">People forgive slow. They don’t forgive gone.</p></div>
+          </div></div>
+        </details>
+        <details class="note">
+          <summary><span class="note-number">04</span><span class="note-title">The test that found the front door open</span><span class="note-tag mono">Penetration testing · Audits</span><span class="note-plus" aria-hidden="true">+</span></summary>
+          <div class="note-detail"><div class="note-grid">
+            <div><span class="note-kicker mono">The situation</span><p>Teams expect a security test to find something clever. Most of the time it finds something simple that has been sitting there for years.</p></div>
+            <div><span class="note-kicker mono">What I did</span><p>Default passwords, admin panels open to the whole internet, old software nobody owned anymore. Test like an attacker, then write it up so a busy manager can act on it: what’s wrong, how bad it is, what to fix first.</p></div>
+            <div><span class="note-kicker mono">What stayed with me</span><p class="lesson">Fix the boring things first. Attackers love boring.</p></div>
+          </div></div>
+        </details>
+        <details class="note">
+          <summary><span class="note-number">05</span><span class="note-title">Security on the whiteboard, not the checklist</span><span class="note-tag mono">Secure systems · Large organisations</span><span class="note-plus" aria-hidden="true">+</span></summary>
+          <div class="note-detail"><div class="note-grid">
+            <div><span class="note-kicker mono">The situation</span><p>Big systems with many users and sensitive data, where a mistake isn’t just a bug. It’s a headline, and sometimes a lot worse.</p></div>
+            <div><span class="note-kicker mono">What I did</span><p>Bring security into the design meeting instead of the launch checklist: who can see what, what gets logged, what happens when a part fails, and how we’ll prove all of it later.</p></div>
+            <div><span class="note-kicker mono">What stayed with me</span><p class="lesson">The cheapest security fix is the one you make on the whiteboard.</p></div>
+          </div></div>
+        </details>
+      </div>
+      <p class="notes-footnote mono">Every story is shared with the people involved kept anonymous. That’s how I’d treat yours, too.</p>
+    </div></section>
+
+    <!-- 03 / WHAT I DO -->
+    <section class="services shell" id="services" aria-labelledby="services-title">
+      <div class="section-label mono"><span>03 /</span> What I do</div>
+      <div class="section-top"><h2 id="services-title">Four things.<br>Done <em>properly.</em></h2><p>I’ve done a lot of things over the years. These are the ones I’m good at, and still enjoy.</p></div>
+      <div class="services-grid">
+        <div class="service"><span class="service-number mono">01 / Since 2000</span><h3>Security</h3><p>Find the holes before someone else does, and help you close them. If something has already gone wrong, help you contain it calmly.</p><ul><li>Penetration testing</li><li>Security audits</li><li>Building secure systems</li><li>Incident response</li></ul></div>
+        <div class="service"><span class="service-number mono">02 / Since 2002</span><h3>Infrastructure</h3><p>More than twenty years of keeping servers alive. I’ll help you set things up so they’re boring, in the best possible way.</p><ul><li>Servers, hosting &amp; cloud</li><li>Networks &amp; access</li><li>Backups that actually restore</li><li>Uptime &amp; monitoring</li></ul></div>
+        <div class="service"><span class="service-number mono">03 / Always</span><h3>Software &amp; architecture</h3><p>Look at how a system is built before it gets expensive to change. Fewer moving parts, clearer boundaries, less to go wrong.</p><ul><li>Architecture reviews</li><li>APIs &amp; data design</li><li>Secure development practice</li><li>Technical due diligence</li></ul></div>
+        <div class="service"><span class="service-number mono">04 / Now</span><h3>AI, carefully</h3><p>Use AI where it really saves time, and keep your data safe while you do. No magic promises, just honest testing of what works.</p><ul><li>Where AI fits, and where it doesn’t</li><li>Safe use of company data</li><li>Practical automations</li><li>Build-or-buy advice</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 04 / WORKING TOGETHER -->
+    <section class="partner-section shell" id="partner" aria-labelledby="partner-title">
+      <div class="section-label mono"><span>04 /</span> Working together</div>
+      <div class="section-top"><h2 id="partner-title">Three ways<br>to <em>start.</em></h2><p>Startups, small businesses and government teams. Egypt, the Gulf, Europe, or anywhere else. Remote by default.</p></div>
+      <div class="partner-grid">
+        <div class="partner-card">
+          <div class="partner-meta mono"><span>01</span><span class="partner-tag">A conversation</span></div>
+          <h3 class="partner-title">A second opinion</h3>
+          <p class="partner-desc">One call. Bring a plan, a problem or a question you can’t get a straight answer to. You leave with an honest view from someone who has seen it before.</p>
+          <p class="partner-good"><b>GOOD FOR</b>Founders and managers asking “is this a good idea?”</p>
+          <a class="partner-cta-link mono" href="#contact" data-topic="A second opinion">Ask for a call ↗</a>
+        </div>
+        <div class="partner-card featured">
+          <div class="partner-meta mono"><span>02</span><span class="partner-tag">A focused review</span></div>
+          <h3 class="partner-title">A test or an audit</h3>
+          <p class="partner-desc">A penetration test, security audit or architecture review with a clear written report: what’s wrong, how serious it is and what to fix first. In plain language.</p>
+          <p class="partner-good"><b>GOOD FOR</b>Teams about to launch, or after a scare</p>
+          <a class="partner-cta-link mono" href="#contact" data-topic="A test or an audit">Ask about a review ↗</a>
+        </div>
+        <div class="partner-card">
+          <div class="partner-meta mono"><span>03</span><span class="partner-tag">Ongoing</span></div>
+          <h3 class="partner-title">A senior voice on call</h3>
+          <p class="partner-desc">Fractional CTO or security advisor for teams that need experienced judgment more than another full-time hire.</p>
+          <p class="partner-good"><b>GOOD FOR</b>Growing teams without a senior technical lead</p>
+          <a class="partner-cta-link mono" href="#contact" data-topic="Ongoing advice">Let’s talk ↗</a>
+        </div>
+      </div>
+      <div class="partner-bottom-strip mono"><span>No client names, ever</span><span>Plain-language reports</span><span>Remote-first</span></div>
+    </section>
+
+    <!-- 05 / OFF-SCREEN -->
+    <section class="offscreen shell" id="offscreen" aria-labelledby="offscreen-title">
+      <div class="offscreen-copy">
+        <div class="section-label mono"><span>05 /</span> Away from the keyboard</div>
+        <h2 id="offscreen-title">There’s a whole<br>life <em>off-screen.</em></h2>
+        <p>I’m also a dad to <strong>two sons and a daughter.</strong><br>A very human part of a very digital life.</p>
+        <p>Egyptian, from <strong>Cairo</strong>. Living in <strong>Riyadh</strong>. And one day, God willing, I hope to spend the rest of my life in <strong>Madinah</strong>.</p>
+        <p>Three decades of technology taught me one thing for sure: the best systems give people their time back.</p>
+      </div>
+      <div class="family-art">
+        <span class="family-top">THE MOST PERSONAL PART</span>
+        <span class="family-heart" aria-hidden="true">♥</span>
+        <div class="family-speech" id="family-speech" aria-live="polite"></div>
+        <div class="family-characters" aria-label="Three playful pixel characters representing two sons and a daughter">
+          <button class="pixel-child" aria-label="Say hello to pixel son one" data-message="Player 1 has entered the room."><svg viewBox="0 0 12 18" aria-hidden="true"><path fill="#636e59" d="M4 1h4v1h2v5H8v2h3v6H8v3H6v-4H5v4H3v-3H1V9h3V7H2V2h2z"/><path fill="#eeeae2" d="M4 4h1v1H4zm3 0h1v1H7z"/><path fill="#444e3c" d="M3 1h6v2H3z"/></svg></button>
+          <button class="pixel-child" aria-label="Say hello to pixel son two" data-message="Player 2 is ready for an adventure."><svg viewBox="0 0 12 18" aria-hidden="true"><path fill="#b39151" d="M4 1h4v1h2v5H8v2h3v6H8v3H6v-4H5v4H3v-3H1V9h3V7H2V2h2z"/><path fill="#eeeae2" d="M4 4h1v1H4zm3 0h1v1H7z"/><path fill="#88703f" d="M3 1h6v2H3z"/></svg></button>
+          <button class="pixel-child" aria-label="Say hello to pixel daughter" data-message="Player 3 brings her own kind of magic."><svg viewBox="0 0 12 18" aria-hidden="true"><path fill="#cf7156" d="M4 1h4v1h2v6H8V7H4v1H2V2h2zm0 7h4v2h1v2h1v3H8v3H6v-3H5v3H3v-3H2v-3h1v-2h1z"/><path fill="#eeeae2" d="M4 4h1v1H4zm3 0h1v1H7z"/><path fill="#a95642" d="M2 2h8v1H2z"/><path fill="#e4ba70" d="M8 1h3v2H8z"/></svg></button>
+        </div>
+        <div class="family-line"></div>
+        <div class="family-label">My favourite little universe.</div>
+        <p class="family-meta">2 SONS + 1 DAUGHTER = A FULL HEART</p>
+      </div>
+    </section>
+
+    <!-- 06 / PLAY -->
+    <section class="play shell" id="play" aria-labelledby="play-title">
+      <div class="section-label mono"><span>06 /</span> Play while you’re here</div>
+      <div class="section-top"><h2 id="play-title">Before you go,<br>press <em>RUN.</em></h2><p>Three small toys from three eras. Nothing to install, nothing to sign up for. Just a little of the fun that got me started.</p></div>
+      <div class="journey-layout" id="playground">
+        <div>
+          <div class="era-tabs" role="tablist" aria-label="Explore the eras">
+            <button class="era-tab" id="tab-basic" role="tab" aria-controls="panel-basic" aria-selected="true" data-era="basic"><span>1996</span>The BASIC days</button>
+            <button class="era-tab" id="tab-web" role="tab" aria-controls="panel-web" aria-selected="false" tabindex="-1" data-era="web"><span>2006</span>Online</button>
+            <button class="era-tab" id="tab-now" role="tab" aria-controls="panel-now" aria-selected="false" tabindex="-1" data-era="now"><span>Today</span>Still exploring</button>
+          </div>
+          <div class="era-copy" id="era-copy"><h3>It started with a blinking cursor.</h3><p>My first computer, 1996. BASIC, Windows 3.11, and the simple thrill of typing something and watching a computer do it.</p><span class="era-tag mono">1996</span><span class="era-tag mono">BASIC</span><span class="era-tag mono">Windows 3.11</span><div class="era-caption mono"><span aria-hidden="true">↳</span> Go on. Change the words. Press RUN.</div></div>
+        </div>
+        <div class="interactive">
+          <div id="panel-basic" role="tabpanel" aria-labelledby="tab-basic" tabindex="0">
+            <div class="terminal"><div class="terminal-title mono"><span>◧ &nbsp; CURIOSITY.BAS</span><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span></div><div class="terminal-body"><p class="terminal-hint">A tiny time machine. No installation required.</p><label class="code-label" for="basic-code">Your program · editable</label><textarea class="code-editor" id="basic-code" spellcheck="false" aria-describedby="basic-support">10 PRINT "HELLO, WORLD!"
+20 PRINT "STILL CURIOUS."
+30 PRINT "ALWAYS WILL BE."</textarea><div class="terminal-tools"><button class="run-button" id="run-basic">▶ &nbsp; Run program</button><button class="reset-button" id="reset-basic">Reset</button><button class="reset-button" id="loop-basic">Try a loop ↗</button></div><pre class="terminal-output" id="basic-output" role="status" aria-live="polite">Ready when you are.
+</pre></div><div class="terminal-bottom"><span>PERSONAL COMPUTER · PERSONAL POSSIBILITIES</span><span>OK</span></div></div><div class="under-terminal" id="basic-support"><span>SUPPORTS PRINT, GOTO, REM, END</span><span>CTRL/⌘ + ENTER TO RUN</span></div>
+          </div>
+          <div id="panel-web" role="tabpanel" aria-labelledby="tab-web" tabindex="0" hidden><div class="browser-2006"><div class="old-title"><span>Mohamed’s corner of the web</span><span aria-hidden="true">_ □ ×</span></div><div class="old-address">Address <span>http://mohamedsharaf.com</span></div><div class="old-page"><small>★ &nbsp; WELCOME TO MY HOMEPAGE &nbsp; ★</small><h3>Hello, World Wide Web.</h3><p>A little space on the internet.<br>Mine, since 2006.</p><div class="old-rule"></div><button id="guestbook">Leave a little hello ☺</button><p class="guest-message" id="guest-message" aria-live="polite">You found your way here. That’s pretty cool.</p></div></div><p class="era-disclaimer">A PLAYFUL RECONSTRUCTION OF THE ERA — NOT AN ARCHIVED PAGE.<br>GUESTBOOK HELLOS STAY IN THIS BROWSER TAB.</p></div>
+          <div id="panel-now" role="tabpanel" aria-labelledby="tab-now" tabindex="0" hidden><div class="generative"><div class="generative-title mono">A LITTLE BEAUTIFUL UNPREDICTABILITY</div><canvas id="curiosity-canvas" aria-label="An abstract orange constellation that changes when you press New possibility"></canvas><div class="generative-tools mono"><span id="seed-label">POSSIBILITY / 001</span><button id="new-pattern">New possibility ↗</button></div></div><p class="era-disclaimer">A SMALL GENERATIVE-CODE TOY. MADE IN YOUR BROWSER.<br>NO AI MODEL RUNNING HERE — JUST AN INVITATION TO PLAY.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 / CONTACT -->
+    <section class="contact shell" id="contact" aria-labelledby="contact-title">
+      <div class="contact-left">
+        <div class="section-label mono"><span>07 /</span> You made it this far</div>
+        <h2 id="contact-title">Say <em>hello.</em></h2>
+        <div class="contact-status mono"><i></i><span>Open to good conversations</span></div>
+        <p>A system you’re worried about? An idea that needs a second opinion? Or you just remember your first computer too? Write to me. I read everything.</p>
+        <div class="contact-secondary">
+          <a class="email-link" href="mailto:hi@mohamedsharaf.com">hi@mohamedsharaf.com <span aria-hidden="true">↗</span></a>
+          <button class="copy-email mono" id="copy-email" aria-live="polite">Copy email address</button>
+        </div>
+      </div>
+      <!-- FormSubmit: the first message triggers a one-time activation email to this address -->
+      <form class="contact-form" id="contact-form" action="https://formsubmit.co/hi@mohamedsharaf.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from mohamedsharaf.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://mohamedsharaf.com/#contact">
+        <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field"><label class="mono" for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label class="mono" for="f-email">Your email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field full"><label class="mono" for="f-topic">What’s it about?</label>
+          <select id="f-topic" name="topic">
+            <option>Just saying hello</option>
+            <option>A second opinion</option>
+            <option>A test or an audit</option>
+            <option>Ongoing advice</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field full"><label class="mono" for="f-message">Your message</label><textarea id="f-message" name="message" rows="5" required></textarea></div>
+        <div class="form-actions">
+          <button class="book-button" type="submit" id="form-submit">Send message <span aria-hidden="true">↗</span></button>
+          <p class="form-note mono" id="form-status" role="status" aria-live="polite">Straight to my inbox. No newsletter, ever.</p>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <span class="mono">&copy; <span id="year">2026</span> Mohamed Sharaf</span>
+    <span class="signoff">On the web since 2006. Still making it up as I go.</span>
+    <nav class="footer-links" aria-label="Social links">
+      <a href="https://www.linkedin.com/in/mohamed-ahmed-sharaf/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      <a href="https://www.facebook.com/Mohamed.Ahmed.Sharaf" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+    </nav>
+    <a class="back-top" href="#top" aria-label="Back to top">↑</a>
+  </footer>
+
+  <script>
+    (() => {
+      'use strict';
+      const $ = id => document.getElementById(id);
+      const thisYear = new Date().getFullYear();
+
+      // YEARS SINCE
+      document.querySelectorAll('[data-since]').forEach(el => {
+        el.textContent = thisYear - Number(el.dataset.since);
+      });
+
+      // ERA TABS
+      const eras = {
+        basic: {
+          title: 'It started with a blinking cursor.',
+          text: 'My first computer, 1996. BASIC, Windows 3.11, and the simple thrill of typing something and watching a computer do it.',
+          tags: ['1996', 'BASIC', 'Windows 3.11'],
+          hint: 'Go on. Change the words. Press RUN.'
+        },
+        web: {
+          title: 'A little address of my own.',
+          text: 'By 2006 I had been running a hosting company for four years, so I finally gave myself a corner of the web too. The internet changed a lot around it. It’s still here.',
+          tags: ['2006', 'Personal website'],
+          hint: 'A little nostalgia. You can even leave a hello.'
+        },
+        now: {
+          title: 'Another chapter. Same curiosity.',
+          text: 'From BASIC to AI, I’ve watched computing reinvent itself again and again. The tools change. The questions don’t: how does it work, where does it break, and can we trust it?',
+          tags: ['Today', 'AI', 'Still learning'],
+          hint: 'One small rule, many possibilities. Try it.'
+        }
+      };
+
+      const tabs = [...document.querySelectorAll('[data-era]')];
+      function selectEra(era, focus = false) {
+        tabs.forEach(tab => {
+          const active = tab.dataset.era === era;
+          tab.setAttribute('aria-selected', String(active));
+          tab.tabIndex = active ? 0 : -1;
+          $('panel-' + tab.dataset.era).hidden = !active;
+          if (active && focus) tab.focus();
+        });
+        const info = eras[era], copy = $('era-copy');
+        copy.replaceChildren();
+        const title = document.createElement('h3');
+        title.textContent = info.title;
+        const p = document.createElement('p');
+        p.textContent = info.text;
+        copy.append(title, p);
+        info.tags.forEach(label => {
+          const tag = document.createElement('span');
+          tag.className = 'era-tag mono';
+          tag.textContent = label;
+          copy.append(tag);
+        });
+        const hint = document.createElement('div');
+        hint.className = 'era-caption mono';
+        const arrow = document.createElement('span');
+        arrow.textContent = '↳';
+        arrow.setAttribute('aria-hidden', 'true');
+        hint.append(arrow, document.createTextNode(info.hint));
+        copy.append(hint);
+        if (era === 'now') requestAnimationFrame(drawPattern);
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => selectEra(tab.dataset.era));
+        tab.addEventListener('keydown', event => {
+          let next;
+          if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+          if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+          if (event.key === 'Home') next = 0;
+          if (event.key === 'End') next = tabs.length - 1;
+          if (next !== undefined) {
+            event.preventDefault();
+            selectEra(tabs[next].dataset.era, true);
+          }
+        });
+      });
+
+      // BASIC EMULATOR
+      const initialCode = $('basic-code').value;
+      function runBasic() {
+        const output = $('basic-output');
+        const lines = $('basic-code').value.split(/\r?\n/).filter(line => line.trim());
+        const program = [], labels = new Map(), printed = [];
+        let error = '';
+
+        for (let index = 0; index < lines.length; index++) {
+          const match = lines[index].trim().match(/^(?:(\d+)\s+)?(.*)$/);
+          const number = match[1] ? Number(match[1]) : index + 1;
+          if (labels.has(number)) { error = 'Duplicate line number ' + number; break; }
+          labels.set(number, program.length);
+          program.push({ number, code: match[2].trim() });
+        }
+
+        let pc = 0, steps = 0;
+        while (!error && pc < program.length && steps < 80) {
+          steps++;
+          const { number, code } = program[pc];
+          let match;
+          if (!code || /^REM(?:\s|$)/i.test(code)) { pc++; continue; }
+          if (/^END$/i.test(code)) break;
+          if ((match = code.match(/^PRINT(?:\s+(.*))?$/i))) {
+            const expression = (match[1] || '').trim();
+            if (!expression) printed.push('');
+            else if (/^"[^"\r\n]*"$/.test(expression)) printed.push(expression.slice(1, -1));
+            else if (/^-?\d+(?:\.\d+)?$/.test(expression)) printed.push(expression);
+            else { error = 'Line ' + number + ': use PRINT "your words" or PRINT 42.'; break; }
+          } else if ((match = code.match(/^GOTO\s+(\d+)$/i))) {
+            const target = Number(match[1]);
+            if (!labels.has(target)) { error = 'Line ' + number + ': line ' + target + ' does not exist.'; break; }
+            pc = labels.get(target);
+            continue;
+          } else {
+            error = 'Line ' + number + ': try PRINT, GOTO, REM, or END.';
+            break;
+          }
+          pc++;
+        }
+
+        if (steps >= 80) printed.push('', '[Loop paused after 80 steps. Curiosity can go on forever; this tab shouldn’t.]');
+        if (error) printed.push('? ' + error);
+        else if (steps < 80) printed.push('', 'OK.');
+        output.textContent = printed.join('\n') + '\n';
+        output.scrollTop = 0;
+      }
+
+      $('run-basic').addEventListener('click', runBasic);
+      $('reset-basic').addEventListener('click', () => {
+        $('basic-code').value = initialCode;
+        $('basic-output').textContent = 'Ready when you are.\n';
+      });
+      $('loop-basic').addEventListener('click', () => {
+        $('basic-code').value = '10 PRINT "STAY CURIOUS. AGAIN. AND AGAIN."\n20 GOTO 10';
+        runBasic();
+      });
+      $('basic-code').addEventListener('keydown', event => {
+        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+          event.preventDefault();
+          runBasic();
+        }
+      });
+
+      // 2006 GUESTBOOK
+      let hellos = 0;
+      $('guestbook').addEventListener('click', () => {
+        hellos++;
+        $('guest-message').textContent = hellos === 1
+          ? 'Hello, fellow internet traveller. ☺'
+          : 'A little hello, times ' + hellos + '. The old web says hi back.';
+      });
+
+      // GENERATIVE CANVAS
+      let possibility = 1;
+      function drawPattern() {
+        const canvas = $('curiosity-canvas');
+        if ($('panel-now').hidden) return;
+        const bounds = canvas.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        if (!bounds.width) return;
+        canvas.width = bounds.width * dpr;
+        canvas.height = bounds.height * dpr;
+        const context = canvas.getContext('2d');
+        context.scale(dpr, dpr);
+        const w = bounds.width, h = bounds.height;
+        context.clearRect(0, 0, w, h);
+        let seed = possibility * 727;
+        const random = () => {
+          seed = (seed * 1664525 + 1013904223) >>> 0;
+          return seed / 4294967296;
+        };
+        const phase = random() * 6.28;
+        const petals = 3 + Math.floor(random() * 5);
+        const points = [];
+        for (let i = 0; i < 190; i++) {
+          const t = i / 190 * Math.PI * 2;
+          const radius = (Math.min(w, h) * .3) * (1 + .23 * Math.cos(petals * t + phase));
+          points.push([w / 2 + Math.cos(t) * radius * 1.25, h / 2 + 10 + Math.sin(t) * radius]);
+        }
+        context.strokeStyle = 'rgba(232,85,50,.16)';
+        context.lineWidth = .6;
+        for (let i = 0; i < points.length; i++) {
+          const target = (i * (2 + possibility % 5) + 23) % points.length;
+          context.beginPath();
+          context.moveTo(...points[i]);
+          context.lineTo(...points[target]);
+          context.stroke();
+        }
+        points.forEach(([x, y], i) => {
+          context.beginPath();
+          context.arc(x, y, i % 7 === 0 ? 2 : 1, 0, Math.PI * 2);
+          context.fillStyle = i % 7 === 0 ? '#f3cf94' : '#e8754e';
+          context.fill();
+        });
+        $('seed-label').textContent = 'POSSIBILITY / ' + String(possibility).padStart(3, '0');
+      }
+      $('new-pattern').addEventListener('click', () => {
+        possibility++;
+        drawPattern();
+      });
+      new ResizeObserver(() => {
+        if (!$('panel-now').hidden) drawPattern();
+      }).observe($('curiosity-canvas'));
+
+      // FAMILY PIXEL SPEECH
+      let speechTimeout;
+      document.querySelectorAll('[data-message]').forEach(character => {
+        character.addEventListener('click', () => {
+          clearTimeout(speechTimeout);
+          $('family-speech').textContent = character.dataset.message;
+          speechTimeout = setTimeout(() => { $('family-speech').textContent = ''; }, 4000);
+        });
+      });
+
+      // CONTACT FORM (FormSubmit AJAX; the plain POST still works without JS)
+      const form = $('contact-form'), formStatus = $('form-status'), formSubmit = $('form-submit');
+      document.querySelectorAll('[data-topic]').forEach(link => {
+        link.addEventListener('click', () => { $('f-topic').value = link.dataset.topic; });
+      });
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (form.elements._honey.value) return;
+        formSubmit.disabled = true;
+        formStatus.className = 'form-note mono';
+        formStatus.textContent = 'Sending…';
+        try {
+          const response = await fetch('https://formsubmit.co/ajax/hi@mohamedsharaf.com', {
+            method: 'POST',
+            headers: { Accept: 'application/json' },
+            body: new FormData(form)
+          });
+          const result = await response.json();
+          if (!response.ok || String(result.success) !== 'true') throw new Error(result.message);
+          form.reset();
+          formStatus.className = 'form-note mono ok';
+          formStatus.textContent = 'Thank you. It’s in my inbox. I’ll get back to you soon.';
+        } catch {
+          formStatus.className = 'form-note mono error';
+          formStatus.textContent = 'That didn’t go through. Please email hi@mohamedsharaf.com instead.';
+        } finally {
+          formSubmit.disabled = false;
+        }
+      });
+
+      // COPY EMAIL
+      $('copy-email').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('hi@mohamedsharaf.com');
+          $('copy-email').textContent = 'Copied. Say hello whenever.';
+        } catch {
+          $('copy-email').textContent = 'hi@mohamedsharaf.com — select to copy';
+        }
+        setTimeout(() => { $('copy-email').textContent = 'Copy email address'; }, 5000);
+      });
+
+      $('year').textContent = thisYear;
+    })();
+  </script>
+</body>
+</html>

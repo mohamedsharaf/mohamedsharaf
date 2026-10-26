@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ed">
+  <meta name="description" content="Mohamed Sharaf — a little about my interests in software, infrastructure, information security, and artificial intelligence.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mohamed Sharaf — A little about me">
+  <meta property="og:description" content="A personal introduction and a few things I keep thinking about.">
+  <meta property="og:url" content="https://mohamedsharaf.com/">
+  <link rel="canonical" href="https://mohamedsharaf.com/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%231d5a48'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='22' font-weight='700' fill='%23f3f0e8'%3EMS%3C/text%3E%3C/svg%3E">
+  <title>Mohamed Sharaf — A little about me</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172522;
+      --muted: #687772;
+      --paper: #f5f3ed;
+      --white: #fbfaf6;
+      --line: #d9ded6;
+      --green: #1d5a48;
+      --green-dark: #153e34;
+      --lime: #d5eb91;
+      --orange: #d47d54;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible { outline: 3px solid var(--orange); outline-offset: 5px; }
+    .shell { width: min(1180px, calc(100% - 72px)); margin-inline: auto; }
+    .eyebrow, .micro, .number, .tag {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .01em;
+    }
+    .eyebrow { display: flex; align-items: center; gap: 11px; color: var(--green); }
+    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+    .site-header { border-bottom: 1px solid var(--line); }
+    .nav { min-height: 84px; display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 750; }
+    .brand-mark {
+      width: 42px; height: 42px; display: grid; place-items: center; border-radius: 14px;
+      background: var(--green); color: var(--white); font-size: 13px; letter-spacing: -.06em;
+    }
+    .brand-name { display: grid; gap: 1px; font-size: 15px; }
+    .brand-name small { color: var(--muted); font-size: 10px; font-weight: 500; direction: ltr; text-align: left; }
+    .nav-links { display: flex; align-items: center; gap: clamp(20px, 3.3vw, 46px); font-size: 13px; color: #45534f; }
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links .nav-contact { padding: 11px 17px; border: 1px solid #bac5bb; border-radius: 999px; color: var(--ink); }
+    .nav-links .nav-contact:hover { background: var(--green); border-color: var(--green); color: white; }
+
+    .hero { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: clamp(38px, 7vw, 100px); padding-block: 74px 90px; }
+    .hero-copy { padding-block: 9px; }
+    .hero-meta { display: flex; align-items: center; gap: 16px; color: var(--muted); font-size: 12px; margin-bottom: 30px; }
+    .hero-meta span + span { padding-left: 16px; border-left: 1px solid #bec8be; }
+    h1 { margin: 0; font-size: clamp(48px, 7vw, 88px); line-height: 1.08; letter-spacing: -.075em; font-weight: 750; }
+    h1 .name { display: block; white-space: nowrap; }
+    h1 .statement { display: block; margin-top: 18px; color: var(--green); font-size: clamp(25px, 3vw, 39px); line-height: 1.48; letter-spacing: -.05em; font-weight: 600; }
+    .hero-intro { max-width: 550px; margin: 22px 0 0; color: #4c5b55; font-size: 16px; line-height: 1.95; }
+    .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; gap: 12px; padding: 0 20px; border-radius: 999px; font-size: 13px; font-weight: 650; transition: transform .2s ease, background .2s ease, color .2s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--green); color: white; }
+    .button-primary:hover { background: var(--green-dark); }
+    .button-secondary { border: 1px solid #c5cec4; }
+    .button-secondary:hover { background: var(--white); }
+    .arrow { font-size: 17px; line-height: 1; }
+
+    .interest-map {
+      min-height: 430px; position: relative; overflow: hidden; isolation: isolate;
+      background: var(--green); color: var(--white); border-radius: 34px 130px 34px 34px;
+      box-shadow: 0 24px 60px rgba(27, 58, 46, .12);
+    }
+    .interest-map::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: radial-gradient(circle at 47% 48%, rgba(213,235,145,.16), transparent 37%),
+        radial-gradient(rgba(255,255,255,.16) .8px, transparent .8px);
+      background-size: auto, 18px 18px; opacity: .75;
+      mask-image: linear-gradient(145deg, #000 15%, transparent 88%);
+    }
+    .map-label { position: absolute; top: 26px; right: 30px; color: rgba(255,255,255,.72); font-size: 11px; letter-spacing: .02em; }
+    .map-index { position: absolute; left: 30px; top: 26px; color: var(--lime); font: 11px Georgia, serif; direction: ltr; }
+    .orbit {
+      position: absolute; width: 300px; height: 300px; left: 50%; top: 50%;
+      border: 1px solid rgba(241,246,230,.25); border-radius: 50%;
+      transform: translate(-50%,-50%) rotate(-27deg);
+    }
+    .orbit::before, .orbit::after { content: ""; position: absolute; inset: 28px 0; border: 1px solid rgba(241,246,230,.19); border-radius: 50%; }
+    .orbit::after { inset: 0 68px; }
+    .orbit-two { width: 365px; height: 170px; transform: translate(-50%,-50%) rotate(28deg); border-color: rgba(213,235,145,.48); }
+    .orbit-two::before { inset: 0; border-color: rgba(213,235,145,.24); transform: rotate(45deg); }
+    .orbit-two::after { content: none; }
+    .map-core {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+      width: 122px; height: 122px; border-radius: 50%; display: grid; place-items: center;
+      background: var(--lime); color: var(--green-dark); text-align: center;
+      box-shadow: 0 0 0 12px rgba(213,235,145,.09), 0 0 48px rgba(213,235,145,.22);
+    }
+    .map-core strong { display: block; font-size: 22px; letter-spacing: -.06em; }
+    .map-core small { display: block; margin-top: 3px; font-size: 10px; }
+    .map-node {
+      position: absolute; display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 13px; border: 1px solid rgba(255,255,255,.26); border-radius: 999px;
+      background: rgba(20,64,51,.9); color: white; font-size: 12px; white-space: nowrap;
+      box-shadow: 0 5px 18px rgba(10,35,27,.15);
+    }
+    .map-node::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--lime); }
+    .node-web { top: 24%; right: 13%; }
+    .node-security { top: 45%; left: 8%; }
+    .node-infra { bottom: 21%; right: 10%; }
+    .node-ai { bottom: 14%; left: 19%; }
+    .map-note { position: absolute; bottom: 24px; right: 30px; color: rgba(255,255,255,.72); font-size: 11px; }
+    .map-note b { color: var(--lime); font-weight: 600; }
+    }
+
+    .field-strip { border-block: 1px solid var(--line); background: rgba(255,255,255,.28); }
+    .field-strip-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 74px; }
+    .field-strip-label { color: var(--muted); font-size: 11px; }
+    .field-list { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(14px, 3vw, 42px); }
+    .field-list span { display: flex; align-items: center; gap: 9px; color: #33433d; font-size: 13px; }
+    .field-list span::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--orange); }
+
+    section.content-section { padding-block: 105px; }
+    .section-heading { display: grid; grid-template-columns: 200px 1fr; gap: 25px; align-items: start; }
+    .section-kicker { padding-top: 10px; display: flex; gap: 11px; color: var(--green); font-size: 12px; font-weight: 650; }
+    .section-kicker b { color: var(--orange); font: 13px Georgia,serif; direction: ltr; }
+    .section-heading h2 { max-width: 710px; margin: 0; font-size: clamp(31px, 4vw, 48px); line-height: 1.35; letter-spacing: -.06em; font-weight: 650; }
+    .section-heading h2 em { color: var(--green); font-style: normal; }
+    .about-copy { max-width: 690px; margin: 23px 0 0 0; color: #5e6d66; font-size: 16px; line-height: 2; }
+    .section-heading .heading-body { max-width: 770px; }
+
+    .areas-section { background: var(--white); border-block: 1px solid var(--line); }
+    .areas-intro { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 44px; }
+    .areas-intro p { max-width: 350px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .topic-list { border-top: 1px solid var(--line); }
+    .topic-row { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(0, 1.2fr) 34px; align-items: center; gap: 30px; padding: 25px 4px; border-bottom: 1px solid var(--line); transition: padding .2s ease; }
+    .topic-row:hover { padding-inline: 12px; }
+    .topic-row h3 { margin: 0; font-size: clamp(21px, 2.4vw, 28px); letter-spacing: -.045em; font-weight: 600; }
+    .topic-row p { max-width: 580px; margin: 0; color: #5e6d66; font-size: 14px; line-height: 1.8; }
+    .topic-mark { color: var(--orange); font: 23px var(--serif); text-align: center; }
+    .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .area-card {
+      min-height: 330px; padding: 25px 25px 22px; display: flex; flex-direction: column;
+      border: 1px solid var(--line); border-radius: 18px; background: var(--paper);
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    }
+    .area-card:hover { transform: translateY(-5px); border-color: #aab8a9; box-shadow: 0 16px 35px rgba(28,65,49,.07); }
+    .card-top { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 11px; }
+    .card-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid #cdd6cb; border-radius: 12px; color: var(--green); font-size: 17px; }
+    .area-card h3 { margin: 36px 0 11px; font-size: 23px; letter-spacing: -.045em; }
+    .area-card p { margin: 0; color: #5e6d66; font-size: 13px; line-height: 1.9; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 24px; }
+    .tag { padding: 6px 10px; border: 1px solid #d4dcd2; border-radius: 999px; color: #53615a; font-size: 10px; direction: ltr; }
+    .focus-note {
+      margin-top: 18px; padding: 22px 25px; display: flex; align-items: center; gap: 17px;
+      background: #e9eee4; border-radius: 15px; color: #43544a; font-size: 13px; line-height: 1.8;
+    }
+    .focus-note b { flex: 0 0 38px; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: var(--green); color: white; font-size: 16px; }
+
+    .contact-section { padding-block: 92px 45px !important; }
+    .contact-box {
+      position: relative; overflow: hidden; padding: clamp(30px, 6vw, 66px);
+      display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 38px;
+      border-radius: 25px; background: var(--green-dark); color: white;
+    }
+    .contact-box::after {
+      content: "MS"; position: absolute; left: -22px; top: -83px; z-index: 0;
+      color: rgba(255,255,255,.045); font-size: 260px; line-height: 1; font-weight: 800; letter-spacing: -.1em;
+      pointer-events: none;
+    }
+    .contact-copy, .contact-action { position: relative; z-index: 1; }
+    .contact-copy .eyebrow { color: var(--lime); }
+    .contact-copy h2 { max-width: 600px; margin: 22px 0 12px; font-size: clamp(31px, 4vw, 49px); line-height: 1.3; letter-spacing: -.055em; }
+    .contact-copy p { margin: 0; color: rgba(255,255,255,.72); font-size: 14px; line-height: 1.85; }
+    .contact-action .button { background: var(--lime); color: var(--green-dark); min-width: 175px; }
+    .contact-action .button:hover { background: white; }
+    footer { padding-block: 23px 34px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 18px; color: var(--muted); font-size: 11px; }
+    .footer-inner a { color: var(--green); }
+    .footer-links { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+    .footer-brand { color: var(--ink); font-weight: 700; }
+
+    @media (max-width: 850px) {
+      .shell { width: min(100% - 48px, 680px); }
+      .hero { grid-template-columns: 1fr; gap: 42px; padding-block: 55px 64px; }
+      .hero-copy { order: 0; }
+      .interest-map { order: 1; min-height: 385px; }
+      .section-heading { grid-template-columns: 135px 1fr; }
+      .topic-row { grid-template-columns: minmax(180px, .8fr) minmax(0, 1.2fr) 28px; gap: 18px; }
+      .contact-box { grid-template-columns: 1fr; align-items: start; gap: 25px; }
+      .field-strip-inner { align-items: start; flex-direction: column; justify-content: center; padding-block: 17px; }
+    }
+    @media (max-width: 560px) {
+      .shell { width: calc(100% - 36px); }
+      .nav { min-height: 72px; }
+      .brand-mark { width: 38px; height: 38px; }
+      .brand-name { font-size: 14px; }
+      .nav-links { gap: 14px; font-size: 11px; }
+      .nav-links a:nth-child(2) { display: none; }
+      .nav-links .nav-contact { padding: 9px 12px; }
+      .hero { gap: 34px; padding-block: 46px 48px; }
+      .hero-meta { gap: 10px; margin-bottom: 22px; font-size: 10px; }
+      .hero-meta span + span { padding-left: 10px; }
+      h1 { font-size: clamp(48px, 15vw, 72px); }
+      h1 .statement { margin-top: 12px; font-size: 26px; }
+      .hero-intro { margin-top: 15px; font-size: 14px; }
+      .hero-actions { margin-top: 24px; }
+      .button { min-height: 44px; padding-inline: 16px; font-size: 12px; }
+      .interest-map { min-height: 330px; border-radius: 27px 92px 27px 27px; }
+      .orbit { width: 235px; height: 235px; }
+      .orbit-two { width: 285px; height: 135px; }
+      .map-core { width: 98px; height: 98px; }
+      .map-core strong { font-size: 18px; }
+      .map-node { padding: 7px 10px; font-size: 10px; }
+      .node-web { top: 23%; right: 8%; }
+      .node-security { top: 44%; left: 5%; }
+      .node-infra { bottom: 21%; right: 7%; }
+      .node-ai { bottom: 13%; left: 15%; }
+      .map-label { top: 21px; right: 22px; font-size: 10px; }
+      .map-index { left: 21px; top: 21px; }
+      .map-note { right: 21px; bottom: 20px; font-size: 10px; }
+      .field-strip-inner { gap: 12px; }
+      .field-list { gap: 11px 19px; }
+      .field-list span { font-size: 11px; }
+      section.content-section { padding-block: 72px; }
+      .section-heading { grid-template-columns: 1fr; gap: 22px; }
+      .section-kicker { padding-top: 0; }
+      .section-heading h2 { font-size: 33px; }
+      .about-copy { font-size: 14px; }
+      .areas-intro { display: block; margin-bottom: 29px; }
+      .areas-intro p { margin-top: 18px; }
+      .topic-row { grid-template-columns: 1fr 24px; gap: 8px 14px; padding-block: 20px; }
+      .topic-row h3 { font-size: 22px; }
+      .topic-row p { grid-column: 1; font-size: 13px; }
+      .topic-mark { grid-column: 2; grid-row: 1 / span 2; }
+      .contact-section { padding-block: 60px 30px !important; }
+      .contact-box { padding: 28px 22px; border-radius: 19px; }
+      .contact-copy h2 { font-size: 32px; }
+      .contact-box::after { font-size: 180px; top: auto; bottom: -48px; }
+      .footer-inner { align-items: start; flex-direction: column; gap: 7px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="Mohamed Sharaf, home">
+        <span class="brand-mark" aria-hidden="true">MS</span>
+        <span class="brand-name">Mohamed Sharaf<small>mohamedsharaf.com</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#top">Home</a>
+        <a href="#interests">Interests</a>
+        <a class="nav-contact" href="#contact">Contact <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="shell hero">
+      <div class="hero-copy">
+        <div class="hero-meta">
+          <span>Personal website</span>
+          <span>Cairo, Egypt</span>
+        </div>
+        <h1>
+          <span class="name">Mohamed<br>Sharaf</span>
+          <span class="statement">A little about me.</span>
+        </h1>
+        <p class="hero-intro">
+          I’m based in Cairo, and this is a small introduction to a few things I find myself thinking about—and how they connect.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#interests">A few things on my mind <span class="arrow" aria-hidden="true">↓</span></a>
+          <a class="button button-secondary" href="mailto:hi@mohamedsharaf.com">Say hello</a>
+        </div>
+      </div>
+
+      <div class="interest-map" role="img" aria-label="A map of subjects I think about: software, information security, infrastructure, and artificial intelligence">
+        <span class="map-label">Things I think about</span>
+        <span class="map-index">FOUR CONNECTED IDEAS</span>
+        <div class="orbit" aria-hidden="true"></div>
+        <div class="orbit orbit-two" aria-hidden="true"></div>
+        <div class="map-core"><span><strong>Technology</strong><small>ideas in context</small></span></div>
+        <span class="map-node node-web">Software</span>
+        <span class="map-node node-security">Information security</span>
+        <span class="map-node node-infra">Infrastructure</span>
+        <span class="map-node node-ai">Artificial intelligence</span>
+        <span class="map-note"><b>MS</b> · A small map of my interests</span>
+      </div>
+    </div>
+
+    <section class="content-section areas-section" id="interests">
+      <div class="shell">
+        <div class="areas-intro">
+          <div class="section-heading">
+            <div class="section-kicker"><span>Interests</span></div>
+            <div class="heading-body">
+              <h2>A few things I find myself <em>thinking about.</em></h2>
+            </div>
+          </div>
+          <p>They overlap often, and each offers a different way to look at technology.</p>
+        </div>
+
+        <div class="topic-list">
+          <article class="topic-row">
+            <h3>Software</h3>
+            <p>The products, tools, and ideas that shape how people use technology.</p>
+            <span class="topic-mark" aria-hidden="true">✳</span>
+          </article>
+          <article class="topic-row">
+            <h3>Infrastructure</h3>
+            <p>The systems behind digital services, and how everything stays connected.</p>
+            <span class="topic-mark" aria-hidden="true">⌁</span>
+          </article>
+          <article class="topic-row">
+            <h3>Information Security</h3>
+            <p>Trust, privacy, and making digital systems safer to use.</p>
+            <span class="topic-mark" aria-hidden="true">↗</span>
+          </article>
+          <article class="topic-row">
+            <h3>Artificial Intelligence</h3>
+            <p>A changing field full of new possibilities, useful questions, and things to explore.</p>
+            <span class="topic-mark" aria-hidden="true">✳</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell content-section contact-section" id="contact">
+      <div class="contact-box">
+        <div class="contact-copy">
+          <div class="eyebrow">Get in touch</div>
+          <h2>Always glad to have a good conversation.</h2>
+          <p>If you’d like to say hello or talk about something here, email is the easiest way to reach me.</p>
+        </div>
+        <div class="contact-action">
+          <a class="button" href="mailto:hi@mohamedsharaf.com">hi@mohamedsharaf.com <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <div class="footer-inner">
+      <span class="footer-brand">Mohamed Sharaf</span>
+      <span>Cairo, Egypt</span>
+      <nav class="footer-links" aria-label="Social links and email">
+        <a href="https://www.facebook.com/Mohamed.Ahmed.Sharaf" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://www.linkedin.com/in/mohamed-ahmed-sharaf/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:hi@mohamedsharaf.com">hi@mohamedsharaf.com</a>
+      </nav>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</body>
+</html>

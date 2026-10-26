@@ -202,6 +202,10 @@
     .note-kicker{display:block;font-size:10px;color:var(--orange);margin-bottom:10px;letter-spacing:.08em}
     .note-grid p{font-size:13.5px;line-height:1.75;color:#c2c4b8;margin:0}
     .note-grid .lesson{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.45;color:#f2ede4;letter-spacing:-.3px}
+    .not-yet{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:16px}
+    .not-yet b{font-size:10px;font-weight:400;color:#8e9184;margin-right:4px}
+    .not-yet s{font-size:10px;letter-spacing:.04em;text-transform:none;color:#b2b5a9;border:1px solid #5a6052;padding:4px 7px;text-decoration-color:var(--orange);text-decoration-thickness:1.5px;cursor:help}
+    .note-grid p.not-yet-joke{margin-top:10px;font-size:12px;color:var(--orange-soft)}
     .notes-footnote{margin-top:26px;color:#8e9184;font-size:10px}
 
     /* 03 / WHAT I DO */
@@ -499,7 +503,9 @@
         <details class="note">
           <summary><span class="note-number">03</span><span class="note-title">100,000 people talking at once. In 2005.</span><span class="note-tag mono">Hosting · Real-time scale</span><span class="note-plus" aria-hidden="true">+</span></summary>
           <div class="note-detail"><div class="note-grid">
-            <div><span class="note-kicker mono">The situation</span><p>By 2005 we were running around 500 websites and more than 2,000 voice chat rooms. On a busy night, 50,000 to 100,000 people were live at the same moment, talking over the slow home internet of the time. No cloud. No autoscaling. Just our servers and us.</p></div>
+            <div><span class="note-kicker mono">The situation</span><p>By 2005 we were running around 500 websites and more than 2,000 voice chat rooms. On a busy night, 50,000 to 100,000 people were live at the same moment, talking over the slow home internet of the time. Just our own servers, our own code, and us.</p>
+              <div class="not-yet"><b class="mono">Didn’t exist yet:</b><s class="mono" title="Amazon EC2 arrived in 2006">Cloud</s><s class="mono" title="Arrived around 2009">Autoscaling</s><s class="mono" title="First released in 2009">Node.js</s><s class="mono" title="First released in 2009">Go</s><s class="mono" title="Rust 1.0 arrived in 2015">Rust</s><s class="mono" title="First released in 2013">Docker</s><s class="mono" title="First released in 2014">Kubernetes</s></div>
+              <p class="not-yet-joke">We made it work anyway :)</p></div>
             <div><span class="note-kicker mono">What I did</span><p>Plan for the busiest night, not the average one. Spread the rooms across servers so one failure never took everyone down. Watch the load all evening, keep abusive users out, and keep the setup simple enough to fix while people were still talking.</p></div>
             <div><span class="note-kicker mono">What stayed with me</span><p class="lesson">People forgive slow. They don’t forgive gone.</p></div>
           </div></div>

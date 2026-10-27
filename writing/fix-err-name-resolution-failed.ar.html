@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "fix-err-name-resolution-failed",
+ "lang": "ar",
+ "pair": "fix-err-name-resolution-failed",
+ "status": "published",
+ "archive": true,
+ "title": "حل خطأ «ERR_NAME_RESOLUTION_FAILED» في ويندوز",
+ "description": "عندما تقول كل المواقع إن العنوان غير موجود، أعد ضبط شبكة ويندوز بثلاثة أوامر.",
+ "date": "2012-07-28",
+ "updated": "2026-10-27",
+ "topic": "ويندوز",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في يوليو 2012. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>يعرض Chrome الرسالة <em>«Error 137 (net::ERR_NAME_RESOLUTION_FAILED)»</em> أو «لا يمكن الوصول إلى هذا الموقع»، وكذلك كل المواقع الأخرى، بينما تعمل الأجهزة الأخرى على الشبكة نفسها بشكل طبيعي. غالبًا تكون المشكلة في ذاكرة DNS المؤقتة أو إعدادات الشبكة على جهاز ويندوز هذا تحديدًا.</p>
+<p>افتح موجه الأوامر <strong>بصلاحية المسؤول</strong> وشغّل:</p>
+<pre><code>ipconfig /flushdns
+netsh winsock reset
+netsh int ip reset</code></pre>
+<p>ثم أعد تشغيل الجهاز. الأمر الأول يمسح إجابات DNS المحفوظة، والأمران الآخران يعيدان إعدادات شبكة ويندوز إلى وضعها الافتراضي.</p>
+<p>وإذا استمرت المشكلة، جرّب خادم DNS عامًا على هذا الجهاز (انظر <a href="/writing/ar/free-public-dns-servers/">قائمتي لخوادم DNS العامة</a>)، وتأكد أن لا VPN أو بروكسي أو برنامج حماية يعترض طلبات DNS.</p>

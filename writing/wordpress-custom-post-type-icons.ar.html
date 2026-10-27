@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "wordpress-custom-post-type-icons",
+ "lang": "ar",
+ "pair": "wordpress-custom-post-type-icons",
+ "status": "published",
+ "archive": true,
+ "title": "أيقونة خاصة لنوع المقالات المخصص في قائمة ووردبريس",
+ "description": "استبدل أيقونة الدبوس الافتراضية في قائمة لوحة تحكم ووردبريس بأيقونة تناسب محتواك.",
+ "date": "2011-05-18",
+ "updated": "2026-10-27",
+ "topic": "ووردبريس",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في مايو 2011. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>في 2011، كان إعطاء نوع المقالات المخصص (Custom Post Type) أيقونة خاصة في القائمة يعني حقن CSS مع صورة من مجموعة أيقونات Fugue. منذ ووردبريس 3.8 أصبح ذلك معاملًا واحدًا عند تسجيل النوع:</p>
+<pre><code>register_post_type( 'project', array(
+    'label'     =&gt; 'Projects',
+    'public'    =&gt; true,
+    'menu_icon' =&gt; 'dashicons-portfolio',
+) );</code></pre>
+<p>يقبل <code>menu_icon</code> أي اسم من مجموعة <strong>Dashicons</strong> المدمجة، أو رابط صورة خاصة بك، أو SVG مُرمَّزًا كنص <code>data:image/svg+xml;base64,…</code>. من دون أي CSS إضافي.</p>

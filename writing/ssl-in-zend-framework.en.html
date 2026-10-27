@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "ssl-in-zend-framework",
+ "lang": "en",
+ "pair": "ssl-in-zend-framework",
+ "status": "published",
+ "archive": true,
+ "title": "Forcing HTTPS on login and checkout in Zend Framework",
+ "description": "How we sent only sensitive pages over HTTPS in 2012, and why today the answer is simply “everywhere”.",
+ "date": "2012-01-23",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in January 2012. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>In 2012, HTTPS was expensive enough that many sites used it only where it mattered: login, cart and checkout. In Zend Framework 1 we did it with a front-controller plugin that read a list of secure pages from a config file:</p>
+<pre><code>; ssl.ini
+ssl.modules.default.require_ssl = false
+ssl.modules.default.controllers.account.require_ssl = true
+ssl.modules.default.controllers.checkout.require_ssl = true</code></pre>
+<p>The plugin checked each request against that list in <code>preDispatch()</code> and redirected to the <code>https://</code> address when needed (and back to <code>http://</code> elsewhere).</p>
+<p class="note">Today: don’t do this. Certificates are free, HTTPS costs almost nothing, and mixing HTTP and HTTPS leaks session cookies. Serve the whole site over HTTPS, redirect all HTTP to it, and send an HSTS header so browsers never try plain HTTP again.</p>

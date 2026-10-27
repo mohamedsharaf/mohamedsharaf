@@ -1,0 +1,30 @@
+<!--
+{
+ "slug": "uuid-to-bin-for-mysql-5-7",
+ "lang": "ar",
+ "pair": "uuid-to-bin-for-mysql-5-7",
+ "status": "published",
+ "archive": true,
+ "title": "UUID_TO_BIN وBIN_TO_UUID في MySQL 5.6 و5.7",
+ "description": "احفظ معرّفات UUID في 16 بايت مرتبة زمنيًا كما في MySQL 8، على إصدارات MySQL الأقدم وAmazon RDS.",
+ "date": "2018-08-15",
+ "updated": "2026-10-27",
+ "topic": "قواعد البيانات",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في أغسطس 2018. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>حفظ معرّفات UUID كنص يأخذ 36 بايت، ومع المعرّفات المبنية على الوقت يبعثر الإدخالات في كل أنحاء الفهرس. حل MySQL 8 ذلك بالدالة <code>UUID_TO_BIN(uuid, 1)</code>، التي تضغط المعرّف في 16 بايت وتنقل جزء الوقت إلى البداية فتصبح السجلات الجديدة متجاورة. وعلى MySQL 5.6 و5.7 (ومنها Amazon RDS) يمكنك إضافة السلوك نفسه بنفسك:</p>
+<pre><code>DELIMITER //
+CREATE FUNCTION uuid_to_bin16(_uuid CHAR(36)) RETURNS BINARY(16)
+  DETERMINISTIC NO SQL
+RETURN UNHEX(CONCAT(
+  SUBSTR(_uuid, 15, 4), SUBSTR(_uuid, 10, 4), SUBSTR(_uuid, 1, 8),
+  SUBSTR(_uuid, 20, 4), SUBSTR(_uuid, 25)))//
+
+CREATE FUNCTION bin16_to_uuid(_bin BINARY(16)) RETURNS CHAR(36)
+  DETERMINISTIC NO SQL
+RETURN LCASE(CONCAT_WS('-',
+  HEX(SUBSTR(_bin, 5, 4)), HEX(SUBSTR(_bin, 3, 2)), HEX(SUBSTR(_bin, 1, 2)),
+  HEX(SUBSTR(_bin, 9, 2)), HEX(SUBSTR(_bin, 11))))//
+DELIMITER ;</code></pre>
+<p>ترتيب البايتات مطابق لـ <code>UUID_TO_BIN(uuid, 1)</code> في MySQL 8، فتبقى البيانات المحفوظة متوافقة عند الترقية. وأعطيت الدالتين اسمين مختلفين عن قصد: بعد الانتقال إلى MySQL 8 تتولى الدالة المدمجة <code>UUID_TO_BIN</code> المهمة، والدوال المخصصة بالاسم نفسه تسبب الالتباس. وعلى RDS مع تفعيل السجل الثنائي (binary logging)، قد تحتاج تفعيل <code>log_bin_trust_function_creators</code> لإنشائها.</p>

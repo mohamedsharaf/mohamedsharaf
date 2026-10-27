@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "windows-8-update-restarts",
+ "lang": "ar",
+ "pair": "windows-8-update-restarts",
+ "status": "published",
+ "archive": true,
+ "title": "امنع تحديثات ويندوز من إعادة تشغيل جهازك أثناء العمل",
+ "description": "إعداد Group Policy الذي يمنع إعادة التشغيل التلقائية ما دام هناك مستخدم مسجّل الدخول.",
+ "date": "2013-05-23",
+ "updated": "2026-10-27",
+ "topic": "ويندوز",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في مايو 2013. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>قليلة هي الأشياء المزعجة أكثر من أن تعود إلى مكتبك فتجد ويندوز أعاد تشغيل نفسه من أجل التحديثات، وعملك ما زال مفتوحًا. في ويندوز 8 (Pro وما فوق)، وما زال في ويندوز 10 و11 Pro، يوجد إعداد في Group Policy يمنع ذلك:</p>
+<ol>
+  <li>اضغط <kbd>Win</kbd>+<kbd>R</kbd>، واكتب <code>gpedit.msc</code>، ثم Enter.</li>
+  <li>اذهب إلى <strong>Computer Configuration ← Administrative Templates ← Windows Components ← Windows Update</strong> (في ويندوز 11: <strong>… ← Windows Update ← Manage end user experience</strong>).</li>
+  <li>افتح <strong>«No auto-restart with logged on users for scheduled automatic updates installations»</strong>، واجعله <strong>Enabled</strong>، ثم OK.</li>
+</ol>
+<p>ستُثبَّت التحديثات كالمعتاد، لكن ويندوز سينتظر حتى تعيد تشغيله بنفسك. ولا تنسَ أن تعيد التشغيل فعلًا، لأن تحديثات الأمان لا تحميك إلا بعد تطبيقها. وفي إصدارات ويندوز الأحدث تساعد أيضًا «ساعات النشاط» في الإعدادات.</p>

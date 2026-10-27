@@ -1,0 +1,21 @@
+<!--
+{
+ "slug": "rest-with-zend-framework",
+ "lang": "ar",
+ "pair": "rest-with-zend-framework",
+ "status": "published",
+ "archive": true,
+ "title": "سيرفر REST في Zend Framework بثلاثة أسطر",
+ "description": "كيف كان Zend Framework 1 يحوّل كلاس PHP إلى خدمة REST، وماذا نستخدم اليوم.",
+ "date": "2012-05-20",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في مايو 2012. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>جعل Zend Framework 1 خدمة REST الأساسية شبه مجانية: اكتب كلاس PHP عاديًا، ويعرض <code>Zend_Rest_Server</code> دواله العامة عبر HTTP. داخل أحد الـ Controllers:</p>
+<pre><code>$server = new Zend_Rest_Server();
+$server-&gt;setClass('ProductService');
+$server-&gt;handle();</code></pre>
+<p>طلب مثل <code>/api?method=findProduct&amp;id=42</code> يستدعي <code>ProductService::findProduct(42)</code> ويعيد النتيجة بصيغة XML.</p>
+<p class="note">اليوم: توقف Zend Framework 1 منذ زمن (ويستمر المشروع باسم Laminas)، ومعظم واجهات API اليوم تتحدث JSON مع طرق HTTP ورموز حالة صحيحة (انظر <a href="/writing/ar/http-request-methods/">طرق طلبات HTTP بكلام بسيط</a>). ويبقى الدرس صالحًا: ضع منطق العمل في كلاسات عادية، ودع طبقة رقيقة تتولى جزء الويب.</p>

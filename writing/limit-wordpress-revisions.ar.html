@@ -1,0 +1,23 @@
+<!--
+{
+ "slug": "limit-wordpress-revisions",
+ "lang": "ar",
+ "pair": "limit-wordpress-revisions",
+ "status": "published",
+ "archive": true,
+ "title": "إيقاف مراجعات المقالات في ووردبريس أو تحديد عددها",
+ "description": "امنع ووردبريس من حفظ نسخ لا نهائية من كل مقال، بسطر واحد في wp-config.php.",
+ "date": "2011-05-23",
+ "updated": "2026-10-27",
+ "topic": "ووردبريس",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في مايو 2011. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>يحفظ ووردبريس نسخة مراجعة (Revision) في كل مرة تحدّث فيها المقال، وفي موقع نشط يصبح ذلك آلاف السجلات الإضافية في قاعدة البيانات. سطر واحد في <code>wp-config.php</code> يتحكم بذلك:</p>
+<pre><code>// Keep only the last 5 revisions of each post
+define( 'WP_POST_REVISIONS', 5 );
+
+// Or turn revisions off completely
+define( 'WP_POST_REVISIONS', false );</code></pre>
+<p>استخدم علامات اقتباس مستقيمة، وقيمة <code>false</code> حقيقية من دون اقتباس. نسختي الأصلية في 2011 كانت بعلامات اقتباس منحنية منسوخة من مدونة، وPHP لا يقبلها.</p>
+<p>الإعداد يؤثر على المراجعات الجديدة فقط، وتبقى القديمة حتى تنظفها. والاحتفاظ بعدد قليل أحكم غالبًا من إلغائها تمامًا، فقد أنقذت أكثر من شخص من تعديل خاطئ.</p>

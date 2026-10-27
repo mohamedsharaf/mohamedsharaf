@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "block-facebook-on-home-router",
+ "lang": "en",
+ "pair": "block-facebook-on-home-router",
+ "status": "published",
+ "archive": true,
+ "title": "Blocking Facebook on a home or office network",
+ "description": "Find which domains an app really uses, then block them at the router or with DNS filtering.",
+ "date": "2014-06-12",
+ "updated": "2026-10-27",
+ "topic": "Networking",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in June 2014. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Blocking one website for a whole network sounds simple until you realise an app talks to many domains. The approach that works:</p>
+<h3>1. See what the app actually contacts</h3>
+<p>A DNS query viewer (on Windows, NirSoft’s DNSQuerySniffer; on a router, its DNS log) shows every domain requested in real time. Open the app and watch the list.</p>
+<h3>2. Block those domains</h3>
+<p>For Facebook and Messenger the main ones are <code>facebook.com</code>, <code>facebook.net</code>, <code>fbcdn.net</code>, <code>fbsbx.com</code> and <code>messenger.com</code>. Add them to your router’s blocked sites, or better, use a DNS filtering service or a Pi-hole, which block a domain and all its subdomains.</p>
+<h3>3. Close the side doors</h3>
+<p>Browsers and phones can use encrypted DNS (DNS over HTTPS), which skips your router’s DNS entirely. If the block must hold, turn that off on managed devices, or use a filtering service that also blocks known DoH providers. And be fair: on a shared network, tell people what is blocked and why.</p>

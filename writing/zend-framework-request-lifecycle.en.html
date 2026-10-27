@@ -1,0 +1,28 @@
+<!--
+{
+ "slug": "zend-framework-request-lifecycle",
+ "lang": "en",
+ "pair": "zend-framework-request-lifecycle",
+ "status": "published",
+ "archive": true,
+ "title": "The life of a request in Zend Framework 1",
+ "description": "Where plugins and helpers run while Zend Framework 1 turns a URL into a response.",
+ "date": "2012-03-27",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "From the archive: in 2012 I shared “Zend Framework MVC Request Lifecycle” by Kevin Schroeder on my old blog. This page is a short summary in my own words; the original belongs to its author."
+}
+-->
+<p>Kevin Schroeder, who taught Zend Framework training courses, noticed that the plugin architecture confused students until they saw the request lifecycle drawn out. Here is that flow for Zend Framework 1, as hooks you can attach code to:</p>
+<ol>
+  <li><code>routeStartup</code>: before the URL is matched</li>
+  <li>routing: the router picks the module, controller and action</li>
+  <li><code>routeShutdown</code>: after routing</li>
+  <li><code>dispatchLoopStartup</code>: once, before dispatching starts</li>
+  <li>the dispatch loop, for each action (an action can forward to another):
+    <ul><li><code>preDispatch</code> (plugins), then the controller’s <code>init()</code>, <code>preDispatch()</code>, the action itself, and <code>postDispatch()</code></li><li><code>postDispatch</code> (plugins)</li></ul></li>
+  <li><code>dispatchLoopShutdown</code>: once, after the loop</li>
+  <li>the response is sent</li>
+</ol>
+<p>Rule of thumb from that era: <strong>front controller plugins</strong> for things that apply to every request (authentication, HTTPS, logging), <strong>action helpers</strong> for things specific controllers need.</p>
+<p class="note">Read the original: <a href="https://web.archive.org/web/20160520062600/http://www.eschrade.com/page/tag/mvc/">Zend Framework MVC Request Lifecycle</a>, by Kevin Schroeder.</p>

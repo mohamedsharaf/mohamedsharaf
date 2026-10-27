@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "fix-err-name-resolution-failed",
+ "lang": "en",
+ "pair": "fix-err-name-resolution-failed",
+ "status": "published",
+ "archive": true,
+ "title": "Fixing “ERR_NAME_RESOLUTION_FAILED” on Windows",
+ "description": "When every site says the address can’t be found, reset Windows networking in three commands.",
+ "date": "2012-07-28",
+ "updated": "2026-10-27",
+ "topic": "Windows",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in July 2012. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Chrome says <em>“Error 137 (net::ERR_NAME_RESOLUTION_FAILED)”</em> or “This site can’t be reached”, and so does every other site, while other devices on the same network work fine. Often the problem is a broken DNS cache or network stack on that one Windows PC.</p>
+<p>Open Command Prompt <strong>as administrator</strong> and run:</p>
+<pre><code>ipconfig /flushdns
+netsh winsock reset
+netsh int ip reset</code></pre>
+<p>Restart the computer afterwards. The first command clears cached DNS answers; the other two reset Windows’ network settings to their defaults.</p>
+<p>If it still fails, try a public DNS server on that PC (see <a href="/writing/free-public-dns-servers/">my list of public DNS servers</a>) and check that no VPN, proxy or security software is intercepting DNS.</p>

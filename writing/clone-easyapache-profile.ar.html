@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "clone-easyapache-profile",
+ "lang": "ar",
+ "pair": "clone-easyapache-profile",
+ "status": "published",
+ "archive": true,
+ "title": "نسخ إعدادات EasyApache إلى سيرفر cPanel آخر",
+ "description": "كيف تعيد استخدام نفس إعدادات Apache وPHP على أكثر من سيرفر cPanel بدل إعادة الاختيار من البداية.",
+ "date": "2011-03-09",
+ "updated": "2026-10-27",
+ "topic": "السيرفرات",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في مارس 2011. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>كان أصدقائي الذين يديرون أكثر من سيرفر cPanel يسألونني السؤال نفسه: كيف تبني Apache وPHP مرة واحدة وتعيد استخدام الإعداد نفسه في كل مكان؟ يحفظ EasyApache اختياراتك في ملف «بروفايل»، فتستطيع نسخ هذا الملف إلى السيرفرات الأخرى.</p>
+<p>في EasyApache 3 القديم، تُحفظ البروفايلات المخصصة في:</p>
+<pre><code>/var/cpanel/easy/apache/profile/custom/</code></pre>
+<p>انسخ البروفايل من السيرفر المصدر إلى المجلد نفسه على السيرفر الهدف:</p>
+<pre><code>scp /var/cpanel/easy/apache/profile/custom/myprofile.yaml root@target:/var/cpanel/easy/apache/profile/custom/</code></pre>
+<p>ثم شغّل EasyApache على السيرفر الهدف، واختر هذا البروفايل، وابدأ البناء.</p>
+<p class="note">اليوم: توقف EasyApache 3. أما EasyApache 4 فيحفظ البروفايلات في <code>/etc/cpanel/ea4/profiles/custom/</code>، ويمكنك تصدير بروفايل من WHM وتطبيقه على سيرفر آخر بالأمر <code>/usr/local/bin/ea_install_profile</code>. الفكرة نفسها: ابنِ مرة، وانسخ البروفايل.</p>

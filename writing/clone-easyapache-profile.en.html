@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "clone-easyapache-profile",
+ "lang": "en",
+ "pair": "clone-easyapache-profile",
+ "status": "published",
+ "archive": true,
+ "title": "Copy an EasyApache profile to another cPanel server",
+ "description": "How to reuse the same Apache/PHP build on several cPanel servers instead of clicking through it again.",
+ "date": "2011-03-09",
+ "updated": "2026-10-27",
+ "topic": "Servers",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in March 2011. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Friends who managed several cPanel servers kept asking the same thing: how do you build Apache and PHP once and reuse that exact setup everywhere? EasyApache saves your choices as a profile file, so you can copy that file to the other servers.</p>
+<p>On the old EasyApache 3, custom profiles live in:</p>
+<pre><code>/var/cpanel/easy/apache/profile/custom/</code></pre>
+<p>Copy your profile from the source server to the same folder on the target server:</p>
+<pre><code>scp /var/cpanel/easy/apache/profile/custom/myprofile.yaml root@target:/var/cpanel/easy/apache/profile/custom/</code></pre>
+<p>Then, on the target server, start EasyApache, choose that profile and build.</p>
+<p class="note">Today: EasyApache 3 has been retired. EasyApache 4 keeps profiles in <code>/etc/cpanel/ea4/profiles/custom/</code>, and you can export one in WHM and apply it on another server with <code>/usr/local/bin/ea_install_profile</code>. The idea is the same: build once, copy the profile.</p>

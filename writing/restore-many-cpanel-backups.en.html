@@ -1,0 +1,23 @@
+<!--
+{
+ "slug": "restore-many-cpanel-backups",
+ "lang": "en",
+ "pair": "restore-many-cpanel-backups",
+ "status": "published",
+ "archive": true,
+ "title": "Restore many cPanel backups in one go",
+ "description": "A small loop that restores every cPanel account backup in a folder, one after another.",
+ "date": "2016-01-14",
+ "updated": "2026-10-27",
+ "topic": "Servers",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in January 2016. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>When moving a whole server, you often end up with a folder full of <code>cpmove-*.tar.gz</code> files. Instead of restoring them one by one in WHM, a small loop over SSH does it for you:</p>
+<pre><code>cd /home/backups
+for f in cpmove-*.tar.gz; do
+  /scripts/restorepkg "$f"
+  sleep 30
+done</code></pre>
+<p>Change <code>/home/backups</code> to your own folder. The short pause between accounts gives the server room to breathe, so a big migration doesn’t turn into a load spike.</p>
+<p>Run it inside <code>screen</code> or <code>tmux</code>, so a dropped SSH connection doesn’t stop it halfway, and check each account afterwards.</p>

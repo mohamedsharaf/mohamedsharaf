@@ -1,0 +1,23 @@
+<!--
+{
+ "slug": "fingerprint-a-visitor-php",
+ "lang": "en",
+ "pair": "fingerprint-a-visitor-php",
+ "status": "published",
+ "archive": true,
+ "title": "Recognising a returning visitor in PHP: sessions, not fingerprints",
+ "description": "The reliable way to recognise a visitor is a session cookie; “fingerprinting” is fragile and invasive.",
+ "date": "2012-07-28",
+ "updated": "2026-10-27",
+ "topic": "PHP",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in July 2012. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>A question I kept seeing: how do you build a unique “fingerprint” of a visitor? The honest answer is that the simplest tool is also the best one: <strong>PHP sessions</strong>.</p>
+<pre><code>session_start();
+if (empty($_SESSION['visitor_id'])) {
+    $_SESSION['visitor_id'] = bin2hex(random_bytes(16));
+}</code></pre>
+<p>PHP gives each browser a random session ID in a cookie, and you store what you need against it. Set the cookie as <code>Secure</code>, <code>HttpOnly</code> and <code>SameSite=Lax</code> (in <code>php.ini</code> or with <code>session_set_cookie_params()</code>).</p>
+<h3>Why not fingerprint?</h3>
+<p>Combining IP address, user agent, screen size and so on looks clever but works badly: many people share one IP, one person changes IPs all day, and browsers deliberately make themselves look alike. It identifies a <em>browser</em> at best, never a <em>person</em>. And in many countries, tracking people without consent is a legal problem. Use a session for convenience, and a proper login for anything that matters.</p>

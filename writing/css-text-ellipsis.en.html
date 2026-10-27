@@ -1,0 +1,30 @@
+<!--
+{
+ "slug": "css-text-ellipsis",
+ "lang": "en",
+ "pair": "css-text-ellipsis",
+ "status": "published",
+ "archive": true,
+ "title": "Cut long text with “…” in CSS",
+ "description": "Fit long text into a fixed-width box with an ellipsis, on one line or on several.",
+ "date": "2013-08-30",
+ "updated": "2026-10-27",
+ "topic": "Web",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in August 2013. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>To keep long text on one line inside a fixed width and end it with “…”:</p>
+<pre><code>.box {
+  width: 300px;
+  white-space: nowrap;      /* keep it on one line */
+  overflow: hidden;         /* hide what doesn't fit */
+  text-overflow: ellipsis;  /* show … at the cut */
+}</code></pre>
+<p>All three properties are needed together. For text that should wrap to a few lines and then stop, modern browsers support line clamping:</p>
+<pre><code>.summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}</code></pre>
+<p>The old <code>-o-</code> prefix for Opera from my 2013 version is no longer needed.</p>

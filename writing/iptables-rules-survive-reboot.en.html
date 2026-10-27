@@ -1,0 +1,24 @@
+<!--
+{
+ "slug": "iptables-rules-survive-reboot",
+ "lang": "en",
+ "pair": "iptables-rules-survive-reboot",
+ "status": "published",
+ "archive": true,
+ "title": "Keep iptables rules after a reboot on CentOS",
+ "description": "Why your firewall rules disappear after a restart on CentOS, and the settings that keep them.",
+ "date": "2018-08-03",
+ "updated": "2026-10-27",
+ "topic": "Servers",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in August 2018. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>A classic surprise: you add firewall rules with <code>iptables</code>, everything works, the server reboots, and the rules are gone. They only lived in memory.</p>
+<p>On CentOS 6 and 7 (with the <code>iptables-services</code> package), tell the service to save the rules when it stops or restarts, in <code>/etc/sysconfig/iptables-config</code>:</p>
+<pre><code>IPTABLES_SAVE_ON_STOP="yes"
+IPTABLES_SAVE_ON_RESTART="yes"</code></pre>
+<p>Then save the current rules and make sure the service starts at boot:</p>
+<pre><code>service iptables save
+chkconfig iptables on        # CentOS 6
+systemctl enable iptables    # CentOS 7</code></pre>
+<p class="note">Today: newer distributions use <code>firewalld</code> or <code>nftables</code>, where you make rules permanent with <code>firewall-cmd --permanent</code> or by saving the nftables ruleset. Whatever the tool, test a reboot before you trust it.</p>

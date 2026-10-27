@@ -1,0 +1,23 @@
+<!--
+{
+ "slug": "zend-framework-layouts",
+ "lang": "ar",
+ "pair": "zend-framework-layouts",
+ "status": "published",
+ "archive": true,
+ "title": "القوالب العامة في Zend Framework 1: قالب واحد حول كل صفحة",
+ "description": "كيف كان Zend_Layout يلف كل صفحة بقالب مشترك واحد، وكيف تغيّره أو توقفه.",
+ "date": "2011-04-12",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "من الأرشيف: شاركتُ عام 2011 مقال «Managing Zend Framework Layouts» لـو. جيسون جيلمور في phpBuilder (‏2010) على مدونتي القديمة. هذه الصفحة ملخص قصير بكلماتي، والمقال الأصلي ملك لكاتبه."
+}
+-->
+<p>قبل أطر العمل، كانت مواقع PHP كثيرة تجمع صفحاتها بـ <code>include 'header.php'</code> و<code>include 'footer.php'</code>. واستبدل <code>Zend_Layout</code> في Zend Framework 1 ذلك بقالب عام واحد يلتف حول محتوى كل صفحة (نمط «العرض على خطوتين»).</p>
+<ul>
+  <li><strong>التفعيل:</strong> الأمر <code>zf enable layout</code> ينشئ <code>layout.phtml</code>، وبداخله يحدد <code>&lt;?php echo $this-&gt;layout()-&gt;content; ?&gt;</code> مكان كل صفحة.</li>
+  <li><strong>قالب مختلف لـ Action واحد:</strong> <code>$this-&gt;_helper-&gt;layout-&gt;setLayout('admin');</code></li>
+  <li><strong>بلا قالب عام إطلاقًا</strong> (لطلبات AJAX أو التنزيلات): <code>$this-&gt;_helper-&gt;layout-&gt;disableLayout();</code></li>
+</ul>
+<p class="note">اليوم: في Laminas MVC (خليفة Zend Framework) يُضبط القالب العام في إعدادات view manager، ويمكن للـ Controller تغييره بـ <code>$this-&gt;layout('layout/admin')</code>. وانظر أيضًا <a href="/writing/ar/zf2-disable-view-layout/">كيف تتخطى الـ View أو الـ Layout في ZF2</a>.</p>
+<p class="note">اقرأ المقال الأصلي: <a href="https://phpbuilder.com/managing-zend-framework-layouts/" lang="en">Managing Zend Framework Layouts</a>، بقلم و. جيسون جيلمور في phpBuilder (‏2010).</p>

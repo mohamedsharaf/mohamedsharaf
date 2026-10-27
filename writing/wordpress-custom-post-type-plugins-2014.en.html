@@ -1,0 +1,17 @@
+<!--
+{
+ "slug": "wordpress-custom-post-type-plugins-2014",
+ "lang": "en",
+ "pair": "wordpress-custom-post-type-plugins-2014",
+ "status": "published",
+ "archive": true,
+ "title": "Custom post type plugins for WordPress: a 2014 comparison",
+ "description": "A look back at which plugins people used to build custom post types, and what most sites use now.",
+ "date": "2014-10-21",
+ "updated": "2026-10-27",
+ "topic": "WordPress",
+ "archive_note": "From the archive: in 2014 I shared Nicolas Mollet’s benchmark of custom post type plugins on my old blog. This is a short summary in my own words."
+}
+-->
+<p>In 2014, WordPress developer Nicolas Mollet compared the plugins people used to create custom post types without writing code: Easy Post Types, Custom Post Type UI, WP Post Type UI, CMS Press, and GD Custom Posts And Taxonomies Tools. His personal choice was <strong>Custom Post Type UI</strong>, paired with a separate plugin for custom fields.</p>
+<p>A decade later, that pairing is still the common answer: Custom Post Type UI (or a few lines of <code>register_post_type()</code> in your theme or a small plugin) for the types themselves, and Advanced Custom Fields or similar for their fields. Registering post types in code is the most portable option, because they don’t disappear if a plugin is removed.</p>

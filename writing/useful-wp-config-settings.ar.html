@@ -1,0 +1,39 @@
+<!--
+{
+ "slug": "useful-wp-config-settings",
+ "lang": "ar",
+ "pair": "useful-wp-config-settings",
+ "status": "published",
+ "archive": true,
+ "title": "إعدادات مفيدة في ملف wp-config.php لووردبريس",
+ "description": "الإعدادات الموجودة في wp-config.php لا في لوحة التحكم، وأكثرها فائدة.",
+ "date": "2011-05-04",
+ "updated": "2026-10-27",
+ "topic": "ووردبريس",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في مايو 2011. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>معظم إعدادات ووردبريس موجودة في لوحة التحكم، لكن بعضها لا يوجد إلا في ملف <code>wp-config.php</code>. هذه التي أجد نفسي أستخدمها، وتضاف فوق السطر الذي يقول «That’s all, stop editing!»:</p>
+<pre><code>// Debugging: log errors to wp-content/debug.log, never show them to visitors
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+define( 'WP_DEBUG_DISPLAY', false );
+
+// Keep at most 5 revisions per post
+define( 'WP_POST_REVISIONS', 5 );
+
+// Autosave every 2 minutes instead of every 60 seconds
+define( 'AUTOSAVE_INTERVAL', 120 );
+
+// Empty the trash after 7 days
+define( 'EMPTY_TRASH_DAYS', 7 );
+
+// Turn off the theme and plugin file editor in the dashboard
+define( 'DISALLOW_FILE_EDIT', true );
+
+// Give WordPress more memory
+define( 'WP_MEMORY_LIMIT', '256M' );
+
+// Always use HTTPS for the login page and the dashboard
+define( 'FORCE_SSL_ADMIN', true );</code></pre>
+<p>اثنان منها مكسب أمني بسطر واحد: <code>DISALLOW_FILE_EDIT</code> يعني أن كلمة مرور مسروقة للمدير لا تكفي لتعديل ملفات PHP من المتصفح، و<code>WP_DEBUG_DISPLAY</code> بقيمة <code>false</code> يُبقي تفاصيل الأخطاء بعيدًا عن الزوار.</p>

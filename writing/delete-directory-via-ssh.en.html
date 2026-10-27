@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "delete-directory-via-ssh",
+ "lang": "en",
+ "pair": "delete-directory-via-ssh",
+ "status": "published",
+ "archive": true,
+ "title": "Delete a whole directory over SSH",
+ "description": "The one-line command to remove a folder and everything inside it on Linux, and the care it deserves.",
+ "date": "2011-03-04",
+ "updated": "2026-10-27",
+ "topic": "Servers",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in March 2011. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>To delete a folder with all its files and subfolders on a Linux server:</p>
+<pre><code>rm -rf /path/to/folder</code></pre>
+<ul>
+  <li><code>-r</code> removes the folder recursively, with everything inside it.</li>
+  <li><code>-f</code> forces it, without asking for confirmation.</li>
+</ul>
+<p>That last part is exactly why it needs respect. There is no recycle bin and no “are you sure?”. Before pressing Enter, run <code>ls /path/to/folder</code> to see what you are about to delete, avoid wildcards you have not checked, and never run it with a path built from a variable that might be empty.</p>

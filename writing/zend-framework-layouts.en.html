@@ -1,0 +1,23 @@
+<!--
+{
+ "slug": "zend-framework-layouts",
+ "lang": "en",
+ "pair": "zend-framework-layouts",
+ "status": "published",
+ "archive": true,
+ "title": "Layouts in Zend Framework 1: one template around every page",
+ "description": "How Zend_Layout wrapped every page in a single shared template, and how to switch or turn it off.",
+ "date": "2011-04-12",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "From the archive: in 2011 I shared “Managing Zend Framework Layouts” by W. Jason Gilmore, phpBuilder (2010) on my old blog. This page is a short summary in my own words; the original belongs to its author."
+}
+-->
+<p>Before frameworks, many PHP sites stitched pages together with <code>include 'header.php'</code> and <code>include 'footer.php'</code>. Zend Framework 1’s <code>Zend_Layout</code> replaced that with one layout template wrapped around every page’s content (the “two-step view” pattern).</p>
+<ul>
+  <li><strong>Turn it on:</strong> <code>zf enable layout</code> creates <code>layout.phtml</code>; inside it, <code>&lt;?php echo $this-&gt;layout()-&gt;content; ?&gt;</code> marks where each page goes.</li>
+  <li><strong>Use another layout for one action:</strong> <code>$this-&gt;_helper-&gt;layout-&gt;setLayout('admin');</code></li>
+  <li><strong>No layout at all</strong> (for AJAX or downloads): <code>$this-&gt;_helper-&gt;layout-&gt;disableLayout();</code></li>
+</ul>
+<p class="note">Today: in Laminas MVC (Zend Framework’s successor) the layout is set in the view manager configuration, and a controller can switch it with <code>$this-&gt;layout('layout/admin')</code>. See also <a href="/writing/zf2-disable-view-layout/">how to skip the view or layout in ZF2</a>.</p>
+<p class="note">Read the original: <a href="https://phpbuilder.com/managing-zend-framework-layouts/">Managing Zend Framework Layouts</a>, by W. Jason Gilmore, phpBuilder (2010).</p>

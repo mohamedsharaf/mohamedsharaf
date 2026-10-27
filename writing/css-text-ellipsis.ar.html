@@ -1,0 +1,30 @@
+<!--
+{
+ "slug": "css-text-ellipsis",
+ "lang": "ar",
+ "pair": "css-text-ellipsis",
+ "status": "published",
+ "archive": true,
+ "title": "قصّ النص الطويل بـ «…» باستخدام CSS",
+ "description": "اجعل النص الطويل يناسب صندوقًا بعرض ثابت مع علامة الحذف، في سطر واحد أو عدة أسطر.",
+ "date": "2013-08-30",
+ "updated": "2026-10-27",
+ "topic": "الويب",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في أغسطس 2013. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>لإبقاء نص طويل في سطر واحد داخل عرض ثابت وإنهائه بـ «…»:</p>
+<pre><code>.box {
+  width: 300px;
+  white-space: nowrap;      /* keep it on one line */
+  overflow: hidden;         /* hide what doesn't fit */
+  text-overflow: ellipsis;  /* show … at the cut */
+}</code></pre>
+<p>الخصائص الثلاث مطلوبة معًا. وللنص الذي يجب أن يمتد بضعة أسطر ثم يتوقف، تدعم المتصفحات الحديثة تحديد عدد الأسطر:</p>
+<pre><code>.summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}</code></pre>
+<p>البادئة القديمة <code>-o-</code> الخاصة بـ Opera في نسختي من 2013 لم تعد ضرورية.</p>

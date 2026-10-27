@@ -1,0 +1,21 @@
+<!--
+{
+ "slug": "connect-two-windows-2003-domains",
+ "lang": "en",
+ "pair": "connect-two-windows-2003-domains",
+ "status": "published",
+ "archive": true,
+ "title": "Connecting two Windows Server 2003 domains",
+ "description": "Two domain controllers, two separate domains: the two realistic ways to bring them together.",
+ "date": "2010-11-01",
+ "updated": "2026-10-27",
+ "topic": "Servers",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in November 2010. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>I first wrote this for a friend with two Windows Server 2003 domain controllers, each running its own domain, who needed users on both sides to work together. There are two realistic paths:</p>
+<h3>1. Merge them into one domain</h3>
+<p>Use Microsoft’s Active Directory Migration Tool (ADMT) to move users, groups and computers from one domain into the other. It is more work up front, but you end up with one directory to manage. (Small Business Server editions don’t support this kind of setup well, so check your edition first.)</p>
+<h3>2. Keep both and trust each other</h3>
+<p>Create a trust between the two domains, so users from one can be given access to resources in the other. For a trust to work, each side must be able to find the other in DNS (conditional forwarders or secondary zones), the right ports must be open between them, and the clocks must be in sync.</p>
+<p class="note">Today: Windows Server 2003 has been out of support since 2015 and should not be connected to anything. The same two choices, migrate or trust, still apply to modern Active Directory.</p>

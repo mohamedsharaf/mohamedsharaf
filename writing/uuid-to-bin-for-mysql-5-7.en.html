@@ -1,0 +1,30 @@
+<!--
+{
+ "slug": "uuid-to-bin-for-mysql-5-7",
+ "lang": "en",
+ "pair": "uuid-to-bin-for-mysql-5-7",
+ "status": "published",
+ "archive": true,
+ "title": "UUID_TO_BIN and BIN_TO_UUID for MySQL 5.6 and 5.7",
+ "description": "Store UUIDs in 16 bytes, time-ordered like MySQL 8, on older MySQL versions and Amazon RDS.",
+ "date": "2018-08-15",
+ "updated": "2026-10-27",
+ "topic": "Databases",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in August 2018. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Storing UUIDs as text takes 36 bytes and, for time-based UUIDs, scatters inserts all over the index. MySQL 8 solved this with <code>UUID_TO_BIN(uuid, 1)</code>, which packs a UUID into 16 bytes and moves its time part to the front so new rows land next to each other. On MySQL 5.6 and 5.7 (including Amazon RDS) you can add the same behaviour yourself:</p>
+<pre><code>DELIMITER //
+CREATE FUNCTION uuid_to_bin16(_uuid CHAR(36)) RETURNS BINARY(16)
+  DETERMINISTIC NO SQL
+RETURN UNHEX(CONCAT(
+  SUBSTR(_uuid, 15, 4), SUBSTR(_uuid, 10, 4), SUBSTR(_uuid, 1, 8),
+  SUBSTR(_uuid, 20, 4), SUBSTR(_uuid, 25)))//
+
+CREATE FUNCTION bin16_to_uuid(_bin BINARY(16)) RETURNS CHAR(36)
+  DETERMINISTIC NO SQL
+RETURN LCASE(CONCAT_WS('-',
+  HEX(SUBSTR(_bin, 5, 4)), HEX(SUBSTR(_bin, 3, 2)), HEX(SUBSTR(_bin, 1, 2)),
+  HEX(SUBSTR(_bin, 9, 2)), HEX(SUBSTR(_bin, 11))))//
+DELIMITER ;</code></pre>
+<p>The byte order matches MySQL 8’s <code>UUID_TO_BIN(uuid, 1)</code>, so the stored data stays compatible when you upgrade. I give the functions their own names on purpose: once you are on MySQL 8, the built-in <code>UUID_TO_BIN</code> takes over, and custom functions with the same name cause confusion. On RDS with binary logging, you may need <code>log_bin_trust_function_creators</code> enabled to create them.</p>

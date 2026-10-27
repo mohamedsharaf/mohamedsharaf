@@ -1,0 +1,27 @@
+<!--
+{
+ "slug": "useful-php-functions",
+ "lang": "en",
+ "pair": "useful-php-functions",
+ "status": "published",
+ "archive": true,
+ "title": "Underused PHP functions worth knowing",
+ "description": "A short tour of handy PHP features from a classic Nettuts+ list, updated for modern PHP.",
+ "date": "2011-05-04",
+ "updated": "2026-10-27",
+ "topic": "PHP",
+ "archive_note": "From the archive: in 2011 I shared “9 Useful PHP Functions and Features You Need to Know” by Nettuts+ (Envato Tuts+) on my old blog. This page is a short summary in my own words; the original belongs to its author."
+}
+-->
+<p>A popular 2010 Nettuts+ article listed PHP features many developers never noticed. The ones still worth knowing, with today’s versions:</p>
+<ul>
+  <li><strong>Any number of arguments:</strong> then <code>func_get_args()</code>; now <code>function sum(...$numbers)</code>.</li>
+  <li><strong>Finding files by pattern:</strong> <code>glob('/var/log/*.log')</code>, simpler than looping over <code>scandir()</code>.</li>
+  <li><strong>Memory and CPU usage:</strong> <code>memory_get_usage()</code>, <code>memory_get_peak_usage()</code> and <code>getrusage()</code> for quick profiling.</li>
+  <li><strong>Magic constants:</strong> <code>__FILE__</code>, <code>__DIR__</code>, <code>__LINE__</code>, <code>__FUNCTION__</code> for logs and paths.</li>
+  <li><strong>Unique IDs:</strong> the article used <code>uniqid()</code>; for anything security-related use <code>bin2hex(random_bytes(16))</code> instead, because <code>uniqid()</code> is predictable.</li>
+  <li><strong>Storing data:</strong> <code>json_encode()</code> rather than <code>serialize()</code>, and never <code>unserialize()</code> data from users. It can be turned into an attack.</li>
+  <li><strong>Compressing strings:</strong> <code>gzcompress()</code> and <code>gzuncompress()</code>.</li>
+  <li><strong>Code that runs at the end:</strong> <code>register_shutdown_function()</code>, handy for logging fatal errors.</li>
+</ul>
+<p class="note">Read the original: <a href="https://web.archive.org/web/20100430221633/http://net.tutsplus.com/tutorials/php/9-useful-php-functions-and-features-you-need-to-know/">9 Useful PHP Functions and Features You Need to Know</a>, by Nettuts+ (Envato Tuts+).</p>

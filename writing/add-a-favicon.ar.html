@@ -1,0 +1,25 @@
+<!--
+{
+ "slug": "add-a-favicon",
+ "lang": "ar",
+ "pair": "add-a-favicon",
+ "status": "published",
+ "archive": true,
+ "title": "إضافة أيقونة (favicon) لموقعك",
+ "description": "الأيقونة الصغيرة في تبويب المتصفح: الملفات التي تحتاجها اليوم والأسطر التي تضيفها.",
+ "date": "2011-01-01",
+ "updated": "2026-10-27",
+ "topic": "الويب",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في يناير 2011. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>الأيقونة (favicon) هي الصورة الصغيرة في تبويب المتصفح وفي المفضلة. في 2011 كان ذلك يعني ملف <code>favicon.ico</code> واحدًا (وملفًا إضافيًا غير متحرك، لأن Internet Explorer لم يكن يدعم الأيقونات المتحركة). اليوم، تغطي ثلاثة ملفات صغيرة كل شيء تقريبًا:</p>
+<pre><code>&lt;link rel="icon" href="/favicon.ico" sizes="32x32"&gt;
+&lt;link rel="icon" href="/icon.svg" type="image/svg+xml"&gt;
+&lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;</code></pre>
+<ul>
+  <li><code>favicon.ico</code> للمتصفحات القديمة والأدوات التي تبحث عنه تلقائيًا.</li>
+  <li><code>icon.svg</code> للمتصفحات الحديثة: ملف واحد حاد في كل الأحجام.</li>
+  <li><code>apple-touch-icon.png</code> (‏180×180) لأجهزة iPhone وiPad عندما يحفظ أحدهم موقعك على الشاشة الرئيسية.</li>
+</ul>
+<p>ضع الأسطر داخل <code>&lt;head&gt;</code> والملفات في جذر موقعك. محركات البحث أيضًا تستخدم ملف الأيقونة في النتائج، لذلك الملف الحقيقي أفضل من أيقونة مضمّنة داخل الصفحة.</p>

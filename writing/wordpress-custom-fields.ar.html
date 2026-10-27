@@ -1,0 +1,25 @@
+<!--
+{
+ "slug": "wordpress-custom-fields",
+ "lang": "ar",
+ "pair": "wordpress-custom-fields",
+ "status": "published",
+ "archive": true,
+ "title": "الحقول المخصصة في ووردبريس: ما هي وكيف تعرضها",
+ "description": "احفظ تفاصيل إضافية مع المقال، مثل التقييم أو السعر، واعرضها في قالبك.",
+ "date": "2010-11-06",
+ "updated": "2026-10-27",
+ "topic": "ووردبريس",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في نوفمبر 2010. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>الحقول المخصصة (Custom Fields) تسمح لك بإرفاق معلومات إضافية بالمقال: سعر منتج، تقييم كتاب، سطر عن «المزاج». كل حقل عبارة عن زوج بسيط: <strong>مفتاح</strong> و<strong>قيمة</strong>.</p>
+<h3>١. أضف حقلًا</h3>
+<p>في محرر المقال، افتح لوحة <strong>Custom Fields</strong> (في محرر المكوّنات فعّلها من Preferences ← Panels). أضف مفتاحًا مثل <code>rating</code> وقيمة مثل <code>4.5</code>.</p>
+<h3>٢. اعرضه في قالبك</h3>
+<p>داخل حلقة القالب (مثل <code>single.php</code>):</p>
+<pre><code>&lt;?php $rating = get_post_meta( get_the_ID(), 'rating', true ); ?&gt;
+&lt;?php if ( $rating ) : ?&gt;
+  &lt;p class="rating"&gt;Rating: &lt;?php echo esc_html( $rating ); ?&gt;&lt;/p&gt;
+&lt;?php endif; ?&gt;</code></pre>
+<p>المعامل الثالث <code>true</code> يعيد قيمة واحدة بدل مصفوفة. واحرص دائمًا على تمرير المخرجات عبر <code>esc_html()</code>: الحقول المخصصة محتوى، والمحتوى قد يحتوي أي شيء.</p>

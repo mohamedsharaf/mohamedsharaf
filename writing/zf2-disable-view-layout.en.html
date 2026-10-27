@@ -1,0 +1,31 @@
+<!--
+{
+ "slug": "zf2-disable-view-layout",
+ "lang": "en",
+ "pair": "zf2-disable-view-layout",
+ "status": "published",
+ "archive": true,
+ "title": "Zend Framework 2: return a response without a view or layout",
+ "description": "Two ways to skip rendering in a ZF2 controller action: return the response, or render without the layout.",
+ "date": "2012-10-29",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in October 2012. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Sometimes a controller action shouldn’t render a template at all, for example when it returns a file, a redirect or raw JSON. In Zend Framework 2 you have two options:</p>
+<h3>Skip the view completely</h3>
+<pre><code>public function exportAction()
+{
+    $response = $this-&gt;getResponse();
+    $response-&gt;setContent($csv);
+    return $response;   // returning the Response object skips rendering
+}</code></pre>
+<h3>Render the view, but without the layout</h3>
+<pre><code>public function partialAction()
+{
+    $view = new ViewModel(['items' =&gt; $items]);
+    $view-&gt;setTerminal(true);   // no layout around it
+    return $view;
+}</code></pre>
+<p class="note">Today: Zend Framework 2 lives on as Laminas MVC, where both techniques work the same way. For JSON, a <code>JsonModel</code> is usually cleaner.</p>

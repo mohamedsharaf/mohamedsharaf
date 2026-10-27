@@ -1,0 +1,21 @@
+<!--
+{
+ "slug": "rest-with-zend-framework",
+ "lang": "en",
+ "pair": "rest-with-zend-framework",
+ "status": "published",
+ "archive": true,
+ "title": "A REST server in Zend Framework in three lines",
+ "description": "How Zend Framework 1 exposed a PHP class as a REST service, and what to use today.",
+ "date": "2012-05-20",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in May 2012. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Zend Framework 1 made a basic REST service almost free: write a normal PHP class, and <code>Zend_Rest_Server</code> exposes its public methods over HTTP. Inside a controller action:</p>
+<pre><code>$server = new Zend_Rest_Server();
+$server-&gt;setClass('ProductService');
+$server-&gt;handle();</code></pre>
+<p>A request like <code>/api?method=findProduct&amp;id=42</code> calls <code>ProductService::findProduct(42)</code> and returns the result as XML.</p>
+<p class="note">Today: Zend Framework 1 is long retired (the project continues as Laminas), and most APIs now speak JSON with proper HTTP methods and status codes (see <a href="/writing/http-request-methods/">HTTP methods in plain words</a>). The lesson still holds: keep your business logic in plain classes, and let a thin layer handle the web part.</p>

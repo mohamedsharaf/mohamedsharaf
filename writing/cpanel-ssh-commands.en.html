@@ -1,0 +1,24 @@
+<!--
+{
+ "slug": "cpanel-ssh-commands",
+ "lang": "en",
+ "pair": "cpanel-ssh-commands",
+ "status": "published",
+ "archive": true,
+ "title": "A few cPanel commands I keep using over SSH",
+ "description": "Install cPanel, back up one account, and force a full backup run, straight from the command line.",
+ "date": "2016-01-03",
+ "updated": "2026-10-27",
+ "topic": "Servers",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in January 2016. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>A short list of cPanel commands I used again and again from SSH, as root:</p>
+<h3>Install cPanel on a fresh server</h3>
+<pre><code>cd /home &amp;&amp; curl -o latest -L https://securedownloads.cpanel.net/latest &amp;&amp; sh latest</code></pre>
+<h3>Back up a single account</h3>
+<pre><code>/scripts/pkgacct USERNAME</code></pre>
+<p>This creates a <code>cpmove-USERNAME.tar.gz</code> file you can move to another server and restore.</p>
+<h3>Run the scheduled backups now</h3>
+<pre><code>/usr/local/cpanel/bin/backup --force</code></pre>
+<p class="note">On older servers the same job was <code>/scripts/cpbackup --force</code>. Whatever the command, a backup only counts once you have restored it somewhere and checked it.</p>

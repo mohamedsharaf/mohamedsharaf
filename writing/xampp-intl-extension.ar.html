@@ -1,0 +1,24 @@
+<!--
+{
+ "slug": "xampp-intl-extension",
+ "lang": "ar",
+ "pair": "xampp-intl-extension",
+ "status": "published",
+ "archive": true,
+ "title": "تفعيل إضافة intl في XAMPP (وحل خطأ ملف ICU المفقود)",
+ "description": "فعّل إضافة intl في PHP على ويندوز وتجاوز خطأ «icuuc*.dll مفقود».",
+ "date": "2012-11-10",
+ "updated": "2026-10-27",
+ "topic": "PHP",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في نوفمبر 2012. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>تحتاج أطر عمل كثيرة إلى إضافة <code>intl</code> في PHP. وفي XAMPP على ويندوز تأتي الإضافة مضمّنة لكنها معطّلة.</p>
+<ol>
+  <li>افتح <code>xampp\php\php.ini</code>.</li>
+  <li>ابحث عن <code>;extension=intl</code> (في PHP الأقدم: <code>;extension=php_intl.dll</code>) واحذف الفاصلة المنقوطة.</li>
+  <li>ويمكنك اختياريًا ضبط <code>intl.default_locale = en_US</code> في قسم <code>[intl]</code>.</li>
+  <li>أعد تشغيل Apache من لوحة تحكم XAMPP.</li>
+</ol>
+<p>إذا اشتكى Apache بعدها من أن <strong><code>icuuc*.dll</code> مفقود</strong>، فويندوز لا يجد مكتبات ICU التي تعتمد عليها <code>intl</code>. هي موجودة في مجلد <code>xampp\php</code>: أضف هذا المجلد إلى متغير PATH في النظام (أو، الحل السريع القديم، انسخ ملفات <code>icu*.dll</code> إلى <code>xampp\apache\bin</code>)، ثم أعد تشغيل Apache.</p>
+<p>تأكد من النجاح بالأمر <code>php -m</code>، ويجب أن تظهر <code>intl</code> في القائمة.</p>

@@ -1,0 +1,27 @@
+<!--
+{
+ "slug": "useful-php-functions",
+ "lang": "ar",
+ "pair": "useful-php-functions",
+ "status": "published",
+ "archive": true,
+ "title": "دوال PHP قليلة الاستخدام تستحق المعرفة",
+ "description": "جولة قصيرة في مزايا PHP المفيدة من قائمة Nettuts+ الكلاسيكية، مع تحديثها لـ PHP الحديث.",
+ "date": "2011-05-04",
+ "updated": "2026-10-27",
+ "topic": "PHP",
+ "archive_note": "من الأرشيف: شاركتُ عام 2011 مقال «9 Useful PHP Functions and Features You Need to Know» لـNettuts+ (‏Envato Tuts+) على مدونتي القديمة. هذه الصفحة ملخص قصير بكلماتي، والمقال الأصلي ملك لكاتبه."
+}
+-->
+<p>سرد مقال شهير من Nettuts+ عام 2010 مزايا في PHP لم ينتبه لها كثير من المطورين. وهذه التي ما زالت تستحق المعرفة، بصيغها الحالية:</p>
+<ul>
+  <li><strong>عدد غير محدد من المعاملات:</strong> سابقًا <code>func_get_args()</code>، واليوم <code>function sum(...$numbers)</code>.</li>
+  <li><strong>البحث عن الملفات بنمط:</strong> <code>glob('/var/log/*.log')</code>، أبسط من المرور على <code>scandir()</code>.</li>
+  <li><strong>استهلاك الذاكرة والمعالج:</strong> <code>memory_get_usage()</code> و<code>memory_get_peak_usage()</code> و<code>getrusage()</code> لقياس سريع للأداء.</li>
+  <li><strong>الثوابت السحرية:</strong> <code>__FILE__</code> و<code>__DIR__</code> و<code>__LINE__</code> و<code>__FUNCTION__</code> للسجلات والمسارات.</li>
+  <li><strong>المعرّفات الفريدة:</strong> استخدم المقال <code>uniqid()</code>، لكن لأي شيء أمني استخدم <code>bin2hex(random_bytes(16))</code> بدلًا منها، لأن <code>uniqid()</code> قابلة للتوقع.</li>
+  <li><strong>حفظ البيانات:</strong> <code>json_encode()</code> بدل <code>serialize()</code>، ولا تمرّر بيانات المستخدمين إلى <code>unserialize()</code> أبدًا، فقد تتحول إلى هجوم.</li>
+  <li><strong>ضغط النصوص:</strong> <code>gzcompress()</code> و<code>gzuncompress()</code>.</li>
+  <li><strong>كود يعمل في النهاية:</strong> <code>register_shutdown_function()</code>، مفيدة لتسجيل الأخطاء القاتلة.</li>
+</ul>
+<p class="note">اقرأ المقال الأصلي: <a href="https://web.archive.org/web/20100430221633/http://net.tutsplus.com/tutorials/php/9-useful-php-functions-and-features-you-need-to-know/" lang="en">9 Useful PHP Functions and Features You Need to Know</a>، بقلم Nettuts+ (‏Envato Tuts+).</p>

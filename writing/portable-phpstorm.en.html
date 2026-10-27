@@ -1,0 +1,27 @@
+<!--
+{
+ "slug": "portable-phpstorm",
+ "lang": "en",
+ "pair": "portable-phpstorm",
+ "status": "published",
+ "archive": true,
+ "title": "Run PhpStorm (or any JetBrains IDE) from a USB drive",
+ "description": "Keep the IDE and all its settings in one folder you can carry on a flash drive or sync to the cloud.",
+ "date": "2016-02-07",
+ "updated": "2026-10-27",
+ "topic": "Tools",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in February 2016. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>JetBrains IDEs such as PhpStorm normally keep their settings, caches and plugins in your user profile. To make the IDE portable, so it carries its settings with it, point those folders inside the IDE’s own folder.</p>
+<ol>
+  <li>Download the <strong>.zip</strong> (or .tar.gz) version of the IDE, not the installer, and extract it to your drive.</li>
+  <li>Open <code>bin/idea.properties</code> inside that folder in a text editor.</li>
+  <li>Find the commented paths at the top and set them relative to the IDE’s folder:</li>
+</ol>
+<pre><code>idea.config.path=${idea.home.path}/user/config
+idea.system.path=${idea.home.path}/user/system
+idea.plugins.path=${idea.config.path}/plugins
+idea.log.path=${idea.system.path}/log</code></pre>
+<p>On first start, the IDE creates the <code>user</code> folder next to itself, and everything (settings, plugins, caches) lives there. Copy the whole folder to a USB drive or a synced folder and take it anywhere.</p>
+<p>Two tips: the <code>system</code> folder holds large caches, so a fast drive helps a lot; and you still need a valid licence or trial when you first run it.</p>

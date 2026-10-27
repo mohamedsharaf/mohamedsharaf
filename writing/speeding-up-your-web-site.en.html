@@ -1,0 +1,26 @@
+<!--
+{
+ "slug": "speeding-up-your-web-site",
+ "lang": "en",
+ "pair": "speeding-up-your-web-site",
+ "status": "published",
+ "archive": true,
+ "title": "Speeding up your website: Yahoo’s classic rules",
+ "description": "The famous Yahoo performance rules in short, and which of them still matter today.",
+ "date": "2014-05-02",
+ "updated": "2026-10-27",
+ "topic": "Web",
+ "archive_note": "From the archive: in 2014 I shared “Best Practices for Speeding Up Your Web Site” by Yahoo’s Exceptional Performance team (Steve Souders and colleagues) on my old blog. This page is a short summary in my own words; the original belongs to its author."
+}
+-->
+<p>Yahoo’s performance team found that most of the time a visitor waits is spent on the front end (downloading images, styles and scripts), not on the server. Their rules, grouped:</p>
+<ul>
+  <li><strong>Make fewer requests:</strong> combine files, use CSS for simple graphics, avoid unnecessary redirects and DNS lookups.</li>
+  <li><strong>Serve from close by:</strong> use a CDN for static files.</li>
+  <li><strong>Cache aggressively:</strong> long cache lifetimes for files that rarely change.</li>
+  <li><strong>Send less:</strong> compress text responses, minify CSS and JavaScript, optimise images.</li>
+  <li><strong>Order matters:</strong> styles at the top so the page renders early, scripts at the bottom (or deferred) so they don’t block it.</li>
+  <li><strong>Keep cookies off static files:</strong> serve them from a cookie-free domain.</li>
+</ul>
+<p>Some details changed with HTTP/2 and HTTP/3 (combining many files matters less now), and today we measure with Core Web Vitals. The spirit is unchanged: send less, send it sooner, and don’t make the browser wait. It is the same thinking behind this website’s own perfect Lighthouse scores.</p>
+<p class="note">Read the original: <a href="https://web.archive.org/web/20150101150331/https://developer.yahoo.com/performance/rules.html">Best Practices for Speeding Up Your Web Site</a>, by Yahoo’s Exceptional Performance team (Steve Souders and colleagues).</p>

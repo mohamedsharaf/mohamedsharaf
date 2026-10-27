@@ -1,0 +1,24 @@
+<!--
+{
+ "slug": "cpanel-on-xen-from-local-iso",
+ "lang": "ar",
+ "pair": "cpanel-on-xen-from-local-iso",
+ "status": "published",
+ "archive": true,
+ "title": "تثبيت cPanel على جهاز Xen افتراضي من ISO محلي",
+ "description": "ملاحظات من بناء سيرفرات cPanel كأجهزة Xen افتراضية من ملف ISO محفوظ على السيرفر المضيف، وما الذي تغيّر منذ ذلك الوقت.",
+ "date": "2014-11-15",
+ "updated": "2026-10-27",
+ "topic": "السيرفرات",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في نوفمبر 2014. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>في تلك الفترة، كانت أسرع طريقة وجدتها لبناء سيرفر cPanel جديد كجهاز Xen افتراضي هي حفظ ملف ISO الخاص بالتثبيت على السيرفر المضيف نفسه، بدل تنزيله لكل جهاز جديد:</p>
+<ol>
+  <li>ادخل إلى سيرفر Xen المضيف عبر SSH.</li>
+  <li>أنشئ مجلدًا لملفات ISO، مثل <code>/isolib</code>، ونزّل ملف التثبيت فيه.</li>
+  <li>أضف هذا المجلد إلى Xen كمكتبة ISO.</li>
+  <li>أنشئ الجهاز الافتراضي، واربط ملف ISO كقرص افتراضي، وابدأ التثبيت.</li>
+</ol>
+<p>بعدها أصبح كل سيرفر جديد يُثبَّت من القرص المحلي في دقائق.</p>
+<p class="note">اليوم: لم تعد ملفات ISO الخاصة بـ cPanel وCentOS متاحة، وانتهى دعم CentOS 6 منذ زمن. أصبح cPanel يُثبَّت على AlmaLinux أو Rocky Linux أو Ubuntu بسكربت التثبيت الرسمي: <code>cd /home &amp;&amp; curl -o latest -L https://securedownloads.cpanel.net/latest &amp;&amp; sh latest</code>. ويبقى الاحتفاظ بمكتبة صور محلية عادة جيدة مع أي نظام افتراضي.</p>

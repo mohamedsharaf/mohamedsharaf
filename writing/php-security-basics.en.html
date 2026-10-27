@@ -1,0 +1,27 @@
+<!--
+{
+ "slug": "php-security-basics",
+ "lang": "en",
+ "pair": "php-security-basics",
+ "status": "published",
+ "archive": true,
+ "title": "PHP security: the basics that still matter",
+ "description": "XSS, SQL injection, CSRF, file uploads, includes and passwords: the short list every PHP developer needs.",
+ "date": "2012-01-25",
+ "updated": "2026-10-27",
+ "topic": "Security",
+ "archive_note": "From the archive: in 2012 I shared a long PHP security guide by another author on my old blog. This is a short, updated version in my own words."
+}
+-->
+<p>A long PHP security guide from 2012 spent pages on <code>register_globals</code> and “magic quotes”. Both were removed from PHP years ago. What hasn’t changed is the list of mistakes that let attackers in:</p>
+<ul>
+  <li><strong>Cross-site scripting (XSS):</strong> never print user input as-is. Escape it for where it goes: <code>htmlspecialchars($value, ENT_QUOTES, 'UTF-8')</code> for HTML, and use a templating engine that escapes by default.</li>
+  <li><strong>SQL injection:</strong> never build SQL by joining strings. Use prepared statements (PDO or mysqli) for every query that includes a value.</li>
+  <li><strong>Trusting the form:</strong> hidden fields, prices and IDs in a form can all be changed by the user. Validate everything again on the server.</li>
+  <li><strong>CSRF:</strong> any form that changes something needs a secret per-session token, and session cookies should be <code>SameSite</code>.</li>
+  <li><strong>File uploads:</strong> a door attackers love. I wrote about it separately: <a href="/writing/file-uploads/">File uploads: the door we keep leaving open</a>.</li>
+  <li><strong>Includes and <code>eval()</code>:</strong> never let user input decide which file to include or what code to run.</li>
+  <li><strong>Error display:</strong> turn <code>display_errors</code> off in production and log errors instead.</li>
+  <li><strong>Passwords:</strong> forget MD5 and home-made salting. Use <code>password_hash()</code> and <code>password_verify()</code>; PHP handles the salt and a strong algorithm for you.</li>
+</ul>
+<p class="note">For more depth, the <a href="https://cheatsheetseries.owasp.org/">OWASP Cheat Sheet Series</a> covers each of these properly.</p>

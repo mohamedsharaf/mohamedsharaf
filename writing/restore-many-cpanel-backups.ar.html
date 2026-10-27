@@ -1,0 +1,23 @@
+<!--
+{
+ "slug": "restore-many-cpanel-backups",
+ "lang": "ar",
+ "pair": "restore-many-cpanel-backups",
+ "status": "published",
+ "archive": true,
+ "title": "استعادة نسخ cPanel احتياطية كثيرة دفعة واحدة",
+ "description": "حلقة صغيرة تستعيد كل نسخ حسابات cPanel الاحتياطية في مجلد واحد، واحدة تلو الأخرى.",
+ "date": "2016-01-14",
+ "updated": "2026-10-27",
+ "topic": "السيرفرات",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في يناير 2016. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>عند نقل سيرفر كامل، ينتهي بك الأمر غالبًا بمجلد مليء بملفات <code>cpmove-*.tar.gz</code>. بدل استعادتها واحدًا واحدًا من WHM، تقوم حلقة صغيرة عبر SSH بالمهمة عنك:</p>
+<pre><code>cd /home/backups
+for f in cpmove-*.tar.gz; do
+  /scripts/restorepkg "$f"
+  sleep 30
+done</code></pre>
+<p>غيّر <code>/home/backups</code> إلى مجلدك. التوقف القصير بين الحسابات يعطي السيرفر مساحة للتنفس، حتى لا يتحول النقل الكبير إلى ضغط مفاجئ.</p>
+<p>شغّلها داخل <code>screen</code> أو <code>tmux</code> حتى لا يوقفها انقطاع اتصال SSH في المنتصف، وتحقق من كل حساب بعد الانتهاء.</p>

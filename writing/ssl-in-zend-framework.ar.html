@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "ssl-in-zend-framework",
+ "lang": "ar",
+ "pair": "ssl-in-zend-framework",
+ "status": "published",
+ "archive": true,
+ "title": "فرض HTTPS على صفحات الدخول والدفع في Zend Framework",
+ "description": "كيف كنا نرسل الصفحات الحساسة فقط عبر HTTPS في 2012، ولماذا الإجابة اليوم ببساطة: في كل مكان.",
+ "date": "2012-01-23",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في يناير 2012. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>في 2012 كان HTTPS مكلفًا بما يكفي لأن تستخدمه مواقع كثيرة حيث يهم فقط: الدخول وسلة الشراء والدفع. وفي Zend Framework 1 كنا نفعل ذلك بإضافة (Plugin) للـ Front Controller تقرأ قائمة الصفحات الآمنة من ملف إعدادات:</p>
+<pre><code>; ssl.ini
+ssl.modules.default.require_ssl = false
+ssl.modules.default.controllers.account.require_ssl = true
+ssl.modules.default.controllers.checkout.require_ssl = true</code></pre>
+<p>كانت الإضافة تفحص كل طلب مقابل هذه القائمة في <code>preDispatch()</code>، وتعيد التوجيه إلى عنوان <code>https://</code> عند الحاجة (وتعود إلى <code>http://</code> في غيرها).</p>
+<p class="note">اليوم: لا تفعل ذلك. الشهادات مجانية، وHTTPS لا يكلف شيئًا تقريبًا، والخلط بين HTTP وHTTPS يسرّب كوكيز الجلسة. قدّم الموقع كاملًا عبر HTTPS، وحوّل كل طلبات HTTP إليه، وأرسل ترويسة HSTS حتى لا تحاول المتصفحات HTTP العادي مرة أخرى.</p>

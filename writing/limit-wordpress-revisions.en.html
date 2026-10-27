@@ -1,0 +1,23 @@
+<!--
+{
+ "slug": "limit-wordpress-revisions",
+ "lang": "en",
+ "pair": "limit-wordpress-revisions",
+ "status": "published",
+ "archive": true,
+ "title": "Disable or limit post revisions in WordPress",
+ "description": "Stop WordPress from storing endless copies of every post, with one line in wp-config.php.",
+ "date": "2011-05-23",
+ "updated": "2026-10-27",
+ "topic": "WordPress",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in May 2011. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>WordPress saves a revision every time you update a post. On a busy site that becomes thousands of extra rows in the database. One line in <code>wp-config.php</code> controls it:</p>
+<pre><code>// Keep only the last 5 revisions of each post
+define( 'WP_POST_REVISIONS', 5 );
+
+// Or turn revisions off completely
+define( 'WP_POST_REVISIONS', false );</code></pre>
+<p>Use straight quotes and a real <code>false</code> (no quotes around it). My original 2011 version had curly quotes copied from a blog, and PHP doesn’t accept those.</p>
+<p>The setting only affects new revisions; old ones stay until you clean them up. Keeping a few is usually wiser than none: they have saved more than one person from a bad edit.</p>

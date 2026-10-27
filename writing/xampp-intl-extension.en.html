@@ -1,0 +1,24 @@
+<!--
+{
+ "slug": "xampp-intl-extension",
+ "lang": "en",
+ "pair": "xampp-intl-extension",
+ "status": "published",
+ "archive": true,
+ "title": "Enable the intl extension in XAMPP (and fix the missing ICU DLL error)",
+ "description": "Turn on PHP’s intl extension on Windows and get past the “icuuc*.dll is missing” error.",
+ "date": "2012-11-10",
+ "updated": "2026-10-27",
+ "topic": "PHP",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in November 2012. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Many frameworks need PHP’s <code>intl</code> extension. In XAMPP on Windows it ships but is switched off.</p>
+<ol>
+  <li>Open <code>xampp\php\php.ini</code>.</li>
+  <li>Find <code>;extension=intl</code> (on older PHP: <code>;extension=php_intl.dll</code>) and remove the semicolon.</li>
+  <li>Optionally, in the <code>[intl]</code> section, set <code>intl.default_locale = en_US</code>.</li>
+  <li>Restart Apache from the XAMPP control panel.</li>
+</ol>
+<p>If Apache then complains that <strong><code>icuuc*.dll</code> is missing</strong>, Windows can’t find the ICU libraries that <code>intl</code> depends on. They are in the <code>xampp\php</code> folder: add that folder to the system PATH (or, the old quick fix, copy the <code>icu*.dll</code> files into <code>xampp\apache\bin</code>) and restart Apache.</p>
+<p>Check that it worked with <code>php -m</code>; <code>intl</code> should be in the list.</p>

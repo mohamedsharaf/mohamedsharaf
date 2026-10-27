@@ -1,0 +1,31 @@
+<!--
+{
+ "slug": "zf2-disable-view-layout",
+ "lang": "ar",
+ "pair": "zf2-disable-view-layout",
+ "status": "published",
+ "archive": true,
+ "title": "Zend Framework 2: إعادة استجابة من دون View أو Layout",
+ "description": "طريقتان لتخطي العرض في Controller بـ ZF2: إعادة الاستجابة مباشرة، أو العرض من دون القالب العام.",
+ "date": "2012-10-29",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في أكتوبر 2012. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>أحيانًا لا يجب أن يعرض الـ Action أي قالب، مثلًا عندما يعيد ملفًا أو إعادة توجيه أو JSON خام. في Zend Framework 2 أمامك خياران:</p>
+<h3>تخطي العرض بالكامل</h3>
+<pre><code>public function exportAction()
+{
+    $response = $this-&gt;getResponse();
+    $response-&gt;setContent($csv);
+    return $response;   // returning the Response object skips rendering
+}</code></pre>
+<h3>عرض الـ View لكن من دون الـ Layout</h3>
+<pre><code>public function partialAction()
+{
+    $view = new ViewModel(['items' =&gt; $items]);
+    $view-&gt;setTerminal(true);   // no layout around it
+    return $view;
+}</code></pre>
+<p class="note">اليوم: يستمر Zend Framework 2 باسم Laminas MVC، والطريقتان تعملان بالأسلوب نفسه. وللـ JSON يكون <code>JsonModel</code> أنظف غالبًا.</p>

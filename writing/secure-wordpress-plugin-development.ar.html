@@ -1,0 +1,27 @@
+<!--
+{
+ "slug": "secure-wordpress-plugin-development",
+ "lang": "ar",
+ "pair": "secure-wordpress-plugin-development",
+ "status": "published",
+ "archive": true,
+ "title": "كتابة إضافات وقوالب ووردبريس آمنة",
+ "description": "مجموعة العادات القليلة التي تمنع معظم ثغرات إضافات ووردبريس.",
+ "date": "2013-11-14",
+ "updated": "2026-10-27",
+ "topic": "ووردبريس",
+ "archive_note": "من الأرشيف: شاركتُ عام 2013 مقال «Developing for WordPress? Keep your code secure» لـمايك جولي (‏2013) على مدونتي القديمة. هذه الصفحة ملخص قصير بكلماتي، والمقال الأصلي ملك لكاتبه."
+}
+-->
+<p>رأى مايك جولي، أحد المطورين الأساسيين لـ WooCommerce، عام 2013 أن معظم ثغرات الإضافات تأتي من تجاهل بضع عادات سهلة. ووجدت دراسات ذلك الوقت نسبة كبيرة من الإضافات الشهيرة عرضة لهجمات شائعة. والعادات باختصار:</p>
+<ul>
+  <li><strong>طوّر مع تفعيل <code>WP_DEBUG</code></strong>، لتظهر التحذيرات أثناء البناء لا في سجلات مستخدميك.</li>
+  <li><strong>نظّف المدخلات:</strong> <code>sanitize_text_field()</code> و<code>absint()</code> و<code>sanitize_email()</code> وأخواتها على كل ما يأتي من <code>$_GET</code> و<code>$_POST</code> والكوكيز.</li>
+  <li><strong>اهرب من المخرجات:</strong> <code>esc_html()</code> و<code>esc_attr()</code> و<code>esc_url()</code> لحظة الطباعة.</li>
+  <li><strong>استخدم nonces</strong> في كل نموذج وكل إجراء يغيّر شيئًا (<code>wp_nonce_field()</code> و<code>check_admin_referer()</code>).</li>
+  <li><strong>تحقق من الصلاحيات</strong> بـ <code>current_user_can()</code>، لا بمجرد «مسجّل الدخول».</li>
+  <li><strong>جهّز استعلامات SQL:</strong> <code>$wpdb-&gt;prepare()</code> لكل استعلام فيه متغير.</li>
+  <li><strong>امنع الوصول المباشر</strong> لملفات PHP: <code>defined( 'ABSPATH' ) || exit;</code> في أول الملف.</li>
+</ul>
+<p>لا شيء من هذا صعب. المهم أن يصبح عادة، في كل مرة.</p>
+<p class="note">اقرأ المقال الأصلي: <a href="https://mikejolley.com/blog/2013/08/13/keeping-your-shit-secure-whilst-developing-for-wordpress/" lang="en">Developing for WordPress? Keep your code secure</a>، بقلم مايك جولي (‏2013).</p>

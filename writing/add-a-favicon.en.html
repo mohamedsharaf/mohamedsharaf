@@ -1,0 +1,25 @@
+<!--
+{
+ "slug": "add-a-favicon",
+ "lang": "en",
+ "pair": "add-a-favicon",
+ "status": "published",
+ "archive": true,
+ "title": "Adding a favicon to your site",
+ "description": "The small icon in the browser tab: which files you need today and the lines that add them.",
+ "date": "2011-01-01",
+ "updated": "2026-10-27",
+ "topic": "Web",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in January 2011. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>The favicon is the small icon in the browser tab and bookmarks. In 2011 that meant one <code>favicon.ico</code> file (and an extra non-animated one, because Internet Explorer didn’t support animated icons). Today, three small files cover almost everything:</p>
+<pre><code>&lt;link rel="icon" href="/favicon.ico" sizes="32x32"&gt;
+&lt;link rel="icon" href="/icon.svg" type="image/svg+xml"&gt;
+&lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;</code></pre>
+<ul>
+  <li><code>favicon.ico</code> for older browsers and tools that look for it automatically.</li>
+  <li><code>icon.svg</code> for modern browsers: one sharp file at every size.</li>
+  <li><code>apple-touch-icon.png</code> (180×180) for iPhones and iPads when someone saves your site to the home screen.</li>
+</ul>
+<p>Put the lines inside <code>&lt;head&gt;</code> and the files at your site’s root. Search engines use a crawlable favicon file in results too, so a real file beats an icon embedded in the page.</p>

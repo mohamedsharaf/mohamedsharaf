@@ -1,0 +1,24 @@
+<!--
+{
+ "slug": "cpanel-on-xen-from-local-iso",
+ "lang": "en",
+ "pair": "cpanel-on-xen-from-local-iso",
+ "status": "published",
+ "archive": true,
+ "title": "Installing cPanel on a Xen virtual machine from a local ISO",
+ "description": "Notes from building cPanel servers as Xen VMs from an ISO stored on the host, and what changed since.",
+ "date": "2014-11-15",
+ "updated": "2026-10-27",
+ "topic": "Servers",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in November 2014. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Back then, the quickest way I found to build a new cPanel server as a Xen virtual machine was to keep the cPanel/CentOS installation ISO on the host itself, instead of downloading it for every new VM:</p>
+<ol>
+  <li>Log in to the Xen host over SSH.</li>
+  <li>Create a folder for ISO images, for example <code>/isolib</code>, and download the installation ISO there.</li>
+  <li>Add that folder to Xen as an ISO library (storage repository).</li>
+  <li>Create the VM, attach the ISO as its virtual CD, and install.</li>
+</ol>
+<p>Every new server then installed from local disk in minutes.</p>
+<p class="note">Today: the cPanel CentOS ISOs are gone and CentOS 6 reached end of life long ago. cPanel now installs on AlmaLinux, Rocky Linux or Ubuntu, with the official installer script: <code>cd /home &amp;&amp; curl -o latest -L https://securedownloads.cpanel.net/latest &amp;&amp; sh latest</code>. Keeping a local image library is still a good habit for any hypervisor.</p>

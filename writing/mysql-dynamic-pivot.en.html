@@ -1,0 +1,30 @@
+<!--
+{
+ "slug": "mysql-dynamic-pivot",
+ "lang": "en",
+ "pair": "mysql-dynamic-pivot",
+ "status": "published",
+ "archive": true,
+ "title": "Pivot rows into columns in MySQL, dynamically",
+ "description": "Turn key/value rows into one column per key when you don’t know the keys in advance.",
+ "date": "2014-11-08",
+ "updated": "2026-10-27",
+ "topic": "Databases",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in November 2014. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Key/value tables (like WordPress’s <code>postmeta</code>) store one row per attribute. For a report you often want one <strong>column</strong> per attribute instead. MySQL has no <code>PIVOT</code> keyword, so you build the query from the data:</p>
+<pre><code>SET SESSION group_concat_max_len = 100000;
+SET @cols = NULL;
+
+SELECT GROUP_CONCAT(DISTINCT CONCAT(
+  'MAX(IF(m.meta_name = ''', meta_name, ''', m.meta_value, NULL)) AS `', meta_name, '`'))
+INTO @cols
+FROM post_meta;
+
+SET @sql = CONCAT('SELECT p.id, p.name, ', @cols,
+                  ' FROM post p LEFT JOIN post_meta m ON m.post_id = p.id GROUP BY p.id, p.name');
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;</code></pre>
+<p>Two cautions. Raise <code>group_concat_max_len</code>, or a long column list gets silently cut off. And because the attribute names become part of the SQL, they must come from a trusted list, never from user input, or this becomes an SQL injection.</p>

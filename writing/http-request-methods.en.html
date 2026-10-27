@@ -1,0 +1,27 @@
+<!--
+{
+ "slug": "http-request-methods",
+ "lang": "en",
+ "pair": "http-request-methods",
+ "status": "published",
+ "archive": true,
+ "title": "HTTP request methods in plain words",
+ "description": "GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS and TRACE: what each one is for.",
+ "date": "2012-08-03",
+ "updated": "2026-10-27",
+ "topic": "Web",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in August 2012. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Every HTTP request starts with a method that says what the client wants to do. The ones you will meet:</p>
+<ul>
+  <li><strong>GET</strong>: read something. It should never change data, so browsers, caches and crawlers can repeat it freely.</li>
+  <li><strong>POST</strong>: send data to be processed, such as a form or a new record. Not safe to repeat blindly; that’s why browsers warn before resubmitting.</li>
+  <li><strong>PUT</strong>: create or fully replace a resource at a known address. Repeating it gives the same result.</li>
+  <li><strong>PATCH</strong>: change part of a resource.</li>
+  <li><strong>DELETE</strong>: remove a resource.</li>
+  <li><strong>HEAD</strong>: like GET, but returns only the headers. Handy to check whether a file exists or has changed.</li>
+  <li><strong>OPTIONS</strong>: ask what the server allows. Browsers send it before some cross-site requests (CORS “preflight”).</li>
+  <li><strong>TRACE</strong>: echoes the request back, for debugging. Keep it <strong>disabled</strong> on production servers; it has been abused in attacks.</li>
+</ul>
+<p>The security lesson hiding in this list: an action that changes data must never be triggered by a GET request. Otherwise a single link or image tag on another site can trigger it.</p>

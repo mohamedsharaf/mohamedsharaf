@@ -1,0 +1,21 @@
+<!--
+{
+ "slug": "laravel-on-cpanel-public-html",
+ "lang": "ar",
+ "pair": "laravel-on-cpanel-public-html",
+ "status": "published",
+ "archive": true,
+ "title": "تشغيل تطبيق Laravel على cPanel بربط public_html",
+ "description": "كيف تشغّل مشروع Laravel على استضافة cPanel من دون كشف مجلد التطبيق كاملًا.",
+ "date": "2023-04-29",
+ "updated": "2026-10-27",
+ "topic": "السيرفرات",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في أبريل 2023. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>يتوقع Laravel أن يشير سيرفر الويب إلى مجلد <code>public</code> الخاص به، بينما يعرض cPanel ما يوجد في <code>public_html</code>. نسخ المشروع كاملًا داخل <code>public_html</code> سيكشف ملف <code>.env</code> والكود المصدري. الحل الأكثر أمانًا أن تبقي المشروع خارج جذر الموقع، وتجعل <code>public_html</code> رابطًا إلى مجلد <code>public</code>:</p>
+<pre><code>cd /home/USER
+mv public_html public_html.old
+ln -s /home/USER/myapp/public public_html</code></pre>
+<p>غيّر <code>USER</code> و<code>myapp</code> إلى أسمائك. وإعادة تسمية المجلد القديم بدل حذفه تترك لك طريقًا للرجوع إذا حدث خطأ.</p>
+<p>بعد ذلك يصبح النشر مجرد تحديث للمجلد <code>/home/USER/myapp</code> (مثلًا بـ <code>git pull</code>)، ولا يظهر على الويب إلا مجلد <code>public</code>.</p>

@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "create-a-mysql-view",
+ "lang": "en",
+ "pair": "create-a-mysql-view",
+ "status": "published",
+ "archive": true,
+ "title": "Create a view in MySQL",
+ "description": "Save a query under a name and use it like a table.",
+ "date": "2012-04-27",
+ "updated": "2026-10-27",
+ "topic": "Databases",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in April 2012. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>A view is a saved query you can use like a table. Handy when the same filter or join shows up everywhere:</p>
+<pre><code>CREATE VIEW active_customers AS
+SELECT id, name, email
+FROM customers
+WHERE status = 'active';</code></pre>
+<p>Now <code>SELECT * FROM active_customers</code> works like any table, and the logic lives in one place. To change it later, use <code>CREATE OR REPLACE VIEW</code>.</p>
+<p>Views are also a simple access-control tool: give a reporting user permission on the view only, and they never see the columns you left out.</p>

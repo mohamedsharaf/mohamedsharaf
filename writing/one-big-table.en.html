@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "one-big-table",
+ "lang": "en",
+ "pair": "one-big-table",
+ "status": "published",
+ "archive": true,
+ "title": "One big table or two identical ones?",
+ "description": "When two sets of data have the same structure, why one indexed table usually beats splitting them.",
+ "date": "2013-02-24",
+ "updated": "2026-10-27",
+ "topic": "Databases",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in February 2013. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>A question that came up on a project: two kinds of records with exactly the same columns. Two tables, or one table with a <code>type</code> column? I usually choose <strong>one table</strong>:</p>
+<ul>
+  <li><strong>Speed:</strong> with the right index, finding a row takes about the same time whether the table holds a thousand rows or a hundred million. B-tree indexes grow very slowly with size.</li>
+  <li><strong>Simpler design:</strong> one set of foreign keys, one set of queries, one place to add a column.</li>
+  <li><strong>Joins:</strong> joining a table to itself can even be slightly faster than joining two copies, because its data and indexes are already in memory.</li>
+</ul>
+<p>Index the columns you filter on (for example <code>(type, created_at)</code>). And if the table really grows huge, MySQL partitioning can split it physically while your code keeps seeing one table.</p>

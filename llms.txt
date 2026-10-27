@@ -11,6 +11,7 @@
 
 - [mohamedsharaf.com (English)](https://mohamedsharaf.com/): who he is, his story since 1996, field notes, services and contact
 - [mohamedsharaf.com/ar (Arabic)](https://mohamedsharaf.com/ar): the same site in Arabic
+- [Writing (English)](https://mohamedsharaf.com/writing/) and [كتابات (Arabic)](https://mohamedsharaf.com/writing/ar/): notes on security, servers, databases, WordPress and PHP, including his old blog archive from 2010 onwards
 
 ## What he does
 

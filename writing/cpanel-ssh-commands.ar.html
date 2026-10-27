@@ -1,0 +1,24 @@
+<!--
+{
+ "slug": "cpanel-ssh-commands",
+ "lang": "ar",
+ "pair": "cpanel-ssh-commands",
+ "status": "published",
+ "archive": true,
+ "title": "أوامر cPanel أستخدمها كثيرًا عبر SSH",
+ "description": "تثبيت cPanel، وأخذ نسخة احتياطية لحساب واحد، وتشغيل النسخ الاحتياطي الكامل فورًا، من سطر الأوامر مباشرة.",
+ "date": "2016-01-03",
+ "updated": "2026-10-27",
+ "topic": "السيرفرات",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في يناير 2016. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>قائمة قصيرة بأوامر cPanel استخدمتها مرارًا عبر SSH بصلاحية root:</p>
+<h3>تثبيت cPanel على سيرفر جديد</h3>
+<pre><code>cd /home &amp;&amp; curl -o latest -L https://securedownloads.cpanel.net/latest &amp;&amp; sh latest</code></pre>
+<h3>نسخة احتياطية لحساب واحد</h3>
+<pre><code>/scripts/pkgacct USERNAME</code></pre>
+<p>ينشئ هذا الأمر ملف <code>cpmove-USERNAME.tar.gz</code> يمكنك نقله إلى سيرفر آخر واستعادته.</p>
+<h3>تشغيل النسخ الاحتياطي المجدول الآن</h3>
+<pre><code>/usr/local/cpanel/bin/backup --force</code></pre>
+<p class="note">على السيرفرات القديمة كان الأمر نفسه <code>/scripts/cpbackup --force</code>. وأيًا كان الأمر، لا تُحسب النسخة الاحتياطية إلا بعد أن تستعيدها في مكان ما وتتأكد منها.</p>

@@ -1,0 +1,28 @@
+<!--
+{
+ "slug": "zend-framework-request-lifecycle",
+ "lang": "ar",
+ "pair": "zend-framework-request-lifecycle",
+ "status": "published",
+ "archive": true,
+ "title": "حياة الطلب في Zend Framework 1",
+ "description": "أين تعمل الإضافات والمساعدات بينما يحوّل Zend Framework 1 الرابط إلى استجابة.",
+ "date": "2012-03-27",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "من الأرشيف: شاركتُ عام 2012 مقال «Zend Framework MVC Request Lifecycle» لـكيفن شرودر على مدونتي القديمة. هذه الصفحة ملخص قصير بكلماتي، والمقال الأصلي ملك لكاتبه."
+}
+-->
+<p>لاحظ كيفن شرودر، الذي كان يدرّس دورات Zend Framework، أن بنية الإضافات كانت تربك الطلاب حتى يروا دورة حياة الطلب مرسومة. وهذا هو التسلسل في Zend Framework 1، كنقاط يمكنك ربط كودك بها:</p>
+<ol>
+  <li><code>routeStartup</code>: قبل مطابقة الرابط</li>
+  <li>التوجيه: يختار الموجّه الوحدة والـ Controller والـ Action</li>
+  <li><code>routeShutdown</code>: بعد التوجيه</li>
+  <li><code>dispatchLoopStartup</code>: مرة واحدة قبل بدء التنفيذ</li>
+  <li>حلقة التنفيذ، لكل Action (ويمكن لأي Action أن يحوّل إلى غيره):
+    <ul><li><code>preDispatch</code> (الإضافات)، ثم <code>init()</code> و<code>preDispatch()</code> الخاصة بالـ Controller، ثم الـ Action نفسه، ثم <code>postDispatch()</code></li><li><code>postDispatch</code> (الإضافات)</li></ul></li>
+  <li><code>dispatchLoopShutdown</code>: مرة واحدة بعد الحلقة</li>
+  <li>إرسال الاستجابة</li>
+</ol>
+<p>القاعدة العملية في تلك الفترة: <strong>إضافات الـ Front Controller</strong> لما ينطبق على كل طلب (التحقق من الدخول، HTTPS، السجلات)، و<strong>مساعدات الـ Action</strong> لما تحتاجه Controllers بعينها.</p>
+<p class="note">اقرأ المقال الأصلي: <a href="https://web.archive.org/web/20160520062600/http://www.eschrade.com/page/tag/mvc/" lang="en">Zend Framework MVC Request Lifecycle</a>، بقلم كيفن شرودر.</p>

@@ -1,0 +1,24 @@
+<!--
+{
+ "slug": "iptables-rules-survive-reboot",
+ "lang": "ar",
+ "pair": "iptables-rules-survive-reboot",
+ "status": "published",
+ "archive": true,
+ "title": "الإبقاء على قواعد iptables بعد إعادة التشغيل في CentOS",
+ "description": "لماذا تختفي قواعد الجدار الناري بعد إعادة تشغيل CentOS، والإعدادات التي تحفظها.",
+ "date": "2018-08-03",
+ "updated": "2026-10-27",
+ "topic": "السيرفرات",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في أغسطس 2018. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>مفاجأة كلاسيكية: تضيف قواعد للجدار الناري بـ <code>iptables</code>، وكل شيء يعمل، ثم يُعاد تشغيل السيرفر فتختفي القواعد. كانت موجودة في الذاكرة فقط.</p>
+<p>على CentOS 6 و7 (مع حزمة <code>iptables-services</code>)، اطلب من الخدمة حفظ القواعد عند الإيقاف أو إعادة التشغيل، في الملف <code>/etc/sysconfig/iptables-config</code>:</p>
+<pre><code>IPTABLES_SAVE_ON_STOP="yes"
+IPTABLES_SAVE_ON_RESTART="yes"</code></pre>
+<p>ثم احفظ القواعد الحالية وتأكد أن الخدمة تبدأ مع تشغيل السيرفر:</p>
+<pre><code>service iptables save
+chkconfig iptables on        # CentOS 6
+systemctl enable iptables    # CentOS 7</code></pre>
+<p class="note">اليوم: التوزيعات الأحدث تستخدم <code>firewalld</code> أو <code>nftables</code>، وتجعل القواعد دائمة بـ <code>firewall-cmd --permanent</code> أو بحفظ قواعد nftables. وأيًا كانت الأداة، جرّب إعادة التشغيل قبل أن تثق بها.</p>

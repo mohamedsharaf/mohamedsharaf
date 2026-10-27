@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "create-a-mysql-view",
+ "lang": "ar",
+ "pair": "create-a-mysql-view",
+ "status": "published",
+ "archive": true,
+ "title": "إنشاء View في MySQL",
+ "description": "احفظ استعلامًا باسم واستخدمه كأنه جدول.",
+ "date": "2012-04-27",
+ "updated": "2026-10-27",
+ "topic": "قواعد البيانات",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في أبريل 2012. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>الـ View استعلام محفوظ تستخدمه كأنه جدول، ومفيد عندما يتكرر الفلتر نفسه أو الربط نفسه في كل مكان:</p>
+<pre><code>CREATE VIEW active_customers AS
+SELECT id, name, email
+FROM customers
+WHERE status = 'active';</code></pre>
+<p>الآن يعمل <code>SELECT * FROM active_customers</code> كأي جدول، ويبقى المنطق في مكان واحد. ولتعديله لاحقًا استخدم <code>CREATE OR REPLACE VIEW</code>.</p>
+<p>والـ Views أيضًا أداة بسيطة للتحكم في الصلاحيات: امنح مستخدم التقارير صلاحية على الـ View وحده، فلن يرى أبدًا الأعمدة التي استبعدتها.</p>

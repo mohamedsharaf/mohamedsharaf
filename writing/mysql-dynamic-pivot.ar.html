@@ -1,0 +1,30 @@
+<!--
+{
+ "slug": "mysql-dynamic-pivot",
+ "lang": "ar",
+ "pair": "mysql-dynamic-pivot",
+ "status": "published",
+ "archive": true,
+ "title": "تحويل الصفوف إلى أعمدة في MySQL بشكل ديناميكي",
+ "description": "حوّل سجلات المفتاح والقيمة إلى عمود لكل مفتاح، حتى عندما لا تعرف المفاتيح مسبقًا.",
+ "date": "2014-11-08",
+ "updated": "2026-10-27",
+ "topic": "قواعد البيانات",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في نوفمبر 2014. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>جداول المفتاح والقيمة (مثل <code>postmeta</code> في ووردبريس) تحفظ سجلًا لكل خاصية. وفي التقارير تريد غالبًا <strong>عمودًا</strong> لكل خاصية بدلًا من ذلك. لا توجد كلمة <code>PIVOT</code> في MySQL، فتبني الاستعلام من البيانات نفسها:</p>
+<pre><code>SET SESSION group_concat_max_len = 100000;
+SET @cols = NULL;
+
+SELECT GROUP_CONCAT(DISTINCT CONCAT(
+  'MAX(IF(m.meta_name = ''', meta_name, ''', m.meta_value, NULL)) AS `', meta_name, '`'))
+INTO @cols
+FROM post_meta;
+
+SET @sql = CONCAT('SELECT p.id, p.name, ', @cols,
+                  ' FROM post p LEFT JOIN post_meta m ON m.post_id = p.id GROUP BY p.id, p.name');
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;</code></pre>
+<p>تنبيهان: ارفع قيمة <code>group_concat_max_len</code>، وإلا قُطعت قائمة الأعمدة الطويلة بصمت. ولأن أسماء الخصائص تصبح جزءًا من استعلام SQL، يجب أن تأتي من قائمة موثوقة لا من مدخلات المستخدم أبدًا، وإلا تحول هذا إلى حقن SQL.</p>

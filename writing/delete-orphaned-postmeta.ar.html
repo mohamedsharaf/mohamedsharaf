@@ -1,0 +1,21 @@
+<!--
+{
+ "slug": "delete-orphaned-postmeta",
+ "lang": "ar",
+ "pair": "delete-orphaned-postmeta",
+ "status": "published",
+ "archive": true,
+ "title": "حذف بيانات المقالات اليتيمة (postmeta) في ووردبريس",
+ "description": "نظّف سجلات الحقول المخصصة التي بقيت بعد حذف مقالاتها، باستعلام SQL واحد وبعد نسخة احتياطية.",
+ "date": "2014-11-08",
+ "updated": "2026-10-27",
+ "topic": "ووردبريس",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في نوفمبر 2014. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>عندما تُحذف المقالات من خارج ووردبريس (أو بإضافات سيئة الكتابة)، قد تبقى حقولها المخصصة في جدول <code>wp_postmeta</code> مشيرةً إلى مقالات لم تعد موجودة. هذا الاستعلام يحذف هذه السجلات اليتيمة:</p>
+<pre><code>DELETE pm
+FROM wp_postmeta pm
+LEFT JOIN wp_posts wp ON wp.ID = pm.post_id
+WHERE wp.ID IS NULL;</code></pre>
+<p><strong>خذ نسخة احتياطية من قاعدة البيانات أولًا.</strong> وإذا كانت جداولك تستخدم بادئة غير <code>wp_</code> فغيّر اسمي الجدولين. وتريد أن ترى ما سيُحذف قبل أي حذف؟ شغّل الاستعلام نفسه مع <code>SELECT pm.*</code> بدل <code>DELETE pm</code>.</p>

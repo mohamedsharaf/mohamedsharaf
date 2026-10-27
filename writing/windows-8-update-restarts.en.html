@@ -1,0 +1,22 @@
+<!--
+{
+ "slug": "windows-8-update-restarts",
+ "lang": "en",
+ "pair": "windows-8-update-restarts",
+ "status": "published",
+ "archive": true,
+ "title": "Stop Windows Update from restarting your PC while you work",
+ "description": "The Group Policy setting that stops automatic restarts while someone is signed in.",
+ "date": "2013-05-23",
+ "updated": "2026-10-27",
+ "topic": "Windows",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in May 2013. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Few things are more annoying than coming back to your desk and finding that Windows restarted itself for updates, with your work still open. On Windows 8 (Pro and above), and still on Windows 10 and 11 Pro, a Group Policy setting prevents that:</p>
+<ol>
+  <li>Press <kbd>Win</kbd>+<kbd>R</kbd>, type <code>gpedit.msc</code> and press Enter.</li>
+  <li>Go to <strong>Computer Configuration → Administrative Templates → Windows Components → Windows Update</strong> (on Windows 11: <strong>… → Windows Update → Manage end user experience</strong>).</li>
+  <li>Open <strong>“No auto-restart with logged on users for scheduled automatic updates installations”</strong>, set it to <strong>Enabled</strong>, and click OK.</li>
+</ol>
+<p>Updates still install; Windows just waits until you restart it yourself. Don’t forget to actually restart, because security updates only protect you once they are applied. On newer Windows, “Active hours” in Settings helps too.</p>

@@ -1,0 +1,25 @@
+<!--
+{
+ "slug": "wordpress-custom-fields",
+ "lang": "en",
+ "pair": "wordpress-custom-fields",
+ "status": "published",
+ "archive": true,
+ "title": "WordPress custom fields: what they are and how to show them",
+ "description": "Store extra details on a post, like a rating or a price, and display them in your theme.",
+ "date": "2010-11-06",
+ "updated": "2026-10-27",
+ "topic": "WordPress",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in November 2010. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Custom fields let you attach extra pieces of information to a post: a product price, a book rating, a “mood” line. Each field is a simple pair: a <strong>key</strong> and a <strong>value</strong>.</p>
+<h3>1. Add a field</h3>
+<p>In the post editor, open the <strong>Custom Fields</strong> panel (in the block editor, enable it from Preferences → Panels). Add a key, such as <code>rating</code>, and a value, such as <code>4.5</code>.</p>
+<h3>2. Show it in your theme</h3>
+<p>Inside the loop of your template (for example <code>single.php</code>):</p>
+<pre><code>&lt;?php $rating = get_post_meta( get_the_ID(), 'rating', true ); ?&gt;
+&lt;?php if ( $rating ) : ?&gt;
+  &lt;p class="rating"&gt;Rating: &lt;?php echo esc_html( $rating ); ?&gt;&lt;/p&gt;
+&lt;?php endif; ?&gt;</code></pre>
+<p>The third argument, <code>true</code>, returns a single value instead of an array. Always escape the output with <code>esc_html()</code>: custom fields are content, and content can contain anything.</p>

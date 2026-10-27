@@ -1,0 +1,20 @@
+<!--
+{
+ "slug": "windows-7-sp1-disk-cleanup",
+ "lang": "en",
+ "pair": "windows-7-sp1-disk-cleanup",
+ "status": "published",
+ "archive": true,
+ "title": "Free up disk space after Windows 7 Service Pack 1",
+ "description": "One command that removed the backup files SP1 left behind and gave back a couple of gigabytes.",
+ "date": "2011-05-08",
+ "updated": "2026-10-27",
+ "topic": "Windows",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in May 2011. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>After installing Service Pack 1, Windows 7 kept a copy of the old files in case you wanted to uninstall it. Once you were happy with SP1, you could remove that backup with one built-in command and get back around 2 GB, sometimes more.</p>
+<p>Open Command Prompt <strong>as administrator</strong> and run:</p>
+<pre><code>dism /online /cleanup-image /spsuperseded</code></pre>
+<p>It is a Microsoft tool and safe to use. The only cost is that you can no longer uninstall SP1 afterwards.</p>
+<p class="note">Today: Windows 7 has been out of support since 2020. On Windows 10 and 11, the equivalent cleanup is <code>dism /online /cleanup-image /startcomponentcleanup</code>, or “Clean up system files” in Disk Cleanup.</p>

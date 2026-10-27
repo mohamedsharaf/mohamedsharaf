@@ -1,0 +1,32 @@
+<!--
+{
+ "slug": "mysql-transactions-zend-framework",
+ "lang": "en",
+ "pair": "mysql-transactions-zend-framework",
+ "status": "published",
+ "archive": true,
+ "title": "Database transactions in Zend Framework",
+ "description": "When a group of database changes must succeed or fail together, and how to write it in Zend Framework 1.",
+ "date": "2012-04-29",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in April 2012. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Most queries don’t need a transaction. You need one when several changes must happen <strong>all together or not at all</strong>: moving money between accounts, saving an order with its lines, updating stock with a sale.</p>
+<p>In Zend Framework 1 (<code>Zend_Db</code>):</p>
+<pre><code>$db = Zend_Db_Table::getDefaultAdapter();
+$db-&gt;beginTransaction();
+try {
+    $db-&gt;insert('orders', $order);
+    $orderId = $db-&gt;lastInsertId();
+    foreach ($lines as $line) {
+        $db-&gt;insert('order_lines', $line + ['order_id' =&gt; $orderId]);
+    }
+    $db-&gt;commit();
+} catch (Exception $e) {
+    $db-&gt;rollBack();
+    throw $e;
+}</code></pre>
+<p>Two things to check: your tables must use a transactional engine (InnoDB, not the old MyISAM), and keep transactions short, because they hold locks while they run.</p>
+<p class="note">Today: Zend Framework is now the Laminas Project, and Zend Framework 1 reached end of life in 2016. The pattern (begin, try, commit, roll back on failure) is the same in every modern framework.</p>

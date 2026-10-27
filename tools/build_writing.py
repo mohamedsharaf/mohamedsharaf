@@ -34,12 +34,14 @@ TEXT = {
                min_read='min read', back='All writing', cta_title='Want a second pair of eyes?',
                cta_text='If something here sounds like your system, write to me. I read everything.',
                cta_link='Say hello', draft='Draft: not published yet', empty='The first articles are on their way.',
+               new_heading='New', archive_heading='From the archive', archive_intro='Notes from my old blog on mohamedsharaf.net (2010–2023), rewritten and checked. Some are dated; the dates tell you how much.',
                months=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']),
     'ar': dict(dir='rtl', writing='كتابات', home='الرئيسية', hello='قل مرحبًا', other='English', other_lang='en',
                index_title='كتابات', index_intro='ملاحظات عن الأمن والبنية التحتية والبرمجيات والذكاء الاصطناعي، بكلام واضح، من ثلاثة عقود من العمل.',
                min_read='دقائق قراءة', back='كل الكتابات', cta_title='تحتاج إلى نظرة ثانية؟',
                cta_text='إذا بدا لك شيء هنا مثل نظامك، اكتب لي. أقرأ كل شيء.',
                cta_link='تواصل معي', draft='مسودة: لم تُنشر بعد', empty='أول المقالات في الطريق.',
+               new_heading='جديد', archive_heading='من الأرشيف', archive_intro='ملاحظات من مدونتي القديمة على mohamedsharaf.net (2010–2023)، أُعيدت كتابتها ومراجعتها. بعضها قديم، والتاريخ يوضح كم.',
                months=['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر']),
 }
 
@@ -89,7 +91,12 @@ a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
 .cta a{background:#c9441f;color:#fff;padding:12px 18px;font-weight:600;text-decoration:none;white-space:nowrap}
 .index{max-width:820px;margin:0 auto;padding:64px 0 80px}
 .index h1{font-size:clamp(40px,7vw,64px);letter-spacing:-.05em;margin:14px 0 14px}
-.index ol{list-style:none;padding:0;margin:40px 0 0;border-top:1px solid var(--line)}
+.index ol{list-style:none;padding:0;margin:18px 0 0;border-top:1px solid var(--line)}
+.index .group{font-size:15px;font-family:var(--mono);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-ink);margin:48px 0 0}
+.index .group-intro{color:var(--muted);line-height:1.7;margin:8px 0 0;font-size:15px}
+.index ol.archive li{padding:16px 0}
+.index ol.archive h2{font-size:19px}
+[dir=rtl] .index .group{font-family:var(--sans);letter-spacing:0;font-size:16px}
 .index li{padding:24px 0;border-bottom:1px solid var(--line)}
 .index li a{text-decoration:none;display:block}
 .index li h2{font-size:24px;letter-spacing:-.02em;margin:8px 0 6px}
@@ -132,8 +139,10 @@ def page(lang, title, description, canonical, body, head_extra='', alternates=No
     t = TEXT[lang]
     alt = ''.join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{u}">\n  ' for l, u in (alternates or {}).items())
     other = other_url or ('/writing/ar/' if lang == 'en' else '/writing/')
-    # Arabic pages: fetch the Arabic fonts early so big headings don't jump when they arrive
-    preload = ''.join(f'<link rel="preload" href="/assets/plex-arabic-{w}.woff2" as="font" type="font/woff2" crossorigin>\n  ' for w in (400, 600)) if lang == 'ar' else ''
+    # Fetch the fonts early so big headings don't jump when they arrive (Latin always, Arabic on Arabic pages)
+    preload = '<link rel="preload" href="/assets/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>\n  '
+    if lang == 'ar':
+        preload += ''.join(f'<link rel="preload" href="/assets/plex-arabic-{w}.woff2" as="font" type="font/woff2" crossorigin>\n  ' for w in (400, 600))
     og_image = og_image or f"{SITE}/assets/og-{'en' if lang == 'en' else 'ar'}.jpg"
     return f"""<!doctype html>
 <html lang="{lang}" dir="{t['dir']}">
@@ -215,16 +224,22 @@ def article_page(a, pair):
 def index_page(lang, items):
     t = TEXT[lang]
     canonical = '/writing/' if lang == 'en' else '/writing/ar/'
-    rows = ''.join(
-        f"""      <li><a href="{url_for(a)}"><span class="kicker">{html.escape(a.get('topic', ''))} · {nice_date(a['date'], lang)}</span><h2>{html.escape(a['title'])}</h2><p>{html.escape(a['description'])}</p></a></li>\n"""
-        for a in items) or f'      <li><p>{t["empty"]}</p></li>\n'
+    def rows(group):
+        return ''.join(
+            f"""      <li><a href="{url_for(a)}"><span class="kicker">{html.escape(a.get('topic', ''))} · {nice_date(a['date'], lang)}</span><h2>{html.escape(a['title'])}</h2><p>{html.escape(a['description'])}</p></a></li>\n"""
+            for a in group)
+    new = [a for a in items if not a.get('archive')]
+    old = [a for a in items if a.get('archive')]
+    sections = ''
+    if new:
+        sections += f'      <h2 class="group">{t["new_heading"]}</h2>\n      <ol>\n{rows(new)}      </ol>\n'
+    if old:
+        sections += f'      <h2 class="group">{t["archive_heading"]}</h2>\n      <p class="group-intro">{t["archive_intro"]}</p>\n      <ol class="archive">\n{rows(old)}      </ol>\n'
     body = f"""    <section class="index">
       <div class="kicker">{'Mohamed Sharaf' if lang == 'en' else 'محمد شرف'}</div>
       <h1>{t['index_title']}</h1>
       <p class="lead">{t['index_intro']}</p>
-      <ol>
-{rows}      </ol>
-    </section>"""
+{sections}    </section>"""
     return page(lang, t['index_title'], t['index_intro'], canonical, body,
                 alternates={l: INDEX[l] for l in LANGS_WITH_ITEMS},
                 other_url=other_index(lang))
@@ -246,6 +261,26 @@ def other_index(lang):
 
 articles = read_articles()
 LANGS_WITH_ITEMS = {a['lang'] for a in articles}
+
+# Links to articles that are not built (drafts in a normal build) become plain text,
+# so a published page never links to a page that doesn't exist yet.
+BUILT_URLS = {url_for(a) for a in articles}
+
+
+def unlink_missing(body):
+    def fix(m):
+        href = m.group(1)
+        if href.startswith('/writing/') and href not in BUILT_URLS:
+            return m.group(2)
+        return m.group(0)
+    return re.sub(r'<a href="([^"]+)">(.*?)</a>', fix, body, flags=re.S)
+
+
+for a in articles:
+    a['body'] = unlink_missing(a['body'])
+    # Headings must not skip a level after the page's h1: short notes that only use h3 get h2
+    if '<h2' not in a['body']:
+        a['body'] = a['body'].replace('<h3>', '<h2>').replace('</h3>', '</h2>')
 by_pair = {}
 for a in articles:
     by_pair.setdefault(a.get('pair') or a['slug'], []).append(a)

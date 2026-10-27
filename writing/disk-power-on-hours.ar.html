@@ -1,0 +1,20 @@
+<!--
+{
+ "slug": "disk-power-on-hours",
+ "lang": "ar",
+ "pair": "disk-power-on-hours",
+ "status": "published",
+ "archive": true,
+ "title": "كم عمر قرص السيرفر؟ افحص ساعات التشغيل",
+ "description": "اقرأ العمر الحقيقي للقرص من بيانات SMART باستخدام smartctl، وحوّل الساعات إلى أيام.",
+ "date": "2018-12-19",
+ "updated": "2026-10-27",
+ "topic": "السيرفرات",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في ديسمبر 2018. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>تاريخ شراء السيرفر لا يخبرك كم ساعة عملت أقراصه فعلًا. القرص نفسه يحتفظ بهذا الرقم في بيانات SMART. بعد تثبيت <code>smartmontools</code>:</p>
+<pre><code>smartctl -A /dev/sda | grep Power_On_Hours
+smartctl -A /dev/sdb | grep Power_On_Hours</code></pre>
+<p>وجّه الأمر إلى القرص (<code>/dev/sda</code>) لا إلى قسم منه (<code>/dev/sda1</code>). آخر رقم في السطر هو عدد الساعات، واقسمه على 24 لتحصل على الأيام: 2,620 ساعة تساوي نحو 109 أيام، و43,800 ساعة تساوي نحو خمس سنوات.</p>
+<p>وأنت هناك، انظر أيضًا إلى <code>Reallocated_Sector_Ct</code> و<code>Current_Pending_Sector</code>. إذا بدأت هذه الأرقام بالارتفاع، خطّط للاستبدال الآن، لا بعد العطل. (لأقراص NVMe استخدم <code>smartctl -a /dev/nvme0</code> واقرأ «Power On Hours».)</p>

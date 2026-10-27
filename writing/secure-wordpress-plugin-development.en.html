@@ -1,0 +1,27 @@
+<!--
+{
+ "slug": "secure-wordpress-plugin-development",
+ "lang": "en",
+ "pair": "secure-wordpress-plugin-development",
+ "status": "published",
+ "archive": true,
+ "title": "Writing secure WordPress plugins and themes",
+ "description": "The handful of habits that prevent most WordPress plugin vulnerabilities.",
+ "date": "2013-11-14",
+ "updated": "2026-10-27",
+ "topic": "WordPress",
+ "archive_note": "From the archive: in 2013 I shared “Developing for WordPress? Keep your code secure” by Mike Jolley (2013) on my old blog. This page is a short summary in my own words; the original belongs to its author."
+}
+-->
+<p>Mike Jolley, a core developer of WooCommerce, argued in 2013 that most plugin vulnerabilities come from skipping a few easy habits. Studies at the time found a large share of popular plugins vulnerable to common attacks. The habits, in short:</p>
+<ul>
+  <li><strong>Develop with <code>WP_DEBUG</code> on</strong>, so warnings and notices show up while you build, not in your users’ logs.</li>
+  <li><strong>Sanitise input:</strong> <code>sanitize_text_field()</code>, <code>absint()</code>, <code>sanitize_email()</code> and friends on everything from <code>$_GET</code>, <code>$_POST</code> and cookies.</li>
+  <li><strong>Escape output:</strong> <code>esc_html()</code>, <code>esc_attr()</code>, <code>esc_url()</code> at the moment you print.</li>
+  <li><strong>Use nonces</strong> on every form and action that changes something (<code>wp_nonce_field()</code> and <code>check_admin_referer()</code>).</li>
+  <li><strong>Check capabilities</strong> with <code>current_user_can()</code>, not just “is logged in”.</li>
+  <li><strong>Prepare SQL:</strong> <code>$wpdb-&gt;prepare()</code> for every query with a variable.</li>
+  <li><strong>Block direct access</strong> to PHP files: <code>defined( 'ABSPATH' ) || exit;</code> at the top.</li>
+</ul>
+<p>None of this is hard. It just has to be a habit, every time.</p>
+<p class="note">Read the original: <a href="https://mikejolley.com/blog/2013/08/13/keeping-your-shit-secure-whilst-developing-for-wordpress/">Developing for WordPress? Keep your code secure</a>, by Mike Jolley (2013).</p>

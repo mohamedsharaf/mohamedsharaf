@@ -1,0 +1,32 @@
+<!--
+{
+ "slug": "zf2-events",
+ "lang": "ar",
+ "pair": "zf2-events",
+ "status": "published",
+ "archive": true,
+ "title": "ترتيب الأحداث في طلب Zend Framework 2",
+ "description": "أي الأحداث تُطلق وبأي ترتيب، من تحميل الوحدات إلى إرسال الاستجابة.",
+ "date": "2012-10-30",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في أكتوبر 2012. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>بُني Zend Framework 2 حول الأحداث (Events)، ومعرفة ترتيبها تخبرك أين تربط كودك. للطلب العادي:</p>
+<h3>١. تحميل الوحدات (ModuleManager)</h3>
+<ol>
+  <li><code>loadModules</code></li>
+  <li>لكل وحدة: <code>loadModule.resolve</code> ثم <code>loadModule</code></li>
+  <li><code>loadModules.post</code></li>
+</ol>
+<h3>٢. معالجة الطلب (MvcEvent)</h3>
+<ol>
+  <li><code>bootstrap</code>: الإعداد مرة واحدة لكل طلب</li>
+  <li><code>route</code>: مطابقة العنوان مع Controller وAction</li>
+  <li><code>dispatch</code>: تشغيل الـ Action (و<code>dispatch.error</code> إذا فشل التوجيه أو الـ Controller)</li>
+  <li><code>render</code>: تحويل الـ View Model إلى مخرجات (و<code>render.error</code> عند الفشل)</li>
+  <li><code>finish</code>: الفرصة الأخيرة قبل إرسال الاستجابة</li>
+</ol>
+<p>الاستماع إلى <code>dispatch</code> بأولوية عالية هو المكان التقليدي للتحققات التي يجب أن تعمل قبل أي Controller، مثل التحقق من تسجيل الدخول.</p>
+<p class="note">اليوم: الأحداث نفسها موجودة في Laminas MVC، الامتداد الحالي لـ Zend Framework.</p>

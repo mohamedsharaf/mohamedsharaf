@@ -1,0 +1,32 @@
+<!--
+{
+ "slug": "mysql-transactions-zend-framework",
+ "lang": "ar",
+ "pair": "mysql-transactions-zend-framework",
+ "status": "published",
+ "archive": true,
+ "title": "المعاملات (Transactions) في قاعدة البيانات مع Zend Framework",
+ "description": "متى يجب أن تنجح مجموعة تغييرات في قاعدة البيانات معًا أو تفشل معًا، وكيف تكتبها في Zend Framework 1.",
+ "date": "2012-04-29",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في أبريل 2012. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>معظم الاستعلامات لا تحتاج معاملة (Transaction). تحتاجها عندما يجب أن تحدث عدة تغييرات <strong>كلها معًا أو لا يحدث شيء منها</strong>: تحويل مال بين حسابين، حفظ طلب مع بنوده، تحديث المخزون مع عملية بيع.</p>
+<p>في Zend Framework 1 (‏<code>Zend_Db</code>):</p>
+<pre><code>$db = Zend_Db_Table::getDefaultAdapter();
+$db-&gt;beginTransaction();
+try {
+    $db-&gt;insert('orders', $order);
+    $orderId = $db-&gt;lastInsertId();
+    foreach ($lines as $line) {
+        $db-&gt;insert('order_lines', $line + ['order_id' =&gt; $orderId]);
+    }
+    $db-&gt;commit();
+} catch (Exception $e) {
+    $db-&gt;rollBack();
+    throw $e;
+}</code></pre>
+<p>نقطتان للتحقق: يجب أن تستخدم جداولك محركًا يدعم المعاملات (InnoDB لا MyISAM القديم)، واجعل المعاملات قصيرة لأنها تحجز أقفالًا طوال تشغيلها.</p>
+<p class="note">اليوم: أصبح Zend Framework مشروع Laminas، وانتهى دعم Zend Framework 1 في 2016. لكن النمط نفسه (ابدأ، حاول، ثبّت، وتراجع عند الفشل) موجود في كل إطار حديث.</p>

@@ -1,0 +1,25 @@
+<!--
+{
+ "slug": "wordpress-3-custom-taxonomies",
+ "lang": "en",
+ "pair": "wordpress-3-custom-taxonomies",
+ "status": "published",
+ "archive": true,
+ "title": "WordPress custom taxonomies, explained",
+ "description": "Categories and tags are only the start: how custom taxonomies let you organise content your own way.",
+ "date": "2010-11-06",
+ "updated": "2026-10-27",
+ "topic": "WordPress",
+ "archive_note": "From the archive: in 2010 I shared “Introducing WordPress 3 Custom Taxonomies” by Envato Tuts+ on my old blog. This page is a short summary in my own words; the original belongs to its author."
+}
+-->
+<p>For years WordPress had only two ways to group posts: categories (with parent/child levels) and tags (flat). WordPress 3.0 made <strong>custom taxonomies</strong> a core feature, so you can define your own groupings that fit your content: genres for books, locations for properties, skills for job listings.</p>
+<pre><code>add_action( 'init', function () {
+    register_taxonomy( 'genre', 'book', array(
+        'label'        =&gt; 'Genres',
+        'hierarchical' =&gt; true,   // like categories; false = like tags
+        'show_in_rest' =&gt; true,   // available in the block editor and REST API
+    ) );
+} );</code></pre>
+<p>Each term then gets its own archive page, which you can style with a <code>taxonomy-genre.php</code> template. Good taxonomies are mostly an information-architecture decision, not a coding one: decide how visitors look for things, and group the content that way.</p>
+<p class="note">Read the original: <a href="https://code.tutsplus.com/introducing-wordpress-3-custom-taxonomies--net-11658a">Introducing WordPress 3 Custom Taxonomies</a>, by Envato Tuts+.</p>

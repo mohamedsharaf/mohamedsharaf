@@ -1,0 +1,32 @@
+<!--
+{
+ "slug": "zf2-events",
+ "lang": "en",
+ "pair": "zf2-events",
+ "status": "published",
+ "archive": true,
+ "title": "The order of events in a Zend Framework 2 request",
+ "description": "Which events fire, in what order, from loading modules to sending the response.",
+ "date": "2012-10-30",
+ "updated": "2026-10-27",
+ "topic": "Zend Framework",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in October 2012. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Zend Framework 2 is built around events, and knowing their order tells you where to hook your code. For a normal request:</p>
+<h3>1. Loading modules (ModuleManager)</h3>
+<ol>
+  <li><code>loadModules</code></li>
+  <li>for each module: <code>loadModule.resolve</code>, then <code>loadModule</code></li>
+  <li><code>loadModules.post</code></li>
+</ol>
+<h3>2. Handling the request (MvcEvent)</h3>
+<ol>
+  <li><code>bootstrap</code>: set things up once per request</li>
+  <li><code>route</code>: match the URL to a controller and action</li>
+  <li><code>dispatch</code>: run the controller action (<code>dispatch.error</code> if routing or the controller fails)</li>
+  <li><code>render</code>: turn the view model into output (<code>render.error</code> on failure)</li>
+  <li><code>finish</code>: last chance before the response is sent</li>
+</ol>
+<p>Listening to <code>dispatch</code> with a high priority is the classic place for checks that must run before any controller, such as authentication.</p>
+<p class="note">Today: the same events exist in Laminas MVC, the continuation of Zend Framework.</p>

@@ -1,0 +1,24 @@
+<!--
+{
+ "slug": "large-scale-javascript-architecture",
+ "lang": "en",
+ "pair": "large-scale-javascript-architecture",
+ "status": "published",
+ "archive": true,
+ "title": "Large-scale JavaScript architecture: modules, facade, mediator",
+ "description": "Addy Osmani’s classic answer to growing JavaScript apps: independent modules that only talk through a mediator.",
+ "date": "2014-01-11",
+ "updated": "2026-10-27",
+ "topic": "Software",
+ "archive_note": "From the archive: in 2014 I shared “Patterns For Large-Scale JavaScript Application Architecture” by Addy Osmani (2011) on my old blog. This page is a short summary in my own words; the original belongs to its author."
+}
+-->
+<p>In 2011, Addy Osmani described how to keep a big JavaScript application from turning into a tangle. His tweet-sized summary: decouple the app with three patterns.</p>
+<ul>
+  <li><strong>Modules:</strong> each feature is an independent piece that knows nothing about the others.</li>
+  <li><strong>Mediator:</strong> modules don’t call each other; they publish messages (“a new message arrived”), and a central mediator passes them to whoever is interested.</li>
+  <li><strong>Facade:</strong> a thin layer between modules and the core that limits what each module may do, which acts as a security boundary too.</li>
+</ul>
+<p>The payoff: you can remove, replace or test a module without breaking the rest, and you are not locked into one library.</p>
+<p>Frameworks, components and ES modules have changed the tools since then, but the idea still holds. Loose coupling through events, and small, clear boundaries, are what keep large front-end apps maintainable.</p>
+<p class="note">Read the original: <a href="https://addyosmani.com/largescalejavascript/">Patterns For Large-Scale JavaScript Application Architecture</a>, by Addy Osmani (2011).</p>

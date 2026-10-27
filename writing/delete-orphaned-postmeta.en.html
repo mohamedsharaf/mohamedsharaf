@@ -1,0 +1,21 @@
+<!--
+{
+ "slug": "delete-orphaned-postmeta",
+ "lang": "en",
+ "pair": "delete-orphaned-postmeta",
+ "status": "published",
+ "archive": true,
+ "title": "Delete orphaned post meta in WordPress",
+ "description": "Clean up custom-field rows left behind by deleted posts, with one SQL query and a backup first.",
+ "date": "2014-11-08",
+ "updated": "2026-10-27",
+ "topic": "WordPress",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in November 2014. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>When posts are deleted outside WordPress (or by badly written plugins), their custom fields can stay behind in the <code>wp_postmeta</code> table, pointing at posts that no longer exist. This query removes those orphans:</p>
+<pre><code>DELETE pm
+FROM wp_postmeta pm
+LEFT JOIN wp_posts wp ON wp.ID = pm.post_id
+WHERE wp.ID IS NULL;</code></pre>
+<p><strong>Take a database backup first.</strong> If your tables use a different prefix than <code>wp_</code>, change both table names. Want to see what will go before deleting anything? Run the same query with <code>SELECT pm.*</code> instead of <code>DELETE pm</code>.</p>

@@ -1,0 +1,27 @@
+<!--
+{
+ "slug": "portable-phpstorm",
+ "lang": "ar",
+ "pair": "portable-phpstorm",
+ "status": "published",
+ "archive": true,
+ "title": "تشغيل PhpStorm (أو أي محرر من JetBrains) من فلاشة USB",
+ "description": "احتفظ بالمحرر وكل إعداداته في مجلد واحد تحمله على فلاشة أو تزامنه مع السحابة.",
+ "date": "2016-02-07",
+ "updated": "2026-10-27",
+ "topic": "الأدوات",
+ "archive_note": "من الأرشيف: نُشر أصلًا على mohamedsharaf.net في فبراير 2016. أُعيدت كتابته ومراجعته في 2026، وبعض التفاصيل قد تكون قديمة."
+}
+-->
+<p>محررات JetBrains مثل PhpStorm تحفظ إعداداتها وملفاتها المؤقتة وإضافاتها عادةً داخل ملف المستخدم. لتجعل المحرر محمولًا يحمل إعداداته معه، وجّه هذه المجلدات إلى داخل مجلد المحرر نفسه.</p>
+<ol>
+  <li>نزّل نسخة <strong>.zip</strong> (أو ‎.tar.gz) من المحرر، لا ملف التثبيت، وفك ضغطها على الفلاشة.</li>
+  <li>افتح الملف <code>bin/idea.properties</code> داخل ذلك المجلد في محرر نصوص.</li>
+  <li>ابحث عن المسارات المعلّقة في أعلى الملف، واجعلها نسبية لمجلد المحرر:</li>
+</ol>
+<pre><code>idea.config.path=${idea.home.path}/user/config
+idea.system.path=${idea.home.path}/user/system
+idea.plugins.path=${idea.config.path}/plugins
+idea.log.path=${idea.system.path}/log</code></pre>
+<p>عند التشغيل الأول ينشئ المحرر مجلد <code>user</code> بجانبه، ويصبح كل شيء (الإعدادات والإضافات والملفات المؤقتة) بداخله. انسخ المجلد كاملًا إلى فلاشة أو مجلد متزامن، وخذه معك أينما ذهبت.</p>
+<p>نصيحتان: مجلد <code>system</code> يحتوي ملفات مؤقتة كبيرة، فالفلاشة السريعة تفرق كثيرًا؛ وستحتاج رخصة صالحة أو فترة تجربة عند التشغيل الأول.</p>

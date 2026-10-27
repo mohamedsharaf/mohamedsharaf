@@ -1,0 +1,24 @@
+<!--
+{
+ "slug": "youtube-mysql-scaling-2007",
+ "lang": "en",
+ "pair": "youtube-mysql-scaling-2007",
+ "status": "published",
+ "archive": true,
+ "title": "How YouTube scaled MySQL in 2007",
+ "description": "Lessons from Paul Tuckfield’s keynote on keeping YouTube’s databases ahead of its growth.",
+ "date": "2012-12-05",
+ "updated": "2026-10-27",
+ "topic": "Databases",
+ "archive_note": "From the archive: in 2012 I shared “Extreme makeover: database, or MySQL@YouTube (MySQL Conference 2007 notes)” by Colin Charles, on Paul Tuckfield’s keynote on my old blog. This page is a short summary in my own words; the original belongs to its author."
+}
+-->
+<p>At the 2007 MySQL Conference, Paul Tuckfield, a long-time sysadmin and DBA at YouTube, told the story of keeping the site’s databases ahead of its explosive growth. The lessons that stuck with me:</p>
+<ul>
+  <li><strong>The fastest query is the one you don’t run.</strong> Caching (memcached in front of MySQL) did more than any database tuning.</li>
+  <li><strong>Reads far outnumber writes,</strong> so replication, with many read copies of one primary, carried them a long way.</li>
+  <li><strong>Replication has limits:</strong> lag between primary and replicas, and every replica still has to apply every write. Eventually the data has to be split (sharding).</li>
+  <li><strong>Know the layers:</strong> RAID controllers, the operating system’s cache and the database’s own cache can fight each other. Understanding where data actually sits in memory matters.</li>
+</ul>
+<p>I ran large real-time systems myself around the same time, and the same truth held: plan for the busiest night, keep the setup simple enough to fix under pressure, and don’t ask the database for anything you can avoid.</p>
+<p class="note">Read the original: <a href="https://www.bytebot.net/blog/archives/2007/04/26/extreme-makeover-database-or-mysqlyoutube">Extreme makeover: database, or MySQL@YouTube (MySQL Conference 2007 notes)</a>, by Colin Charles, on Paul Tuckfield’s keynote.</p>

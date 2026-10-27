@@ -1,0 +1,25 @@
+<!--
+{
+ "slug": "wordpress-3-custom-taxonomies",
+ "lang": "ar",
+ "pair": "wordpress-3-custom-taxonomies",
+ "status": "published",
+ "archive": true,
+ "title": "التصنيفات المخصصة في ووردبريس بشكل مبسط",
+ "description": "الأقسام والوسوم مجرد بداية: كيف تسمح لك التصنيفات المخصصة بتنظيم المحتوى بطريقتك.",
+ "date": "2010-11-06",
+ "updated": "2026-10-27",
+ "topic": "ووردبريس",
+ "archive_note": "من الأرشيف: شاركتُ عام 2010 مقال «Introducing WordPress 3 Custom Taxonomies» لـEnvato Tuts+ على مدونتي القديمة. هذه الصفحة ملخص قصير بكلماتي، والمقال الأصلي ملك لكاتبه."
+}
+-->
+<p>لسنوات كان لدى ووردبريس طريقتان فقط لتجميع المقالات: الأقسام (بمستويات أب وابن) والوسوم (مسطّحة). جعل ووردبريس 3.0 <strong>التصنيفات المخصصة</strong> (Custom Taxonomies) ميزة أساسية، فتستطيع تعريف تجميعات خاصة تناسب محتواك: أنواع للكتب، مواقع للعقارات، مهارات لإعلانات الوظائف.</p>
+<pre><code>add_action( 'init', function () {
+    register_taxonomy( 'genre', 'book', array(
+        'label'        =&gt; 'Genres',
+        'hierarchical' =&gt; true,   // like categories; false = like tags
+        'show_in_rest' =&gt; true,   // available in the block editor and REST API
+    ) );
+} );</code></pre>
+<p>بعدها يحصل كل مصطلح على صفحة أرشيف خاصة به، يمكنك تنسيقها بقالب <code>taxonomy-genre.php</code>. والتصنيفات الجيدة قرار في هندسة المعلومات أكثر منها قرارًا برمجيًا: قرر كيف يبحث الزوار عن الأشياء، ثم جمّع المحتوى بتلك الطريقة.</p>
+<p class="note">اقرأ المقال الأصلي: <a href="https://code.tutsplus.com/introducing-wordpress-3-custom-taxonomies--net-11658a" lang="en">Introducing WordPress 3 Custom Taxonomies</a>، بقلم Envato Tuts+.</p>

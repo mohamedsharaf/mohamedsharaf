@@ -1,0 +1,24 @@
+<!--
+{
+ "slug": "iframe-auto-height",
+ "lang": "en",
+ "pair": "iframe-auto-height",
+ "status": "published",
+ "archive": true,
+ "title": "Make an iframe as tall as its content",
+ "description": "Resize an iframe to fit what it shows, and why it only works directly on pages from your own site.",
+ "date": "2012-02-12",
+ "updated": "2026-10-27",
+ "topic": "Web",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in February 2012. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>An iframe has a fixed height, so its content either gets cut off or leaves empty space. If the framed page is on <strong>your own domain</strong>, the parent page can read its height and resize the frame after it loads:</p>
+<pre><code>&lt;iframe id="frame" src="/embed/report.html" style="width:100%;border:0"&gt;&lt;/iframe&gt;
+&lt;script&gt;
+  const frame = document.getElementById('frame');
+  frame.addEventListener('load', () =&gt; {
+    frame.style.height = frame.contentDocument.documentElement.scrollHeight + 'px';
+  });
+&lt;/script&gt;</code></pre>
+<p>Browsers block this for pages from <strong>other domains</strong>, on purpose: one site must not read another site’s content. In that case the framed page has to cooperate and send its height with <code>window.parent.postMessage(...)</code>, and your page listens for the message (and checks where it came from) before resizing.</p>

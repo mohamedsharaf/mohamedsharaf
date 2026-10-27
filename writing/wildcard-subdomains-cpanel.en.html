@@ -1,0 +1,24 @@
+<!--
+{
+ "slug": "wildcard-subdomains-cpanel",
+ "lang": "en",
+ "pair": "wildcard-subdomains-cpanel",
+ "status": "published",
+ "archive": true,
+ "title": "Wildcard subdomains on a cPanel server",
+ "description": "Make anything.yourdomain.com reach your site, so your app can decide what each subdomain shows.",
+ "date": "2011-03-05",
+ "updated": "2026-10-27",
+ "topic": "Servers",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in March 2011. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>Sometimes you want every subdomain to work without creating each one by hand: <code>ahmed.example.com</code>, <code>shop2.example.com</code>, anything. Your application then reads the subdomain and decides what to show. That takes two pieces:</p>
+<h3>1. DNS</h3>
+<p>Add a wildcard record that sends every subdomain to your server:</p>
+<pre><code>*.example.com.   A   203.0.113.10</code></pre>
+<h3>2. The web server</h3>
+<p>Apache also has to accept those names. In cPanel, create a subdomain called <code>*</code> under <strong>Domains</strong> and point its document root to your application’s folder. Behind the scenes this adds <code>ServerAlias *.example.com</code> for you.</p>
+<h3>3. Your application</h3>
+<p>Read the requested host name (for example <code>$_SERVER['HTTP_HOST']</code> in PHP), take the part before your domain, and load the right content. Treat that value as user input: check it against the subdomains you actually serve.</p>
+<p>For HTTPS, you will need a wildcard certificate for <code>*.example.com</code>; AutoSSL or Let’s Encrypt can issue one when DNS is set up for it.</p>

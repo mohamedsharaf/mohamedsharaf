@@ -1,0 +1,20 @@
+<!--
+{
+ "slug": "disk-power-on-hours",
+ "lang": "en",
+ "pair": "disk-power-on-hours",
+ "status": "published",
+ "archive": true,
+ "title": "How old is that server disk? Check its power-on hours",
+ "description": "Read a drive’s real age from its SMART data with smartctl, and turn the hours into days.",
+ "date": "2018-12-19",
+ "updated": "2026-10-27",
+ "topic": "Servers",
+ "archive_note": "From the archive: first published on mohamedsharaf.net in December 2018. Rewritten and checked in 2026; some details may be out of date."
+}
+-->
+<p>A server’s purchase date doesn’t tell you how long its disks have actually been spinning. The drive keeps that number itself, in its SMART data. With <code>smartmontools</code> installed:</p>
+<pre><code>smartctl -A /dev/sda | grep Power_On_Hours
+smartctl -A /dev/sdb | grep Power_On_Hours</code></pre>
+<p>Point it at the disk (<code>/dev/sda</code>), not a partition (<code>/dev/sda1</code>). The last number on the line is the hours. Divide by 24 for days: 2,620 hours is about 109 days; 43,800 hours is about five years.</p>
+<p>While you’re there, look at <code>Reallocated_Sector_Ct</code> and <code>Current_Pending_Sector</code> too. If those start climbing, plan the replacement now, not after the failure. (For NVMe drives, use <code>smartctl -a /dev/nvme0</code> and read “Power On Hours”.)</p>

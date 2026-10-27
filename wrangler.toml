@@ -1,4 +1,18 @@
-# Cloudflare Pages project for mohamedsharaf.com. Deploy with: sh deploy.sh
+# mohamedsharaf.com as a static-assets-only Cloudflare Worker. Deploy with: sh deploy.sh
+#
+# The site is served only on the custom domain: no workers.dev address and no
+# preview links. Static asset requests never invoke a Worker script, so they are
+# free and unlimited, and the rules in dist/_headers apply to every response.
 name = "mohamedsharaf"
-pages_build_output_dir = "dist"
 compatibility_date = "2026-10-01"
+workers_dev = false
+preview_urls = false
+
+routes = [
+  { pattern = "mohamedsharaf.com", custom_domain = true }
+]
+
+[assets]
+directory = "./dist"
+not_found_handling = "404-page"
+html_handling = "auto-trailing-slash"

@@ -1,11 +1,11 @@
 #!/bin/sh
-# Builds the public website into dist/ for Cloudflare Pages.
+# Builds the public website into dist/ for Cloudflare Workers.
 #
 # Only the files listed below are published. docs/ (old versions, portrait
 # options, source photos) and anything else in this folder stay private.
 # Add a new page here if you create one.
 #
-# Deploy (build + upload to Cloudflare Pages): sh deploy.sh
+# Deploy (build + upload to Cloudflare Workers): sh deploy.sh
 set -eu
 cd "$(dirname "$0")"
 
@@ -16,7 +16,7 @@ cp -R assets dist/assets
 cp -R .well-known dist/.well-known
 find dist -name '.DS_Store' -delete
 
-# Security and cache headers (Cloudflare Pages reads dist/_headers).
+# Security and cache headers (Cloudflare reads dist/_headers).
 # The Content-Security-Policy only allows the pages' own inline scripts, by hash,
 # so the hashes are recalculated here on every build.
 python3 - <<'PY'
@@ -46,6 +46,7 @@ open('dist/_headers', 'w').write(f"""/*
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   Cross-Origin-Opener-Policy: same-origin
+  Strict-Transport-Security: max-age=31536000
 
 /assets/*
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400

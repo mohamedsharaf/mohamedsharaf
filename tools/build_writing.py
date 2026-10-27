@@ -29,14 +29,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PREVIEW = os.environ.get('PREVIEW') == '1'
 
 TEXT = {
-    'en': dict(dir='ltr', writing='Writing', home='Home', hello='Say hello', other='عربي', other_lang='ar',
+    'en': dict(dir='ltr', writing='Writing', home='Home', menu='Menu', hello='Say hello', other='عربي', other_lang='ar',
                index_title='Writing', index_intro='Notes on security, infrastructure, software and AI. Written in plain words, from three decades of doing the work.',
                min_read='min read', back='All writing', cta_title='Want a second pair of eyes?',
                cta_text='If something here sounds like your system, write to me. I read everything.',
                cta_link='Say hello', draft='Draft: not published yet', empty='The first articles are on their way.',
                new_heading='New', archive_heading='From the archive', archive_intro='Notes from my old blog on mohamedsharaf.net (2010–2023), rewritten and checked. Some are dated; the dates tell you how much.',
                months=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']),
-    'ar': dict(dir='rtl', writing='كتابات', home='الرئيسية', hello='قل مرحبًا', other='English', other_lang='en',
+    'ar': dict(dir='rtl', writing='كتابات', home='الرئيسية', menu='القائمة', hello='قل مرحبًا', other='English', other_lang='en',
                index_title='كتابات', index_intro='ملاحظات عن الأمن والبنية التحتية والبرمجيات والذكاء الاصطناعي، بكلام واضح، من ثلاثة عقود من العمل.',
                min_read='دقائق قراءة', back='كل الكتابات', cta_title='تحتاج إلى نظرة ثانية؟',
                cta_text='إذا بدا لك شيء هنا مثل نظامك، اكتب لي. أقرأ كل شيء.',
@@ -65,6 +65,19 @@ a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
 .nav a{text-decoration:none}
 .nav .lang{border:1px solid var(--line);padding:7px 10px}
 .nav .hello{background:var(--ink);color:var(--paper);padding:9px 13px}
+.menu{display:none;position:relative}
+.menu-button{list-style:none;display:flex;align-items:center;gap:9px;min-height:40px;padding:0 13px;border:1px solid var(--ink);font-size:13px;font-weight:600;cursor:pointer;user-select:none;-webkit-user-select:none}
+.menu-button::-webkit-details-marker{display:none}
+.menu-button:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
+.menu-icon{display:grid;gap:3px;width:14px}
+.menu-icon i{display:block;height:2px;background:currentColor}
+.menu[open] .menu-button{background:var(--ink);color:var(--paper)}
+.menu[open] .menu-icon i:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.menu[open] .menu-icon i:nth-child(2){opacity:0}
+.menu[open] .menu-icon i:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+.menu-panel{position:absolute;inset-inline-end:0;top:calc(100% + 10px);z-index:60;width:min(280px,calc(100vw - 40px));background:var(--paper-card);border:1px solid var(--ink);box-shadow:6px 6px 0 rgba(36,38,36,.12);display:flex;flex-direction:column}
+.menu-panel a{padding:15px 18px;font-size:15px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+.menu-panel .menu-cta{background:var(--ink);color:var(--paper);border-bottom:0}
 .kicker{font:12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--orange-ink)}
 .article{max-width:720px;margin:0 auto;padding:64px 0 40px}
 .article h1{font-size:clamp(34px,6vw,54px);line-height:1.12;letter-spacing:-.04em;font-weight:700;margin:16px 0 16px}
@@ -106,7 +119,7 @@ a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
 [dir=rtl] .body,[dir=rtl] .lead{font-size:18px}
 [dir=rtl] .article h1,[dir=rtl] .index h1,[dir=rtl] .body h2,[dir=rtl] .index li h2{letter-spacing:0;line-height:1.4}
 [dir=rtl] .kicker,[dir=rtl] .meta,[dir=rtl] .draft{font-family:var(--sans);letter-spacing:0;font-size:13px}
-@media(max-width:600px){.nav .hide{display:none}.article,.index{padding-top:40px}.body{font-size:16.5px}.cta{padding:22px}}
+@media(max-width:600px){.nav .hide,.nav .hello{display:none}.nav{margin-inline-start:auto}.header{gap:10px}.menu{display:block}.article,.index{padding-top:40px}.body{font-size:16.5px}.cta{padding:22px}}
 """
 
 
@@ -172,6 +185,14 @@ def page(lang, title, description, canonical, body, head_extra='', alternates=No
       <a class="lang" href="{other}" lang="{t['other_lang']}" hreflang="{t['other_lang']}">{t['other']}</a>
       <a class="hello" href="{'/#contact' if lang == 'en' else '/ar#contact'}">{t['hello']}</a>
     </nav>
+    <details class="menu">
+      <summary class="menu-button"><span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>{t['menu']}</summary>
+      <nav class="menu-panel" aria-label="{t['menu']}">
+        <a href="{'/' if lang == 'en' else '/ar'}">{t['home']}</a>
+        <a href="{'/writing/' if lang == 'en' else '/writing/ar/'}">{t['writing']}</a>
+        <a class="menu-cta" href="{'/#contact' if lang == 'en' else '/ar#contact'}">{t['hello']}</a>
+      </nav>
+    </details>
   </header>
   <main class="shell">
 {body}
@@ -350,6 +371,9 @@ for name, (lang, nav, more) in LINKS.items():
     path = os.path.join(DIST, name)
     page_html = open(path, encoding='utf-8').read()
     show = lang in PUBLISHED_LANGS
-    page_html = page_html.replace('<!--WRITING_NAV-->', nav if show else '').replace('<!--WRITING_MORE-->', more if show else '')
+    menu_link = nav.replace(' class="nav-writing"', '')
+    page_html = (page_html.replace('<!--WRITING_NAV-->', nav if show else '')
+                 .replace('<!--WRITING_MORE-->', more if show else '')
+                 .replace('<!--WRITING_MENU-->', menu_link if show else ''))
     open(path, 'w', encoding='utf-8').write(page_html)
 print(f"writing: {len(articles)} article(s) built ({len(published)} published), {len(lines)} redirect rules{' [PREVIEW: drafts included]' if PREVIEW else ''}")

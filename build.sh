@@ -11,7 +11,7 @@ cd "$(dirname "$0")"
 
 rm -rf dist
 mkdir dist
-cp index.html ar.html 404.html robots.txt sitemap.xml favicon.svg apple-touch-icon.png dist/
+cp index.html ar.html 404.html robots.txt sitemap.xml llms.txt favicon.svg apple-touch-icon.png dist/
 cp -R assets dist/assets
 cp -R .well-known dist/.well-known
 find dist -name '.DS_Store' -delete

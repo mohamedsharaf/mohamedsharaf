@@ -1,0 +1,25 @@
+# Mohamed Sharaf
+
+> Mohamed Sharaf (محمد شرف, also written Mohamed Ahmed Sharaf / محمد أحمد شرف) is a security and technology consultant based in Riyadh, Saudi Arabia. He has worked with computers since 1996, in information security since 2000, and has run his own hosting and web company since 2002. He helps startups, small businesses and government teams make their systems safer and simpler.
+
+- Egyptian, from Cairo; lives in Riyadh.
+- Works in Arabic and English, remotely by default, with clients in Egypt, the Gulf, Europe and elsewhere.
+- By 2005 his company ran about 500 websites and more than 2,000 voice chat rooms, with 50,000 to 100,000 people online at once.
+- Never publishes client names.
+
+## Pages
+
+- [mohamedsharaf.com (English)](https://mohamedsharaf.com/): who he is, his story since 1996, field notes, services and contact
+- [mohamedsharaf.com/ar (Arabic)](https://mohamedsharaf.com/ar): the same site in Arabic
+
+## What he does
+
+- Security: penetration testing, security audits, building secure systems, incident response
+- Infrastructure: servers, hosting and cloud, networks and access, backups that actually restore, uptime and monitoring
+- Software and architecture: architecture reviews, API and data design, secure development practice, technical due diligence
+- AI, carefully: where AI fits and where it doesn't, safe use of company data, practical automation
+
+## Contact
+
+- Email: hi@mohamedsharaf.com
+- LinkedIn: https://www.linkedin.com/in/mohamed-ahmed-sharaf/

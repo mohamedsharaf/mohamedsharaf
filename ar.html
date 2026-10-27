@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#eeeae2">
-  <meta name="description" content="محمد شرف. مع الكمبيوتر منذ 1996، وفي أمن المعلومات منذ 2000، ويدير شركته الخاصة منذ 2002. ما زال فضوليًا، ويساعد الفرق اليوم على جعل أنظمتها أكثر أمانًا وبساطة.">
+  <meta name="description" content="محمد شرف مستشار في أمن المعلومات والتقنية، مقيم في الرياض. مع الكمبيوتر منذ 1996، وفي أمن المعلومات منذ 2000، ويدير شركته الخاصة منذ 2002، ويساعد الفرق على جعل أنظمتها أكثر أمانًا وبساطة.">
   <meta property="og:title" content="محمد شرف — ما زلتُ فضوليًا.">
   <meta property="og:description" content="ثلاثة عقود مع الكمبيوتر. الأمن والبنية التحتية والبرمجيات والذكاء الاصطناعي، بكلام واضح.">
   <meta property="og:type" content="website">
@@ -27,11 +27,14 @@
   <link rel="preload" href="assets/plex-arabic-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/amiri-arabic.woff2" as="font" type="font/woff2" crossorigin>
   <script type="application/ld+json">
-{
+  {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebPage",
+        "@type": [
+          "WebPage",
+          "ProfilePage"
+        ],
         "@id": "https://mohamedsharaf.com/ar#page",
         "url": "https://mohamedsharaf.com/ar",
         "name": "محمد شرف — ما زلتُ فضوليًا.",
@@ -41,6 +44,9 @@
         },
         "isPartOf": {
           "@id": "https://mohamedsharaf.com/#site"
+        },
+        "mainEntity": {
+          "@id": "https://mohamedsharaf.com/#person"
         }
       },
       {
@@ -60,14 +66,23 @@
         "@type": "Person",
         "@id": "https://mohamedsharaf.com/#person",
         "name": "Mohamed Sharaf",
-        "alternateName": "محمد شرف",
+        "alternateName": [
+          "محمد شرف",
+          "Mohamed Ahmed Sharaf",
+          "محمد أحمد شرف"
+        ],
+        "jobTitle": "Security and technology consultant",
+        "description": "Security and technology consultant based in Riyadh. With computers since 1996, in information security since 2000, and running his own company since 2002.",
         "url": "https://mohamedsharaf.com/",
         "image": "https://mohamedsharaf.com/assets/mohamedsharaf.jpg",
         "email": "mailto:hi@mohamedsharaf.com",
-        "description": "With computers since 1996, in security since 2000. Security, infrastructure, software and AI, explained in plain words.",
         "homeLocation": {
           "@type": "Place",
           "name": "Riyadh, Saudi Arabia"
+        },
+        "nationality": {
+          "@type": "Country",
+          "name": "Egypt"
         },
         "knowsAbout": [
           "Information security",

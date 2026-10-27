@@ -6,6 +6,7 @@
 # Add a new page here if you create one.
 #
 # Deploy (build + upload to Cloudflare Workers): sh deploy.sh
+# Preview drafts locally:                         PREVIEW=1 sh build.sh
 set -eu
 cd "$(dirname "$0")"
 
@@ -15,6 +16,9 @@ cp index.html ar.html 404.html robots.txt sitemap.xml llms.txt favicon.svg apple
 cp -R assets dist/assets
 cp -R .well-known dist/.well-known
 find dist -name '.DS_Store' -delete
+
+# Articles in writing/ become /writing/... pages (drafts only with PREVIEW=1)
+python3 tools/build_writing.py dist
 
 # Security and cache headers (Cloudflare reads dist/_headers).
 # The Content-Security-Policy only allows the pages' own inline scripts, by hash,

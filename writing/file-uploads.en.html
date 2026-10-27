@@ -1,0 +1,45 @@
+<!--
+{"slug": "file-uploads", "lang": "en", "pair": "file-uploads", "status": "draft",
+ "title": "File uploads: the door we keep leaving open",
+ "description": "Why “upload a file” is still one of the easiest ways into a web application, and a short checklist that actually holds.",
+ "date": "2026-10-27", "topic": "Security"}
+-->
+<p>Almost every product lets people upload something. A profile photo. An invoice. A CV. A scanned ID. It feels like the most ordinary feature in the world, so it rarely gets the attention it deserves.</p>
+<p>From an attacker’s point of view, though, an upload form is a polite invitation: <em>please put my file on your server</em>. Everything that happens next (where the file is stored, what reads it, who can open it later) decides whether that invitation was harmless or the start of a very bad week.</p>
+
+<h2>What usually goes wrong</h2>
+
+<h3>1. Trusting what the browser says</h3>
+<p>The file name, the extension and the <code>Content-Type</code> header all come from the user. All three can say anything. A file called <code>avatar.jpg</code> with an <code>image/jpeg</code> header can still be a script. Checking only these values is like checking a visitor’s badge that they printed themselves.</p>
+
+<h3>2. Storing uploads where the server will run them</h3>
+<p>The classic disaster: uploads land in a folder inside the web root, the web server is configured to execute scripts there, and someone uploads a small “web shell”. One request later, they are running commands on your server. It is old, it is well known, and it still happens.</p>
+
+<h3>3. Keeping the original file name</h3>
+<p>User-supplied names bring their own problems: names that try to climb out of the upload folder (<code>../../</code>), names that overwrite someone else’s file, names that break your logs or your HTML. There is almost never a good reason to keep them on disk.</p>
+
+<h3>4. No limits</h3>
+<p>No maximum size, no limit per user, no limit on how many files an archive expands into. That is how one upload fills a disk, or how a tiny “zip bomb” turns into gigabytes the moment your code unpacks it.</p>
+
+<h3>5. Serving files back from your main domain</h3>
+<p>Files that users can open again, such as SVG images, HTML, or anything the browser might “sniff” as HTML, can carry JavaScript. Served from your main domain, that script runs with your users’ sessions. That is stored cross-site scripting, delivered through a feature everyone thought was just “downloads”.</p>
+
+<h3>6. The parser is the weak point</h3>
+<p>Sometimes the file is fine and the library reading it is not. Image converters, PDF tools and document parsers have all had serious bugs. The <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-3714">ImageTragick</a> flaw in ImageMagick (2016) let a crafted image run commands on servers that only wanted to make thumbnails. Office files and SVGs are XML underneath, which brings XML attacks along with them.</p>
+
+<h2>A checklist that actually holds</h2>
+<ol>
+  <li><strong>Allow, don’t block.</strong> Decide the few file types you really need, and accept only those. Check the real content (the file’s first bytes), not just the extension.</li>
+  <li><strong>Rename everything.</strong> Store files under a random name or ID you generate. Keep the original name in the database if you need to show it.</li>
+  <li><strong>Store outside the web root.</strong> Better still, use separate object storage. The place where files live should never be able to execute anything.</li>
+  <li><strong>Serve carefully.</strong> Use a separate domain for user files where you can. Send <code>Content-Disposition: attachment</code> for anything that isn’t meant to display in the page, plus <code>X-Content-Type-Options: nosniff</code>.</li>
+  <li><strong>Set limits.</strong> Maximum size, maximum files per user, and a ceiling on what archives may expand into.</li>
+  <li><strong>Re-process images.</strong> Re-encode uploaded images into a fresh file. It strips hidden content and metadata along the way.</li>
+  <li><strong>Isolate the parsers.</strong> Run conversions and thumbnails in a separate, low-privilege worker, keep those libraries updated, and scan documents before anyone opens them.</li>
+  <li><strong>Log and watch.</strong> Record who uploaded what and when. You will want that history the day something looks wrong.</li>
+</ol>
+
+<p class="note">For the full technical detail, the <a href="https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html">OWASP File Upload Cheat Sheet</a> is the best reference and worth bookmarking.</p>
+
+<h2>The boring version is the safe version</h2>
+<p>None of this is clever. That is the point. Upload features get broken through the simple gaps, not the exotic ones, and closing those gaps costs very little when you do it early. If your product accepts files, test that feature the way an attacker would: upload the wrong type, the huge file, the strange name, and see what your system does with it.</p>

@@ -1,0 +1,6 @@
+Fonts used on this site, all under the SIL Open Font License 1.1
+(full licence text: see Manrope-LICENSE.txt in this folder, or https://openfontlicense.org)
+
+Manrope                Copyright 2018 The Manrope Project Authors (https://github.com/googlefonts/manrope)
+IBM Plex Sans Arabic   Copyright 2017 IBM Corp. with Reserved Font Name "Plex"
+Amiri                  Copyright 2010-2022 The Amiri Project Authors (https://github.com/aliftype/amiri)

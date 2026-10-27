@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eeeae2">
+  <meta name="description" content="محمد شرف. مع الكمبيوتر منذ 1996، وفي أمن المعلومات منذ 2000، ويدير شركته الخاصة منذ 2002. ما زال فضوليًا، ويساعد الفرق اليوم على جعل أنظمتها أكثر أمانًا وبساطة.">
+  <meta property="og:title" content="محمد شرف — ما زلتُ فضوليًا.">
+  <meta property="og:description" content="ثلاثة عقود مع الكمبيوتر. الأمن والبنية التحتية والبرمجيات والذكاء الاصطناعي، بكلام واضح.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:url" content="https://mohamedsharaf.com/ar">
+  <meta property="og:image" content="https://mohamedsharaf.com/assets/mohamedsharaf.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://mohamedsharaf.com/ar">
+  <link rel="alternate" hreflang="en" href="https://mohamedsharaf.com/">
+  <link rel="alternate" hreflang="ar" href="https://mohamedsharaf.com/ar">
+  <link rel="alternate" hreflang="x-default" href="https://mohamedsharaf.com/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23e85532'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='monospace' font-size='28' fill='%23eeeae2'%3Em.%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="assets/plex-arabic-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/plex-arabic-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/amiri-arabic.woff2" as="font" type="font/woff2" crossorigin>
+  <title>محمد شرف — ما زلتُ فضوليًا.</title>
+  <style>
+    @font-face{font-family:Manrope;src:url('assets/manrope-latin.woff2') format('woff2');font-style:normal;font-weight:200 800;font-display:swap}
+    :root{
+      --paper:#eeeae2;
+      --paper-card:#f6f4ee;
+      --ink:#242624;
+      --muted:#66675f;
+      --orange:#e85532;
+      --orange-soft:#f17a57;
+      --orange-ink:#ad3a1c;
+      --line:#cecdc4;
+      --terminal-bg:#242a25;
+      --terminal-text:#bed4a3;
+      --terminal-accent:#c4e5a4;
+      --mono:'SFMono-Regular',Consolas,'Liberation Mono',monospace;
+      --sans:Manrope,'Avenir Next','Segoe UI',sans-serif;
+      --serif:Georgia,'Times New Roman',serif
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:28px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23000' filter='url(%23n)' opacity='.5' d='M0 0h180v180H0z'/%3E%3C/svg%3E")}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer;color:inherit}
+    button,a,input,textarea,summary{-webkit-tap-highlight-color:transparent}
+    button:focus-visible,a:focus-visible,textarea:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--orange);outline-offset:5px}
+    ::selection{background:var(--orange);color:#fff}
+    [hidden]{display:none!important}
+    .shell{width:min(1280px,calc(100% - 112px));margin:auto}
+    .mono{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+    .skip{position:fixed;left:16px;top:-80px;background:var(--ink);color:white;padding:12px;z-index:100}
+    .skip:focus{top:16px}
+    .accent{color:var(--orange)}
+
+    /* HEADER */
+    .header{height:100px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-size:15px;font-weight:750;letter-spacing:-.6px;white-space:nowrap}
+    .brand-symbol{display:grid;grid-template-columns:repeat(2,7px);gap:3px;transform:rotate(-7deg)}
+    .brand-symbol i{width:7px;height:7px;background:var(--orange)}
+    .brand-symbol i:last-child{opacity:.35}
+    .nav{display:flex;gap:28px;align-items:center;font-size:12px;font-weight:600}
+    .nav a{position:relative;white-space:nowrap}
+    .nav a::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+    .nav a:hover::after{transform:scaleX(1)}
+    .nav-cta{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;background:var(--ink);color:var(--paper);transition:background .2s,transform .2s}
+    .nav-cta::after{display:none}
+    .nav-cta:hover{background:var(--orange);color:#fff;transform:translateY(-1px)}
+    .lang-switch{border:1px solid var(--line);padding:8px 11px;transition:border-color .2s}
+    .nav .lang-switch::after{display:none}
+    .lang-switch:hover{border-color:var(--ink)}
+    .online{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.04em}
+    .online i{width:6px;height:6px;background:#648066;border-radius:50%;box-shadow:0 0 0 3px #64806616}
+
+    /* HERO */
+    .hero{position:relative;display:grid;grid-template-columns:1.15fr 1fr;gap:6%;align-items:center;padding:67px 0 66px}
+    .hero-copy{padding-bottom:5px;max-width:560px}
+    .eyebrow{display:flex;align-items:center;gap:9px;color:#66665e}
+    .eyebrow::before{content:'+';color:var(--orange);font-size:16px}
+    .hero h1{font-size:clamp(74px,8.5vw,126px);letter-spacing:-.085em;line-height:.98;margin:26px 0 24px;font-weight:650}
+    .hero h1 em{display:block;color:var(--orange);font-family:var(--serif);font-weight:400;letter-spacing:-.075em;line-height:1.05}
+    .intro-name{font-size:19px;font-weight:650;letter-spacing:-.6px;margin:0 0 12px}
+    .hero-description{font-size:14px;color:var(--muted);line-height:1.85;margin:0}
+    .hero-description p{margin:0 0 12px}
+    .hero-value-box{margin-top:18px;padding:16px 18px;border-left:2px solid var(--orange);background:rgba(232,85,50,.045)}
+    .hero-value-tag{display:block;font-size:10px;color:var(--orange-ink);margin-bottom:8px;letter-spacing:.1em}
+    .hero-value-prop{font-size:14px;color:var(--ink);font-weight:550;line-height:1.75;margin:0}
+    .hero-actions{display:flex;align-items:center;gap:24px;margin-top:28px;flex-wrap:wrap}
+    .primary-link{background:var(--ink);color:var(--paper);display:inline-flex;align-items:center;justify-content:center;gap:20px;padding:16px 22px;font-size:13px;font-weight:600;transition:background .2s,transform .2s}
+    .primary-link:hover{background:var(--orange);transform:translateY(-2px)}
+    .secondary-link{display:inline-flex;align-items:center;justify-content:center;gap:20px;padding:15px 22px;border:1px solid var(--ink);font-size:13px;font-weight:600;transition:background .2s,color .2s,border-color .2s,transform .2s}
+    .secondary-link:hover{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-2px)}
+    .hero-footnote{margin-top:32px;color:#5f6059;display:flex;align-items:center;gap:13px;font-size:10px;letter-spacing:.03em}
+    .hero-footnote::before{content:'';height:1px;width:25px;background:#aaa99e}
+
+    /* PORTRAIT */
+    .portrait-area{position:relative;min-width:0;margin:0 13px 0 0}
+    .portrait-frame{position:relative;aspect-ratio:.855;background:#222;overflow:hidden;transform:rotate(2deg)}
+    .portrait-frame picture{display:block;height:100%}
+    .portrait-frame img{width:100%;height:100%;object-fit:cover;object-position:center 43%;display:block;transition:transform .8s}
+    .portrait-area:hover img{transform:scale(1.025)}
+    .portrait-frame::after{position:absolute;inset:0;content:'';background:linear-gradient(0deg,#10101095,transparent 28%);pointer-events:none}
+    .portrait-corner{position:absolute;z-index:1;top:18px;left:19px;color:#ffffffc0;font-size:10px}
+    .portrait-corner::before{content:'+';font-size:17px;display:block;margin-bottom:6px}
+    .photo-note{position:absolute;z-index:2;bottom:18px;right:20px;text-align:right;color:#e8e7e0;font-size:10px;letter-spacing:.08em}
+    .portrait-caption{display:flex;justify-content:space-between;gap:12px;margin-top:19px;font-size:10px;color:#5f6059}
+    .since-stamp{position:absolute;z-index:3;right:-32px;top:-26px;width:116px;height:116px;border-radius:50%;background:#c9441f;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(12deg);border:1px dashed #ffffff80;outline:7px solid #c9441f;text-align:center}
+    .since-stamp strong{font-size:32px;line-height:1.2;font-weight:650;letter-spacing:-2px}
+    .since-stamp small{font-size:9px;letter-spacing:.08em;font-family:var(--mono)}
+    .sticker{position:absolute;left:-38px;bottom:47px;padding:14px 21px;background:#e4dca3;color:#3b3b2d;transform:rotate(-6deg);z-index:3;font-family:var(--mono);font-size:11px;box-shadow:0 3px 10px #0002}
+    .sticker b{font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:-.4px;display:block;margin-bottom:4px}
+    .sticker::before{content:'';position:absolute;top:-9px;left:calc(50% - 22px);width:45px;height:19px;background:#e4dca35c;transform:rotate(-5deg)}
+
+    /* NUMBERS */
+    .numbers{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .number{padding:26px 22px;border-left:1px solid var(--line)}
+    .number:first-child{border-left:0;padding-left:0}
+    .number strong{display:block;font-size:44px;font-weight:600;letter-spacing:-.06em;line-height:1;margin-bottom:10px}
+    .number strong sup{font-size:20px;color:var(--orange-ink);font-weight:500;margin-left:2px}
+    .number-label{display:block;color:var(--muted);line-height:1.5}
+
+    /* SECTION SHARED */
+    .section-label{display:flex;gap:14px;align-items:center;color:#66675f}
+    .section-label span{color:var(--orange-ink)}
+    .section-top{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-top:24px;margin-bottom:48px}
+    h2{font-size:clamp(36px,4.4vw,61px);font-weight:550;line-height:1.12;letter-spacing:-.065em;margin:0}
+    h2 em{font-family:var(--serif);font-weight:400}
+    .section-top>p{font-size:14px;color:var(--muted);line-height:1.85;max-width:360px;margin:0 0 4px}
+    .lead-in{display:block;color:var(--ink);font-weight:650;margin-bottom:4px}
+
+    /* 01 / STORY: TIMELINE */
+    .journey{padding-top:100px;padding-bottom:100px}
+    .timeline{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line)}
+    .timeline li{position:relative;padding:28px 24px 0 0}
+    .timeline li::before{content:'';position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:var(--orange)}
+    .timeline li:last-child::before{background:var(--paper);border:2px solid var(--orange)}
+    .timeline time{display:block;font:600 13px var(--mono);color:var(--orange-ink);letter-spacing:.06em;margin-bottom:12px}
+    .timeline h3{font-size:20px;letter-spacing:-.6px;font-weight:650;margin:0 0 10px}
+    .timeline p{font-size:13.5px;line-height:1.75;color:var(--muted);margin:0}
+
+    /* 01 / STORY: PLAYGROUND */
+    .play{padding:100px 0;border-top:1px solid var(--line)}
+    .journey-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:58px}
+    .era-tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:30px}
+    .era-tab{border:0;background:none;color:#66675f;padding:15px 15px 13px;font-family:var(--mono);font-size:11px;border-bottom:2px solid transparent;margin-bottom:-1px;flex:1;text-align:left;transition:color .2s,border-color .2s}
+    .era-tab:first-child{padding-left:0}
+    .era-tab[aria-selected=true]{border-color:var(--orange);color:var(--ink)}
+    .era-tab span{font-size:10px;display:block;color:var(--orange-ink);margin-bottom:8px}
+    .era-copy h3{font-size:25px;letter-spacing:-1px;font-weight:600;margin:0 0 15px}
+    .era-copy p{font-size:14px;line-height:1.85;color:var(--muted);max-width:380px;margin:0 0 23px}
+    .era-caption{display:flex;align-items:center;gap:10px;color:#66675f;margin-top:32px;font-size:10px;letter-spacing:.02em}
+    .era-caption span{font-size:17px;color:var(--orange)}
+    .era-tag{display:inline-block;border:1px solid #c8c9be;padding:7px 9px;font-size:10px;color:#66675f;margin:0 5px 5px 0}
+
+    .interactive{min-width:0;align-self:start}
+    .terminal{background:var(--terminal-bg);border:1px solid #363b34;color:var(--terminal-text);box-shadow:8px 8px 0 #d8d6cc;min-height:330px;position:relative}
+    .terminal-title{display:flex;align-items:center;justify-content:space-between;padding:13px 17px;border-bottom:1px solid #3d4339;font-size:10px;letter-spacing:.05em;color:#a6b59a}
+    .lights{display:flex;gap:5px}
+    .lights i{display:block;width:5px;height:5px;background:#66775a;border-radius:50%}
+    .terminal-body{padding:19px 21px 0}
+    .terminal-hint{font-size:11px;color:#9cb08a;margin:0 0 15px;font-family:var(--mono)}
+    .code-label{display:block;font-size:10px;color:#93a088;text-transform:uppercase;margin-bottom:8px;letter-spacing:.1em}
+    .code-editor{display:block;width:100%;min-height:95px;resize:vertical;border:0;padding:0 4px;background:transparent;color:var(--terminal-accent);font:13px/1.8 var(--mono);border-radius:0;tab-size:2}
+    .code-editor:focus-visible{outline-offset:3px;outline:1px solid #9bb78b}
+    .terminal-tools{display:flex;align-items:center;gap:15px;padding:13px 0 15px;border-bottom:1px solid #414737;flex-wrap:wrap}
+    .run-button{border:1px solid #adca91;color:#cee5b5;background:#a3c27a0d;padding:8px 12px;font:11px var(--mono);text-transform:uppercase}
+    .run-button:hover{background:#bad99e;color:#242524}
+    .reset-button{background:none;border:0;font:11px var(--mono);color:#a7b39b;padding:8px}
+    .reset-button:hover{color:white}
+    .terminal-output{font:12px/1.65 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;max-height:175px;overflow:auto;margin:12px 0 15px;min-height:42px;color:var(--terminal-text)}
+    .terminal-output::after{content:'▌';animation:cursor 1.2s steps(1) infinite;color:#bbd69b}
+    .terminal-bottom{display:flex;justify-content:space-between;gap:12px;padding:10px 17px;border-top:1px solid #3d4339;color:#93a585;font:10px var(--mono)}
+    .under-terminal{display:flex;align-items:center;justify-content:space-between;gap:18px;font-size:10px;color:#5f6059;margin:20px 0 0;font-family:var(--mono)}
+
+    .browser-2006{min-height:330px;background:#c0c0c0;padding:4px;border:2px outset #ddd;font-family:Arial,sans-serif;box-shadow:8px 8px 0 #d8d6cc}
+    .old-title{display:flex;justify-content:space-between;background:#000080;color:white;font-size:12px;font-weight:bold;padding:6px}
+    .old-address{display:flex;gap:10px;font-size:11px;align-items:center;padding:8px 4px}
+    .old-address span{border:2px inset #fff;padding:4px 8px;flex:1;background:white;color:#222}
+    .old-page{padding:25px 12px 20px;text-align:center;background:#faf9e7;color:#222;min-height:245px;border:2px inset #ddd}
+    .old-page h3{font-family:Georgia,serif;font-size:25px;color:#000080;margin:8px 0 12px}
+    .old-page p{font-size:12px;line-height:1.6}
+    .old-page .old-rule{height:3px;background:linear-gradient(90deg,red,orange,yellow,green,blue,purple);margin:19px 10px}
+    .old-page button{background:#ddd;border:2px outset white;padding:5px 13px;font-size:12px}
+    .old-page .guest-message{font-family:var(--mono);font-size:11px;min-height:18px;margin-top:15px}
+    .era-disclaimer{margin-top:20px;font:10px/1.6 var(--mono);color:#5f6059}
+
+    .generative{min-height:330px;background:var(--ink);position:relative;overflow:hidden;box-shadow:8px 8px 0 #d8d6cc}
+    .generative canvas{display:block;width:100%;height:274px}
+    .generative-title{position:absolute;top:18px;left:18px;font-size:10px;color:#c8c8b8}
+    .generative-tools{height:55px;border-top:1px solid #41443c;display:flex;align-items:center;justify-content:space-between;padding:0 17px;color:#aaa;font-size:10px}
+    .generative button{background:none;border:1px solid #72756b;color:#d7d8c8;padding:7px 9px;font:10px var(--mono)}
+    .generative button:hover{background:var(--orange);color:white;border-color:var(--orange)}
+
+    /* 02 / FIELD NOTES */
+    .notes-section{background:var(--ink);color:var(--paper);padding:88px 0 96px}
+    .notes-section .section-label{color:#9a9d90}
+    .notes-section .section-label span{color:var(--orange-soft)}
+    .notes-heading{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:50px;margin-top:26px}
+    .notes-heading p{font-size:14px;line-height:1.85;color:#b0b2a7;max-width:380px;margin:0 0 6px}
+    .notes-list{margin-top:50px;border-top:1px solid #4b4c45}
+    .note{border-bottom:1px solid #4b4c45}
+    .note summary{list-style:none;display:grid;grid-template-columns:50px 1.4fr 1fr 24px;align-items:center;gap:20px;padding:26px 0;cursor:pointer}
+    .note summary::-webkit-details-marker{display:none}
+    .note-number{font:11px var(--mono);color:#9a9d90}
+    .note-title{font-size:26px;font-weight:500;letter-spacing:-1px;transition:color .2s}
+    .note-tag{font-size:10px;color:#a4a89b;line-height:1.6}
+    .note-plus{font-size:24px;color:var(--orange);font-weight:300;transition:transform .25s ease}
+    .note[open] .note-plus{transform:rotate(45deg)}
+    .note[open] .note-title,.note summary:hover .note-title{color:var(--orange-soft)}
+    .note-detail{padding:0 30px 34px 70px}
+    .note-grid{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:26px;background:rgba(255,255,255,.025);border:1px solid #3c4037;padding:22px}
+    .note-kicker{display:block;font-size:10px;color:var(--orange-soft);margin-bottom:10px;letter-spacing:.08em}
+    .note-grid p{font-size:13.5px;line-height:1.75;color:#c2c4b8;margin:0}
+    .note-grid .lesson{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.45;color:#f2ede4;letter-spacing:-.3px}
+    .not-yet{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:16px}
+    .not-yet b{font-size:10px;font-weight:400;color:#8e9184;margin-right:4px}
+    .not-yet s{font-size:10px;letter-spacing:.04em;text-transform:none;color:#b2b5a9;border:1px solid #5a6052;padding:4px 7px;text-decoration-color:var(--orange);text-decoration-thickness:1.5px;cursor:help}
+    .note-grid p.not-yet-joke{margin-top:10px;font-size:12px;color:var(--orange-soft)}
+    .notes-footnote{margin-top:26px;color:#8e9184;font-size:10px}
+
+    /* 03 / WHAT I DO */
+    .services{padding:100px 0}
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink)}
+    .service{padding:30px 26px 10px 0;border-right:1px solid var(--line);margin-right:26px}
+    .service:last-child{border-right:0;margin-right:0}
+    .service-number{display:block;color:var(--orange-ink);margin-bottom:22px}
+    .service h3{font-size:24px;letter-spacing:-.8px;font-weight:650;margin:0 0 14px}
+    .service p{font-size:14px;line-height:1.8;color:var(--muted);margin:0 0 20px}
+    .service ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+    .service li{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.5}
+    .service li::before{content:'■';font-size:7px;color:var(--orange);margin-top:5px;flex-shrink:0}
+
+    /* 04 / WORKING TOGETHER */
+    .partner-section{padding:100px 0;border-top:1px solid var(--line)}
+    .partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+    .partner-card{background:var(--paper-card);border:1px solid var(--line);padding:32px 28px 26px;display:flex;flex-direction:column;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+    .partner-card:hover{transform:translateY(-4px);border-color:var(--ink);box-shadow:6px 6px 0 var(--ink)}
+    .partner-card.featured{background:#ebe7dc;border-color:#b4b3a8}
+    .partner-meta{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#5f6059;margin-bottom:18px}
+    .partner-tag{color:var(--orange-ink);background:rgba(232,85,50,.08);padding:3px 7px}
+    .partner-title{font-size:22px;letter-spacing:-.6px;font-weight:650;margin:0 0 14px;line-height:1.25}
+    .partner-desc{font-size:14px;line-height:1.75;color:var(--muted);margin:0 0 20px;flex-grow:1}
+    .partner-good{padding:16px 0;margin:0 0 20px;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);font-size:13px;line-height:1.6;color:#4f514a}
+    .partner-good b{display:block;font:10px var(--mono);letter-spacing:.08em;color:#5f6059;margin-bottom:6px;font-weight:400}
+    .partner-cta-link{font-size:11px;font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:3px;transition:color .2s}
+    .partner-cta-link:hover{color:var(--orange)}
+    .partner-bottom-strip{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:32px;padding-top:20px;border-top:1px solid var(--line);font-size:10px;color:#5f6059;letter-spacing:.05em}
+
+    /* 05 / OFF-SCREEN */
+    .offscreen{padding:104px 0;display:grid;grid-template-columns:1fr 1fr;gap:75px;align-items:center;border-top:1px solid var(--line)}
+    .offscreen-copy h2{margin-top:26px}
+    .offscreen-copy p{font-size:14px;color:var(--muted);line-height:1.9;max-width:360px;margin:25px 0 0}
+    .offscreen-copy p strong{color:var(--ink);font-weight:550}
+    .family-art{position:relative;min-height:297px;display:flex;justify-content:center;align-items:center;flex-direction:column;border:1px solid #d4d2c5;background:#e7e3d7;transform:rotate(-2deg);margin:6px 8px 0 15px;isolation:isolate}
+    .family-art::before{content:'';position:absolute;inset:13px;border:1px solid #c9c8b9;z-index:-1}
+    .family-top{position:absolute;top:27px;left:28px;font:10px var(--mono);color:#5f6059;letter-spacing:.05em}
+    .family-characters{display:flex;align-items:flex-end;gap:27px;margin-top:25px}
+    .pixel-child{position:relative;width:54px;height:80px;border:0;background:none;transition:transform .25s;padding:0}
+    .pixel-child:hover,.pixel-child:focus-visible{transform:translateY(-9px) rotate(-5deg)}
+    .pixel-child svg{width:100%;height:100%;display:block;image-rendering:pixelated}
+    .pixel-child:nth-child(2){transform:rotate(4deg);height:69px;width:46px}
+    .pixel-child:nth-child(2):hover,.pixel-child:nth-child(2):focus-visible{transform:translateY(-9px) rotate(8deg)}
+    .pixel-child:nth-child(3){height:74px;width:49px}
+    .family-line{width:225px;border-top:1px solid #b6b6a5;margin-top:18px}
+    .family-label{font-family:var(--serif);font-style:italic;font-size:25px;letter-spacing:-1px;margin-top:18px}
+    .family-meta{font:10px var(--mono);margin:9px 0 0;color:#5f6059}
+    .family-heart{position:absolute;right:26px;top:22px;color:var(--orange);font-size:21px;transform:rotate(12deg)}
+    .family-speech{position:absolute;top:56px;font:11px var(--mono);color:var(--orange-ink);min-height:14px;text-align:center;padding-inline:18px}
+
+    /* 06 / CONTACT */
+    .contact{border-top:1px solid var(--line);padding:80px 0 84px;display:grid;grid-template-columns:1fr 1.05fr;align-items:start;gap:48px}
+    .contact h2{font-size:clamp(42px,5vw,69px);margin-top:20px}
+    .contact h2 em{color:var(--orange)}
+    .contact-status{display:inline-flex;align-items:center;gap:8px;font-size:10px;color:#55574f;margin-top:22px;letter-spacing:.06em}
+    .contact-status i{width:7px;height:7px;background:#44a352;border-radius:50%;box-shadow:0 0 0 3px rgba(68,163,82,.18)}
+    .contact-left>p{font-size:14px;line-height:1.85;color:var(--muted);max-width:380px;margin:24px 0 26px}
+    .contact-form{justify-self:end;max-width:520px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:18px;position:relative}
+    .field{display:flex;flex-direction:column;gap:8px;min-width:0}
+    .field.full{grid-column:1 / -1}
+    .field label{font-size:10px;color:#55574f}
+    .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:0;background:var(--paper-card);color:var(--ink);padding:13px 14px;font-size:15px;transition:border-color .2s}
+    .field textarea{resize:vertical;min-height:130px;line-height:1.6}
+    .field input:hover,.field select:hover,.field textarea:hover{border-color:#a9a89d}
+    .field select:focus-visible{outline:3px solid var(--orange);outline-offset:5px}
+    .honey{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+    .form-actions{grid-column:1 / -1;display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:4px}
+    .form-note{font-size:10px;color:#5f6059;margin:0;line-height:1.6}
+    .form-note.ok{color:#3f7d48}
+    .form-note.error{color:var(--orange-ink)}
+    .book-button{display:inline-flex;align-items:center;justify-content:space-between;gap:28px;border:0;background:var(--ink);color:var(--paper);padding:18px 22px;font-size:14px;font-weight:600;box-shadow:5px 5px 0 #d8d6cc;transition:background .2s,transform .2s,box-shadow .2s}
+    .book-button:hover{background:var(--orange);transform:translateY(-2px);box-shadow:7px 7px 0 var(--ink)}
+    .book-button:disabled{opacity:.6;cursor:wait;transform:none}
+    .contact-secondary{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+    .email-link{display:inline-flex;gap:14px;align-items:center;font-size:16px;font-weight:600;letter-spacing:-.5px;border-bottom:1px solid var(--ink);padding-bottom:6px;transition:color .2s,border-color .2s}
+    .email-link:hover{color:var(--orange);border-color:var(--orange)}
+    .copy-email{border:0;background:none;font-family:var(--mono);font-size:10px;color:#5f6059;padding:8px 0;transition:color .2s}
+    .copy-email:hover{color:var(--orange)}
+
+    /* FOOTER */
+    .footer{border-top:1px solid var(--line);padding:26px 0 30px;display:flex;align-items:center;justify-content:space-between;gap:25px;font-size:10px;color:#5f6059}
+    .footer-links{display:flex;gap:24px;font-size:12px}
+    .footer-links a:hover{color:var(--orange)}
+    .footer .signoff{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink)}
+    .back-top{border:1px solid var(--line);width:30px;height:30px;display:grid;place-items:center;font-size:15px}
+    .back-top:hover{background:var(--ink);color:var(--paper)}
+
+    @keyframes cursor{50%{opacity:0}}
+    @keyframes enter{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+    .hero-copy{animation:enter .65s ease both}
+    .portrait-area{animation:enter .8s .1s ease both}
+
+    /* RESPONSIVE */
+    @media(min-width:1500px){
+      .hero{gap:8%;padding-top:84px;padding-bottom:80px}
+      .hero h1{font-size:136px}
+      .portrait-area{max-width:460px}
+    }
+    @media(max-width:1100px){
+      .shell{width:calc(100% - 72px)}
+      .online{display:none}
+      .nav{gap:22px}
+      .hero{gap:5%;padding-top:62px}
+      .hero h1{font-size:clamp(76px,9vw,104px)}
+      .since-stamp{width:96px;height:96px;right:-20px;top:-20px}
+      .since-stamp strong{font-size:28px}
+      .since-stamp small{font-size:8px}
+      .sticker{left:-25px;font-size:10px}
+      .sticker b{font-size:12px}
+      .number{padding:22px 14px}
+      .number strong{font-size:36px}
+      .timeline{grid-template-columns:repeat(3,1fr);row-gap:40px}
+      .journey-layout{gap:36px}
+      .note summary{grid-template-columns:35px 1.4fr 1fr 20px}
+      .note-title{font-size:23px}
+      .note-detail{padding-left:55px;padding-right:0}
+      .note-grid{grid-template-columns:1fr;gap:20px}
+      .services-grid{grid-template-columns:repeat(2,1fr);border-top:0}
+      .service{border-right:0;margin-right:0;padding:28px 26px 30px 0;border-top:1px solid var(--ink)}
+      .service:nth-child(odd){margin-right:26px;border-right:1px solid var(--line)}
+      .partner-grid{gap:18px}
+      .partner-card{padding:26px 20px 22px}
+      .partner-title{font-size:20px}
+      .offscreen{gap:45px}
+    }
+    @media(max-width:860px){
+      .numbers{grid-template-columns:repeat(2,1fr)}
+      .number{border-left:0;padding:22px 0;border-top:1px solid var(--line)}
+      .number:nth-child(-n+2){border-top:0}
+      .number:nth-child(even){border-left:1px solid var(--line);padding-left:20px}
+      .number:last-child{grid-column:1 / -1}
+    }
+    @media(max-width:760px){
+      .shell{width:calc(100% - 40px)}
+      .header{height:78px}
+      .brand{font-size:13px}
+      .nav{gap:16px;font-size:11px}
+      .nav a:nth-child(1),.nav a:nth-child(2){display:none}
+      .hero{gap:38px;grid-template-columns:1fr;padding:45px 0 38px}
+      .hero-copy{max-width:100%}
+      .hero h1{font-size:clamp(82px,15vw,120px);margin-top:22px;margin-bottom:22px}
+      .portrait-area{width:calc(100% - 30px);max-width:400px;margin:12px auto 0}
+      .portrait-frame{aspect-ratio:1.02}
+      .portrait-frame img{object-position:center 12%}
+      .portrait-corner{display:none}
+      .since-stamp{right:-16px;top:-12px}
+      .sticker{left:-12px;bottom:36px}
+      .photo-note{right:13px}
+      .portrait-caption{font-size:9px}
+      .section-top{display:block;margin-top:20px;margin-bottom:32px}
+      .section-top>p{margin-top:18px;max-width:100%}
+      .journey{padding-block:66px}
+      .play{padding-block:66px}
+      .timeline{grid-template-columns:1fr;border-top:0;row-gap:0}
+      .timeline li{padding:0 0 28px 26px;border-left:1px solid var(--line)}
+      .timeline li:last-child{padding-bottom:0}
+      .timeline li::before{left:-5px;top:3px}
+      .journey-layout{grid-template-columns:1fr;gap:29px}
+      .era-tabs{margin-bottom:23px}
+      .era-copy p{max-width:100%}
+      .era-caption{margin-top:21px}
+      .terminal{min-height:310px}
+      .under-terminal{line-height:1.6}
+      .under-terminal span:last-child{text-align:right}
+      .notes-section{padding:62px 0}
+      .notes-heading{grid-template-columns:1fr;gap:20px;margin-top:22px}
+      .notes-list{margin-top:32px}
+      .note summary{grid-template-columns:28px 1fr 20px;gap:12px;padding:22px 0}
+      .note-tag{display:none}
+      .note-title{font-size:21px}
+      .note-detail{padding:0 0 26px}
+      .note-grid{padding:18px}
+      .services{padding-block:66px}
+      .services-grid{grid-template-columns:1fr}
+      .service,.service:nth-child(odd){margin-right:0;border-right:0;padding-right:0}
+      .partner-section{padding-block:66px}
+      .partner-grid{grid-template-columns:1fr;gap:20px}
+      .partner-bottom-strip{flex-direction:column;gap:10px;text-align:center}
+      .offscreen{padding-block:66px;grid-template-columns:1fr;gap:35px}
+      .offscreen-copy p{max-width:100%}
+      .family-art{max-width:430px;width:calc(100% - 18px);margin:0 auto;min-height:270px}
+      .family-label{font-size:clamp(20px,5vw,25px);text-align:center;padding-inline:14px}
+      .contact{padding-block:60px;grid-template-columns:1fr;gap:32px}
+      .contact-form{justify-self:stretch;max-width:100%;grid-template-columns:1fr}
+      .contact h2{margin-top:18px}
+      .footer{display:grid;grid-template-columns:1fr auto;gap:18px}
+      .footer-links{justify-self:end}
+      .footer .signoff{grid-column:1;font-size:14px;line-height:1.45}
+      .back-top{grid-column:2;justify-self:end}
+    }
+    @media(max-width:480px){
+      .nav a:nth-child(3),.nav a:nth-child(4){display:none}
+      .brand{gap:8px}
+      .hero-actions{gap:12px}
+      .primary-link,.secondary-link{width:100%;justify-content:space-between}
+      .hero-footnote{font-size:10px;gap:9px}
+      .footnote-extra{display:none}
+      .number strong{font-size:32px}
+      .book-button{width:100%}
+      .footer-links{gap:14px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation:none!important;transition:none!important}
+    }
+
+    /* ARABIC / RTL: everything below mirrors or adjusts the shared styles above */
+    /* Arabic fonts are subset to the Arabic letters and marks only (Latin text uses Manrope); weights 400 and 600 cover every heading */
+    @font-face{font-family:'IBM Plex Sans Arabic';src:url('assets/plex-arabic-400.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap;unicode-range:U+060C,U+061B,U+061F,U+0621-063A,U+0640-0652,U+0660-0669,U+0670,U+200C-200F}
+    @font-face{font-family:'IBM Plex Sans Arabic';src:url('assets/plex-arabic-600.woff2') format('woff2');font-style:normal;font-weight:600;font-display:swap;unicode-range:U+060C,U+061B,U+061F,U+0621-063A,U+0640-0652,U+0660-0669,U+0670,U+200C-200F}
+    @font-face{font-family:Amiri;src:url('assets/amiri-arabic.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap;unicode-range:U+060C,U+061B,U+061F,U+0621-063A,U+0640-0652,U+0660-0669,U+0670,U+200C-200F}
+    /* Arabic has no monospace tradition: labels use the sans; only the English "machines" (dir=ltr) keep a code font */
+    :root{
+      --mono:Manrope,'IBM Plex Sans Arabic','Geeza Pro',Tahoma,sans-serif;
+      --sans:Manrope,'IBM Plex Sans Arabic','Geeza Pro',Tahoma,sans-serif;
+      --serif:Georgia,Amiri,'Times New Roman',serif
+    }
+    [dir=ltr]{--mono:'SFMono-Regular',Consolas,'Liberation Mono',monospace}
+    /* Arabic letters must join, so no tracking anywhere */
+    body *{letter-spacing:normal!important}
+    .hero h1{line-height:1.25}
+    em{font-style:normal}
+    .hero h1 em{line-height:1.3;font-size:1.08em}
+    h2{line-height:1.4}
+    h2 em{font-size:1.18em}
+    /* Arabic speech line is taller, so start the kids below it */
+    .family-art{justify-content:flex-start;padding:80px 0 34px}
+    .note-grid .lesson,.family-label,.footer .signoff{font-style:normal}
+    .note-grid .lesson{font-size:22px;line-height:1.6}
+    .family-label{font-size:27px}
+    .footer .signoff{font-size:17px}
+
+    /* Small labels: Arabic needs a little more size than Latin caps */
+    .mono{font-size:12.5px}
+    .online,.hero-footnote,.hero-value-tag,.portrait-caption,.era-caption,.era-tag,.under-terminal,.era-disclaimer,.note-tag,.note-kicker,.notes-footnote,.partner-meta,.partner-good b,.partner-bottom-strip,.family-top,.family-meta,.contact-status,.field label,.form-note,.copy-email,.footer,.generative-title,.generative-tools,.not-yet b,.not-yet s{font-size:12px}
+    .era-tab{font-size:13px}
+    .partner-cta-link{font-size:13px}
+    .family-speech{font-size:13px}
+    .since-stamp small{font-size:11px;font-family:var(--sans)}
+    [dir=ltr] .terminal-title{font-size:10px}
+    .hero-description,.section-top>p,.notes-heading p,.service p,.partner-desc,.offscreen-copy p,.contact-left>p,.era-copy p,.hero-value-prop{font-size:15px}
+    .timeline p,.note-grid p,.service li,.partner-good{font-size:14.5px}
+
+    /* Mirror physical left/right rules */
+    .nav a::after{transform-origin:right}
+    .hero-value-box{border-left:0;border-right:2px solid var(--orange)}
+    .portrait-area{margin:0 0 0 13px}
+    .portrait-corner{left:auto;right:19px}
+    .photo-note{right:auto;left:20px;text-align:left}
+    .since-stamp{right:auto;left:-32px;transform:rotate(-12deg)}
+    .sticker{left:auto;right:-38px;transform:rotate(6deg)}
+    .number{border-left:0;border-right:1px solid var(--line)}
+    .number:first-child{border-right:0;padding-left:22px;padding-right:0}
+    .number strong sup{margin-left:0;margin-right:4px}
+    .timeline li{padding:28px 0 0 24px}
+    .timeline li::before{left:auto;right:0}
+    .era-tab{text-align:right}
+    .era-tab:first-child{padding-left:15px;padding-right:0}
+    .era-tag{margin:0 0 5px 5px}
+    .generative-title{left:auto;right:18px}
+    .note-detail{padding:0 70px 34px 30px}
+    .not-yet b{margin-right:0;margin-left:4px}
+    .service{padding:30px 0 10px 26px;border-right:0;margin-right:0;border-left:1px solid var(--line);margin-left:26px}
+    .service:last-child{border-left:0;margin-left:0}
+    .family-art{margin:6px 15px 0 8px}
+    .family-top{left:auto;right:28px}
+    .family-heart{right:auto;left:26px}
+    .honey{left:auto;right:-9999px}
+    .field input[type=email]{text-align:right}
+    @media(max-width:1100px){
+      .since-stamp{right:auto;left:-20px}
+      .sticker{left:auto;right:-25px}
+      .note-detail{padding-right:55px;padding-left:0}
+      .service{border-left:0;margin-left:0;padding:28px 0 30px 26px}
+      .service:nth-child(odd){margin-right:0;border-right:0;margin-left:26px;border-left:1px solid var(--line)}
+    }
+    @media(max-width:860px){
+      .number{border-right:0}
+      .number:first-child{padding-left:0}
+      .number:nth-child(even){border-left:0;padding-left:0;border-right:1px solid var(--line);padding-right:20px}
+    }
+    @media(max-width:760px){
+      .since-stamp{right:auto;left:-16px}
+      .sticker{left:auto;right:-12px}
+      .photo-note{right:auto;left:13px}
+      .timeline li{padding:0 26px 28px 0;border-left:0;border-right:1px solid var(--line)}
+      .timeline li:last-child{padding-bottom:0}
+      .timeline li::before{left:auto;right:-5px}
+      .under-terminal span:last-child{text-align:left}
+      .note-detail{padding:0 0 26px}
+      .service,.service:nth-child(odd){margin-left:0;border-left:0;padding-left:0}
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
+  <header class="header shell">
+    <a class="brand" href="#top" aria-label="محمد شرف، الصفحة الرئيسية"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span>محمد شرف<span class="accent">.</span></a>
+    <nav class="nav" aria-label="القائمة الرئيسية">
+      <a href="#story">الحكاية</a>
+      <a href="#notes">من الميدان</a>
+      <a href="#services">ما أقدّمه</a>
+      <a href="#partner">نتعاون</a>
+      <a class="lang-switch" href="index.html" hreflang="en" lang="en">English</a>
+      <a class="nav-cta" href="#contact">قل مرحبًا <span aria-hidden="true">↖</span></a>
+    </nav>
+    <div class="online mono"><i></i> أمام الشاشة منذ 1996</div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow mono">ركن صغير في إنترنت كبير جدًا</div>
+        <h1 id="hero-title">ما زلتُ<br><em>فضوليًا.</em></h1>
+        <p class="intro-name">أنا محمد شرف.</p>
+        <div class="hero-description">
+          <p>أول كمبيوتر لي كان في 1996. وفي 2000 أصبح أمن المعلومات عملي. وفي 2002 أسّست شركتي الخاصة، وما زالت تعمل حتى اليوم.</p>
+          <p>بعد ثلاثة عقود، ما زلت أستمتع بالشيء نفسه: أن أفتح النظام، وأعرف أين ينكسر، وأجعله يصمد.</p>
+          <div class="hero-value-box">
+            <span class="hero-value-tag mono">أمن · بنية تحتية · برمجيات · ذكاء اصطناعي</span>
+            <p class="hero-value-prop">اليوم أساعد الشركات الناشئة والأعمال الصغيرة والفرق الحكومية على جعل أنظمتها أكثر أمانًا وبساطة. أحيانًا بساعة استشارة، وأحيانًا بمراجعة كاملة.</p>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a class="primary-link" href="#services">كيف أساعدك <span aria-hidden="true">↓</span></a>
+          <a class="secondary-link" href="#contact">تواصل معي <span aria-hidden="true">↖</span></a>
+        </div>
+        <div class="hero-footnote mono">من القاهرة &nbsp;·&nbsp; أعيش في الرياض<span class="footnote-extra"> &nbsp;·&nbsp; أب. ومبتدئ دائمًا.</span></div>
+      </div>
+      <figure class="portrait-area">
+        <div class="portrait-frame"><picture><source type="image/avif" srcset="assets/mohamedsharaf-600.avif 600w, assets/mohamedsharaf-896.avif 896w" sizes="(max-width:760px) calc(100vw - 70px), (max-width:1500px) 40vw, 460px"><source type="image/webp" srcset="assets/mohamedsharaf-600.webp 600w, assets/mohamedsharaf-896.webp 896w" sizes="(max-width:760px) calc(100vw - 70px), (max-width:1500px) 40vw, 460px"><img src="assets/mohamedsharaf.jpg" alt="صورة محمد شرف" width="896" height="1119" fetchpriority="high"></picture><div class="portrait-corner mono" aria-hidden="true">الإنسان خلف الشاشة</div><div class="photo-note mono" dir="ltr">MOHAMED_SHARAF</div></div>
+        <div class="since-stamp" aria-label="أمام الشاشة منذ 1996"><small>أمام الشاشة</small><strong>1996</strong><small>والعدّ مستمر</small></div>
+        <div class="sticker"><b>الفضول لا يشيخ.</b>ولا سؤال «ماذا لو؟»</div>
+        <figcaption class="portrait-caption mono"><span>شكل 01 / عمل قيد التطوير</span><span>تمامًا مثل هذا الموقع ↖</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- NUMBERS: computed from the year, so they stay true -->
+    <div class="numbers shell" aria-label="بعض الأرقام">
+      <div class="number"><strong><span data-since="1996">30</span><sup>سنة</sup></strong><span class="number-label mono">مع الكمبيوتر</span></div>
+      <div class="number"><strong><span data-since="2000">26</span><sup>سنة</sup></strong><span class="number-label mono">في أمن المعلومات</span></div>
+      <div class="number"><strong><span data-since="2002">24</span><sup>سنة</sup></strong><span class="number-label mono">أدير شركتي الخاصة</span></div>
+      <div class="number"><strong>100<sup>ألف</sup></strong><span class="number-label mono">شخص متصلون معًا، في 2005</span></div>
+      <div class="number"><strong>0</strong><span class="number-label mono">أسماء عملاء على هذا الموقع. أبدًا.</span></div>
+    </div>
+
+    <!-- 01 / THE STORY -->
+    <section class="journey shell" id="story" aria-labelledby="journey-title">
+      <div class="section-label mono"><span>01 /</span> الطريق الطويل إلى هنا</div>
+      <div class="section-top"><h2 id="journey-title">عقود مرّت.<br>والشغف <em>نفسه.</em></h2><p>التقنية تتغير باستمرار. أما الرغبة في فتحها، وفهم طريقة عملها، ورؤية ما سيحدث؟ فهذه لا تتغير.</p></div>
+
+      <ol class="timeline">
+        <li><time class="mono" datetime="1996">1996</time><h3>أول كمبيوتر.</h3><p>BASIC وWindows 3.11 ومؤشر يومض وينفّذ ما أكتبه. كان ذلك كافيًا لأتعلّق بها.</p></li>
+        <li><time class="mono" datetime="2000">2000</time><h3>أمن المعلومات، بجدّية.</h3><p>تحوّل الفضول إلى عمل: اختبار الأنظمة، وإيجاد الثغرات، ومساعدة أصحابها على إغلاقها قبل أن يجدها غيري.</p></li>
+        <li><time class="mono" datetime="2002">2002</time><h3>شركتي الخاصة.</h3><p>نطاقات واستضافة وسيرفرات مخصصة مُدارة ومواقع وغرف دردشة صوتية. وبحلول 2005: نحو 500 موقع وأكثر من 2,000 غرفة. وما زالت تعمل حتى اليوم.</p></li>
+        <li><time class="mono" datetime="2006">2006</time><h3>هذا النطاق.</h3><p>مكان صغير على الإنترنت يخصّني. مرّ بتصميمات كثيرة، وهذا أحدثها.</p></li>
+        <li><time class="mono">اليوم</time><h3>ما زلت أبني.</h3><p>أقود العمل التقني في القطاع العام، وأكتشف أين يفيد الذكاء الاصطناعي فعلًا، بأمان.</p></li>
+      </ol>
+    </section>
+
+    <!-- 02 / FIELD NOTES -->
+    <section class="notes-section" id="notes" aria-labelledby="notes-title"><div class="shell">
+      <div class="section-label mono"><span>02 /</span> ملاحظات من الميدان</div>
+      <div class="notes-heading"><h2 id="notes-title">أشياء رأيتها.<br>وأشياء <em>تعلّمتها.</em></h2><p>خمس حكايات من ثلاثة عقود من السيرفرات والأنظمة والأمن. بلا أسماء عملاء، والتفاصيل مموّهة عن قصد. أما الدروس فحقيقية.</p></div>
+      <div class="notes-list">
+        <details class="note" open>
+          <summary><span class="note-number">01</span><span class="note-title">السيرفر الذي بدأ يتحدث مع الغرباء</span><span class="note-tag mono">استضافة · الاستجابة للحوادث</span><span class="note-plus" aria-hidden="true">+</span></summary>
+          <div class="note-detail"><div class="note-grid">
+            <div><span class="note-kicker mono">الموقف</span><p>إذا أدرت استضافة لفترة كافية فسيحدث هذا حتمًا: سيرفر أحد العملاء يبدأ في إرسال حركة لا شأن له بها. غالبًا في الليل، وغالبًا في عطلة نهاية الأسبوع.</p></div>
+            <div><span class="note-kicker mono">ما فعلته</span><p>الاحتواء أولًا، والأسئلة بعد ذلك. أعزله، وأحفظ الأدلة، وأجد طريق الدخول، وغالبًا يكون سكربتًا قديمًا منسيًا. ثم أعيد البناء نظيفًا، وأغلق الثغرة نفسها في كل السيرفرات الأخرى، لا في هذا وحده.</p></div>
+            <div><span class="note-kicker mono">ما بقي معي</span><p class="lesson">الحوادث لا تُحل في الثالثة فجرًا. تُحل بما جهّزته قبل الثالثة فجرًا.</p></div>
+          </div></div>
+        </details>
+        <details class="note">
+          <summary><span class="note-number">02</span><span class="note-title">النسخة الاحتياطية التي لم يختبرها أحد</span><span class="note-tag mono">بنية تحتية · الصمود</span><span class="note-plus" aria-hidden="true">+</span></summary>
+          <div class="note-detail"><div class="note-grid">
+            <div><span class="note-kicker mono">الموقف</span><p>الجميع يقول إن لديه نسخًا احتياطية. لكن قلة قليلة جرّبت استعادة واحدة منها. وتكتشف من أي الفريقين أنت في اليوم الذي يتعطل فيه القرص.</p></div>
+            <div><span class="note-kicker mono">ما فعلته</span><p>أعامل الاستعادة على أنها المنتج الحقيقي. اختبارات استعادة مجدولة، ونسخ في أكثر من مكان، وخطة مكتوبة قصيرة: ما الذي يعود أولًا، ومن يفعل ماذا.</p></div>
+            <div><span class="note-kicker mono">ما بقي معي</span><p class="lesson">النسخة الاحتياطية التي لم تجرّب استعادتها أمنية، لا خطة.</p></div>
+          </div></div>
+        </details>
+        <details class="note">
+          <summary><span class="note-number">03</span><span class="note-title">100,000 شخص يتكلمون معًا. في 2005.</span><span class="note-tag mono">استضافة · تواصل لحظي ضخم</span><span class="note-plus" aria-hidden="true">+</span></summary>
+          <div class="note-detail"><div class="note-grid">
+            <div><span class="note-kicker mono">الموقف</span><p>بحلول 2005 كنا ندير نحو 500 موقع وأكثر من 2,000 غرفة دردشة صوتية. في الليالي المزدحمة كان 50,000 إلى 100,000 شخص متصلين في اللحظة نفسها، يتحدثون عبر إنترنت منزلي بطيء كما كان وقتها. سيرفراتنا، وكودنا، ونحن فقط.</p>
+              <div class="not-yet"><b class="mono">لم تكن موجودة بعد:</b><s class="mono" title="ظهرت Amazon EC2 في 2006">السحابة</s><s class="mono" title="ظهر نحو 2009">التوسّع التلقائي</s><s class="mono" title="صدر أول مرة في 2009">Node.js</s><s class="mono" title="صدرت أول مرة في 2009">Go</s><s class="mono" title="صدرت Rust 1.0 في 2015">Rust</s><s class="mono" title="صدر أول مرة في 2013">Docker</s><s class="mono" title="صدر أول مرة في 2014">Kubernetes</s></div>
+              <p class="not-yet-joke">ومع ذلك نجحنا :)</p></div>
+            <div><span class="note-kicker mono">ما فعلته</span><p>خطّطنا لأكثر ليلة ازدحامًا، لا لليلة العادية. وزّعنا الغرف على السيرفرات حتى لا يُسقط عطل واحد الجميع. راقبنا الحمل طوال المساء، وأبعدنا المسيئين، وأبقينا الإعداد بسيطًا بما يكفي لإصلاحه والناس ما زالوا يتكلمون.</p></div>
+            <div><span class="note-kicker mono">ما بقي معي</span><p class="lesson">الناس يسامحون البطء. لكنهم لا يسامحون الاختفاء.</p></div>
+          </div></div>
+        </details>
+        <details class="note">
+          <summary><span class="note-number">04</span><span class="note-title">الاختبار الذي وجد الباب الأمامي مفتوحًا</span><span class="note-tag mono">اختبار الاختراق · التدقيق</span><span class="note-plus" aria-hidden="true">+</span></summary>
+          <div class="note-detail"><div class="note-grid">
+            <div><span class="note-kicker mono">الموقف</span><p>تتوقع الفرق أن يكتشف اختبار الأمن شيئًا ذكيًا. لكنه في الغالب يكتشف شيئًا بسيطًا موجودًا هناك منذ سنوات.</p></div>
+            <div><span class="note-kicker mono">ما فعلته</span><p>كلمات مرور افتراضية، ولوحات تحكم مفتوحة للإنترنت كله، وبرامج قديمة لم يعد أحد مسؤولًا عنها. أختبر كما يفكر المهاجم، ثم أكتب التقرير بحيث يستطيع مدير مشغول أن يتصرف بناءً عليه: ما المشكلة، وما مدى خطورتها، وما الذي يُصلَح أولًا.</p></div>
+            <div><span class="note-kicker mono">ما بقي معي</span><p class="lesson">أصلح الأشياء المملّة أولًا. المهاجمون يحبون المملّ.</p></div>
+          </div></div>
+        </details>
+        <details class="note">
+          <summary><span class="note-number">05</span><span class="note-title">الأمن على السبّورة، لا في قائمة التحقق</span><span class="note-tag mono">أنظمة آمنة · مؤسسات كبيرة</span><span class="note-plus" aria-hidden="true">+</span></summary>
+          <div class="note-detail"><div class="note-grid">
+            <div><span class="note-kicker mono">الموقف</span><p>أنظمة كبيرة، بمستخدمين كثيرين وبيانات حساسة، حيث الخطأ ليس مجرد خلل برمجي. إنه خبر في العناوين، وأحيانًا ما هو أسوأ بكثير.</p></div>
+            <div><span class="note-kicker mono">ما فعلته</span><p>أُدخل الأمن إلى اجتماع التصميم بدل قائمة ما قبل الإطلاق: من يرى ماذا، وما الذي يُسجَّل، وماذا يحدث عندما يتعطل جزء، وكيف سنثبت كل ذلك لاحقًا.</p></div>
+            <div><span class="note-kicker mono">ما بقي معي</span><p class="lesson">أرخص إصلاح أمني هو الذي تقوم به على السبّورة.</p></div>
+          </div></div>
+        </details>
+      </div>
+      <p class="notes-footnote mono">كل الحكايات تُروى مع إخفاء هوية أصحابها. وهكذا سأتعامل مع حكايتك أيضًا.</p>
+    </div></section>
+
+    <!-- 03 / WHAT I DO -->
+    <section class="services shell" id="services" aria-labelledby="services-title">
+      <div class="section-label mono"><span>03 /</span> ما أقدّمه</div>
+      <div class="section-top"><h2 id="services-title">أربعة أشياء.<br>تُنجَز <em>بإتقان.</em></h2><p>عملت في أشياء كثيرة على مرّ السنين. هذه هي التي أجيدها، وما زلت أستمتع بها.</p></div>
+      <div class="services-grid">
+        <div class="service"><span class="service-number mono">01 / منذ 2000</span><h3>الأمن</h3><p>أجد الثغرات قبل أن يجدها غيري، وأساعدك على إغلاقها. وإذا حدث خطأ بالفعل، أساعدك على احتوائه بهدوء.</p><ul><li>اختبار الاختراق</li><li>التدقيق الأمني</li><li>بناء أنظمة آمنة</li><li>الاستجابة للحوادث</li></ul></div>
+        <div class="service"><span class="service-number mono">02 / منذ 2002</span><h3>البنية التحتية</h3><p>أكثر من عشرين عامًا في إبقاء السيرفرات حيّة. سأساعدك على إعداد الأمور لتصبح مملّة، بأفضل معنى ممكن.</p><ul><li>السيرفرات والاستضافة والسحابة</li><li>الشبكات والصلاحيات</li><li>نسخ احتياطية تُستعاد فعلًا</li><li>الاستمرارية والمراقبة</li></ul></div>
+        <div class="service"><span class="service-number mono">03 / دائمًا</span><h3>البرمجيات والمعمارية</h3><p>أنظر في طريقة بناء النظام قبل أن يصبح تغييره مكلفًا. أجزاء متحركة أقل، وحدود أوضح، وفرص أقل للخطأ.</p><ul><li>مراجعة المعمارية</li><li>تصميم الـAPI والبيانات</li><li>ممارسات التطوير الآمن</li><li>تقييم تقني قبل الاستثمار</li></ul></div>
+        <div class="service"><span class="service-number mono">04 / الآن</span><h3>الذكاء الاصطناعي، بحذر</h3><p>استخدم الذكاء الاصطناعي حيث يوفّر الوقت فعلًا، وحافظ على بياناتك آمنة وأنت تفعل ذلك. بلا وعود سحرية، فقط تجربة صادقة لما ينجح.</p><ul><li>أين يناسب الذكاء الاصطناعي، وأين لا يناسب</li><li>الاستخدام الآمن لبيانات الشركة</li><li>أتمتة عملية</li><li>نبني أم نشتري؟</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 04 / WORKING TOGETHER -->
+    <section class="partner-section shell" id="partner" aria-labelledby="partner-title">
+      <div class="section-label mono"><span>04 /</span> كيف نتعاون</div>
+      <div class="section-top"><h2 id="partner-title">خبرة كبيرة.<br>وأثر <em>مباشر.</em></h2><p><strong class="lead-in">ثلاث طرق للبدء.</strong> تعمل معي مباشرة. بلا وكالات وسيطة، ولا تسليم للمبتدئين. شركات ناشئة وأعمال صغيرة وفرق حكومية، في مصر والخليج وأوروبا أو أي مكان آخر. والعمل عن بُعد هو الأساس.</p></div>
+      <div class="partner-grid">
+        <div class="partner-card">
+          <div class="partner-meta mono"><span>01</span><span class="partner-tag">محادثة</span></div>
+          <h3 class="partner-title">رأي ثانٍ</h3>
+          <p class="partner-desc">مكالمة واحدة. أحضر خطة أو مشكلة أو سؤالًا لم تجد له إجابة واضحة. وتخرج برأي صريح من شخص رأى مثله من قبل.</p>
+          <p class="partner-good"><b>مناسب لـ</b>المؤسسين والمديرين الذين يسألون: «هل هذه فكرة جيدة؟»</p>
+          <a class="partner-cta-link mono" href="#contact" data-topic="A second opinion">اطلب مكالمة ↖</a>
+        </div>
+        <div class="partner-card featured">
+          <div class="partner-meta mono"><span>02</span><span class="partner-tag">مراجعة مركّزة</span></div>
+          <h3 class="partner-title">اختبار أو تدقيق</h3>
+          <p class="partner-desc">اختبار اختراق أو تدقيق أمني أو مراجعة معمارية، مع تقرير مكتوب واضح: ما المشكلة، وما مدى خطورتها، وما الذي يُصلَح أولًا. بلغة بسيطة.</p>
+          <p class="partner-good"><b>مناسب لـ</b>الفرق التي تستعد للإطلاق، أو بعد موقف مقلق</p>
+          <a class="partner-cta-link mono" href="#contact" data-topic="A test or an audit">اسأل عن مراجعة ↖</a>
+        </div>
+        <div class="partner-card">
+          <div class="partner-meta mono"><span>03</span><span class="partner-tag">مستمر</span></div>
+          <h3 class="partner-title">صوت خبير عند الحاجة</h3>
+          <p class="partner-desc">مدير تقني (CTO) أو مستشار أمني بدوام جزئي، للفرق التي تحتاج إلى حكم خبير أكثر من حاجتها إلى موظف آخر بدوام كامل.</p>
+          <p class="partner-good"><b>مناسب لـ</b>الفرق النامية التي ليس لديها قائد تقني خبير</p>
+          <a class="partner-cta-link mono" href="#contact" data-topic="Ongoing advice">لنتحدث ↖</a>
+        </div>
+      </div>
+      <div class="partner-bottom-strip mono"><span>بلا أسماء عملاء، أبدًا</span><span>تقارير بلغة واضحة</span><span>العمل عن بُعد أولًا</span></div>
+    </section>
+
+    <!-- 05 / OFF-SCREEN -->
+    <section class="offscreen shell" id="offscreen" aria-labelledby="offscreen-title">
+      <div class="offscreen-copy">
+        <div class="section-label mono"><span>05 /</span> بعيدًا عن الشاشة</div>
+        <h2 id="offscreen-title">هناك حياة كاملة<br><em>خارج الشاشة.</em></h2>
+        <p>وأنا أيضًا أب <strong>لولدين وبنت.</strong><br>جزء إنساني جدًا من حياة رقمية جدًا.</p>
+        <p>مصري، من <strong>القاهرة</strong>. أعيش في <strong>الرياض</strong>. وأتمنى يومًا، إن شاء الله، أن أقضي بقية عمري في <strong>المدينة المنورة</strong>.</p>
+        <p>ثلاثة عقود من التقنية علّمتني شيئًا واحدًا بيقين: أفضل الأنظمة هي التي تعيد للناس وقتهم.</p>
+      </div>
+      <div class="family-art">
+        <span class="family-top">الجزء الأكثر خصوصية</span>
+        <span class="family-heart" aria-hidden="true">♥</span>
+        <div class="family-speech" id="family-speech" aria-live="polite"></div>
+        <div class="family-characters" aria-label="ثلاث شخصيات بكسل مرحة تمثل ولدين وبنتًا">
+          <button class="pixel-child" aria-label="قل مرحبًا للابن الأول" data-message="اللاعب 1 دخل الغرفة."><svg viewBox="0 0 12 18" aria-hidden="true"><path fill="#636e59" d="M4 1h4v1h2v5H8v2h3v6H8v3H6v-4H5v4H3v-3H1V9h3V7H2V2h2z"/><path fill="#eeeae2" d="M4 4h1v1H4zm3 0h1v1H7z"/><path fill="#444e3c" d="M3 1h6v2H3z"/></svg></button>
+          <button class="pixel-child" aria-label="قل مرحبًا للابن الثاني" data-message="اللاعب 2 جاهز للمغامرة."><svg viewBox="0 0 12 18" aria-hidden="true"><path fill="#b39151" d="M4 1h4v1h2v5H8v2h3v6H8v3H6v-4H5v4H3v-3H1V9h3V7H2V2h2z"/><path fill="#eeeae2" d="M4 4h1v1H4zm3 0h1v1H7z"/><path fill="#88703f" d="M3 1h6v2H3z"/></svg></button>
+          <button class="pixel-child" aria-label="قل مرحبًا للابنة" data-message="اللاعبة 3 تحمل سحرها الخاص."><svg viewBox="0 0 12 18" aria-hidden="true"><path fill="#cf7156" d="M4 1h4v1h2v6H8V7H4v1H2V2h2zm0 7h4v2h1v2h1v3H8v3H6v-3H5v3H3v-3H2v-3h1v-2h1z"/><path fill="#eeeae2" d="M4 4h1v1H4zm3 0h1v1H7z"/><path fill="#a95642" d="M2 2h8v1H2z"/><path fill="#e4ba70" d="M8 1h3v2H8z"/></svg></button>
+        </div>
+        <div class="family-line"></div>
+        <div class="family-label">عالمي الصغير المفضّل.</div>
+        <p class="family-meta">ولدان + بنت = قلب ممتلئ</p>
+      </div>
+    </section>
+
+    <!-- 06 / PLAY -->
+    <section class="play shell" id="play" aria-labelledby="play-title">
+      <div class="section-label mono"><span>06 /</span> العب وأنت هنا</div>
+      <div class="section-top"><h2 id="play-title">قبل أن تغادر،<br>اضغط <em>RUN.</em></h2><p>ثلاث ألعاب صغيرة من ثلاث حقب. لا شيء لتثبيته، ولا حساب لتسجيله. فقط شيء من المتعة التي جعلتني أبدأ.</p></div>
+      <div class="journey-layout" id="playground">
+        <div>
+          <div class="era-tabs" role="tablist" aria-label="استكشف الحقب">
+            <button class="era-tab" id="tab-basic" role="tab" aria-controls="panel-basic" aria-selected="true" data-era="basic"><span>1996</span>أيام BASIC</button>
+            <button class="era-tab" id="tab-web" role="tab" aria-controls="panel-web" aria-selected="false" tabindex="-1" data-era="web"><span>2006</span>على الإنترنت</button>
+            <button class="era-tab" id="tab-now" role="tab" aria-controls="panel-now" aria-selected="false" tabindex="-1" data-era="now"><span>اليوم</span>ما زلت أستكشف</button>
+          </div>
+          <div class="era-copy" id="era-copy"><h3>بدأ كل شيء بمؤشر يومض.</h3><p>أول كمبيوتر لي، 1996. BASIC وWindows 3.11، ومتعة بسيطة: أن تكتب شيئًا فترى الكمبيوتر ينفّذه.</p><span class="era-tag mono">1996</span><span class="era-tag mono">BASIC</span><span class="era-tag mono">Windows 3.11</span><div class="era-caption mono"><span aria-hidden="true">↲</span> هيا، غيّر الكلمات واضغط RUN. كمبيوتر 1996 لا يتكلم إلا الإنجليزية.</div></div>
+        </div>
+        <div class="interactive">
+          <div id="panel-basic" role="tabpanel" aria-labelledby="tab-basic" tabindex="0">
+            <div class="terminal" dir="ltr" lang="en"><div class="terminal-title mono"><span>◧ &nbsp; CURIOSITY.BAS</span><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span></div><div class="terminal-body"><p class="terminal-hint">A tiny time machine. No installation required.</p><label class="code-label" for="basic-code">Your program · editable</label><textarea class="code-editor" id="basic-code" spellcheck="false" aria-describedby="basic-support">10 PRINT "HELLO, WORLD!"
+20 PRINT "STILL CURIOUS."
+30 PRINT "ALWAYS WILL BE."</textarea><div class="terminal-tools"><button class="run-button" id="run-basic">▶ &nbsp; Run program</button><button class="reset-button" id="reset-basic">Reset</button><button class="reset-button" id="loop-basic">Try a loop ↗</button></div><pre class="terminal-output" id="basic-output" role="status" aria-live="polite">Ready when you are.
+</pre></div><div class="terminal-bottom"><span>PERSONAL COMPUTER · PERSONAL POSSIBILITIES</span><span>OK</span></div></div><div class="under-terminal" id="basic-support"><span>يدعم PRINT وGOTO وREM وEND</span><span dir="ltr">CTRL/⌘ + ENTER</span></div>
+          </div>
+          <div id="panel-web" role="tabpanel" aria-labelledby="tab-web" tabindex="0" hidden><div class="browser-2006" dir="ltr" lang="en"><div class="old-title"><span>Mohamed’s corner of the web</span><span aria-hidden="true">_ □ ×</span></div><div class="old-address">Address <span>http://mohamedsharaf.com</span></div><div class="old-page"><small>★ &nbsp; WELCOME TO MY HOMEPAGE &nbsp; ★</small><h3>Hello, World Wide Web.</h3><p>A little space on the internet.<br>Mine, since 2006.</p><div class="old-rule"></div><button id="guestbook">Leave a little hello ☺</button><p class="guest-message" id="guest-message" aria-live="polite">You found your way here. That’s pretty cool.</p></div></div><p class="era-disclaimer">إعادة بناء مرحة لتلك الحقبة، وليست صفحة مؤرشفة.<br>تحيات دفتر الزوار تبقى في هذا التبويب فقط.</p></div>
+          <div id="panel-now" role="tabpanel" aria-labelledby="tab-now" tabindex="0" hidden><div class="generative"><div class="generative-title mono">قليل من العشوائية الجميلة</div><canvas id="curiosity-canvas" aria-label="كوكبة برتقالية مجردة تتغير عندما تضغط احتمال جديد"></canvas><div class="generative-tools mono"><span id="seed-label">احتمال / 001</span><button id="new-pattern">احتمال جديد ↖</button></div></div><p class="era-disclaimer">لعبة صغيرة بالكود التوليدي، تعمل داخل متصفحك.<br>لا يوجد نموذج ذكاء اصطناعي هنا، مجرد دعوة للعب.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 / CONTACT -->
+    <section class="contact shell" id="contact" aria-labelledby="contact-title">
+      <div class="contact-left">
+        <div class="section-label mono"><span>07 /</span> وصلتَ حتى هنا</div>
+        <h2 id="contact-title">قل <em>مرحبًا.</em></h2>
+        <div class="contact-status mono"><i></i><span>متاح للأحاديث الجيدة</span></div>
+        <p>نظام يقلقك؟ فكرة تحتاج رأيًا ثانيًا؟ أو أنك أيضًا ما زلت تتذكر أول كمبيوتر لك؟ اكتب لي. أقرأ كل شيء.</p>
+        <div class="contact-secondary">
+          <a class="email-link" href="mailto:hi@mohamedsharaf.com"><span dir="ltr">hi@mohamedsharaf.com</span> <span aria-hidden="true">↖</span></a>
+          <button class="copy-email mono" id="copy-email" aria-live="polite">انسخ البريد الإلكتروني</button>
+        </div>
+      </div>
+      <!-- FormSubmit: the first message triggers a one-time activation email to this address -->
+      <form class="contact-form" id="contact-form" action="https://formsubmit.co/hi@mohamedsharaf.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from mohamedsharaf.com (Arabic)">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://mohamedsharaf.com/ar#contact">
+        <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field"><label class="mono" for="f-name">اسمك</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label class="mono" for="f-email">بريدك الإلكتروني</label><input id="f-email" name="email" type="email" autocomplete="email" dir="ltr" required></div>
+        <div class="field full"><label class="mono" for="f-topic">عن أي شيء؟</label>
+          <select id="f-topic" name="topic">
+            <option value="Just saying hello">مجرد تحية</option>
+            <option value="A second opinion">رأي ثانٍ</option>
+            <option value="A test or an audit">اختبار أو تدقيق</option>
+            <option value="Ongoing advice">استشارة مستمرة</option>
+            <option value="Something else">شيء آخر</option>
+          </select>
+        </div>
+        <div class="field full"><label class="mono" for="f-message">رسالتك</label><textarea id="f-message" name="message" rows="5" dir="auto" required></textarea></div>
+        <div class="form-actions">
+          <button class="book-button" type="submit" id="form-submit">أرسل الرسالة <span aria-hidden="true">↖</span></button>
+          <p class="form-note mono" id="form-status" role="status" aria-live="polite">تصل مباشرة إلى بريدي. بلا نشرات بريدية، أبدًا.</p>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <span class="mono">&copy; <span id="year">2026</span> محمد شرف</span>
+    <span class="signoff">على الإنترنت منذ 2006. وما زلت أتعلّم في الطريق.</span>
+    <nav class="footer-links" aria-label="روابط التواصل">
+      <a href="https://www.linkedin.com/in/mohamed-ahmed-sharaf/" target="_blank" rel="noopener noreferrer">LinkedIn ↖</a>
+      <a href="https://www.facebook.com/Mohamed.Ahmed.Sharaf" target="_blank" rel="noopener noreferrer">Facebook ↖</a>
+    </nav>
+    <a class="back-top" href="#top" aria-label="العودة إلى الأعلى">↑</a>
+  </footer>
+
+  <script>
+    (() => {
+      'use strict';
+      const $ = id => document.getElementById(id);
+      const thisYear = new Date().getFullYear();
+
+      // YEARS SINCE
+      document.querySelectorAll('[data-since]').forEach(el => {
+        el.textContent = thisYear - Number(el.dataset.since);
+      });
+
+      // ERA TABS
+      const eras = {
+        basic: {
+          title: 'بدأ كل شيء بمؤشر يومض.',
+          text: 'أول كمبيوتر لي، 1996. BASIC وWindows 3.11، ومتعة بسيطة: أن تكتب شيئًا فترى الكمبيوتر ينفّذه.',
+          tags: ['1996', 'BASIC', 'Windows 3.11'],
+          hint: 'هيا، غيّر الكلمات واضغط RUN. كمبيوتر 1996 لا يتكلم إلا الإنجليزية.'
+        },
+        web: {
+          title: 'عنوان صغير خاص بي.',
+          text: 'في 2006 كنت أدير شركة استضافة منذ أربع سنوات، فقررت أخيرًا أن يكون لي ركن على الإنترنت أنا أيضًا. تغيّر الإنترنت كثيرًا من حوله، وما زال هنا.',
+          tags: ['2006', 'موقع شخصي'],
+          hint: 'قليل من الحنين. ويمكنك حتى أن تترك تحية.'
+        },
+        now: {
+          title: 'فصل جديد. والفضول نفسه.',
+          text: 'من BASIC إلى الذكاء الاصطناعي، رأيت الحوسبة تعيد اختراع نفسها مرة بعد مرة. الأدوات تتغير، والأسئلة لا: كيف يعمل؟ أين ينكسر؟ وهل نستطيع أن نثق به؟',
+          tags: ['اليوم', 'ذكاء اصطناعي', 'ما زلت أتعلم'],
+          hint: 'قاعدة صغيرة، واحتمالات كثيرة. جرّبها.'
+        }
+      };
+
+      const tabs = [...document.querySelectorAll('[data-era]')];
+      function selectEra(era, focus = false) {
+        tabs.forEach(tab => {
+          const active = tab.dataset.era === era;
+          tab.setAttribute('aria-selected', String(active));
+          tab.tabIndex = active ? 0 : -1;
+          $('panel-' + tab.dataset.era).hidden = !active;
+          if (active && focus) tab.focus();
+        });
+        const info = eras[era], copy = $('era-copy');
+        copy.replaceChildren();
+        const title = document.createElement('h3');
+        title.textContent = info.title;
+        const p = document.createElement('p');
+        p.textContent = info.text;
+        copy.append(title, p);
+        info.tags.forEach(label => {
+          const tag = document.createElement('span');
+          tag.className = 'era-tag mono';
+          tag.textContent = label;
+          copy.append(tag);
+        });
+        const hint = document.createElement('div');
+        hint.className = 'era-caption mono';
+        const arrow = document.createElement('span');
+        arrow.textContent = '↲';
+        arrow.setAttribute('aria-hidden', 'true');
+        hint.append(arrow, document.createTextNode(info.hint));
+        copy.append(hint);
+        if (era === 'now') requestAnimationFrame(drawPattern);
+      }
+
+      // Right-to-left: the left arrow moves to the next tab
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => selectEra(tab.dataset.era));
+        tab.addEventListener('keydown', event => {
+          let next;
+          if (event.key === 'ArrowLeft') next = (index + 1) % tabs.length;
+          if (event.key === 'ArrowRight') next = (index + tabs.length - 1) % tabs.length;
+          if (event.key === 'Home') next = 0;
+          if (event.key === 'End') next = tabs.length - 1;
+          if (next !== undefined) {
+            event.preventDefault();
+            selectEra(tabs[next].dataset.era, true);
+          }
+        });
+      });
+
+      // BASIC EMULATOR
+      const initialCode = $('basic-code').value;
+      function runBasic() {
+        const output = $('basic-output');
+        const lines = $('basic-code').value.split(/\r?\n/).filter(line => line.trim());
+        const program = [], labels = new Map(), printed = [];
+        let error = '';
+
+        for (let index = 0; index < lines.length; index++) {
+          const match = lines[index].trim().match(/^(?:(\d+)\s+)?(.*)$/);
+          const number = match[1] ? Number(match[1]) : index + 1;
+          if (labels.has(number)) { error = 'Duplicate line number ' + number; break; }
+          labels.set(number, program.length);
+          program.push({ number, code: match[2].trim() });
+        }
+
+        let pc = 0, steps = 0;
+        while (!error && pc < program.length && steps < 80) {
+          steps++;
+          const { number, code } = program[pc];
+          let match;
+          if (!code || /^REM(?:\s|$)/i.test(code)) { pc++; continue; }
+          if (/^END$/i.test(code)) break;
+          if ((match = code.match(/^PRINT(?:\s+(.*))?$/i))) {
+            const expression = (match[1] || '').trim();
+            if (!expression) printed.push('');
+            else if (/^"[^"\r\n]*"$/.test(expression)) printed.push(expression.slice(1, -1));
+            else if (/^-?\d+(?:\.\d+)?$/.test(expression)) printed.push(expression);
+            else { error = 'Line ' + number + ': use PRINT "your words" or PRINT 42.'; break; }
+          } else if ((match = code.match(/^GOTO\s+(\d+)$/i))) {
+            const target = Number(match[1]);
+            if (!labels.has(target)) { error = 'Line ' + number + ': line ' + target + ' does not exist.'; break; }
+            pc = labels.get(target);
+            continue;
+          } else {
+            error = 'Line ' + number + ': try PRINT, GOTO, REM, or END.';
+            break;
+          }
+          pc++;
+        }
+
+        if (steps >= 80) printed.push('', '[Loop paused after 80 steps. Curiosity can go on forever; this tab shouldn’t.]');
+        if (error) printed.push('? ' + error);
+        else if (steps < 80) printed.push('', 'OK.');
+        output.textContent = printed.join('\n') + '\n';
+        output.scrollTop = 0;
+      }
+
+      $('run-basic').addEventListener('click', runBasic);
+      $('reset-basic').addEventListener('click', () => {
+        $('basic-code').value = initialCode;
+        $('basic-output').textContent = 'Ready when you are.\n';
+      });
+      $('loop-basic').addEventListener('click', () => {
+        $('basic-code').value = '10 PRINT "STAY CURIOUS. AGAIN. AND AGAIN."\n20 GOTO 10';
+        runBasic();
+      });
+      $('basic-code').addEventListener('keydown', event => {
+        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+          event.preventDefault();
+          runBasic();
+        }
+      });
+
+      // 2006 GUESTBOOK
+      let hellos = 0;
+      $('guestbook').addEventListener('click', () => {
+        hellos++;
+        $('guest-message').textContent = hellos === 1
+          ? 'Hello, fellow internet traveller. ☺'
+          : 'A little hello, times ' + hellos + '. The old web says hi back.';
+      });
+
+      // GENERATIVE CANVAS
+      let possibility = 1;
+      function drawPattern() {
+        const canvas = $('curiosity-canvas');
+        if ($('panel-now').hidden) return;
+        const bounds = canvas.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        if (!bounds.width) return;
+        canvas.width = bounds.width * dpr;
+        canvas.height = bounds.height * dpr;
+        const context = canvas.getContext('2d');
+        context.scale(dpr, dpr);
+        const w = bounds.width, h = bounds.height;
+        context.clearRect(0, 0, w, h);
+        let seed = possibility * 727;
+        const random = () => {
+          seed = (seed * 1664525 + 1013904223) >>> 0;
+          return seed / 4294967296;
+        };
+        const phase = random() * 6.28;
+        const petals = 3 + Math.floor(random() * 5);
+        const points = [];
+        for (let i = 0; i < 190; i++) {
+          const t = i / 190 * Math.PI * 2;
+          const radius = (Math.min(w, h) * .3) * (1 + .23 * Math.cos(petals * t + phase));
+          points.push([w / 2 + Math.cos(t) * radius * 1.25, h / 2 + 10 + Math.sin(t) * radius]);
+        }
+        context.strokeStyle = 'rgba(232,85,50,.16)';
+        context.lineWidth = .6;
+        for (let i = 0; i < points.length; i++) {
+          const target = (i * (2 + possibility % 5) + 23) % points.length;
+          context.beginPath();
+          context.moveTo(...points[i]);
+          context.lineTo(...points[target]);
+          context.stroke();
+        }
+        points.forEach(([x, y], i) => {
+          context.beginPath();
+          context.arc(x, y, i % 7 === 0 ? 2 : 1, 0, Math.PI * 2);
+          context.fillStyle = i % 7 === 0 ? '#f3cf94' : '#e8754e';
+          context.fill();
+        });
+        $('seed-label').textContent = 'احتمال / ' + String(possibility).padStart(3, '0');
+      }
+      $('new-pattern').addEventListener('click', () => {
+        possibility++;
+        drawPattern();
+      });
+      new ResizeObserver(() => {
+        if (!$('panel-now').hidden) drawPattern();
+      }).observe($('curiosity-canvas'));
+
+      // FAMILY PIXEL SPEECH
+      let speechTimeout;
+      document.querySelectorAll('[data-message]').forEach(character => {
+        character.addEventListener('click', () => {
+          clearTimeout(speechTimeout);
+          $('family-speech').textContent = character.dataset.message;
+          speechTimeout = setTimeout(() => { $('family-speech').textContent = ''; }, 4000);
+        });
+      });
+
+      // CONTACT FORM (FormSubmit AJAX; the plain POST still works without JS)
+      const form = $('contact-form'), formStatus = $('form-status'), formSubmit = $('form-submit');
+      document.querySelectorAll('[data-topic]').forEach(link => {
+        link.addEventListener('click', () => { $('f-topic').value = link.dataset.topic; });
+      });
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (form.elements._honey.value) return;
+        formSubmit.disabled = true;
+        formStatus.className = 'form-note mono';
+        formStatus.textContent = 'جارٍ الإرسال…';
+        try {
+          const response = await fetch('https://formsubmit.co/ajax/hi@mohamedsharaf.com', {
+            method: 'POST',
+            headers: { Accept: 'application/json' },
+            body: new FormData(form)
+          });
+          const result = await response.json();
+          if (!response.ok || String(result.success) !== 'true') throw new Error(result.message);
+          form.reset();
+          formStatus.className = 'form-note mono ok';
+          formStatus.textContent = 'شكرًا لك. وصلت رسالتك، وسأرد عليك قريبًا.';
+        } catch {
+          formStatus.className = 'form-note mono error';
+          formStatus.textContent = 'لم تُرسَل الرسالة. راسلني مباشرة على hi@mohamedsharaf.com';
+        } finally {
+          formSubmit.disabled = false;
+        }
+      });
+
+      // COPY EMAIL
+      $('copy-email').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('hi@mohamedsharaf.com');
+          $('copy-email').textContent = 'تم النسخ. راسلني متى شئت.';
+        } catch {
+          $('copy-email').textContent = 'hi@mohamedsharaf.com — حدّده لنسخه';
+        }
+        setTimeout(() => { $('copy-email').textContent = 'انسخ البريد الإلكتروني'; }, 5000);
+      });
+
+      $('year').textContent = thisYear;
+    })();
+  </script>
+</body>
+</html>

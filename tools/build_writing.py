@@ -269,9 +269,52 @@ if extra:
     sitemap = os.path.join(DIST, 'sitemap.xml')
     s = open(sitemap, encoding='utf-8').read().replace('</urlset>', extra + '</urlset>')
     open(sitemap, 'w', encoding='utf-8').write(s)
-# Old addresses of restored posts (e.g. the WordPress blog on mohamedsharaf.net) forward to the new page
-redirects = [f"{old} {url_for(a)} 301" for a in published for old in a.get('legacy_paths', [])]
-if redirects:
+# Old addresses (the WordPress blog that lived on mohamedsharaf.net) forward to the nearest page.
+# Restored articles come first, then legacy-redirects.txt; the first rule for a path wins.
+PUBLISHED_LANGS = {a['lang'] for a in published}
+PUBLISHED_URLS = {(a['lang'], a['slug']): url_for(a) for a in published}
+
+
+def resolve(target):
+    if target.startswith('@writing:'):
+        lang = target.split(':')[1]
+        return INDEX[lang] if lang in PUBLISHED_LANGS else ('/ar' if lang == 'ar' else '/')
+    if target.startswith('@article:'):
+        _, lang, slug = target.split(':')
+        return PUBLISHED_URLS.get((lang, slug)) or resolve(f'@writing:{lang}')
+    return target
+
+
+rules, sources = [], set()
+for a in published:
+    for old in a.get('legacy_paths', []):
+        rules.append((old, url_for(a)))
+legacy = os.path.join(ROOT, 'legacy-redirects.txt')
+for line in open(legacy, encoding='utf-8') if os.path.exists(legacy) else []:
+    line = line.strip()
+    if line and not line.startswith('#'):
+        src, dst = line.split()
+        rules.append((src, resolve(dst)))
+lines = []
+for src, dst in rules:
+    if src not in sources:
+        sources.add(src)
+        lines.append(f'{src} {dst} 301')
+if lines:
     with open(os.path.join(DIST, '_redirects'), 'a', encoding='utf-8') as f:
-        f.write('\n'.join(redirects) + '\n')
-print(f"writing: {len(articles)} article(s) built ({len(published)} published){' [PREVIEW: drafts included]' if PREVIEW else ''}")
+        f.write('\n'.join(lines) + '\n')
+
+# Homepage links to the writing section, only for a language that has published articles
+LINKS = {
+    'index.html': ('en', '<a class="nav-writing" href="/writing/">Writing</a>',
+                   '<a class="notes-more" href="/writing/">More writing <span aria-hidden="true">→</span></a>'),
+    'ar.html': ('ar', '<a class="nav-writing" href="/writing/ar/">كتابات</a>',
+                '<a class="notes-more" href="/writing/ar/">المزيد من الكتابات <span aria-hidden="true">←</span></a>'),
+}
+for name, (lang, nav, more) in LINKS.items():
+    path = os.path.join(DIST, name)
+    page_html = open(path, encoding='utf-8').read()
+    show = lang in PUBLISHED_LANGS
+    page_html = page_html.replace('<!--WRITING_NAV-->', nav if show else '').replace('<!--WRITING_MORE-->', more if show else '')
+    open(path, 'w', encoding='utf-8').write(page_html)
+print(f"writing: {len(articles)} article(s) built ({len(published)} published), {len(lines)} redirect rules{' [PREVIEW: drafts included]' if PREVIEW else ''}")

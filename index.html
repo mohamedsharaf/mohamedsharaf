@@ -301,6 +301,20 @@
     .service li{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.5}
     .service li::before{content:'■';font-size:7px;color:var(--orange);margin-top:5px;flex-shrink:0}
 
+    /* 03 / WHAT I DO: IN PRACTICE */
+    .proof{margin-top:64px;padding-top:30px;border-top:1px solid var(--line)}
+    .proof-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:22px}
+    .proof-kicker{color:var(--muted)}
+    .proof-head h3{font-size:28px;letter-spacing:-1px;font-weight:600;margin:10px 0 0}
+    .proof-head p{font-size:14px;color:var(--muted);line-height:1.8;max-width:340px;margin:0}
+    .proof-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:44px}
+    .proof-list li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-top:1px dashed var(--line);font-size:14px;line-height:1.7}
+    .proof-list li span{font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--orange-ink);padding-top:5px}
+    .partner-privacy{margin:36px auto 0;max-width:640px;text-align:center;font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.55;color:var(--ink)}
+    @media(max-width:860px){.proof-list{grid-template-columns:1fr}}
+    @media(max-width:760px){.proof{margin-top:44px}.proof-head{display:block}.proof-head p{margin-top:12px;max-width:100%}.partner-privacy{font-size:17px;margin-top:28px}}
+    @media(max-width:480px){.proof-list li{grid-template-columns:1fr;gap:4px}}
+
     /* 04 / WORKING TOGETHER */
     .partner-section{padding:100px 0;border-top:1px solid var(--line)}
     .partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
@@ -366,6 +380,13 @@
     .email-link:hover{color:var(--orange);border-color:var(--orange)}
     .copy-email{border:0;background:none;font-family:var(--mono);font-size:10px;color:#5f6059;padding:8px 0;transition:color .2s}
     .copy-email:hover{color:var(--orange)}
+    .next-steps{grid-column:1 / -1;margin-top:14px;padding-top:22px;border-top:1px dashed var(--line)}
+    .next-steps-title{color:var(--muted);margin:0 0 14px}
+    .next-steps ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:step}
+    .next-steps li{counter-increment:step;font-size:13px;line-height:1.6;color:var(--muted)}
+    .next-steps li::before{content:'0' counter(step);display:block;font:11px var(--mono);color:var(--orange-ink);margin-bottom:6px}
+    .next-steps li b{display:block;color:var(--ink);font-weight:650;margin-bottom:2px}
+    @media(max-width:760px){.next-steps ol{grid-template-columns:1fr;gap:14px}}
 
     /* FOOTER */
     .footer{border-top:1px solid var(--line);padding:26px 0 30px;display:flex;align-items:center;justify-content:space-between;gap:25px;font-size:10px;color:#5f6059}
@@ -534,7 +555,7 @@
       <figure class="portrait-area">
         <div class="portrait-frame"><picture><source type="image/avif" srcset="assets/mohamedsharaf-600.avif 600w, assets/mohamedsharaf-896.avif 896w" sizes="(max-width:760px) calc(100vw - 70px), (max-width:1500px) 40vw, 460px"><source type="image/webp" srcset="assets/mohamedsharaf-600.webp 600w, assets/mohamedsharaf-896.webp 896w" sizes="(max-width:760px) calc(100vw - 70px), (max-width:1500px) 40vw, 460px"><img src="assets/mohamedsharaf.jpg" alt="Photo of Mohamed Sharaf" width="896" height="1119" fetchpriority="high"></picture><div class="portrait-corner mono" aria-hidden="true">The human behind the tabs</div><div class="photo-note mono">MOHAMED_SHARAF</div></div>
         <div class="since-stamp" aria-label="At the keyboard since 1996"><small>AT THE KEYBOARD</small><strong>1996</strong><small>AND COUNTING</small></div>
-        <div class="sticker"><b>Curiosity never gets old.</b>Neither does “what if?”</div>
+        <div class="sticker"><b>Every system has a “what if?”</b>I like finding it first.</div>
         <figcaption class="portrait-caption mono"><span>FIG. 01 / A work in progress</span><span>Just like this website ↗</span></figcaption>
       </figure>
     </section>
@@ -623,6 +644,21 @@
         <div class="service"><span class="service-number mono">03 / Always</span><h3>Software &amp; architecture</h3><p>Look at how a system is built before it gets expensive to change. Fewer moving parts, clearer boundaries, less to go wrong.</p><ul><li>Architecture reviews</li><li>APIs &amp; data design</li><li>Secure development practice</li><li>Technical due diligence</li></ul></div>
         <div class="service"><span class="service-number mono">04 / Now</span><h3>AI, carefully</h3><p>Use AI where it really saves time, and keep your data safe while you do. No magic promises, just honest testing of what works.</p><ul><li>Where AI fits, and where it doesn’t</li><li>Safe use of company data</li><li>Practical automations</li><li>Build-or-buy advice</li></ul></div>
       </div>
+      <div class="proof">
+        <div class="proof-head"><div><span class="proof-kicker mono">In practice</span><h3>Some of what that looked like.</h3></div><p>Ten things from the last <span data-since="2000">26</span> years. No names, as always.</p></div>
+        <ul class="proof-list">
+          <li><span>Incident response</span>Contained a weekend server compromise within hours, found the way in, and closed the same gap on every other server.</li>
+          <li><span>Penetration testing</span>Turned a penetration test into a short priority list, so the team fixed what was truly dangerous first.</li>
+          <li><span>Security audit</span>Explained audit results to a government team in language both engineers and management could act on.</li>
+          <li><span>Secure design</span>Joined design meetings early, so security became part of the plan instead of a launch-day checklist.</li>
+          <li><span>Backups</span>Asked a team to actually restore their backups. They now test restores on a schedule.</li>
+          <li><span>Infrastructure</span>Took servers from “hope it holds” to boring and predictable.</li>
+          <li><span>Second opinion</span>Told a founder their plan was over-engineered, and showed a simpler path that cost far less.</li>
+          <li><span>Senior voice on call</span>Acted as the senior technical voice for a small team, without them needing a full-time CTO.</li>
+          <li><span>AI, carefully</span>Showed a company where AI really saves time, and where it doesn’t, without putting their data at risk.</li>
+          <li><span>Long-term</span>Some clients still call me years later, when something has to be done properly.</li>
+        </ul>
+      </div>
     </section>
 
     <!-- 04 / WORKING TOGETHER -->
@@ -652,6 +688,7 @@
           <a class="partner-cta-link mono" href="#contact" data-topic="Ongoing advice">Let’s talk ↗</a>
         </div>
       </div>
+      <p class="partner-privacy">You won’t find client testimonials here. People hire me partly because I don’t talk about them, and I’ll treat your work the same way.</p>
       <div class="partner-bottom-strip mono"><span>No client names, ever</span><span>Plain-language reports</span><span>Remote-first</span></div>
     </section>
 
@@ -738,6 +775,14 @@
         <div class="form-actions">
           <button class="book-button" type="submit" id="form-submit">Send message <span aria-hidden="true">↗</span></button>
           <p class="form-note mono" id="form-status" role="status" aria-live="polite">Straight to my inbox. No newsletter, ever.</p>
+        </div>
+        <div class="next-steps">
+          <p class="next-steps-title mono">What happens after you write</p>
+          <ol>
+            <li><b>I read it myself.</b>I usually reply within 2 working days.</li>
+            <li><b>A short call, if it helps.</b>Only when talking is quicker than writing.</li>
+            <li><b>A clear proposal.</b>In plain language: what I’d look at, how, and how long it takes.</li>
+          </ol>
         </div>
       </form>
     </section>

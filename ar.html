@@ -304,6 +304,20 @@
     .service li{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.5}
     .service li::before{content:'■';font-size:7px;color:var(--orange);margin-top:5px;flex-shrink:0}
 
+    /* 03 / WHAT I DO: IN PRACTICE */
+    .proof{margin-top:64px;padding-top:30px;border-top:1px solid var(--line)}
+    .proof-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:22px}
+    .proof-kicker{color:var(--muted)}
+    .proof-head h3{font-size:28px;letter-spacing:-1px;font-weight:600;margin:10px 0 0}
+    .proof-head p{font-size:14px;color:var(--muted);line-height:1.8;max-width:340px;margin:0}
+    .proof-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:44px}
+    .proof-list li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-top:1px dashed var(--line);font-size:14px;line-height:1.7}
+    .proof-list li span{font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--orange-ink);padding-top:5px}
+    .partner-privacy{margin:36px auto 0;max-width:640px;text-align:center;font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.55;color:var(--ink)}
+    @media(max-width:860px){.proof-list{grid-template-columns:1fr}}
+    @media(max-width:760px){.proof{margin-top:44px}.proof-head{display:block}.proof-head p{margin-top:12px;max-width:100%}.partner-privacy{font-size:17px;margin-top:28px}}
+    @media(max-width:480px){.proof-list li{grid-template-columns:1fr;gap:4px}}
+
     /* 04 / WORKING TOGETHER */
     .partner-section{padding:100px 0;border-top:1px solid var(--line)}
     .partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
@@ -369,6 +383,13 @@
     .email-link:hover{color:var(--orange);border-color:var(--orange)}
     .copy-email{border:0;background:none;font-family:var(--mono);font-size:10px;color:#5f6059;padding:8px 0;transition:color .2s}
     .copy-email:hover{color:var(--orange)}
+    .next-steps{grid-column:1 / -1;margin-top:14px;padding-top:22px;border-top:1px dashed var(--line)}
+    .next-steps-title{color:var(--muted);margin:0 0 14px}
+    .next-steps ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:step}
+    .next-steps li{counter-increment:step;font-size:13px;line-height:1.6;color:var(--muted)}
+    .next-steps li::before{content:'0' counter(step);display:block;font:11px var(--mono);color:var(--orange-ink);margin-bottom:6px}
+    .next-steps li b{display:block;color:var(--ink);font-weight:650;margin-bottom:2px}
+    @media(max-width:760px){.next-steps ol{grid-template-columns:1fr;gap:14px}}
 
     /* FOOTER */
     .footer{border-top:1px solid var(--line);padding:26px 0 30px;display:flex;align-items:center;justify-content:space-between;gap:25px;font-size:10px;color:#5f6059}
@@ -532,7 +553,11 @@
     .since-stamp small{font-size:11px;font-family:var(--sans)}
     [dir=ltr] .terminal-title{font-size:10px}
     .hero-description,.section-top>p,.notes-heading p,.service p,.partner-desc,.offscreen-copy p,.contact-left>p,.era-copy p,.hero-value-prop{font-size:15px}
-    .timeline p,.note-grid p,.service li,.partner-good{font-size:14.5px}
+    .timeline p,.note-grid p,.service li,.partner-good,.next-steps li{font-size:14.5px}
+    .proof-list li{font-size:14.5px}
+    .proof-list li span,.proof-kicker{font-size:12px}
+    .partner-privacy{font-style:normal;font-size:23px}
+    @media(max-width:760px){.partner-privacy{font-size:20px}}
 
     /* Mirror physical left/right rules */
     .nav a::after{transform-origin:right}
@@ -624,7 +649,7 @@
       <figure class="portrait-area">
         <div class="portrait-frame"><picture><source type="image/avif" srcset="assets/mohamedsharaf-600.avif 600w, assets/mohamedsharaf-896.avif 896w" sizes="(max-width:760px) calc(100vw - 70px), (max-width:1500px) 40vw, 460px"><source type="image/webp" srcset="assets/mohamedsharaf-600.webp 600w, assets/mohamedsharaf-896.webp 896w" sizes="(max-width:760px) calc(100vw - 70px), (max-width:1500px) 40vw, 460px"><img src="assets/mohamedsharaf.jpg" alt="صورة محمد شرف" width="896" height="1119" fetchpriority="high"></picture><div class="portrait-corner mono" aria-hidden="true">الإنسان خلف الشاشة</div><div class="photo-note mono" dir="ltr">MOHAMED_SHARAF</div></div>
         <div class="since-stamp" aria-label="أمام الشاشة منذ 1996"><small>أمام الشاشة</small><strong>1996</strong><small>والعدّ مستمر</small></div>
-        <div class="sticker"><b>الفضول لا يشيخ.</b>ولا سؤال «ماذا لو؟»</div>
+        <div class="sticker"><b>لكل نظام «ماذا لو؟»</b>وأحب أن أكتشفها قبل غيري.</div>
         <figcaption class="portrait-caption mono"><span>شكل 01 / عمل قيد التطوير</span><span>تمامًا مثل هذا الموقع ↖</span></figcaption>
       </figure>
     </section>
@@ -713,6 +738,21 @@
         <div class="service"><span class="service-number mono">03 / دائمًا</span><h3>البرمجيات والمعمارية</h3><p>أنظر في طريقة بناء النظام قبل أن يصبح تغييره مكلفًا. أجزاء متحركة أقل، وحدود أوضح، وفرص أقل للخطأ.</p><ul><li>مراجعة المعمارية</li><li>تصميم الـAPI والبيانات</li><li>ممارسات التطوير الآمن</li><li>تقييم تقني قبل الاستثمار</li></ul></div>
         <div class="service"><span class="service-number mono">04 / الآن</span><h3>الذكاء الاصطناعي، بحذر</h3><p>استخدم الذكاء الاصطناعي حيث يوفّر الوقت فعلًا، وحافظ على بياناتك آمنة وأنت تفعل ذلك. بلا وعود سحرية، فقط تجربة صادقة لما ينجح.</p><ul><li>أين يناسب الذكاء الاصطناعي، وأين لا يناسب</li><li>الاستخدام الآمن لبيانات الشركة</li><li>أتمتة عملية</li><li>نبني أم نشتري؟</li></ul></div>
       </div>
+      <div class="proof">
+        <div class="proof-head"><div><span class="proof-kicker mono">على أرض الواقع</span><h3>كيف بدا ذلك فعلًا.</h3></div><p>عشرة أشياء من آخر <span data-since="2000">26</span> سنة. بلا أسماء، كالعادة.</p></div>
+        <ul class="proof-list">
+          <li><span>الاستجابة للحوادث</span>احتويت اختراقًا لسيرفر في عطلة نهاية الأسبوع خلال ساعات، ووجدت طريق الدخول، وأغلقت الثغرة نفسها في كل السيرفرات الأخرى.</li>
+          <li><span>اختبار الاختراق</span>حوّلت اختبار اختراق إلى قائمة أولويات قصيرة، فأصلح الفريق الخطير فعلًا أولًا.</li>
+          <li><span>التدقيق الأمني</span>شرحت نتائج تدقيق لفريق حكومي بلغة يستطيع المهندسون والإدارة التصرف بناءً عليها.</li>
+          <li><span>التصميم الآمن</span>انضممت إلى اجتماعات التصميم مبكرًا، فصار الأمن جزءًا من الخطة لا قائمة تحقق يوم الإطلاق.</li>
+          <li><span>النسخ الاحتياطي</span>طلبت من فريق أن يستعيد نسخه الاحتياطية فعلًا. والآن يختبرون الاستعادة بشكل دوري.</li>
+          <li><span>البنية التحتية</span>نقلت سيرفرات من «نتمنى أن تصمد» إلى مملّة ومتوقَّعة.</li>
+          <li><span>رأي ثانٍ</span>قلت لمؤسس إن خطته معقدة أكثر من اللازم، وأريته طريقًا أبسط بتكلفة أقل بكثير.</li>
+          <li><span>صوت خبير عند الحاجة</span>كنت الصوت التقني الخبير لفريق صغير، من دون أن يحتاجوا إلى مدير تقني بدوام كامل.</li>
+          <li><span>الذكاء الاصطناعي، بحذر</span>أريت شركة أين يوفّر الذكاء الاصطناعي وقتها فعلًا، وأين لا يفعل، من دون تعريض بياناتها للخطر.</li>
+          <li><span>ثقة طويلة</span>ما زال بعض العملاء يتصلون بي بعد سنوات، عندما يجب أن يُنجَز شيء كما ينبغي.</li>
+        </ul>
+      </div>
     </section>
 
     <!-- 04 / WORKING TOGETHER -->
@@ -742,6 +782,7 @@
           <a class="partner-cta-link mono" href="#contact" data-topic="Ongoing advice">لنتحدث ↖</a>
         </div>
       </div>
+      <p class="partner-privacy">لن تجد هنا شهادات عملاء. يختارني الناس جزئيًا لأنني لا أتحدث عنهم، وسأتعامل مع عملك بالطريقة نفسها.</p>
       <div class="partner-bottom-strip mono"><span>بلا أسماء عملاء، أبدًا</span><span>تقارير بلغة واضحة</span><span>العمل عن بُعد أولًا</span></div>
     </section>
 
@@ -828,6 +869,14 @@
         <div class="form-actions">
           <button class="book-button" type="submit" id="form-submit">أرسل الرسالة <span aria-hidden="true">↖</span></button>
           <p class="form-note mono" id="form-status" role="status" aria-live="polite">تصل مباشرة إلى بريدي. بلا نشرات بريدية، أبدًا.</p>
+        </div>
+        <div class="next-steps">
+          <p class="next-steps-title mono">ماذا يحدث بعد أن تكتب لي</p>
+          <ol>
+            <li><b>أقرأ رسالتك بنفسي.</b>وعادةً أرد خلال يومَي عمل.</li>
+            <li><b>مكالمة قصيرة، إن كانت مفيدة.</b>فقط عندما يكون الكلام أسرع من الكتابة.</li>
+            <li><b>عرض واضح.</b>بلغة بسيطة: ما الذي سأنظر فيه، وكيف، وكم يستغرق.</li>
+          </ol>
         </div>
       </form>
     </section>

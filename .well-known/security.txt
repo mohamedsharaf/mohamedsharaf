@@ -1,0 +1,5 @@
+# Found a security issue on this site? Thank you. Please tell me privately.
+Contact: mailto:hi@mohamedsharaf.com
+Expires: 2027-10-27T00:00:00.000Z
+Preferred-Languages: en, ar
+Canonical: https://mohamedsharaf.com/.well-known/security.txt

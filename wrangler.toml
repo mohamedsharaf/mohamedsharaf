@@ -1,0 +1,4 @@
+# Cloudflare Pages project for mohamedsharaf.com. Deploy with: sh deploy.sh
+name = "mohamedsharaf"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-10-01"

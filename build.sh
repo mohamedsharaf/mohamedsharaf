@@ -5,15 +5,15 @@
 # options, source photos) and anything else in this folder stay private.
 # Add a new page here if you create one.
 #
-# Cloudflare Pages settings:  Build command: sh build.sh   Output directory: dist
-# Or upload by hand:          sh build.sh && npx wrangler pages deploy dist
+# Deploy (build + upload to Cloudflare Pages): sh deploy.sh
 set -eu
 cd "$(dirname "$0")"
 
 rm -rf dist
 mkdir dist
-cp index.html ar.html 404.html robots.txt sitemap.xml dist/
+cp index.html ar.html 404.html robots.txt sitemap.xml favicon.svg apple-touch-icon.png dist/
 cp -R assets dist/assets
+cp -R .well-known dist/.well-known
 find dist -name '.DS_Store' -delete
 
 # Security and cache headers (Cloudflare Pages reads dist/_headers).

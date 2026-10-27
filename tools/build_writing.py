@@ -82,6 +82,7 @@ a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
 .body pre code{background:none;padding:0;color:inherit;font:inherit}
 .body blockquote{margin:0 0 22px;padding:4px 20px;border-inline-start:3px solid var(--orange);color:var(--muted)}
 .body .note{background:var(--paper-card);border:1px solid var(--line);padding:18px 20px;margin:0 0 22px;font-size:16px}
+.archived{background:var(--paper-card);border:1px solid var(--line);border-inline-start:3px solid var(--orange);padding:12px 16px;margin:-8px 0 30px;font-size:14px;color:var(--muted)}
 .cta{max-width:720px;margin:10px auto 70px;padding:28px;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .cta h2{margin:0 0 6px;font-size:22px}
 .cta p{margin:0;color:#c9c6bd;font-size:15px}
@@ -131,6 +132,8 @@ def page(lang, title, description, canonical, body, head_extra='', alternates=No
     t = TEXT[lang]
     alt = ''.join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{u}">\n  ' for l, u in (alternates or {}).items())
     other = other_url or ('/writing/ar/' if lang == 'en' else '/writing/')
+    # Arabic pages: fetch the Arabic fonts early so big headings don't jump when they arrive
+    preload = ''.join(f'<link rel="preload" href="/assets/plex-arabic-{w}.woff2" as="font" type="font/woff2" crossorigin>\n  ' for w in (400, 600)) if lang == 'ar' else ''
     og_image = og_image or f"{SITE}/assets/og-{'en' if lang == 'en' else 'ar'}.jpg"
     return f"""<!doctype html>
 <html lang="{lang}" dir="{t['dir']}">
@@ -150,7 +153,7 @@ def page(lang, title, description, canonical, body, head_extra='', alternates=No
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  {head_extra}<style>{CSS}</style>
+  {preload}{head_extra}<style>{CSS}</style>
 </head>
 <body>
   <header class="header shell">
@@ -194,17 +197,18 @@ def article_page(a, pair):
     if a.get('status') != 'published':
         head += '<meta name="robots" content="noindex">\n  '
     draft = f'<div class="draft">{t["draft"]}</div>' if a.get('status') != 'published' else ''
+    archive = f'<p class="archived">{html.escape(a["archive_note"])}</p>\n      ' if a.get('archive_note') else ''
     body = f"""    <article class="article">
       {draft}<div class="kicker">{html.escape(a.get('topic', ''))}</div>
       <h1>{html.escape(a['title'])}</h1>
       <p class="lead">{html.escape(a['description'])}</p>
       <div class="meta"><time datetime="{a['date']}">{nice_date(a['date'], a['lang'])}</time> · {minutes} {t['min_read']}</div>
-      <div class="body">
+      {archive}<div class="body">
 {a['body']}
       </div>
     </article>
     <aside class="cta"><div><h2>{t['cta_title']}</h2><p>{t['cta_text']}</p></div><a href="{'/#contact' if a['lang'] == 'en' else '/ar#contact'}">{t['cta_link']}</a></aside>"""
-    other = url_for(pair) if pair else None
+    other = url_for(pair) if pair else other_index(a['lang'])
     return page(a['lang'], a['title'], a['description'], canonical, body, head, alternates, other)
 
 
@@ -222,8 +226,8 @@ def index_page(lang, items):
 {rows}      </ol>
     </section>"""
     return page(lang, t['index_title'], t['index_intro'], canonical, body,
-                alternates={'en': '/writing/', 'ar': '/writing/ar/'},
-                other_url='/writing/ar/' if lang == 'en' else '/writing/')
+                alternates={l: INDEX[l] for l in LANGS_WITH_ITEMS},
+                other_url=other_index(lang))
 
 
 def write(path, text):
@@ -232,7 +236,16 @@ def write(path, text):
     open(full, 'w', encoding='utf-8').write(text)
 
 
+INDEX = {'en': '/writing/', 'ar': '/writing/ar/'}
+
+
+def other_index(lang):
+    other = 'ar' if lang == 'en' else 'en'
+    return INDEX[other] if other in LANGS_WITH_ITEMS else ('/ar' if other == 'ar' else '/')
+
+
 articles = read_articles()
+LANGS_WITH_ITEMS = {a['lang'] for a in articles}
 by_pair = {}
 for a in articles:
     by_pair.setdefault(a.get('pair') or a['slug'], []).append(a)
@@ -256,4 +269,9 @@ if extra:
     sitemap = os.path.join(DIST, 'sitemap.xml')
     s = open(sitemap, encoding='utf-8').read().replace('</urlset>', extra + '</urlset>')
     open(sitemap, 'w', encoding='utf-8').write(s)
+# Old addresses of restored posts (e.g. the WordPress blog on mohamedsharaf.net) forward to the new page
+redirects = [f"{old} {url_for(a)} 301" for a in published for old in a.get('legacy_paths', [])]
+if redirects:
+    with open(os.path.join(DIST, '_redirects'), 'a', encoding='utf-8') as f:
+        f.write('\n'.join(redirects) + '\n')
 print(f"writing: {len(articles)} article(s) built ({len(published)} published){' [PREVIEW: drafts included]' if PREVIEW else ''}")

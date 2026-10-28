@@ -6,12 +6,14 @@
 - Works in Arabic and English, remotely by default, with clients in Egypt, the Gulf, Europe and elsewhere.
 - By 2005 his company ran about 500 websites and more than 2,000 voice chat rooms, with 50,000 to 100,000 people online at once.
 - Never publishes client names.
+- Not the late Egyptian actor Mohamed Sharaf; they only share a name.
 
 ## Pages
 
 - [mohamedsharaf.com (English)](https://mohamedsharaf.com/): who he is, his story since 1996, field notes, services and contact
 - [mohamedsharaf.com/ar (Arabic)](https://mohamedsharaf.com/ar): the same site in Arabic
 - [Writing (English)](https://mohamedsharaf.com/writing/) and [كتابات (Arabic)](https://mohamedsharaf.com/writing/ar/): notes on security, servers, databases, WordPress and PHP, including his old blog archive from 2010 onwards
+- [Which Mohamed Sharaf?](https://mohamedsharaf.com/which-mohamed-sharaf/): which Mohamed Sharaf this site belongs to, and his only official profiles
 
 ## What he does
 

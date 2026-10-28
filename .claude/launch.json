@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "bash build.sh > /dev/null && npx -y wrangler@4 dev --port 8795 --ip 127.0.0.1 --local"],
+      "port": 8795
+    }
+  ]
+}

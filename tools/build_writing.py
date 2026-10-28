@@ -29,14 +29,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PREVIEW = os.environ.get('PREVIEW') == '1'
 
 TEXT = {
-    'en': dict(dir='ltr', writing='Writing', home='Home', menu='Menu', hello='Say hello', other='عربي', other_lang='ar',
+    'en': dict(dir='ltr', which='Which Mohamed Sharaf?', writing='Writing', home='Home', menu='Menu', hello='Say hello', other='عربي', other_lang='ar',
                index_title='Writing', index_intro='Notes on security, infrastructure, software and AI. Written in plain words, from three decades of doing the work.',
                min_read='min read', back='All writing', cta_title='Want a second pair of eyes?',
                cta_text='If something here sounds like your system, write to me. I read everything.',
                cta_link='Say hello', draft='Draft: not published yet', empty='The first articles are on their way.',
                new_heading='New', archive_heading='From the archive', archive_intro='Notes from my old blog on mohamedsharaf.net (2010–2023), rewritten and checked. Some are dated; the dates tell you how much.',
                months=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']),
-    'ar': dict(dir='rtl', writing='كتابات', home='الرئيسية', menu='القائمة', hello='قل مرحبًا', other='English', other_lang='en',
+    'ar': dict(dir='rtl', which='أي محمد شرف؟', writing='كتابات', home='الرئيسية', menu='القائمة', hello='قل مرحبًا', other='English', other_lang='en',
                index_title='كتابات', index_intro='ملاحظات عن الأمن والبنية التحتية والبرمجيات والذكاء الاصطناعي، بكلام واضح، من ثلاثة عقود من العمل.',
                min_read='دقائق قراءة', back='كل الكتابات', cta_title='تحتاج إلى نظرة ثانية؟',
                cta_text='إذا بدا لك شيء هنا مثل نظامك، اكتب لي. أقرأ كل شيء.',
@@ -199,6 +199,7 @@ def page(lang, title, description, canonical, body, head_extra='', alternates=No
   </main>
   <footer class="footer shell">
     <span>© {date.today().year} {'Mohamed Sharaf' if lang == 'en' else 'محمد شرف'}</span>
+    <a href="{'/which-mohamed-sharaf/' if lang == 'en' else '/which-mohamed-sharaf/ar/'}">{t['which']}</a>
     <a href="{'/writing/' if lang == 'en' else '/writing/ar/'}">{t['back']} {'→' if lang == 'en' else '←'}</a>
   </footer>
 </body>
@@ -317,10 +318,59 @@ for lang in ('en', 'ar'):
         write(url, index_page(lang, items))
         index_urls.append(url)
 
+# "Which Mohamed Sharaf?": the name is shared with others, including the late Egyptian actor.
+# A short page says who this site belongs to and where my real profiles are. It says nothing about him.
+NAME_URLS = {'en': '/which-mohamed-sharaf/', 'ar': '/which-mohamed-sharaf/ar/'}
+PROFILES = [('LinkedIn', 'https://www.linkedin.com/in/mohamed-ahmed-sharaf/'), ('GitHub', 'https://github.com/mohamedsharaf'),
+            ('YouTube', 'https://www.youtube.com/@mohamedsharaf'), ('Facebook', 'https://www.facebook.com/Mohamed.Ahmed.Sharaf')]
+NAME_PAGE = {
+    'en': dict(title='Which Mohamed Sharaf?', kicker='About the name',
+               description='This site belongs to Mohamed Sharaf, a security and technology consultant. Not the late Egyptian actor of the same name.',
+               body="""<p>Mohamed Sharaf is a common name, so here is which one this site belongs to.</p>
+<p>I am a security and technology consultant based in Riyadh. I have been with computers since 1996, in information security since 2000, and running my own company since 2002. I write here about security, infrastructure, software and AI.</p>
+<h2>Not the actor</h2>
+<p>If you are looking for the late Egyptian actor Mohamed Sharaf, may he rest in peace, this is not him. We only share a name. Nothing on this site is about him or his work.</p>
+<h2>Where to find me</h2>
+<p>These are my only profiles. Anything else under this name that isn’t linked from this site is not me.</p>
+<ul>
+{profiles}
+</ul>""", home='Back to the homepage', contact='Say hello'),
+    'ar': dict(title='أي محمد شرف؟', kicker='عن الاسم',
+               description='هذا موقع محمد شرف، مستشار أمن المعلومات والتقنية، وليس الفنان المصري الراحل الذي يحمل الاسم نفسه.',
+               body="""<p>اسم محمد شرف منتشر، لذلك أوضح هنا لمن يعود هذا الموقع.</p>
+<p>أنا مستشار في أمن المعلومات والتقنية، مقيم في الرياض. مع الكمبيوتر منذ 1996، وفي أمن المعلومات منذ 2000، وأدير شركتي الخاصة منذ 2002. أكتب هنا عن الأمن والبنية التحتية والبرمجيات والذكاء الاصطناعي.</p>
+<h2>لست الفنان</h2>
+<p>إذا كنت تبحث عن الفنان المصري الراحل محمد شرف، رحمه الله، فهذا ليس موقعه. نحن نشترك في الاسم فقط، ولا شيء في هذا الموقع عنه أو عن أعماله.</p>
+<h2>أين تجدني</h2>
+<p>هذه حساباتي الوحيدة، وأي حساب آخر بهذا الاسم لا يوجد له رابط من هذا الموقع فهو ليس لي.</p>
+<ul>
+{profiles}
+</ul>""", home='العودة إلى الرئيسية', contact='تواصل معي'),
+}
+for lang, n in NAME_PAGE.items():
+    profiles = '\n'.join(f'  <li><a href="{u}" lang="en">{name}</a></li>' for name, u in PROFILES)
+    ld = {'@context': 'https://schema.org', '@type': 'AboutPage', 'name': n['title'], 'description': n['description'],
+          'url': SITE + NAME_URLS[lang], 'inLanguage': lang, 'isPartOf': {'@id': f'{SITE}/#site'},
+          'about': {'@id': f'{SITE}/#person'}, 'mainEntity': {'@id': f'{SITE}/#person'}}
+    home = '/' if lang == 'en' else '/ar'
+    body = f"""    <article class="article">
+      <div class="kicker">{n['kicker']}</div>
+      <h1>{n['title']}</h1>
+      <p class="lead">{html.escape(n['description'])}</p>
+      <div class="body">
+{n['body'].format(profiles=profiles)}
+<p><a href="{home}">{n['home']}</a> · <a href="{home}#contact">{n['contact']}</a></p>
+      </div>
+    </article>"""
+    other = 'ar' if lang == 'en' else 'en'
+    write(NAME_URLS[lang], page(lang, n['title'], n['description'], NAME_URLS[lang], body,
+                                f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>\n  ',
+                                alternates=NAME_URLS, other_url=NAME_URLS[other]).replace('<meta property="og:type" content="article">', '<meta property="og:type" content="profile">'))
+
 # Add the writing pages and published articles to the sitemap (never drafts)
 published = [a for a in articles if a.get('status') == 'published']
 public_urls = [u for u in index_urls if any(a['lang'] == ('en' if u == '/writing/' else 'ar') for a in published)]
-extra = ''.join(f"  <url>\n    <loc>{SITE}{u}</loc>\n  </url>\n" for u in public_urls + [url_for(a) for a in published])
+extra = ''.join(f"  <url>\n    <loc>{SITE}{u}</loc>\n  </url>\n" for u in public_urls + [url_for(a) for a in published] + list(NAME_URLS.values()))
 if extra:
     sitemap = os.path.join(DIST, 'sitemap.xml')
     s = open(sitemap, encoding='utf-8').read().replace('</urlset>', extra + '</urlset>')

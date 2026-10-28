@@ -173,9 +173,12 @@ def page(lang, title, description, canonical, body, head_extra='', alternates=No
   <meta property="og:url" content="{SITE}{canonical}">
   <meta property="og:site_name" content="Mohamed Sharaf">
   <meta property="og:image" content="{og_image}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="alternate" type="application/atom+xml" title="{'Mohamed Sharaf — Writing' if lang == 'en' else 'محمد شرف — كتابات'}" href="{'/writing/feed.xml' if lang == 'en' else '/writing/ar/feed.xml'}">
   {preload}{head_extra}<style>{CSS}</style>
 </head>
 <body>
@@ -208,6 +211,14 @@ def page(lang, title, description, canonical, body, head_extra='', alternates=No
 """
 
 
+def og_image_for(a):
+    """The article's own share card from tools/make_og.py, or the site-wide card."""
+    card = f"assets/og/{a['lang']}-{a['slug']}.jpg"
+    if os.path.exists(os.path.join(ROOT, card)):
+        return f'{SITE}/{card}'
+    return f"{SITE}/assets/og-{'en' if a['lang'] == 'en' else 'ar'}.jpg"
+
+
 def article_page(a, pair):
     t = TEXT[a['lang']]
     canonical = url_for(a)
@@ -220,7 +231,7 @@ def article_page(a, pair):
         'headline': a['title'], 'description': a['description'], 'inLanguage': a['lang'],
         'datePublished': a['date'], 'dateModified': a.get('updated', a['date']),
         'url': SITE + canonical, 'mainEntityOfPage': SITE + canonical,
-        'image': f"{SITE}/assets/og-{'en' if a['lang'] == 'en' else 'ar'}.jpg",
+        'image': og_image_for(a),
         'author': {'@type': 'Person', '@id': f'{SITE}/#person', 'name': 'Mohamed Sharaf', 'url': SITE + '/'},
         'publisher': {'@type': 'Person', '@id': f'{SITE}/#person', 'name': 'Mohamed Sharaf'},
         'isPartOf': {'@id': f'{SITE}/#site'},
@@ -241,7 +252,7 @@ def article_page(a, pair):
     </article>
     <aside class="cta"><div><h2>{t['cta_title']}</h2><p>{t['cta_text']}</p></div><a href="{'/#contact' if a['lang'] == 'en' else '/ar#contact'}">{t['cta_link']}</a></aside>"""
     other = url_for(pair) if pair else other_index(a['lang'])
-    return page(a['lang'], a['title'], a['description'], canonical, body, head, alternates, other)
+    return page(a['lang'], a['title'], a['description'], canonical, body, head, alternates, other, og_image_for(a))
 
 
 def index_page(lang, items):
@@ -275,6 +286,7 @@ def write(path, text):
 
 
 INDEX = {'en': '/writing/', 'ar': '/writing/ar/'}
+FEED_URLS = {'en': '/writing/feed.xml', 'ar': '/writing/ar/feed.xml'}
 
 
 def other_index(lang):
@@ -376,6 +388,35 @@ if extra:
     sitemap = os.path.join(DIST, 'sitemap.xml')
     s = open(sitemap, encoding='utf-8').read().replace('</urlset>', extra + '</urlset>')
     open(sitemap, 'w', encoding='utf-8').write(s)
+
+# Atom feeds, one per language, with the full text of the newest articles
+FEED_TITLE = {'en': 'Mohamed Sharaf — Writing', 'ar': 'محمد شرف — كتابات'}
+for lang in sorted({a['lang'] for a in published}):
+    items = sorted((a for a in published if a['lang'] == lang), key=lambda a: (a.get('updated', a['date']), a['date']), reverse=True)[:30]
+    stamp = lambda d: f'{d}T00:00:00Z'
+    entries = ''.join(f"""  <entry>
+    <title>{html.escape(a['title'])}</title>
+    <link href="{SITE}{url_for(a)}"/>
+    <id>{SITE}{url_for(a)}</id>
+    <published>{stamp(a['date'])}</published>
+    <updated>{stamp(a.get('updated', a['date']))}</updated>
+    <summary>{html.escape(a['description'])}</summary>
+    <content type="html">{html.escape(a['body'])}</content>
+  </entry>
+""" for a in items)
+    feed = f"""<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{lang}" xml:base="{SITE}/">
+  <title>{FEED_TITLE[lang]}</title>
+  <subtitle>{html.escape(TEXT[lang]['index_intro'])}</subtitle>
+  <link href="{SITE}{FEED_URLS[lang]}" rel="self"/>
+  <link href="{SITE}{INDEX[lang]}"/>
+  <id>{SITE}{FEED_URLS[lang]}</id>
+  <updated>{stamp(max(a.get('updated', a['date']) for a in items))}</updated>
+  <author><name>{'Mohamed Sharaf' if lang == 'en' else 'محمد شرف'}</name><uri>{SITE}/</uri></author>
+{entries}</feed>
+"""
+    open(os.path.join(DIST, FEED_URLS[lang].strip('/')), 'w', encoding='utf-8').write(feed)
+
 # Old addresses (the WordPress blog that lived on mohamedsharaf.net) forward to the nearest page.
 # Restored articles come first, then legacy-redirects.txt; the first rule for a path wins.
 PUBLISHED_LANGS = {a['lang'] for a in published}
@@ -453,5 +494,8 @@ for name, (lang, nav, more) in LINKS.items():
     page_html = (page_html.replace('<!--WRITING_NAV-->', nav if show else '')
                  .replace('<!--WRITING_MORE-->', more if show else '')
                  .replace('<!--WRITING_MENU-->', menu_link if show else ''))
+    if show:
+        feed_link = f'<link rel="alternate" type="application/atom+xml" title="{"Mohamed Sharaf — Writing" if lang == "en" else "محمد شرف — كتابات"}" href="{FEED_URLS[lang]}">\n</head>'
+        page_html = page_html.replace('</head>', feed_link, 1)
     open(path, 'w', encoding='utf-8').write(page_html)
 print(f"writing: {len(articles)} article(s) built ({len(published)} published), {len(lines)} redirect rules{' [PREVIEW: drafts included]' if PREVIEW else ''}")

@@ -14,6 +14,7 @@ rm -rf dist
 mkdir dist
 cp index.html ar.html 404.html robots.txt sitemap.xml llms.txt favicon.svg apple-touch-icon.png dist/
 cp -R assets dist/assets
+rm -f dist/assets/og/manifest.json  # bookkeeping for tools/make_og.py, not a public file
 cp -R .well-known dist/.well-known
 find dist -name '.DS_Store' -delete
 
@@ -68,6 +69,12 @@ open('dist/_headers', 'w').write(f"""/*
 
 /assets/*
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/writing/feed.xml
+  Content-Type: application/atom+xml; charset=utf-8
+
+/writing/ar/feed.xml
+  Content-Type: application/atom+xml; charset=utf-8
 """)
 PY
 

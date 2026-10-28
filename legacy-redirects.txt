@@ -301,8 +301,8 @@
 /wp-sitemap-taxonomies-post_tag-1.xml /sitemap.xml
 /wp-sitemap-taxonomies-post_format-1.xml /sitemap.xml
 /wp-sitemap-users-1.xml /sitemap.xml
-/comments/feed/ /
-/comments/feed /
+/comments/feed/ /writing/feed.xml
+/comments/feed /writing/feed.xml
 /favicon.ico /favicon.svg
 /cv /
 /cv/ /
@@ -318,8 +318,8 @@
 /page/* @writing:en
 /author/* /
 /writer/* /
-/feed /
-/feed/* /
+/feed /writing/feed.xml
+/feed/* /writing/feed.xml
 
 # Monthly and yearly archives (/2017/, /2017/05/)
 /2010 @writing:en

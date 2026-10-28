@@ -1,0 +1,19 @@
+<!--
+{"slug": "3cx-supply-chain", "lang": "en", "pair": "3cx-supply-chain", "status": "published",
+ "title": "3CX: when the signed installer is the malware",
+ "description": "A real, signed 3CX desktop app shipped with malware inside. What to do, and why “it’s signed” isn’t enough.",
+ "date": "2023-04-04", "topic": "Software"}
+-->
+<p>Last week security companies found that the 3CX desktop app, used by many businesses for calls, was shipping with malware inside. Not a fake download: the official installer, signed by 3CX, from 3CX’s own site.</p>
+<p>The attackers got into the build process, so the bad code was signed along with the good. Antivirus tools trusted it at first for exactly that reason.</p>
+<p>If you use 3CX:</p>
+<ul>
+  <li>Follow 3CX’s advice: uninstall the affected desktop app and use the web client until a clean version is confirmed.</li>
+  <li>Check your security tools for the published indicators, and look at the machines that had it installed.</li>
+</ul>
+<p>For everyone else, the lesson is uncomfortable. Signing proves who built the software, not that it’s safe. So:</p>
+<ul>
+  <li><strong>Watch behaviour, not just files.</strong> A phone app talking to strange servers is a signal on its own.</li>
+  <li><strong>Limit what desktop apps can reach</strong> on the network.</li>
+  <li><strong>Know which vendors ship code onto every PC.</strong> They’re part of your security now.</li>
+</ul>

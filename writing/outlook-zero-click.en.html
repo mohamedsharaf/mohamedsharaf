@@ -1,0 +1,16 @@
+<!--
+{"slug": "outlook-zero-click", "lang": "en", "pair": "outlook-zero-click", "status": "published",
+ "title": "The Outlook bug that needs no click",
+ "description": "A calendar reminder can leak your Windows password hash before you open anything. Patch now.",
+ "date": "2023-03-21", "topic": "Security"}
+-->
+<p>Last Tuesday’s patches fixed CVE-2023-23397, and it’s a nasty one. An attacker sends an email or meeting invite with a reminder whose sound file points to their own server. When Outlook processes the reminder, Windows tries to log in to that server and hands over the user’s NTLM hash. No click needed.</p>
+<p>Microsoft says it has been used in targeted attacks for months.</p>
+<p>What to do:</p>
+<ol>
+  <li><strong>Install the March update for Outlook for Windows.</strong> Other Outlook versions and Outlook on the web aren’t affected.</li>
+  <li><strong>Block outbound TCP 445 (SMB)</strong> from your network to the internet. There’s almost never a reason to allow it.</li>
+  <li><strong>Put admins and sensitive users in the Protected Users group,</strong> which stops NTLM for them.</li>
+  <li><strong>Run Microsoft’s script</strong> to look for messages with this kind of reminder in your mailboxes.</li>
+</ol>
+<p>And if you can, plan to reduce NTLM in general. It keeps showing up in attacks like this.</p>

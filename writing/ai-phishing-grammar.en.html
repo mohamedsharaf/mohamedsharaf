@@ -1,0 +1,16 @@
+<!--
+{"slug": "ai-phishing-grammar", "lang": "en", "pair": "ai-phishing-grammar", "status": "published",
+ "title": "Phishing just got better grammar",
+ "description": "ChatGPT writes a perfect email in any language in seconds. “Look for spelling mistakes” is no longer useful advice.",
+ "date": "2023-01-24", "topic": "AI"}
+-->
+<p>For years the first tip in every awareness training was “look for bad grammar and spelling”. ChatGPT just made that tip useless. Anyone can now produce a polite, perfectly written email in English, Arabic or German, in a few seconds, tuned to sound like your finance department.</p>
+<p>So we need checks that don’t depend on how the email reads:</p>
+<ol>
+  <li><strong>Who really sent it?</strong> Look at the actual address, not the display name.</li>
+  <li><strong>What does it ask for?</strong> A login, a payment, a changed bank account, a gift card, a file to open. Those are the red flags, however nice the writing.</li>
+  <li><strong>Is it urgent or secret?</strong> Pressure is still the attacker’s best tool.</li>
+  <li><strong>Verify on a different channel.</strong> Call the person on a number you already know.</li>
+</ol>
+<p>On the technical side, set up SPF, DKIM and DMARC so nobody can send as your own domain, and show a clear “external sender” banner on mail from outside.</p>
+<p>The emails will keep getting better. The questions above don’t care.</p>

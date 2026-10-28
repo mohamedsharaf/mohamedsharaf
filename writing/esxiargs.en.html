@@ -1,0 +1,17 @@
+<!--
+{"slug": "esxiargs", "lang": "en", "pair": "esxiargs", "status": "published",
+ "title": "ESXiArgs: ransomware for unpatched VMware hosts",
+ "description": "Thousands of ESXi servers were encrypted this week through a bug patched two years ago. Check yours today.",
+ "date": "2023-02-07", "topic": "Infrastructure"}
+-->
+<p>Since Friday, a ransomware wave called ESXiArgs has encrypted thousands of VMware ESXi servers around the world. The way in is CVE-2021-21974, a bug in the OpenSLP service that VMware fixed in February 2021.</p>
+<p>Two years unpatched, with the management interface open to the internet. That’s all it took.</p>
+<p>If you run ESXi:</p>
+<ul>
+  <li><strong>Patch</strong> to a current release for your version.</li>
+  <li><strong>Disable the SLP service</strong> if you don’t use it (most don’t). VMware has a short guide.</li>
+  <li><strong>Never expose ESXi or vCenter to the internet.</strong> Management goes through a VPN or a management network.</li>
+  <li><strong>Back up outside the hypervisor.</strong> If the host is encrypted, backups stored on it go too.</li>
+</ul>
+<p>If you’re already hit: CISA has published a recovery script that has helped some victims rebuild their virtual machines without paying. Check it before you do anything drastic.</p>
+<p>Hypervisors run everything else. They deserve patching first, not last.</p>

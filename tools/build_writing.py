@@ -30,14 +30,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PREVIEW = os.environ.get('PREVIEW') == '1'
 
 TEXT = {
-    'en': dict(dir='ltr', share='Share', copy='Copy link', copied='Copied', share_native='Share…', which='Which Mohamed Sharaf?', writing='Writing', home='Home', menu='Menu', hello='Say hello', other='عربي', other_lang='ar',
+    'en': dict(dir='ltr', share='Share', copy='Copy link', copied='Copied', share_native='Share…', which='Which Mohamed Sharaf?', writing='Writing', topics='Topics', all_topics='All', topic_intro='Everything I’ve written on {topic}, newest first.', home='Home', menu='Menu', hello='Say hello', other='عربي', other_lang='ar',
                index_title='Writing', index_intro='Notes on security, infrastructure, software and AI. Written in plain words, from three decades of doing the work.',
                min_read='min read', back='All writing', cta_title='Want a second pair of eyes?',
                cta_text='If something here sounds like your system, write to me. I read everything.',
                cta_link='Say hello', draft='Draft: not published yet', empty='The first articles are on their way.',
                new_heading='New', archive_heading='From the archive', archive_intro='Notes from my old blog on mohamedsharaf.net (2010–2018), rewritten and checked. Some are dated; the dates tell you how much.',
                months=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']),
-    'ar': dict(dir='rtl', share='شارك', copy='انسخ الرابط', copied='تم النسخ', share_native='مشاركة…', which='أي محمد شرف؟', writing='كتابات', home='الرئيسية', menu='القائمة', hello='قل مرحبًا', other='English', other_lang='en',
+    'ar': dict(dir='rtl', share='شارك', copy='انسخ الرابط', copied='تم النسخ', share_native='مشاركة…', which='أي محمد شرف؟', writing='كتابات', topics='المواضيع', all_topics='الكل', topic_intro='كل ما كتبته عن {topic}، الأحدث أولًا.', home='الرئيسية', menu='القائمة', hello='قل مرحبًا', other='English', other_lang='en',
                index_title='كتابات', index_intro='ملاحظات عن الأمن والبنية التحتية والبرمجيات والذكاء الاصطناعي، بكلام واضح، من ثلاثة عقود من العمل.',
                min_read='دقائق قراءة', back='كل الكتابات', cta_title='تحتاج إلى نظرة ثانية؟',
                cta_text='إذا بدا لك شيء هنا مثل نظامك، اكتب لي. أقرأ كل شيء.',
@@ -111,6 +111,14 @@ a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
 .cta a{background:#c9441f;color:#fff;padding:12px 18px;font-weight:600;text-decoration:none;white-space:nowrap}
 .index{max-width:820px;margin:0 auto;padding:64px 0 80px}
 .index h1{font-size:clamp(40px,7vw,64px);letter-spacing:-.05em;margin:14px 0 14px}
+.kicker a{text-decoration:none}
+.kicker a:hover{text-decoration:underline;text-underline-offset:3px}
+.topics{display:flex;flex-wrap:wrap;gap:8px;margin:30px 0 0}
+.topics a{display:inline-flex;align-items:baseline;gap:7px;padding:7px 11px;border:1px solid var(--line);background:var(--paper-card);font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}
+.topics a span{font:12px var(--mono);color:var(--muted)}
+.topics a:hover{border-color:var(--ink)}
+.topics a[aria-current]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.topics a[aria-current] span{color:#c9c6bd}
 .index ol{list-style:none;padding:0;margin:18px 0 0;border-top:1px solid var(--line)}
 .index .group{font-size:15px;font-family:var(--mono);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-ink);margin:48px 0 0}
 .index .group-intro{color:var(--muted);line-height:1.7;margin:8px 0 0;font-size:15px}
@@ -126,7 +134,7 @@ a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
 [dir=rtl] .body,[dir=rtl] .lead{font-size:18px}
 [dir=rtl] .article h1,[dir=rtl] .index h1,[dir=rtl] .body h2,[dir=rtl] .index li h2{letter-spacing:0;line-height:1.4}
 [dir=rtl] .kicker,[dir=rtl] .meta,[dir=rtl] .draft{font-family:var(--sans);letter-spacing:0;font-size:13px}
-@media(max-width:600px){.nav .hide,.nav .hello{display:none}.nav{margin-inline-start:auto}.header{gap:10px}.menu{display:block}.article,.index{padding-top:40px}.body{font-size:16.5px}.cta{padding:22px}}
+@media(max-width:600px){.topics{flex-wrap:nowrap;overflow-x:auto;margin-inline:-20px;padding:0 20px 6px;scrollbar-width:thin}.nav .hide,.nav .hello{display:none}.nav{margin-inline-start:auto}.header{gap:10px}.menu{display:block}.article,.index{padding-top:40px}.body{font-size:16.5px}.cta{padding:22px}}
 """
 
 
@@ -265,7 +273,7 @@ def article_page(a, pair):
     draft = f'<div class="draft">{t["draft"]}</div>' if a.get('status') != 'published' else ''
     archive = f'<p class="archived">{html.escape(a["archive_note"])}</p>\n      ' if a.get('archive_note') else ''
     body = f"""    <article class="article">
-      {draft}<div class="kicker">{html.escape(a.get('topic', ''))}</div>
+      {draft}<div class="kicker"><a href="{topic_url(a['lang'], a['topic'])}">{html.escape(a['topic'])}</a></div>
       <h1>{html.escape(a['title'])}</h1>
       <p class="lead">{html.escape(a['description'])}</p>
       <div class="meta"><time datetime="{a['date']}">{nice_date(a['date'], a['lang'])}</time> · {minutes} {t['min_read']}</div>
@@ -279,9 +287,32 @@ def article_page(a, pair):
     return page(a['lang'], a['title'], a['description'], canonical, body, head, alternates, other, og_image_for(a))
 
 
-def index_page(lang, items):
+def topic_slug(name):
+    return re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+
+
+def topic_url(lang, topic):
+    return f"{INDEX[lang]}topic/{TOPIC_SLUG[topic]}/"
+
+
+def topic_nav(lang, items, current=None):
+    # Plain links, one static page per topic: works without JavaScript and each topic page can be found in search
     t = TEXT[lang]
-    canonical = '/writing/' if lang == 'en' else '/writing/ar/'
+    counts = {}
+    for a in items:
+        counts[a['topic']] = counts.get(a['topic'], 0) + 1
+    links = [(t['all_topics'], INDEX[lang], len(items), current is None)]
+    links += [(name, topic_url(lang, name), n, name == current)
+              for name, n in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))]
+    return f'      <nav class="topics" aria-label="{t["topics"]}">\n' + ''.join(
+        f'        <a href="{u}"{" aria-current=\"page\"" if on else ""}>{html.escape(name)} <span>{n}</span></a>\n'
+        for name, u, n, on in links) + '      </nav>\n'
+
+
+def index_page(lang, all_items, topic=None):
+    t = TEXT[lang]
+    items = [a for a in all_items if a['topic'] == topic] if topic else all_items
+    canonical = topic_url(lang, topic) if topic else INDEX[lang]
     def rows(group):
         return ''.join(
             f"""      <li><a href="{url_for(a)}"><span class="kicker">{html.escape(a.get('topic', ''))} · {nice_date(a['date'], lang)}</span><h2>{html.escape(a['title'])}</h2><p>{html.escape(a['description'])}</p></a></li>\n"""
@@ -293,14 +324,25 @@ def index_page(lang, items):
         sections += f'      <h2 class="group">{t["new_heading"]}</h2>\n      <ol>\n{rows(new)}      </ol>\n'
     if old:
         sections += f'      <h2 class="group">{t["archive_heading"]}</h2>\n      <p class="group-intro">{t["archive_intro"]}</p>\n      <ol class="archive">\n{rows(old)}      </ol>\n'
+    if topic:
+        kicker = f'<a href="{INDEX[lang]}">{t["writing"]}</a>'
+        title, intro = topic, t['topic_intro'].format(topic=topic)
+        # The same topic in the other language shares the English slug
+        alternates = {l: f"{INDEX[l]}topic/{TOPIC_SLUG[topic]}/" for l in LANGS_WITH_ITEMS
+                      if TOPIC_SLUG[topic] in TOPIC_SLUGS_BY_LANG.get(l, ())}
+        other_url = next((u for l, u in alternates.items() if l != lang), other_index(lang))
+    else:
+        kicker = 'Mohamed Sharaf' if lang == 'en' else 'محمد شرف'
+        title, intro = t['index_title'], t['index_intro']
+        alternates = {l: INDEX[l] for l in LANGS_WITH_ITEMS}
+        other_url = other_index(lang)
     body = f"""    <section class="index">
-      <div class="kicker">{'Mohamed Sharaf' if lang == 'en' else 'محمد شرف'}</div>
-      <h1>{t['index_title']}</h1>
-      <p class="lead">{t['index_intro']}</p>
-{sections}    </section>"""
-    return page(lang, t['index_title'], t['index_intro'], canonical, body,
-                alternates={l: INDEX[l] for l in LANGS_WITH_ITEMS},
-                other_url=other_index(lang))
+      <div class="kicker">{kicker}</div>
+      <h1>{html.escape(title)}</h1>
+      <p class="lead">{html.escape(intro)}</p>
+{topic_nav(lang, all_items, topic)}{sections}    </section>"""
+    return page(lang, f"{title} · {t['writing']}" if topic else title, intro, canonical, body,
+                alternates=alternates, other_url=other_url)
 
 
 def write(path, text):
@@ -343,17 +385,31 @@ for a in articles:
 by_pair = {}
 for a in articles:
     by_pair.setdefault(a.get('pair') or a['slug'], []).append(a)
+# Topic addresses use the English topic name, so an Arabic topic takes its slug from its English pair
+TOPIC_SLUG = {a['topic']: topic_slug(a['topic']) for a in articles if a['lang'] == 'en'}
+for a in articles:
+    if a['topic'] not in TOPIC_SLUG:
+        en = next((b for b in by_pair[a.get('pair') or a['slug']] if b['lang'] == 'en'), None)
+        TOPIC_SLUG[a['topic']] = topic_slug(en['topic'] if en else a['topic']) or 'other'
+TOPIC_SLUGS_BY_LANG = {}
+for a in articles:
+    TOPIC_SLUGS_BY_LANG.setdefault(a['lang'], set()).add(TOPIC_SLUG[a['topic']])
 for a in articles:
     pair = next((b for b in by_pair[a.get('pair') or a['slug']] if b is not a), None)
     write(url_for(a), article_page(a, pair))
 # Index pages only exist once a language has something to list
 index_urls = []
+topic_urls = []
 for lang in ('en', 'ar'):
     items = sorted((a for a in articles if a['lang'] == lang), key=lambda a: a['date'], reverse=True)
     if items:
         url = '/writing/' if lang == 'en' else '/writing/ar/'
         write(url, index_page(lang, items))
         index_urls.append(url)
+        for topic in sorted({a['topic'] for a in items}):
+            write(topic_url(lang, topic), index_page(lang, items, topic))
+            if any(a['status'] == 'published' and a['topic'] == topic for a in items):
+                topic_urls.append(topic_url(lang, topic))
 
 # "Which Mohamed Sharaf?": the name is shared with others, including the late Egyptian actor.
 # A short page says who this site belongs to and where my real profiles are. It says nothing about him.
@@ -407,7 +463,7 @@ for lang, n in NAME_PAGE.items():
 # Add the writing pages and published articles to the sitemap (never drafts)
 published = [a for a in articles if a.get('status') == 'published']
 public_urls = [u for u in index_urls if any(a['lang'] == ('en' if u == '/writing/' else 'ar') for a in published)]
-extra = ''.join(f"  <url>\n    <loc>{SITE}{u}</loc>\n  </url>\n" for u in public_urls + [url_for(a) for a in published] + list(NAME_URLS.values()))
+extra = ''.join(f"  <url>\n    <loc>{SITE}{u}</loc>\n  </url>\n" for u in public_urls + topic_urls + [url_for(a) for a in published] + list(NAME_URLS.values()))
 if extra:
     sitemap = os.path.join(DIST, 'sitemap.xml')
     s = open(sitemap, encoding='utf-8').read().replace('</urlset>', extra + '</urlset>')

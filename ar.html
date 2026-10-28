@@ -93,8 +93,36 @@
           "Secure system design",
           "Infrastructure",
           "Software architecture",
-          "Artificial intelligence"
+          "Artificial intelligence",
+          "Software development",
+          "Rust",
+          "Go",
+          "Node.js",
+          "TypeScript",
+          "PHP",
+          "Laravel",
+          "Flutter",
+          "Ionic"
         ],
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Menoufia University",
+          "alternateName": "جامعة المنوفية",
+          "department": {
+            "@type": "Organization",
+            "name": "Faculty of Computers and Information"
+          }
+        },
+        "hasCredential": {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BSc in Computers and Information, Information Technology",
+          "dateCreated": "2006",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "Menoufia University"
+          }
+        },
         "knowsLanguage": [
           "ar",
           "en"
@@ -339,6 +367,17 @@
     .service li::before{content:'■';font-size:7px;color:var(--orange);margin-top:5px;flex-shrink:0}
 
     /* 03 / WHAT I DO: IN PRACTICE */
+    .code-story{margin-top:72px;padding-top:30px;border-top:1px solid var(--line);display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+    .code-story h3{font-size:28px;letter-spacing:-1px;font-weight:600;margin:10px 0 18px}
+    .code-story p{font-size:14.5px;line-height:1.85;color:var(--muted);margin:0 0 14px;max-width:520px}
+    .code-story-link{display:inline-flex;gap:8px;margin-top:6px;font-size:14px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--orange);padding-bottom:3px}
+    .code-story-link:hover{color:var(--orange-ink)}
+    .stack{margin:0}
+    .stack div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 0;border-top:1px dashed var(--line)}
+    .stack dt{font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--orange-ink);padding-top:5px}
+    .stack dd{margin:0;font-size:15px;line-height:1.6}
+    @media(max-width:860px){.code-story{grid-template-columns:1fr;gap:28px;margin-top:56px}}
+    @media(max-width:480px){.stack div{grid-template-columns:1fr;gap:4px}}
     .proof{margin-top:64px;padding-top:30px;border-top:1px solid var(--line)}
     .proof-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:22px}
     .proof-kicker{color:var(--muted)}
@@ -596,6 +635,10 @@
     .timeline p,.note-grid p,.service li,.partner-good,.next-steps li{font-size:14.5px}
     .proof-list li{font-size:14.5px}
     .proof-list li span,.proof-kicker{font-size:12px}
+    .stack dt{font-family:var(--sans);letter-spacing:0;text-transform:none;font-size:13px;font-weight:600}
+    .stack dd{font-size:15.5px}
+    .stack dd[dir=ltr]{text-align:right}
+    .code-story p{font-size:15px}
     .partner-privacy{font-style:normal;font-size:23px}
     @media(max-width:760px){.partner-privacy{font-size:20px}}
 
@@ -724,9 +767,26 @@
         <li><time class="mono" datetime="1996">1996</time><h3>أول كمبيوتر.</h3><p>BASIC وWindows 3.11 ومؤشر يومض وينفّذ ما أكتبه. كان ذلك كافيًا لأتعلّق بها.</p></li>
         <li><time class="mono" datetime="2000">2000</time><h3>أمن المعلومات، بجدّية.</h3><p>تحوّل الفضول إلى عمل: اختبار الأنظمة، وإيجاد الثغرات، ومساعدة أصحابها على إغلاقها قبل أن يجدها غيري.</p></li>
         <li><time class="mono" datetime="2002">2002</time><h3>شركتي الخاصة.</h3><p>نطاقات واستضافة وسيرفرات مخصصة مُدارة ومواقع وغرف دردشة صوتية. وبحلول 2005: نحو 500 موقع وأكثر من 2,000 غرفة. وما زالت تعمل حتى اليوم.</p></li>
-        <li><time class="mono" datetime="2006">2006</time><h3>هذا النطاق.</h3><p>مكان صغير على الإنترنت يخصّني. مرّ بتصميمات كثيرة، وهذا أحدثها.</p></li>
+        <li><time class="mono" datetime="2006">2006</time><h3>التخرّج، وهذا النطاق.</h3><p>بكالوريوس تكنولوجيا المعلومات من جامعة المنوفية، حصلت عليه وأنا أدير الشركة. وفي العام نفسه حجزت هذا الركن الصغير من الإنترنت.</p></li>
         <li><time class="mono">اليوم</time><h3>ما زلت أبني.</h3><p>أقود العمل التقني في القطاع العام، وأكتشف أين يفيد الذكاء الاصطناعي فعلًا، بأمان.</p></li>
       </ol>
+
+      <div class="code-story">
+        <div>
+          <span class="proof-kicker mono">جانب الكود</span>
+          <h3>لم أتوقف يومًا عن كتابة الكود.</h3>
+          <p>الأمن والاستشارات يأخذان الأضواء، لكن الكود لم يتوقف أبدًا. البداية كانت BASIC على أول كمبيوتر. ثم جاءت C وC++ وJava وC# وASP.NET، ثم PHP التي لم أحبها فعلًا إلا مع Laravel. ومع الموبايل جاء Ionic وFlutter. واليوم أكتب غالبًا بـRust وGo وNode.js وTypeScript.</p>
+          <p>وأحدث دليل: بنيت مولد كلمات مرور لأنني أردت واحدًا أثق به. ثم قلت: لماذا أحتفظ به لنفسي؟ صار اليوم Sharaf Tools: أكثر من 25 أداة مجانية بعشر لغات، على الويب وiOS وAndroid، وكل شيء يعمل داخل متصفحك.</p>
+          <a class="code-story-link" href="https://tools.mohamedsharaf.com/" target="_blank" rel="noopener">جرّب Sharaf Tools <span aria-hidden="true">↖</span></a>
+        </div>
+        <dl class="stack">
+          <div><dt>البداية</dt><dd lang="en">BASIC</dd></div>
+          <div><dt>على الطريق</dt><dd lang="en" dir="ltr">C · C++ · Java · C# · ASP.NET · PHP</dd></div>
+          <div><dt>المفضّل</dt><dd>إطار <span lang="en">Laravel</span>، سبب حبي لـ<span lang="en">PHP</span></dd></div>
+          <div><dt>على الموبايل</dt><dd lang="en" dir="ltr">Ionic · Flutter</dd></div>
+          <div><dt>كل يوم الآن</dt><dd lang="en" dir="ltr">Rust · Go · Node.js · TypeScript · JavaScript</dd></div>
+        </dl>
+      </div>
     </section>
 
     <!-- 02 / FIELD NOTES -->

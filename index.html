@@ -90,8 +90,36 @@
           "Secure system design",
           "Infrastructure",
           "Software architecture",
-          "Artificial intelligence"
+          "Artificial intelligence",
+          "Software development",
+          "Rust",
+          "Go",
+          "Node.js",
+          "TypeScript",
+          "PHP",
+          "Laravel",
+          "Flutter",
+          "Ionic"
         ],
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Menoufia University",
+          "alternateName": "جامعة المنوفية",
+          "department": {
+            "@type": "Organization",
+            "name": "Faculty of Computers and Information"
+          }
+        },
+        "hasCredential": {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "BSc in Computers and Information, Information Technology",
+          "dateCreated": "2006",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "Menoufia University"
+          }
+        },
         "knowsLanguage": [
           "ar",
           "en"
@@ -336,6 +364,17 @@
     .service li::before{content:'■';font-size:7px;color:var(--orange);margin-top:5px;flex-shrink:0}
 
     /* 03 / WHAT I DO: IN PRACTICE */
+    .code-story{margin-top:72px;padding-top:30px;border-top:1px solid var(--line);display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+    .code-story h3{font-size:28px;letter-spacing:-1px;font-weight:600;margin:10px 0 18px}
+    .code-story p{font-size:14.5px;line-height:1.85;color:var(--muted);margin:0 0 14px;max-width:520px}
+    .code-story-link{display:inline-flex;gap:8px;margin-top:6px;font-size:14px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--orange);padding-bottom:3px}
+    .code-story-link:hover{color:var(--orange-ink)}
+    .stack{margin:0}
+    .stack div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 0;border-top:1px dashed var(--line)}
+    .stack dt{font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--orange-ink);padding-top:5px}
+    .stack dd{margin:0;font-size:15px;line-height:1.6}
+    @media(max-width:860px){.code-story{grid-template-columns:1fr;gap:28px;margin-top:56px}}
+    @media(max-width:480px){.stack div{grid-template-columns:1fr;gap:4px}}
     .proof{margin-top:64px;padding-top:30px;border-top:1px solid var(--line)}
     .proof-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:22px}
     .proof-kicker{color:var(--muted)}
@@ -630,9 +669,26 @@
         <li><time class="mono" datetime="1996">1996</time><h3>First computer.</h3><p>BASIC, Windows 3.11 and a blinking cursor that did what I typed. That was enough. I was hooked.</p></li>
         <li><time class="mono" datetime="2000">2000</time><h3>Security, for real.</h3><p>Curiosity turned into work: testing systems, finding the holes and helping people close them before someone else found them.</p></li>
         <li><time class="mono" datetime="2002">2002</time><h3>My own company.</h3><p>Domains, hosting, managed dedicated servers, websites and voice chat rooms. By 2005: about 500 sites and 2,000+ rooms. It’s still running today.</p></li>
-        <li><time class="mono" datetime="2006">2006</time><h3>This domain.</h3><p>A small place on the internet that’s mine. It has been through a lot of redesigns. This is the newest one.</p></li>
+        <li><time class="mono" datetime="2006">2006</time><h3>Graduated. And this domain.</h3><p>A BSc in Information Technology from Menoufia University, earned while running the company. The same year, I claimed this small corner of the internet.</p></li>
         <li><time class="mono">Today</time><h3>Still building.</h3><p>Leading technical work in the public sector, and finding out where AI actually helps, safely.</p></li>
       </ol>
+
+      <div class="code-story">
+        <div>
+          <span class="proof-kicker mono">The code side</span>
+          <h3>I never stopped writing code.</h3>
+          <p>Security and consulting get the headlines, but the code never stopped. It started with BASIC on that first computer. Then came C and C++, Java, C# and ASP.NET, and PHP, which I only truly fell for once Laravel came along. Phones brought Ionic and Flutter. These days it’s mostly Rust, Go, Node.js and TypeScript.</p>
+          <p>The newest proof: I built a password generator because I wanted one I could trust. Then I thought, why keep it to myself? It’s now Sharaf Tools: 25+ free tools in 10 languages, on the web, iOS and Android, and everything runs in your browser.</p>
+          <a class="code-story-link" href="https://tools.mohamedsharaf.com/" target="_blank" rel="noopener">Try Sharaf Tools <span aria-hidden="true">↗</span></a>
+        </div>
+        <dl class="stack">
+          <div><dt>Where it began</dt><dd>BASIC</dd></div>
+          <div><dt>Along the way</dt><dd>C · C++ · Java · C# · ASP.NET · PHP</dd></div>
+          <div><dt>The favourite</dt><dd>Laravel, the reason I love PHP</dd></div>
+          <div><dt>On phones</dt><dd>Ionic · Flutter</dd></div>
+          <div><dt>Every day now</dt><dd>Rust · Go · Node.js · TypeScript · JavaScript</dd></div>
+        </dl>
+      </div>
     </section>
 
     <!-- 02 / FIELD NOTES -->

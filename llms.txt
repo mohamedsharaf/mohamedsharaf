@@ -3,6 +3,9 @@
 > Mohamed Sharaf (محمد شرف, also written Mohamed Ahmed Sharaf / محمد أحمد شرف) is a security and technology consultant based in Riyadh, Saudi Arabia. He has worked with computers since 1996, in information security since 2000, and has run his own hosting and web company since 2002. He helps startups, small businesses and government teams make their systems safer and simpler.
 
 - Egyptian, from Cairo; lives in Riyadh.
+- BSc in Computers and Information (Information Technology), Faculty of Computers and Information, Menoufia University, 2006, earned while running his company.
+- Still writes code: C, C++, Java, C#, ASP.NET, PHP (Laravel is his favourite framework), Go, Node.js and Rust; Ionic and Flutter for mobile. Today mostly Rust, Go, Node.js and TypeScript.
+- Built Sharaf Tools (https://tools.mohamedsharaf.com): 25+ free browser-based tools in 10 languages, also on iOS and Android.
 - Works in Arabic and English, remotely by default, with clients in Egypt, the Gulf, Europe and elsewhere.
 - By 2005 his company ran about 500 websites and more than 2,000 voice chat rooms, with 50,000 to 100,000 people online at once.
 - Never publishes client names.

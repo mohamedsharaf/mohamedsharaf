@@ -1,0 +1,18 @@
+<!--
+{"slug": "follina", "lang": "en", "pair": "follina", "status": "published",
+ "title": "Follina: a Word file that runs code, no macros needed",
+ "description": "A new Office zero-day abuses the Windows support tool. There’s no patch yet, but there is a workaround.",
+ "date": "2022-05-31", "topic": "Security"}
+-->
+<p>Over the weekend, researchers found Word documents that run code on Windows without any macros. Microsoft confirmed it yesterday as CVE-2022-30190, nicknamed Follina. The document loads a web page, which calls the Microsoft Support Diagnostic Tool (MSDT), which runs the attacker’s commands.</p>
+<p>Macros disabled? Doesn’t matter. With some file types, just previewing the file in Explorer can be enough.</p>
+<p>There’s no patch yet. Microsoft’s workaround is to disable the MSDT URL protocol:</p>
+<pre><code>reg export HKEY_CLASSES_ROOT\ms-msdt ms-msdt-backup.reg
+reg delete HKEY_CLASSES_ROOT\ms-msdt /f</code></pre>
+<p>Run as administrator, or push it through Group Policy or your device management. The troubleshooters still work from Windows settings; only the link-based launch is blocked.</p>
+<p>Also:</p>
+<ul>
+  <li>Make sure your antivirus and email filters are updated; most vendors have added detection.</li>
+  <li>Remind staff that a Word file from outside can be dangerous even without “Enable Content”.</li>
+  <li>Install Microsoft’s fix as soon as it ships, then decide whether to restore the setting.</li>
+</ul>

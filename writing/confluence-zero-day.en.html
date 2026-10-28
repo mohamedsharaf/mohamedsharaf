@@ -1,0 +1,16 @@
+<!--
+{"slug": "confluence-zero-day", "lang": "en", "pair": "confluence-zero-day", "status": "published",
+ "title": "Confluence zero-day: patch it or take it offline",
+ "description": "Every supported Confluence Server and Data Center version can be taken over without a login. Act today.",
+ "date": "2022-06-07", "topic": "Infrastructure"}
+-->
+<p>Last Thursday Atlassian warned of a critical bug in Confluence Server and Data Center (CVE-2022-26134): anyone who can reach the site can run code on it, without logging in. It was already being exploited when it was announced. Fixed versions came out a day later.</p>
+<p>Confluence often holds a company’s whole memory: procedures, passwords people shouldn’t have written down, network diagrams. And it’s often open to the internet so staff can reach it from home.</p>
+<p>What to do:</p>
+<ol>
+  <li><strong>Upgrade to a fixed version</strong> now. Atlassian lists them per release line.</li>
+  <li><strong>If you can’t today,</strong> block internet access to it, or shut it down until you can. Atlassian said the same.</li>
+  <li><strong>Check for signs of compromise:</strong> new files in the web folders, unknown admin users, odd processes started by the Confluence service.</li>
+  <li><strong>Put it behind a VPN or access proxy</strong> afterwards, so the next bug isn’t reachable by the whole internet.</li>
+</ol>
+<p>Atlassian Cloud customers aren’t affected. For self-hosted tools like this, the question is always the same: does it really need to face the internet?</p>

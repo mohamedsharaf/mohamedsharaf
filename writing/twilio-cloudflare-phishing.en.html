@@ -1,0 +1,18 @@
+<!--
+{"slug": "twilio-cloudflare-phishing", "lang": "en", "pair": "twilio-cloudflare-phishing", "status": "published",
+ "title": "Same phishing texts, two different endings",
+ "description": "Twilio and Cloudflare were hit by the same SMS phishing campaign. Hardware security keys made the difference.",
+ "date": "2022-08-16", "topic": "Security"}
+-->
+<p>This month two companies told the same story with different endings.</p>
+<p>Twilio said employees received text messages pretending to come from its IT department, with links to a fake login page. Some entered their details, and the attackers reached data for some customers.</p>
+<p>Cloudflare got the same kind of texts at almost the same time. Three employees entered their username and password on the fake page. Nothing happened, because Cloudflare requires hardware security keys to log in, and those keys won’t work on a fake domain.</p>
+<p>Same attack. Same human mistake. The difference was the type of MFA.</p>
+<p>Codes by SMS or app can be typed into a phishing page, and the attacker uses them right away. Security keys and other FIDO2 methods check the website’s real address before they answer.</p>
+<p>What I’d do:</p>
+<ul>
+  <li>Start with admins, finance, support and engineers: give them security keys.</li>
+  <li>Buy two per person, one as a backup.</li>
+  <li>Plan the rest of the company next.</li>
+</ul>
+<p>Cloudflare also praised the employees who reported the texts quickly. Both matter.</p>

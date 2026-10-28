@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!--
+  Facebook cover, 1640x924 (uploads at 2x; phones show all of it).
+  Computers crop about 150px off the top and bottom, so everything sits between y=150 and y=774.
+  The profile photo covers the bottom-left corner, so the verse goes bottom-right.
+  Render from this folder:
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --force-device-scale-factor=1 \
+    --window-size=1640,924 --virtual-time-budget=4000 --screenshot=facebook-cover-1640x924.png "file://$PWD/cover-source.html"
+-->
+<style>
+  @font-face{font-family:Manrope;src:url('../../assets/manrope-latin.woff2') format('woff2');font-weight:200 800}
+  @font-face{font-family:'IBM Plex Sans Arabic';src:url('../../assets/plex-arabic-400.woff2') format('woff2');font-weight:400}
+  @font-face{font-family:'IBM Plex Sans Arabic';src:url('../../assets/plex-arabic-600.woff2') format('woff2');font-weight:600}
+  @font-face{font-family:Amiri;src:url('../../assets/amiri-arabic.woff2') format('woff2')}
+  :root{--bg:#0a0e0d;--text:#f3efe7;--muted:#9aa595;--orange:#e85532;--orange-hot:#ff7a4f;--green:#bed4a3;--mono:'SFMono-Regular',Menlo,monospace}
+  *{box-sizing:border-box;margin:0}
+  html,body{width:1640px;height:924px;overflow:hidden}
+  body{background:radial-gradient(ellipse 70% 60% at 50% 46%,#16201c 0%,#0d1311 55%,var(--bg) 100%);color:var(--text);font-family:Manrope,'IBM Plex Sans Arabic',sans-serif;position:relative}
+  canvas{position:absolute;inset:0}
+  .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(190,212,163,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(190,212,163,.045) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 75% 70% at 50% 46%,#000 30%,transparent 85%)}
+  .plate{position:absolute;left:170px;width:1300px;top:250px;height:340px;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(10,14,13,.92) 40%,rgba(10,14,13,0) 100%)}
+
+  .row{position:absolute;left:150px;right:150px;top:300px;height:230px;display:grid;grid-template-columns:1fr 150px 1fr;align-items:center;column-gap:26px}
+  .side{display:flex;flex-direction:column;gap:12px}
+  .ar{direction:rtl}
+  .who{font:600 15px var(--mono);letter-spacing:.32em;color:var(--green);text-transform:uppercase;opacity:.9}
+  .ar .who{font:600 20px 'IBM Plex Sans Arabic',sans-serif;letter-spacing:0}
+  h1{font-size:70px;line-height:1;letter-spacing:-.065em;font-weight:750;white-space:nowrap}
+  h1 .hot{color:var(--orange-hot);text-shadow:0 0 22px rgba(232,85,50,.55)}
+  .ar h1{font-size:62px;line-height:1.25;letter-spacing:0;font-weight:600}
+  .sub{font-size:17px;line-height:1.4;color:#d9d4ca}
+  .ar .sub{font-size:20px}
+  .mark{justify-self:center;display:grid;grid-template-columns:repeat(2,44px);gap:11px;transform:rotate(-7deg);filter:drop-shadow(0 0 16px rgba(232,85,50,.7)) drop-shadow(0 0 50px rgba(232,85,50,.35))}
+  .mark i{width:44px;height:44px;background:linear-gradient(180deg,#ff7a4f,#d24a26)}
+  .mark i:last-child{opacity:.4}
+  .site{position:absolute;top:560px;left:0;right:0;text-align:center;font:16px var(--mono);letter-spacing:.3em;color:var(--muted)}
+  .site span{color:var(--orange-hot)}
+
+  /* the verse, bottom-right, inside the band computers show */
+  .verse{position:absolute;right:96px;top:640px;direction:rtl;text-align:right;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+  .verse p{font-family:Amiri,'Geeza Pro',serif;font-size:44px;line-height:1.5;color:var(--text);text-shadow:0 2px 18px rgba(0,0,0,.8)}
+  .verse small{font:16px 'IBM Plex Sans Arabic',sans-serif;color:var(--muted);display:flex;align-items:center;gap:10px}
+  .verse small::before{content:"";width:46px;height:2px;background:var(--orange)}
+</style>
+</head>
+<body>
+  <canvas id="net" width="1640" height="924"></canvas>
+  <div class="grid"></div>
+  <div class="plate"></div>
+
+  <div class="row">
+    <div class="side en">
+      <div class="who">Mohamed Sharaf</div>
+      <h1>Still <span class="hot">curious.</span></h1>
+      <p class="sub">Tech, security &amp; AI, explained in plain words.</p>
+    </div>
+    <div class="mark"><i></i><i></i><i></i><i></i></div>
+    <div class="side ar" lang="ar">
+      <div class="who">محمد شرف</div>
+      <h1>ما زلتُ <span class="hot">فضوليًا.</span></h1>
+      <p class="sub">التقنية والأمن والذكاء الاصطناعي، بكلام واضح.</p>
+    </div>
+  </div>
+
+  <div class="site">MOHAMEDSHARAF<span>.</span>COM</div>
+
+  <div class="verse" lang="ar">
+    <p>﴿وَمَا أُوتِيتُمْ مِنَ الْعِلْمِ إِلَّا قَلِيلًا﴾</p>
+    <small>سورة الإسراء، الآية 85</small>
+  </div>
+
+<script>
+  // Same deterministic constellation as the YouTube banner, scaled to this size
+  const c = document.getElementById('net'), x = c.getContext('2d');
+  const W = 1640, H = 924;
+  let seed = 1996; const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
+  const pts = [];
+  for (let i = 0; i < 150; i++) {
+    const px = rnd() * W, py = rnd() * H;
+    const dx = (px - W / 2) / 780, dy = (py - 420) / 200;           // calm centre behind the titles
+    const vx = (px - 1260) / 330, vy = (py - 700) / 90;             // calm patch behind the verse
+    if (dx * dx + dy * dy < 1 || vx * vx + vy * vy < 1) continue;
+    pts.push([px, py, rnd()]);
+  }
+  for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+    const a = pts[i], b = pts[j], d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+    if (d < 130) {
+      const hot = (a[2] > .86 || b[2] > .86);
+      x.strokeStyle = hot ? `rgba(232,85,50,${(1 - d / 130) * .55})` : `rgba(190,212,163,${(1 - d / 130) * .16})`;
+      x.lineWidth = hot ? 1.2 : 1;
+      x.beginPath(); x.moveTo(a[0], a[1]); x.lineTo(b[0], b[1]); x.stroke();
+    }
+  }
+  for (const [px, py, k] of pts) {
+    const hot = k > .86;
+    if (hot) { x.shadowColor = 'rgba(255,122,79,.9)'; x.shadowBlur = 14; }
+    x.fillStyle = hot ? '#ff7a4f' : 'rgba(190,212,163,.55)';
+    x.beginPath(); x.arc(px, py, hot ? 3.2 : 1.8, 0, 7); x.fill();
+    x.shadowBlur = 0;
+  }
+</script>
+</body>
+</html>

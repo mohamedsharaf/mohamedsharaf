@@ -14,7 +14,7 @@
 | ⬜ | Google Search Console: Submit لـ`https://mohamedsharaf.com/sitemap.xml` | |
 | ⬜ | Google: Request Indexing للرئيسية و`/ar` و`/which-mohamed-sharaf/` | من URL Inspection |
 | ⬜ | **Bing Webmaster Tools: دلوقتي، مش بعد جوجل** | استيراد من Search Console في دقيقتين. Bing بيشغّل بحث ChatGPT وCopilot وDuckDuckGo. بعدها استخدم أداة **Site Move** بتاعته من ‎.net لـ‎.com. |
-| ⬜ | جيت هب: لينك الموقع، والمكان (Riyadh)، ونبذة سطر واحد | |
+| ⬜ | جيت هب: النبذة، ولينك الموقع (لسه mohamedsharaf.net)، والمكان، وحسابات السوشيال، وتثبيت 6 مستودعات | النصوص جاهزة. وملف `README.md` للبروفايل مكتوب وبيترفع مع الإصدار. |
 | ⬜ | يوتيوب: اسم القناة «Mohamed Sharaf»، والوصف، ولينك الموقع | الوصف والبنر جاهزين في `docs/youtube/` |
 | ⬜ | لينكدإن وفيسبوك: لينك الموقع ‎.com | |
 | ✅ | ‏www.sharaf.dev | تم |

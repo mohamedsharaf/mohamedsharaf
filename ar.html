@@ -941,21 +941,21 @@
       <div class="journey-layout" id="playground">
         <div>
           <div class="era-tabs" role="tablist" aria-label="استكشف الحقب">
-            <button class="era-tab" id="tab-basic" role="tab" aria-controls="panel-basic" aria-selected="true" data-era="basic"><span>1996</span>أيام BASIC</button>
+            <button class="era-tab" id="tab-now" role="tab" aria-controls="panel-now" aria-selected="true" data-era="now"><span>اليوم</span>ما زلت أستكشف</button>
             <button class="era-tab" id="tab-web" role="tab" aria-controls="panel-web" aria-selected="false" tabindex="-1" data-era="web"><span>2006</span>على الإنترنت</button>
-            <button class="era-tab" id="tab-now" role="tab" aria-controls="panel-now" aria-selected="false" tabindex="-1" data-era="now"><span>اليوم</span>ما زلت أستكشف</button>
+            <button class="era-tab" id="tab-basic" role="tab" aria-controls="panel-basic" aria-selected="false" tabindex="-1" data-era="basic"><span>1996</span>أيام BASIC</button>
           </div>
-          <div class="era-copy" id="era-copy"><h3>بدأ كل شيء بمؤشر يومض.</h3><p>أول كمبيوتر لي، 1996. BASIC وWindows 3.11، ومتعة بسيطة: أن تكتب شيئًا فترى الكمبيوتر ينفّذه.</p><span class="era-tag mono">1996</span><span class="era-tag mono">BASIC</span><span class="era-tag mono">Windows 3.11</span><div class="era-caption mono"><span aria-hidden="true">↲</span> هيا، غيّر الكلمات واضغط RUN. كمبيوتر 1996 لا يتكلم إلا الإنجليزية.</div></div>
+          <div class="era-copy" id="era-copy"><h3>فصل جديد. والفضول نفسه.</h3><p>من BASIC إلى الذكاء الاصطناعي، رأيت الحوسبة تعيد اختراع نفسها مرة بعد مرة. الأدوات تتغير، والأسئلة لا: كيف يعمل؟ أين ينكسر؟ وهل نستطيع أن نثق به؟</p><span class="era-tag mono">اليوم</span><span class="era-tag mono">ذكاء اصطناعي</span><span class="era-tag mono">ما زلت أتعلم</span><div class="era-caption mono"><span aria-hidden="true">↳</span> قاعدة صغيرة، واحتمالات كثيرة. جرّبها.</div></div>
         </div>
         <div class="interactive">
-          <div id="panel-basic" role="tabpanel" aria-labelledby="tab-basic" tabindex="0">
+          <div id="panel-basic" role="tabpanel" aria-labelledby="tab-basic" tabindex="0" hidden>
             <div class="terminal" dir="ltr" lang="en"><div class="terminal-title mono"><span>◧ &nbsp; CURIOSITY.BAS</span><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span></div><div class="terminal-body"><p class="terminal-hint">A tiny time machine. No installation required.</p><label class="code-label" for="basic-code">Your program · editable</label><textarea class="code-editor" id="basic-code" spellcheck="false" aria-describedby="basic-support">10 PRINT "HELLO, WORLD!"
 20 PRINT "STILL CURIOUS."
 30 PRINT "ALWAYS WILL BE."</textarea><div class="terminal-tools"><button class="run-button" id="run-basic">▶ &nbsp; Run program</button><button class="reset-button" id="reset-basic">Reset</button><button class="reset-button" id="loop-basic">Try a loop ↗</button></div><pre class="terminal-output" id="basic-output" role="status" aria-live="polite">Ready when you are.
 </pre></div><div class="terminal-bottom"><span>PERSONAL COMPUTER · PERSONAL POSSIBILITIES</span><span>OK</span></div></div><div class="under-terminal" id="basic-support"><span>يدعم PRINT وGOTO وREM وEND</span><span dir="ltr">CTRL/⌘ + ENTER</span></div>
           </div>
           <div id="panel-web" role="tabpanel" aria-labelledby="tab-web" tabindex="0" hidden><div class="browser-2006" dir="ltr" lang="en"><div class="old-title"><span>Mohamed’s corner of the web</span><span aria-hidden="true">_ □ ×</span></div><div class="old-address">Address <span>http://mohamedsharaf.com</span></div><div class="old-page"><small>★ &nbsp; WELCOME TO MY HOMEPAGE &nbsp; ★</small><h3>Hello, World Wide Web.</h3><p>A little space on the internet.<br>Mine, since 2006.</p><div class="old-rule"></div><button id="guestbook">Leave a little hello ☺</button><p class="guest-message" id="guest-message" aria-live="polite">You found your way here. That’s pretty cool.</p></div></div><p class="era-disclaimer">إعادة بناء مرحة لتلك الحقبة، وليست صفحة مؤرشفة.<br>تحيات دفتر الزوار تبقى في هذا التبويب فقط.</p></div>
-          <div id="panel-now" role="tabpanel" aria-labelledby="tab-now" tabindex="0" hidden><div class="generative"><div class="generative-title mono">قليل من العشوائية الجميلة</div><canvas id="curiosity-canvas" aria-label="كوكبة برتقالية مجردة تتغير عندما تضغط احتمال جديد"></canvas><div class="generative-tools mono"><span id="seed-label">احتمال / 001</span><button id="new-pattern">احتمال جديد ↖</button></div></div><p class="era-disclaimer">لعبة صغيرة بالكود التوليدي، تعمل داخل متصفحك.<br>لا يوجد نموذج ذكاء اصطناعي هنا، مجرد دعوة للعب.</p></div>
+          <div id="panel-now" role="tabpanel" aria-labelledby="tab-now" tabindex="0"><div class="generative"><div class="generative-title mono">قليل من العشوائية الجميلة</div><canvas id="curiosity-canvas" aria-label="كوكبة برتقالية مجردة تتغير عندما تضغط احتمال جديد"></canvas><div class="generative-tools mono"><span id="seed-label">احتمال / 001</span><button id="new-pattern">احتمال جديد ↖</button></div></div><p class="era-disclaimer">لعبة صغيرة بالكود التوليدي، تعمل داخل متصفحك.<br>لا يوجد نموذج ذكاء اصطناعي هنا، مجرد دعوة للعب.</p></div>
         </div>
       </div>
     </section>

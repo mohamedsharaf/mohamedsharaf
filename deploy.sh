@@ -11,5 +11,9 @@ case "$TURNSTILE_SITEKEY" in
 esac
 export TURNSTILE_SITEKEY
 
+# Cloudflare Web Analytics site token (public, from Web Analytics in the dashboard)
+CF_BEACON_TOKEN="${CF_BEACON_TOKEN:-}"
+export CF_BEACON_TOKEN
+
 sh build.sh
 npx -y wrangler@4 deploy

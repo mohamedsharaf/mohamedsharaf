@@ -31,7 +31,7 @@
 | ✅ | نشر مقال «رفع الملفات» | جاهز بالعربي والإنجليزي |
 | ✅ | ‏RSS للكتابات | ‏`/writing/feed.xml` و`/writing/ar/feed.xml`، والروابط القديمة `/feed/` تحوّل عليه |
 | ✅ | صورة مشاركة لكل مقال | ‏104 صورة في `assets/og/`، بتتعمل بـ`python3 tools/make_og.py` (بيرسم الجديد والمتغير بس) |
-| ⬜ | إحصائيات من غير cookies | ‏Cloudflare Web Analytics (مجانية)، مع تعديل الـCSP |
+| 🟡 | إحصائيات من غير cookies | ‏Cloudflare Web Analytics (مجانية). البناء جاهز (`CF_BEACON_TOKEN` في `deploy.sh`، والـCSP بيتظبط لوحده). مستني الـtoken من لوحة Cloudflare. |
 
 ---
 

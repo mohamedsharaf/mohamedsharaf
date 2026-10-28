@@ -1,0 +1,12 @@
+<!--
+{"slug": "subdomain-takeover", "lang": "en", "pair": "subdomain-takeover", "status": "published", "title": "Old DNS records can hand over your subdomain", "description": "A DNS record pointing to a cloud service you deleted lets someone else claim it, and serve pages under your name.", "date": "2026-03-03", "topic": "Infrastructure"}
+-->
+<p>You set up <code>promo.example.com</code> pointing to a cloud app or a storage bucket. The campaign ends, someone deletes the app, but the DNS record stays. Anyone who creates an app with the same name on that service now controls a page on your domain.</p>
+<p>That’s subdomain takeover. It’s used for phishing pages that look completely legitimate, and sometimes to steal cookies set for your whole domain.</p>
+<ul>
+  <li>Export your DNS zone and look at every CNAME pointing to a cloud provider, CDN, help desk or landing-page tool.</li>
+  <li>Open each one. An error like “no such app”, “bucket does not exist” or a provider’s default page is a red flag.</li>
+  <li>Delete records for things that no longer exist.</li>
+  <li>Make it a rule: when a service is shut down, its DNS record is removed the same day.</li>
+</ul>
+<p>DNS is easy to add and easy to forget. Review it every few months.</p>

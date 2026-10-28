@@ -1,0 +1,13 @@
+<!--
+{"slug": "fortimail-zero-day", "lang": "en", "pair": "fortimail-zero-day", "status": "published", "title": "FortiMail zero-day: lock down the admin interface", "description": "A critical FortiMail bug is being exploited and fixed releases aren’t all out yet. Disable IBE or restrict management access now.", "date": "2026-10-02", "topic": "Security"}
+-->
+<p>Fortinet published an advisory yesterday for a critical FortiMail flaw (CVE-2026-104286, CVSS 9.8). It’s a path traversal bug that lets an attacker with no login write files to the system through crafted web requests, and it’s already being exploited. CISA added it to its exploited list the same day.</p>
+<p>Affected: FortiMail 7.2, 7.4, 7.6 and 8.0 branches. Fixes are planned in 8.0.2, 7.6.7 and 7.4.9. Users on 7.2 are told to move to 7.4 or later.</p>
+<p>Until you can patch:</p>
+<ul>
+  <li>Disable the IBE (identity-based encryption) feature if you don’t use it, as Fortinet suggests.</li>
+  <li>Block internet access to the management interface, or allow only a trusted internal network.</li>
+  <li>Check logs and accounts for anything new, including mail archive or forwarding settings you didn’t create.</li>
+  <li>Apply the fixed release as soon as it appears for your branch.</li>
+</ul>
+<p>A mail gateway sees every message in and out of the company. A compromise there is quiet and very valuable.</p>

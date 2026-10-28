@@ -1,0 +1,12 @@
+<!--
+{"slug": "open-redirects", "lang": "en", "pair": "open-redirects", "status": "published", "title": "Open redirects make phishing links look like yours", "description": "A link on your domain that forwards to any URL lets attackers borrow your name. Only redirect to places you choose.", "date": "2026-07-07", "topic": "Software"}
+-->
+<p>Many sites have a URL like <code>/login?next=…</code> or <code>/out?url=…</code> that sends the visitor somewhere after an action. If it accepts any address, an attacker can send a link that starts with your real domain and ends on their phishing page. People check the domain, see yours, and click.</p>
+<p>Email filters often trust it too, because the domain is clean.</p>
+<p>How to fix it in your code:</p>
+<ul>
+  <li>Only allow relative paths that start with a single <code>/</code>, and reject <code>//</code> and backslashes.</li>
+  <li>If you must redirect to other domains, keep an allowlist and check the parsed hostname exactly, not with “contains”.</li>
+  <li>Better still, pass an ID (<code>?next=billing</code>) and map it to a URL on the server.</li>
+  <li>Search your code and old marketing pages for redirect endpoints. Tracking links from old campaigns are a common leftover.</li>
+</ul>

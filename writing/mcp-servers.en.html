@@ -1,0 +1,14 @@
+<!--
+{"slug": "mcp-servers", "lang": "en", "pair": "mcp-servers", "status": "published", "title": "Before you connect an MCP server", "description": "MCP servers let AI assistants use your tools. Each one is code you run with your permissions. Check it like any other software.", "date": "2026-01-22", "topic": "AI"}
+-->
+<p>The Model Context Protocol, MCP, is how AI assistants like Claude connect to other tools: your files, GitHub, a database, your calendar. Adding one takes a minute. That’s the problem.</p>
+<p>An MCP server is a program. It runs with your access, sees what you ask the assistant, and returns text the assistant will trust. A bad one can read files it shouldn’t, or slip instructions into its replies.</p>
+<p>Before adding one:</p>
+<ul>
+  <li>Prefer servers from the vendor itself or a well-known source, and look at who maintains it.</li>
+  <li>Check what it can do. A read-only tool is safer than one that writes or deletes.</li>
+  <li>Give it a token with narrow scope, not your personal admin key.</li>
+  <li>Pin the version, and read the changes before updating.</li>
+  <li>Remove the ones you stopped using.</li>
+</ul>
+<p>In a company, keep a short approved list. Otherwise everyone installs their own, and nobody knows what’s connected to what.</p>

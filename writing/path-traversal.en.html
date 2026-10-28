@@ -1,0 +1,12 @@
+<!--
+{"slug": "path-traversal", "lang": "en", "pair": "path-traversal", "status": "published", "title": "Path traversal: ../ is still breaking apps", "description": "If a filename from the user ends up in a file path, someone will try ../../etc/passwd. Check the final path, not the input.", "date": "2026-08-06", "topic": "Software"}
+-->
+<p>A download endpoint takes <code>?file=report.pdf</code> and reads it from a folder. Someone sends <code>?file=../../config/.env</code> instead. If the code just joins the folder and the input, it reads the config file. The same bug in an upload or extract function can write files anywhere, which often means running code.</p>
+<p>This year’s exploited bugs in security appliances and file servers include plenty of path traversal. It’s old, and it keeps happening.</p>
+<p>How to avoid it:</p>
+<ul>
+  <li>Don’t use user input as a path at all if you can. Store files under random IDs and look up the name in a database.</li>
+  <li>If you must, resolve the full path (<code>realpath</code>, <code>Path.resolve</code>) and check it still starts with the allowed folder.</li>
+  <li>Reject absolute paths, <code>..</code>, null bytes and backslashes before you even get there.</li>
+  <li>When extracting ZIP or TAR files, check every entry’s path the same way.</li>
+</ul>

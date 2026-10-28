@@ -1,0 +1,13 @@
+<!--
+{"slug": "open-ports-audit", "lang": "en", "pair": "open-ports-audit", "status": "published", "title": "What can the internet see? Scan yourself", "description": "Most break-ins start with something exposed that nobody remembered. Scan your own addresses before someone else does.", "date": "2026-02-19", "topic": "Infrastructure"}
+-->
+<p>Attackers don’t start with your website. They scan every address you own and look for anything listening: an old remote desktop, a database, a printer’s web page, a test server from last year.</p>
+<p>You can see the same thing they see, for free.</p>
+<ol>
+  <li>List your public IP addresses and domains. Your ISP, cloud console and DNS records will give you most of them.</li>
+  <li>Look them up on Shodan or Censys, or run <code>nmap</code> from outside your network.</li>
+  <li>For each open port, answer: what is it, who owns it, does it need to be public?</li>
+  <li>Close what isn’t needed. Put admin interfaces behind a VPN or an access proxy.</li>
+  <li>Repeat monthly, or set up alerts for new open ports.</li>
+</ol>
+<p>The first scan is always surprising. Usually the surprise is something someone set up “just for a week”.</p>

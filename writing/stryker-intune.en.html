@@ -1,0 +1,12 @@
+<!--
+{"slug": "stryker-intune", "lang": "en", "pair": "stryker-intune", "status": "published", "title": "Stryker: device management used to wipe the company", "description": "Attackers took over an Intune admin account at Stryker and used it to wipe devices across the company. Your MDM can do the same.", "date": "2026-03-13", "topic": "Security"}
+-->
+<p>On 11 March, medical device maker Stryker was hit by a destructive attack. According to reports, the attackers, an Iran-linked group calling itself Handala, compromised a Microsoft Intune administrator account, created a new global admin, and used Intune’s own remote wipe to factory-reset devices across the company, including staff’s personal phones enrolled in the BYOD programme. Estimates of the number of devices vary widely. Stryker says it found no sign that data was taken.</p>
+<p>No malware was needed. The management tool did exactly what it was designed to do.</p>
+<ul>
+  <li>Require phishing-resistant MFA for every admin of Intune, Entra or any MDM.</li>
+  <li>Turn on Intune’s multi-admin approval for wipes and other destructive actions.</li>
+  <li>Alert on new global admins, and on bulk wipe or retire commands.</li>
+  <li>Use separate admin accounts that don’t read email.</li>
+  <li>Check what a wipe does to personal phones in your BYOD setup. A selective wipe of work data is usually enough.</li>
+</ul>

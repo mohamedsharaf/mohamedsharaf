@@ -1,0 +1,12 @@
+<!--
+{"slug": "slopsquatting", "lang": "en", "pair": "slopsquatting", "status": "published", "title": "AI invents package names. Attackers register them", "description": "Coding assistants sometimes invent package names. Attackers publish malware under those names and wait.", "date": "2026-04-02", "topic": "AI"}
+-->
+<p>Ask an AI coding assistant to solve a problem and it may tell you to install a package that sounds perfect but doesn’t exist. The model made up a plausible name. Researchers noticed the same invented names come up again and again, so attackers register them on npm and PyPI with malicious code inside. The trick has a name now: slopsquatting.</p>
+<p>The person installing it trusts the suggestion because it came from a tool they use every day.</p>
+<ul>
+  <li>Before installing a package you haven’t heard of, check it on the registry: age, downloads, maintainer, linked repository.</li>
+  <li>Be suspicious of packages created in the last few weeks with few downloads.</li>
+  <li>Use a lockfile and review dependency changes in pull requests, including ones an agent made.</li>
+  <li>If your AI tool can run <code>npm install</code> or <code>pip install</code> by itself, require approval for new packages.</li>
+</ul>
+<p>The assistant is fast and confident. It doesn’t check whether a package is real. You have to.</p>

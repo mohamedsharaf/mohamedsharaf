@@ -1,0 +1,12 @@
+<!--
+{"slug": "litellm-sql", "lang": "en", "pair": "litellm-sql", "status": "published", "title": "LiteLLM proxy SQL injection: patch your AI gateway", "description": "A critical bug in LiteLLM’s proxy lets attackers read its database without logging in. Exploitation started within days.", "date": "2026-05-12", "topic": "AI"}
+-->
+<p>Two months after the poisoned LiteLLM packages, the proxy has a different problem. A critical SQL injection bug in LiteLLM proxy versions 1.81.16 to 1.83.6 lets an attacker with no login read, and possibly change, the proxy’s database. CISA added it to its exploited list last week, and researchers saw exploitation attempts about a day and a half after the advisory.</p>
+<p>That database typically holds virtual API keys, team budgets, usage logs and settings for every model provider.</p>
+<ul>
+  <li>Upgrade the proxy to a fixed version now.</li>
+  <li>Don’t expose the proxy’s admin UI and API to the internet. Put it behind a VPN or an access proxy.</li>
+  <li>If it was exposed on a vulnerable version, rotate the master key, the virtual keys and the provider API keys stored in it.</li>
+  <li>Check provider dashboards for usage spikes you can’t explain.</li>
+</ul>
+<p>AI infrastructure is ordinary infrastructure: web apps, databases and secrets. It needs the same patching.</p>

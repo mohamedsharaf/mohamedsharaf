@@ -1,0 +1,13 @@
+<!--
+{"slug": "tls-200-days", "lang": "en", "pair": "tls-200-days", "status": "published", "title": "Certificates drop to 200 days in March", "description": "From 15 March, public TLS certificates can last at most 200 days. If anyone renews yours by hand, fix that now.", "date": "2026-01-05", "topic": "Infrastructure"}
+-->
+<p>From 15 March 2026, publicly trusted TLS certificates can be valid for 200 days at most, down from 398. It drops again to 100 days in March 2027, and to 47 days in 2029.</p>
+<p>If your certificates renew automatically, through Let’s Encrypt, your host or Cloudflare, nothing changes for you. If someone buys a certificate once a year and installs it by hand, that person is about to do it twice a year, then four times, then eight. Sooner or later one gets missed and the site goes down.</p>
+<p>This month:</p>
+<ul>
+  <li>List every certificate you own, including the ones on firewalls, mail servers, VPNs and old internal apps.</li>
+  <li>Mark which ones renew themselves and which don’t.</li>
+  <li>Move the manual ones to ACME, or ask your vendor how they’ll handle the shorter lifetime.</li>
+  <li>Add expiry monitoring that warns you two weeks ahead.</li>
+</ul>
+<p>Short certificates are a good thing. Manual renewal isn’t.</p>

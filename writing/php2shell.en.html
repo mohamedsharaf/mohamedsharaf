@@ -1,0 +1,12 @@
+<!--
+{"slug": "php2shell", "lang": "en", "pair": "php2shell", "status": "published", "title": "PHP2Shell: update PHP and restart every worker", "description": "Two critical bugs in PHP itself allow remote code execution on web servers. Patches are out for 8.2 to 8.5. Older versions need your distribution or an LTS vendor.", "date": "2026-10-22", "topic": "Software"}
+-->
+<p>Yesterday the PHP project shipped emergency fixes for two critical flaws in PHP core, nicknamed PHP2Shell (CVE-2026-109618 and CVE-2026-109619). They allow remote code execution without a login on PHP installations that serve web requests: PHP-FPM, Apache mod_php, php-cgi, LiteSpeed and others. PHP says no configuration change fully mitigates them. CISA is urging immediate patching, and security firms report exploit attempts.</p>
+<p>Fixed versions: 8.2.35, 8.3.36, 8.4.27 and 8.5.12.</p>
+<ul>
+  <li>Update PHP on every server, including shared hosting and cPanel’s multiple PHP versions.</li>
+  <li>Restart PHP-FPM, Apache or LiteSpeed afterwards. The old code keeps running until you do.</li>
+  <li>PHP 8.1 and older get no official packages. Use your distribution’s or an LTS vendor’s backport, or upgrade.</li>
+  <li>Ask your hosting provider when they patched, if you don’t run the server.</li>
+</ul>
+<p>This is exactly the case I wrote about in August: when a serious PHP bug lands, an unsupported version leaves you scrambling.</p>

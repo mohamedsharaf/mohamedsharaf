@@ -1,0 +1,13 @@
+<!--
+{"slug": "kill-switch", "lang": "en", "pair": "kill-switch", "status": "published", "title": "Every risky feature needs an off switch", "description": "When a feature misbehaves or is being abused, the fastest fix is turning it off, without a deploy.", "date": "2026-06-02", "topic": "Software"}
+-->
+<p>A new export feature is being used to scrape customer data. A payment integration starts double-charging. An AI chat feature is saying things it shouldn’t. In each case the first question is the same: how fast can we turn it off?</p>
+<p>If the answer is “build, review and deploy a change”, that’s an hour on a good day. A kill switch is a setting that disables the feature immediately.</p>
+<ul>
+  <li>Put risky or new features behind a flag that can be switched off from an admin page or config store.</li>
+  <li>Make “off” safe: the app should show a friendly message, not crash.</li>
+  <li>Decide in advance who may flip it, and make sure that person can reach it at 3 am.</li>
+  <li>Test the switch before launch. An untested off switch is a guess.</li>
+  <li>Remove flags you no longer need, so the list stays readable.</li>
+</ul>
+<p>It feels like extra work until the first incident. Then it’s the most useful code you have.</p>

@@ -1,0 +1,12 @@
+<!--
+{"slug": "trivy-actions", "lang": "en", "pair": "trivy-actions", "status": "published", "title": "Pin GitHub Actions to a commit, not a tag", "description": "Attackers backdoored the Trivy scanner and rewrote its GitHub Action tags. Pipelines pinned to tags ran the attacker’s code.", "date": "2026-03-20", "topic": "Software"}
+-->
+<p>Yesterday Aqua Security’s Trivy, a popular open-source vulnerability scanner, was compromised. A backdoored release went out, and the attackers force-pushed almost every version tag of the <code>trivy-action</code> GitHub Action to malicious commits. Any pipeline using <code>aquasecurity/trivy-action@v0.x</code> ran code that stole the secrets available to that workflow.</p>
+<p>A security scanner was the way in. The irony doesn’t make it less serious.</p>
+<p>If you used it in the last few days, treat your CI secrets as stolen and rotate them: cloud keys, registry tokens, deploy keys, package publishing tokens.</p>
+<p>For every action you use:</p>
+<ul>
+  <li>Pin to a full commit SHA, with the version in a comment. Tags can be moved. Commits can’t.</li>
+  <li>Let Dependabot or Renovate propose updates, and read them.</li>
+  <li>Give workflows the smallest <code>permissions</code> block, and keep publishing tokens out of jobs that run third-party tools.</li>
+</ul>

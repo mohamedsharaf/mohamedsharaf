@@ -1,0 +1,14 @@
+<!--
+{"slug": "security-txt", "lang": "en", "pair": "security-txt", "status": "published", "title": "security.txt: tell people where to report bugs", "description": "When someone finds a hole in your site, they need a way to tell you. A two-line file makes that easy.", "date": "2026-03-31", "topic": "Software"}
+-->
+<p>Every few months someone emails info@ or messages a random employee on LinkedIn: “I found a security problem on your website.” Sometimes it’s a scam. Often it’s real, and the message sits unread.</p>
+<p>A <code>security.txt</code> file tells researchers where to send reports. It lives at <code>/.well-known/security.txt</code> and can be as short as:</p>
+<pre><code>Contact: mailto:security@example.com
+Expires: 2027-03-31T00:00:00Z</code></pre>
+<p>A few things make it work:</p>
+<ul>
+  <li>Use an address that a real person reads, and reply within a few days, even just to say thanks.</li>
+  <li>Add a short page that says what you consider in scope and that you won’t take legal action against good-faith reports.</li>
+  <li>Update the Expires date every year. A stale file looks abandoned.</li>
+</ul>
+<p>You don’t need a bug bounty programme to start. You need a door that someone answers.</p>

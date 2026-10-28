@@ -1,0 +1,11 @@
+<!--
+{"slug": "litellm-release", "lang": "en", "pair": "litellm-release", "status": "published", "title": "LiteLLM hit again: protect your release pipeline", "description": "A malicious LiteLLM release was live for about two hours, published through the project’s own workflow with stolen engineer tokens.", "date": "2026-10-23", "topic": "AI"}
+-->
+<p>For the second time this year, LiteLLM shipped a malicious release. Version 1.107.0 appeared on PyPI and in the official Docker images on 21 October and was removed after about two hours. It installed a credential stealer that runs every time Python starts, plus a loader that fetches more code every hour.</p>
+<p>This time the attackers didn’t steal a publishing token. According to LiteLLM, they used stolen GitHub CLI OAuth tokens from three engineers to trigger the project’s own private release workflow.</p>
+<ul>
+  <li>If 1.107.0 was installed anywhere, rebuild that machine or container and rotate every secret it could reach.</li>
+  <li>Pin versions with hashes. A two-hour window only hurts those who auto-upgrade.</li>
+  <li>For your own projects: require a second person to approve release workflows, and keep long-lived OAuth tokens off developer machines.</li>
+  <li>Review which accounts can trigger releases. It’s often more people than needed.</li>
+</ul>

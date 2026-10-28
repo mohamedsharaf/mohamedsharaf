@@ -1,0 +1,12 @@
+<!--
+{"slug": "dmarc-reject", "lang": "en", "pair": "dmarc-reject", "status": "published", "title": "SPF, DKIM, DMARC: finish the job", "description": "Many domains publish DMARC but stop at p=none, which protects nothing. Here’s how to get to reject without losing real mail.", "date": "2026-03-10", "topic": "Infrastructure"}
+-->
+<p>Since Gmail and Yahoo started requiring authentication from bulk senders, most companies added SPF, DKIM and a DMARC record. Many stopped at <code>p=none</code>. That setting only reports. Anyone can still send email that looks like it comes from your domain.</p>
+<p>Getting to <code>p=reject</code> is mostly patience:</p>
+<ol>
+  <li>Add a reporting address to your DMARC record and use a free or cheap tool to read the reports.</li>
+  <li>For two to four weeks, find every legitimate sender: your mail platform, CRM, invoicing system, website forms, newsletter tool.</li>
+  <li>Set up SPF or DKIM for each one until they all pass.</li>
+  <li>Move to <code>p=quarantine</code>, watch for a couple of weeks, then <code>p=reject</code>.</li>
+</ol>
+<p>Also protect domains you own but don’t send from, with a DMARC reject record and an empty SPF. Scammers love unused domains.</p>

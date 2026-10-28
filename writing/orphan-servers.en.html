@@ -1,0 +1,12 @@
+<!--
+{"slug": "orphan-servers", "lang": "en", "pair": "orphan-servers", "status": "published", "title": "The server nobody owns", "description": "Every network has a machine that nobody admits to running. It’s usually unpatched, and often the way in.", "date": "2026-07-28", "topic": "Infrastructure"}
+-->
+<p>In almost every network review I find at least one: a server that still answers but has no owner. An old intranet, a test copy of the website, a reporting tool from a project that ended, a virtual machine someone cloned “for a minute” in 2022.</p>
+<p>Nobody patches it because nobody thinks it’s theirs. Attackers love it for exactly that reason.</p>
+<ol>
+  <li>Compare what’s actually running, from your hypervisor, cloud console and network scans, with your asset list.</li>
+  <li>For every machine without an owner, send a short notice: “This will be shut down on the 15th unless someone claims it.”</li>
+  <li>Shut down, don’t delete. Wait a month for anyone who screams.</li>
+  <li>Then take a final backup and delete it.</li>
+  <li>From now on, every new server gets an owner and an end date when it’s created.</li>
+</ol>

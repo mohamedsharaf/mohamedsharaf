@@ -1,0 +1,11 @@
+<!--
+{"slug": "time-sync", "lang": "en", "pair": "time-sync", "status": "published", "title": "Wrong clocks break security quietly", "description": "Logins, certificates, MFA codes and logs all depend on accurate time. Check that every machine syncs from a reliable source.", "date": "2026-09-24", "topic": "Infrastructure"}
+-->
+<p>Time is one of those things nobody thinks about until it breaks. A server’s clock drifts five minutes and Kerberos logins start failing. A device boots with the wrong date and every TLS certificate looks invalid. Authenticator codes stop matching. And during an incident, logs from different machines can’t be lined up, because each one has its own idea of when things happened.</p>
+<ul>
+  <li>Make sure every server, network device and camera syncs time over NTP, not just “set once”.</li>
+  <li>In a Windows domain, the PDC emulator should sync from a reliable external source, and everything else from the domain.</li>
+  <li>Use the same time zone in logs, ideally UTC, and include it in the timestamp.</li>
+  <li>Monitor clock drift. Most monitoring tools can alert on it.</li>
+  <li>Check devices that lose power: some forget the time and come back in 2000.</li>
+</ul>

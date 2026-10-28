@@ -1,0 +1,11 @@
+<!--
+{"slug": "litellm-backdoor", "lang": "en", "pair": "litellm-backdoor", "status": "published", "title": "Backdoored LiteLLM: your AI gateway holds every key", "description": "Two LiteLLM releases on PyPI stole credentials, using a token taken in the Trivy compromise. AI tooling is now supply-chain target number one.", "date": "2026-03-27", "topic": "AI"}
+-->
+<p>LiteLLM, a widely used library and proxy that routes requests to OpenAI, Anthropic and other model providers, had two malicious releases on PyPI this week: 1.82.7 and 1.82.8. They stole credentials from any machine that installed them. Reports say the attackers got LiteLLM’s publishing token from secrets harvested when its CI pipeline ran the backdoored Trivy scanner a few days earlier.</p>
+<p>An AI gateway is a good target because it holds API keys for every model provider, often with large spending limits, plus whatever cloud credentials sit on the same server.</p>
+<ul>
+  <li>Check whether 1.82.7 or 1.82.8 was installed anywhere, including Docker images and CI runners. 1.82.6 is the last clean version.</li>
+  <li>If it was, treat the host as compromised and rotate everything: model API keys, cloud keys, SSH keys.</li>
+  <li>Pin dependency versions with hashes, and don’t auto-upgrade in production.</li>
+  <li>Set spending limits and alerts on every AI provider account.</li>
+</ul>

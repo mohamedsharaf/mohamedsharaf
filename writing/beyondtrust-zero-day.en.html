@@ -1,0 +1,12 @@
+<!--
+{"slug": "beyondtrust-zero-day", "lang": "en", "pair": "beyondtrust-zero-day", "status": "published", "title": "BeyondTrust Remote Support was exploited since August", "description": "A remote support zero-day was used by suspected espionage actors for weeks before the patch. Self-hosted appliances need patching and checking.", "date": "2026-10-16", "topic": "Security"}
+-->
+<p>BeyondTrust disclosed yesterday a critical authentication bypass in Remote Support (CVE-2026-102764) affecting versions 26.2.3 and earlier. The patch, BT26-05, came out on 8 October and was applied automatically to cloud-hosted instances. Self-hosted appliances need it applied manually if automatic updates are off.</p>
+<p>The uncomfortable part: Google’s threat intelligence team says the bug was first exploited on 29 August, by a suspected China-nexus espionage group. CISA added it to its exploited list today.</p>
+<ul>
+  <li>Patch self-hosted appliances now, and confirm the version afterwards.</li>
+  <li>Follow Mandiant’s advice: if an appliance was reachable from the internet on a vulnerable version, treat it as possibly compromised until reviewed.</li>
+  <li>Review sessions, new accounts and configuration changes since late August.</li>
+  <li>Rotate credentials stored in the appliance’s vault.</li>
+</ul>
+<p>Remote support tools reach everything. This is the second BeyondTrust zero-day this year.</p>

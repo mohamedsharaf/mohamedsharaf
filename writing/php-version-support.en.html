@@ -1,0 +1,16 @@
+<!--
+{"slug": "php-version-support", "lang": "en", "pair": "php-version-support", "status": "published", "title": "Which PHP versions still get security fixes?", "description": "PHP 8.1 stopped getting security fixes at the end of 2025, and 8.2 follows this December. Check what your servers run.", "date": "2026-08-13", "topic": "Software"}
+-->
+<p>Each PHP version gets two years of active support and then two years of security fixes only. After that, nothing. Right now:</p>
+<ul>
+  <li>PHP 8.1 and older: no fixes since 31 December 2025.</li>
+  <li>PHP 8.2: security fixes only, ending 31 December 2026.</li>
+  <li>PHP 8.3, 8.4 and 8.5: supported.</li>
+</ul>
+<p>Shared hosting and old cPanel servers are full of PHP 7.4 and 8.0, because nobody wants to touch a working site. That’s fine until a serious PHP bug appears and there’s no patch for your version.</p>
+<ol>
+  <li>Check every site’s version in cPanel’s PHP selector or with <code>php -v</code>.</li>
+  <li>Test the site on 8.3 or 8.4 in a staging copy. Most WordPress and Laravel sites move with little or no change.</li>
+  <li>Update plugins and dependencies first. They’re usually what breaks.</li>
+  <li>Plan the move from 8.2 before December, not after.</li>
+</ol>

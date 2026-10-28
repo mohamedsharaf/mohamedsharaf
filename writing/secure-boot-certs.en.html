@@ -1,0 +1,11 @@
+<!--
+{"slug": "secure-boot-certs", "lang": "en", "pair": "secure-boot-certs", "status": "published", "title": "Secure Boot certificates expire this month", "description": "Microsoft’s 2011 Secure Boot certificates start expiring on 24 June. PCs keep booting, but without the 2023 certificates they stop getting boot-level fixes.", "date": "2026-06-09", "topic": "Infrastructure"}
+-->
+<p>The certificates Microsoft has used for Secure Boot since 2011 are reaching their end. According to Microsoft, the KEK CA 2011 expires on 24 June, the UEFI CA 2011 on 27 June, and the Windows Production PCA 2011, which signs the Windows boot loader, on 19 October.</p>
+<p>Your computers won’t stop booting. What they lose, if they don’t have the replacement 2023 certificates, is the ability to receive future boot-level protections: boot manager updates, new revocations, fixes for bootkits.</p>
+<ul>
+  <li>Most Windows devices get the new certificates through Windows Update. Check that updates are actually installing.</li>
+  <li>Older PCs and servers may need a firmware (BIOS/UEFI) update from the manufacturer first. Check their support pages.</li>
+  <li>Linux machines that boot with shim rely on the same Microsoft UEFI CA. Keep firmware and shim packages updated.</li>
+  <li>Use your management tool or Microsoft’s guidance to report which devices have the 2023 certificates.</li>
+</ul>

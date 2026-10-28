@@ -1,0 +1,12 @@
+<!--
+{"slug": "ipv6-firewall", "lang": "en", "pair": "ipv6-firewall", "status": "published", "title": "IPv6 is on. Is your firewall watching it?", "description": "Many networks run IPv6 without anyone deciding to. If the firewall rules only cover IPv4, devices may be reachable directly.", "date": "2026-05-05", "topic": "Infrastructure"}
+-->
+<p>Most ISPs, cloud providers and operating systems turn IPv6 on by default now. In many offices nobody chose it. It just appeared. The problem is when the firewall rules, monitoring and documentation only cover IPv4.</p>
+<p>I’ve seen servers that were carefully closed on IPv4 and wide open on IPv6, because the provider gave them a public IPv6 address and nobody wrote rules for it.</p>
+<ul>
+  <li>Check whether your network and servers have IPv6 addresses: <code>ip -6 addr</code> on Linux, <code>ipconfig</code> on Windows.</li>
+  <li>Make sure every firewall rule set has an IPv6 version, with the same default deny for inbound traffic.</li>
+  <li>Scan your public IPv6 addresses from outside, the same way you scan IPv4.</li>
+  <li>Include IPv6 in logs and alerts.</li>
+</ul>
+<p>Turning IPv6 off is rarely the answer anymore. Treating it as a first-class network is.</p>

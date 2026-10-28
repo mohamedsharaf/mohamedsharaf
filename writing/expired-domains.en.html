@@ -1,0 +1,12 @@
+<!--
+{"slug": "expired-domains", "lang": "en", "pair": "expired-domains", "status": "published", "title": "Let a domain expire and someone else gets your email", "description": "Old company domains still receive password resets, invoices and client email. Don’t let them lapse.", "date": "2026-05-21", "topic": "Infrastructure"}
+-->
+<p>A company rebrands, moves to a new domain, and lets the old one expire a year or two later. Someone buys it for ten dollars, sets up a catch-all mailbox, and starts receiving what was meant for you: password reset links for accounts registered with the old address, invoices, messages from clients who never updated their contacts.</p>
+<p>Researchers have shown this again and again. It works on cloud accounts, SaaS tools and even old domain admin accounts.</p>
+<ul>
+  <li>Keep old domains renewed for many years after a change. It’s cheap insurance.</li>
+  <li>Turn on auto-renew and registrar lock on every domain, with a payment card that won’t expire unnoticed.</li>
+  <li>Move every account still using the old address to the new one.</li>
+  <li>Publish DMARC reject and an empty SPF on domains you no longer send from.</li>
+</ul>
+<p>A domain isn’t just a website address. It’s an identity.</p>

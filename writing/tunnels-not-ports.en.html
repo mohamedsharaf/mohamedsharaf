@@ -1,0 +1,12 @@
+<!--
+{"slug": "tunnels-not-ports", "lang": "en", "pair": "tunnels-not-ports", "status": "published", "title": "Replace port forwarding with a tunnel", "description": "Opening a port on the router puts the service on the whole internet. An outbound tunnel with login in front is safer and often easier.", "date": "2026-08-11", "topic": "Infrastructure"}
+-->
+<p>The classic way to reach an office server from outside is to forward a port on the router: 3389 for remote desktop, 443 for a web app, 22 for SSH. That service is now visible to every scanner on the internet, all day.</p>
+<p>A tunnel works the other way round. A small agent on your network connects out to a provider, such as Cloudflare Tunnel, Tailscale or a similar service, and the provider only lets authenticated users through. No inbound ports open on your router at all.</p>
+<ul>
+  <li>Put an identity check in front: your company login with MFA, not just a shared password.</li>
+  <li>Allow access per application and per group, instead of a whole network.</li>
+  <li>Close the old forwarded ports once the tunnel works, and scan from outside to confirm.</li>
+  <li>Log who connected to what. It’s usually built in.</li>
+</ul>
+<p>I now set up every small office and home lab this way. It’s safer, and there’s no static IP to manage.</p>

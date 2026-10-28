@@ -1,0 +1,13 @@
+<!--
+{"slug": "session-hijacking", "lang": "en", "pair": "session-hijacking", "status": "published", "title": "Stolen sessions skip your MFA", "description": "Infostealers grab browser cookies, so attackers log in as you without a password or MFA. Shorter sessions and device checks help.", "date": "2026-08-04", "topic": "Security"}
+-->
+<p>MFA protects the login. After you log in, the site gives your browser a session cookie, and that cookie is what proves who you are for the next hours or weeks. Infostealer malware copies those cookies, and the attacker loads them into their own browser. No password, no MFA prompt.</p>
+<p>A lot of this year’s account takeovers worked this way.</p>
+<p>What reduces the damage:</p>
+<ul>
+  <li>Keep malware off machines in the first place: updates, no admin rights for daily users, and the fake-CAPTCHA warning from last month.</li>
+  <li>Shorten session lifetimes for admin and finance tools. Daily re-login is fine for sensitive systems.</li>
+  <li>Use conditional access that checks the device, so a stolen cookie from an unmanaged machine is rejected.</li>
+  <li>Turn on token protection where your identity provider supports it, which binds the session to the device.</li>
+  <li>After an infection, revoke all sessions, not just the password.</li>
+</ul>

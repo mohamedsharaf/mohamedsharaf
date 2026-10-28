@@ -1,0 +1,12 @@
+<!--
+{"slug": "signed-releases", "lang": "en", "pair": "signed-releases", "status": "published", "title": "Sign your releases so customers can check them", "description": "After a year of poisoned packages, being able to prove a release came from your build system is no longer optional.", "date": "2026-09-01", "topic": "Software"}
+-->
+<p>This year attackers published malicious versions of real packages more than once, using stolen tokens. Users had no easy way to tell a real release from a fake one, because both came from the official account.</p>
+<p>Signing and provenance change that. The release says which repository, which commit and which build workflow produced it, and that statement is signed so it can’t be forged with just a publishing token.</p>
+<ul>
+  <li>On npm and PyPI, publish from CI with trusted publishing, using OIDC instead of long-lived tokens, and enable provenance.</li>
+  <li>Sign container images and binaries with Sigstore or your platform’s signing service.</li>
+  <li>Remove old publishing tokens once trusted publishing works.</li>
+  <li>Protect the release workflow itself: required reviews, protected branches, and no secrets available to pull requests from forks.</li>
+</ul>
+<p>And on the consuming side, start checking provenance for your most important dependencies.</p>

@@ -1,0 +1,12 @@
+<!--
+{"slug": "developer-laptops", "lang": "en", "pair": "developer-laptops", "status": "published", "title": "Attackers want your developers’ laptops", "description": "Poisoned packages and extensions keep targeting developers for their tokens. A developer machine often has the keys to production.", "date": "2026-04-21", "topic": "Security"}
+-->
+<p>The supply-chain attacks of March didn’t stop. Researchers keep reporting poisoned packages, CLI tools and editor extensions built for one job: steal GitHub tokens, npm and PyPI tokens, SSH keys and cloud credentials from developer laptops and build servers.</p>
+<p>It makes sense. A developer’s machine can often push code, publish packages and reach production. It’s also where people install new tools every week.</p>
+<ul>
+  <li>Use short-lived credentials: SSO for cloud CLIs, fine-grained GitHub tokens with expiry dates.</li>
+  <li>Keep SSH keys and tokens out of plain files where possible. Use the OS keychain, a hardware key or the password manager’s agent.</li>
+  <li>Require MFA, ideally passkeys, for publishing packages and for the source code platform.</li>
+  <li>Be picky with editor extensions. They run with your full access.</li>
+  <li>Production deploys go through CI with reviewed changes, not from a laptop.</li>
+</ul>

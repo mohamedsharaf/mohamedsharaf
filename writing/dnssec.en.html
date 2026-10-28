@@ -1,0 +1,12 @@
+<!--
+{"slug": "dnssec", "lang": "en", "pair": "dnssec", "status": "published", "title": "DNSSEC: worth turning on?", "description": "DNSSEC stops forged DNS answers for your domain. With most DNS providers it’s now one switch. Here’s when it matters.", "date": "2026-08-20", "topic": "Infrastructure"}
+-->
+<p>DNSSEC adds signatures to your DNS records, so resolvers can check that an answer for your domain really came from your DNS provider and wasn’t forged on the way. It doesn’t encrypt anything. It just makes lying about your domain much harder.</p>
+<p>For years it was fiddly. Now most DNS providers, Cloudflare included, enable it with one click, and you add one DS record at your registrar.</p>
+<p>When it’s worth it:</p>
+<ul>
+  <li>Domains used for email, login pages and payments.</li>
+  <li>Government, banking and health organisations, where it’s often required.</li>
+  <li>When your DNS provider and registrar both support it well.</li>
+</ul>
+<p>Two cautions. If you move DNS providers, disable DNSSEC first or migrate the keys properly, otherwise the domain stops resolving. And DNSSEC doesn’t protect the account that controls your DNS. MFA and registrar lock still matter more.</p>

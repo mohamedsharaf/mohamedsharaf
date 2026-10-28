@@ -1,0 +1,12 @@
+<!--
+{"slug": "fake-captcha-paste", "lang": "en", "pair": "fake-captcha-paste", "status": "published", "title": "A CAPTCHA that asks you to run a command is malware", "description": "Fake “verify you’re human” pages tell visitors to press Win+R and paste a command. It installs malware. Teach people this one rule.", "date": "2026-07-21", "topic": "Security"}
+-->
+<p>It looks like a normal check: “Verify you are human.” Then it asks you to press Windows+R, then Ctrl+V, then Enter. Or on a Mac, to open Terminal and paste something. The page has already copied a command to your clipboard. Running it downloads malware, usually an infostealer that grabs saved passwords and browser sessions.</p>
+<p>This trick, often called ClickFix, works because people are used to jumping through hoops on websites, and nothing looks technical.</p>
+<p>One rule for everyone: <strong>no real website will ever ask you to paste something into Run, PowerShell or Terminal.</strong> If one does, close the tab and tell IT.</p>
+<p>For IT teams:</p>
+<ul>
+  <li>Show staff a screenshot of what it looks like. Seeing it once is the best protection.</li>
+  <li>Restrict the Run dialog and PowerShell for users who don’t need them.</li>
+  <li>Alert on PowerShell or mshta started from explorer.exe with a download command.</li>
+</ul>

@@ -1,0 +1,13 @@
+<!--
+{"slug": "api-rate-limits", "lang": "en", "pair": "api-rate-limits", "status": "published", "title": "Rate-limit your login and API endpoints", "description": "Without limits, one script can try thousands of passwords, scrape your data or run up your bill. Add limits before you need them.", "date": "2026-07-23", "topic": "Software"}
+-->
+<p>Every public endpoint will eventually be hit by a script. Login forms get password guesses. Search and listing APIs get scraped. Endpoints that send SMS or email get abused to send thousands of messages on your account. AI features get used as a free chatbot by strangers.</p>
+<p>Rate limits are the simplest defence.</p>
+<ul>
+  <li>Limit login attempts per account and per IP address, with increasing delays, not just a hard lockout.</li>
+  <li>Limit expensive endpoints harder: SMS, email sending, exports, AI calls, password resets.</li>
+  <li>Return a clear 429 response, so real clients can back off.</li>
+  <li>Put a basic limit at the edge too, through your CDN or reverse proxy, so floods never reach the app.</li>
+  <li>Log when limits trigger. A spike is often the first sign of an attack.</li>
+</ul>
+<p>Pick numbers that a real user would never hit, then adjust from the logs.</p>

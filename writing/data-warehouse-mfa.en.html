@@ -1,0 +1,12 @@
+<!--
+{"slug": "data-warehouse-mfa", "lang": "en", "pair": "data-warehouse-mfa", "status": "published", "title": "Give your data warehouse your strongest login", "description": "Extortion groups again claim big thefts from cloud data platforms this month, reportedly after phoning staff. Lock those logins down.", "date": "2026-08-18", "topic": "Security"}
+-->
+<p>This month brought another round of extortion claims against companies’ cloud data platforms such as Snowflake and Databricks. Reports describe the same opening as earlier this year: voice phishing calls to employees, approved logins, then large queries and exports. Some of the numbers come from the attackers and aren’t confirmed. The method is consistent.</p>
+<p>A data warehouse is where everything ends up: customers, orders, payments, analytics. It deserves your strongest controls.</p>
+<ul>
+  <li>Require SSO with phishing-resistant MFA for every human user. No local passwords.</li>
+  <li>Service accounts use key pairs or workload identity, with network policies limiting where they connect from.</li>
+  <li>Restrict access by network where the platform supports it.</li>
+  <li>Alert on unusual queries: huge result sets, exports to new stages, new users or roles.</li>
+  <li>Review who has access to raw personal data. Most analysts can work with masked columns.</li>
+</ul>

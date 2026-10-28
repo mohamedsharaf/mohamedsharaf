@@ -31,7 +31,7 @@
 | ✅ | نشر مقال «رفع الملفات» | جاهز بالعربي والإنجليزي |
 | ✅ | ‏RSS للكتابات | ‏`/writing/feed.xml` و`/writing/ar/feed.xml`، والروابط القديمة `/feed/` تحوّل عليه |
 | ✅ | صورة مشاركة لكل مقال | ‏104 صورة في `assets/og/`، بتتعمل بـ`python3 tools/make_og.py` (بيرسم الجديد والمتغير بس) |
-| 🟡 | إحصائيات من غير cookies | ‏Cloudflare Web Analytics (مجانية). البناء جاهز (`CF_BEACON_TOKEN` في `deploy.sh`، والـCSP بيتظبط لوحده). مستني الـtoken من لوحة Cloudflare. |
+| ✅ | إحصائيات من غير cookies | ‏Cloudflare Web Analytics. الـtoken في `deploy.sh`، والكود بيتضاف في بناء الإصدار بس، والـCSP بيتظبط لوحده. **بعد الإصدار:** شغّل Lighthouse على الموقع اللايف واتأكد إن Best Practices لسه 100. |
 
 ---
 

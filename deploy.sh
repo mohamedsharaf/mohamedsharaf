@@ -12,7 +12,7 @@ esac
 export TURNSTILE_SITEKEY
 
 # Cloudflare Web Analytics site token (public, from Web Analytics in the dashboard)
-CF_BEACON_TOKEN="${CF_BEACON_TOKEN:-}"
+CF_BEACON_TOKEN="${CF_BEACON_TOKEN:-acdfb99965524624b43cba8907135d9b}"
 export CF_BEACON_TOKEN
 
 sh build.sh

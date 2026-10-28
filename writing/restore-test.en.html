@@ -1,0 +1,42 @@
+<!--
+{"slug": "restore-test", "lang": "en", "pair": "restore-test", "status": "published",
+ "title": "A backup you haven’t restored is only a hope",
+ "description": "Backups fail quietly, and you find out on the worst possible day. How to set up backups that survive ransomware, and how to prove they work.",
+ "date": "2025-03-18", "topic": "Infrastructure"}
+-->
+<p>Almost every company tells me it has backups. Far fewer can tell me when they last restored one. That gap is where the bad days come from: the job that silently stopped months ago, the backup that holds the database but not the uploaded files, the encryption key that only existed on the server that just died.</p>
+
+<h2>Why backups fail quietly</h2>
+<ul>
+  <li><strong>The job stopped.</strong> A password changed, a disk filled up, a script broke after an update. Nobody reads the email that says “failed”.</li>
+  <li><strong>The wrong things are saved.</strong> The database is there, but not the files, the configuration, the certificates or the cron jobs that make the system work.</li>
+  <li><strong>The backup can be deleted.</strong> If the server can reach its backups with write access, so can ransomware that takes over the server. Attackers now look for backups first.</li>
+  <li><strong>Nobody knows how to restore.</strong> The person who set it up left, and the steps were in their head.</li>
+</ul>
+
+<h2>The 3-2-1 rule, with one addition</h2>
+<p>Keep <strong>3</strong> copies of your data, on <strong>2</strong> different kinds of storage, with <strong>1</strong> copy off-site. Today I would add: at least one copy that can’t be changed or deleted for a set period. That is called immutable storage, and most cloud storage services offer it as object lock or a retention setting. It is the copy ransomware can’t touch.</p>
+
+<h2>Decide what “good enough” means</h2>
+<p>Two questions, answered by the business and not only by IT:</p>
+<ul>
+  <li><strong>How much data can we lose?</strong> If the answer is “one hour”, a nightly backup is not enough.</li>
+  <li><strong>How long can we be down?</strong> Restoring two terabytes over a slow link can take a day. Better to learn that now.</li>
+</ul>
+
+<h2>Test restores on a schedule</h2>
+<ol>
+  <li><strong>Every month,</strong> restore a few random files and one database to a separate machine, and open them.</li>
+  <li><strong>Every quarter,</strong> restore a whole system from scratch, following written steps, ideally done by someone other than the person who wrote them.</li>
+  <li><strong>Time it,</strong> and compare with the downtime the business said it can accept.</li>
+  <li><strong>Write down what went wrong</strong> and fix the steps. Every test teaches you something.</li>
+</ol>
+
+<h2>Small things that matter</h2>
+<ul>
+  <li>Alert on failure <em>and</em> on silence: “no backup report today” should be an alarm too.</li>
+  <li>Store encryption keys and passwords for the backups somewhere that survives the loss of the main systems.</li>
+  <li>Back up the cloud too. Your email and file-sharing provider protects its platform, not your deleted folder from last month.</li>
+</ul>
+
+<p>A backup is only finished when you have restored it. Until then, it is a hope with a monthly bill.</p>

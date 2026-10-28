@@ -1,0 +1,40 @@
+<!--
+{"slug": "passkeys", "lang": "en", "pair": "passkeys", "status": "published",
+ "title": "Passkeys: what they fix, and what they don’t",
+ "description": "Passkeys finally make phishing a password useless. They do not fix account recovery or stolen sessions. A plain guide to both sides.",
+ "date": "2025-01-14", "topic": "Security"}
+-->
+<p>Passkeys are the first real change to how we log in for a very long time. Most big services now offer them, and phones and browsers handle them well. That is good news. But I keep hearing them described as “the end of account takeover”, and that part is not true. Here is what they fix, and what is still your job.</p>
+
+<h2>What a passkey actually is</h2>
+<p>A passkey is a pair of keys. The private key stays on your device (or in your password manager), and the website only keeps the public key. When you log in, the site sends a challenge, your device signs it after you unlock it with your fingerprint, face or PIN, and the site checks the signature. No secret ever crosses the network, and there is nothing on the server worth stealing.</p>
+<p>Under the hood this is the WebAuthn and FIDO2 standard, the same one hardware security keys have used for years. Passkeys made it friendly enough for everyone.</p>
+
+<h2>What they fix</h2>
+<ul>
+  <li><strong>Phishing.</strong> This is the big one. A passkey is tied to the website’s real domain. A fake login page on a look-alike domain simply gets nothing from your device. No amount of clever design changes that.</li>
+  <li><strong>Password reuse and leaks.</strong> There is no password to reuse, and a breached database of public keys is useless to an attacker.</li>
+  <li><strong>Weak passwords.</strong> Nobody can choose “Summer2024!” as a passkey.</li>
+  <li><strong>Most push-notification tricks.</strong> There is no “approve this login?” prompt for an attacker to spam.</li>
+</ul>
+
+<h2>What they don’t fix</h2>
+<ul>
+  <li><strong>Account recovery.</strong> If “forgot my passkey” falls back to an SMS code or an email link, then your account is exactly as strong as that SMS code or that inbox. Attackers go where the door is weakest.</li>
+  <li><strong>Stolen sessions.</strong> After you log in, the site gives your browser a session cookie. Malware on your computer can copy that cookie and skip the login completely. Passkeys protect the front door, not the room you are already in.</li>
+  <li><strong>A compromised device.</strong> If someone controls your unlocked phone, they control your passkeys too.</li>
+  <li><strong>The other ways in.</strong> If the site still accepts the old password next to the passkey, phishing that password still works.</li>
+</ul>
+
+<h2>Synced or device-bound?</h2>
+<p>Synced passkeys live in Apple’s, Google’s or your password manager’s cloud, so a new phone gets them automatically. That is convenient, and the security now depends on that cloud account, which deserves strong protection of its own. Device-bound passkeys, on a hardware security key, never leave the device. They are the better choice for admin accounts, finance and anything you would lose sleep over.</p>
+
+<h2>What I recommend</h2>
+<ol>
+  <li><strong>Turn passkeys on</strong> for your email, your password manager and your cloud accounts first. Those are the keys to everything else.</li>
+  <li><strong>Fix recovery.</strong> Remove SMS as a recovery method where you can, keep recovery codes somewhere offline, and register a second passkey or security key as a backup.</li>
+  <li><strong>Remove the password</strong> where the service allows it, or at least make it long and unique.</li>
+  <li><strong>For your own product,</strong> offer passkeys, but design recovery as carefully as the login. Re-check identity before changing email, phone or security settings, and keep sessions short for sensitive actions.</li>
+</ol>
+
+<p>Passkeys are a real step forward. Use them everywhere you can. Just remember that security is decided by the weakest way in, and after passkeys, that is usually recovery.</p>

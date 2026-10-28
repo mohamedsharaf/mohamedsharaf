@@ -7,10 +7,10 @@
  "archive": true,
  "title": "Run a Laravel app on cPanel by linking public_html",
  "description": "Serve a Laravel project on shared cPanel hosting without exposing the whole app folder.",
- "date": "2019-12-25",
+ "date": "2018-12-25",
  "updated": "2026-10-27",
  "topic": "Servers",
- "archive_note": "From the archive: first published on mohamedsharaf.net in December 2019. Rewritten and checked in 2026; some details may be out of date."
+ "archive_note": "From the archive: first published on mohamedsharaf.net in December 2018. Rewritten and checked in 2026; some details may be out of date."
 }
 -->
 <p>Laravel expects the web server to point at its <code>public</code> folder, while cPanel serves whatever is in <code>public_html</code>. Copying the whole project into <code>public_html</code> would expose your <code>.env</code> file and source code. A safer trick is to keep the project outside the web root and make <code>public_html</code> a link to its <code>public</code> folder:</p>

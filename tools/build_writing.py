@@ -35,14 +35,14 @@ TEXT = {
                min_read='min read', back='All writing', cta_title='Want a second pair of eyes?',
                cta_text='If something here sounds like your system, write to me. I read everything.',
                cta_link='Say hello', draft='Draft: not published yet', empty='The first articles are on their way.',
-               new_heading='New', archive_heading='From the archive', archive_intro='Notes from my old blog on mohamedsharaf.net (2010–2019), rewritten and checked. Some are dated; the dates tell you how much.',
+               new_heading='New', archive_heading='From the archive', archive_intro='Notes from my old blog on mohamedsharaf.net (2010–2018), rewritten and checked. Some are dated; the dates tell you how much.',
                months=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']),
     'ar': dict(dir='rtl', share='شارك', copy='انسخ الرابط', copied='تم النسخ', share_native='مشاركة…', which='أي محمد شرف؟', writing='كتابات', home='الرئيسية', menu='القائمة', hello='قل مرحبًا', other='English', other_lang='en',
                index_title='كتابات', index_intro='ملاحظات عن الأمن والبنية التحتية والبرمجيات والذكاء الاصطناعي، بكلام واضح، من ثلاثة عقود من العمل.',
                min_read='دقائق قراءة', back='كل الكتابات', cta_title='تحتاج إلى نظرة ثانية؟',
                cta_text='إذا بدا لك شيء هنا مثل نظامك، اكتب لي. أقرأ كل شيء.',
                cta_link='تواصل معي', draft='مسودة: لم تُنشر بعد', empty='أول المقالات في الطريق.',
-               new_heading='جديد', archive_heading='من الأرشيف', archive_intro='ملاحظات من مدونتي القديمة على mohamedsharaf.net (2010–2019)، أُعيدت كتابتها ومراجعتها. بعضها قديم، والتاريخ يوضح كم.',
+               new_heading='جديد', archive_heading='من الأرشيف', archive_intro='ملاحظات من مدونتي القديمة على mohamedsharaf.net (2010–2018)، أُعيدت كتابتها ومراجعتها. بعضها قديم، والتاريخ يوضح كم.',
                months=['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر']),
 }
 

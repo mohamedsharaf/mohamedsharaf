@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face{font-family:Manrope;src:url('assets/manrope-latin.woff2') format('woff2');font-weight:200 800}
+  @font-face{font-family:'IBM Plex Sans Arabic';src:url('assets/plex-arabic-400.woff2') format('woff2');font-weight:400}
+  @font-face{font-family:'IBM Plex Sans Arabic';src:url('assets/plex-arabic-600.woff2') format('woff2');font-weight:600}
+  :root{--bg:#0a0e0d;--text:#f3efe7;--muted:#9aa595;--orange:#e85532;--orange-hot:#ff7a4f;--green:#bed4a3;--mono:'SFMono-Regular',Menlo,monospace}
+  *{box-sizing:border-box;margin:0}
+  html,body{width:2560px;height:1440px;overflow:hidden}
+  body{background:radial-gradient(ellipse 70% 60% at 50% 50%,#16201c 0%,#0d1311 55%,var(--bg) 100%);color:var(--text);font-family:Manrope,'IBM Plex Sans Arabic',sans-serif;position:relative}
+  canvas{position:absolute;inset:0}
+  /* faint grid */
+  .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(190,212,163,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(190,212,163,.045) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 75% 70% at 50% 50%,#000 30%,transparent 85%)}
+  /* soft dark plate behind the text so it stays readable over the network */
+  .plate{position:absolute;left:420px;width:1720px;top:470px;height:500px;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(10,14,13,.92) 40%,rgba(10,14,13,0) 100%)}
+
+  /* phone-safe area: 1546x423 centred */
+  .safe{position:absolute;left:507px;width:1546px;top:508px;height:423px;padding:0 70px;display:grid;grid-template-columns:1fr 220px 1fr;align-items:center;column-gap:30px}
+  .side{display:flex;flex-direction:column;gap:16px}
+  .ar{direction:rtl}
+  .who{font:600 22px var(--mono);letter-spacing:.32em;color:var(--green);text-transform:uppercase;opacity:.9}
+  .ar .who{font:600 28px 'IBM Plex Sans Arabic',sans-serif;letter-spacing:0}
+  h1{font-size:76px;line-height:1.02;letter-spacing:-.055em;font-weight:750;text-wrap:balance}
+  h1 .hot{color:var(--orange-hot);text-shadow:0 0 28px rgba(232,85,50,.55)}
+  .ar h1{font-size:70px;line-height:1.3;letter-spacing:0;font-weight:600}
+  .chips{display:flex;gap:10px;flex-wrap:nowrap}
+  .chip{font:600 17px var(--mono);letter-spacing:.14em;padding:8px 12px;border:1px solid rgba(232,85,50,.55);color:#ffd9cc;background:rgba(232,85,50,.10);white-space:nowrap}
+  .ar .chip{font:600 21px 'IBM Plex Sans Arabic',sans-serif;letter-spacing:0;padding:6px 12px}
+
+  .shield{position:relative;display:grid;place-items:center;height:260px}
+  .shield svg{width:200px;height:230px;filter:drop-shadow(0 0 22px rgba(232,85,50,.65)) drop-shadow(0 0 60px rgba(232,85,50,.35))}
+
+  /* desktop / TV only decoration */
+  .term{position:absolute;top:560px;left:2140px;width:390px;background:rgba(17,24,21,.92);border:1px solid #2f3c34;box-shadow:0 0 40px rgba(0,0,0,.6);font:17px/1.75 var(--mono);color:var(--green)}
+  .term .bar{display:flex;gap:7px;padding:11px 14px;border-bottom:1px solid #2f3c34}
+  .term .bar i{width:10px;height:10px;border-radius:50%;background:#3d4b42}
+  .term .bar i:first-child{background:var(--orange)}
+  .term pre{margin:0;padding:14px 18px 16px;white-space:pre}
+  .term .p{color:#7f8f78}.term .w{color:#ffb199}.term .ok{color:#9ee08f}.term .c{color:var(--text)}
+  .cur{display:inline-block;width:10px;height:19px;background:var(--green);vertical-align:-3px}
+
+  .hex{position:absolute;top:545px;left:70px;width:360px;font:17px/1.7 var(--mono);color:rgba(190,212,163,.38);white-space:pre;letter-spacing:.06em}
+  .hex b{color:rgba(255,122,79,.85);font-weight:400}
+  .site{position:absolute;top:978px;left:0;right:0;text-align:center;font:22px var(--mono);letter-spacing:.3em;color:var(--muted)}
+  .site span{color:var(--orange-hot)}
+</style>
+</head>
+<body>
+  <canvas id="net" width="2560" height="1440"></canvas>
+  <div class="grid"></div>
+  <div class="plate"></div>
+
+  <div class="hex">0x00  4d 6f 68 61 6d 65
+0x06  64 20 53 68 61 72
+0x0c  61 66 <b>0a</b> 53 54 49
+0x12  4c 4c 20 43 55 52
+0x18  49 4f 55 53 <b>2e</b> 0a
+0x1e  <b>3f</b> 77 68 61 74 20
+0x24  69 66 <b>3f</b> 0a 00 00</div>
+
+  <div class="term"><div class="bar"><i></i><i></i><i></i></div><pre><span class="p">$</span> <span class="c">audit --target your-app</span>
+<span class="p">[*]</span> mapping attack surface
+<span class="w">[!]</span> admin panel exposed
+<span class="w">[!]</span> default password
+<span class="ok">[✓]</span> fixed before launch
+<span class="p">$</span> <span class="cur"></span></pre></div>
+
+  <div class="safe">
+    <div class="side en">
+      <div class="who">Mohamed Sharaf</div>
+      <h1>Break it <span class="hot">before they do.</span></h1>
+      <div class="chips"><span class="chip">SECURITY</span><span class="chip">PENTEST</span><span class="chip">AI</span></div>
+    </div>
+    <div class="shield">
+      <svg viewBox="0 0 100 116" aria-hidden="true">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7a4f"/><stop offset="1" stop-color="#c9441f"/></linearGradient></defs>
+        <path d="M50 4 L92 19 V52 C92 80 74 101 50 112 C26 101 8 80 8 52 V19 Z" fill="rgba(232,85,50,.12)" stroke="url(#g)" stroke-width="3.5"/>
+        <path d="M50 16 L81 27 V52 C81 73 68 89 50 98 C32 89 19 73 19 52 V27 Z" fill="none" stroke="rgba(255,122,79,.35)" stroke-width="1.5"/>
+        <rect x="35" y="52" width="30" height="24" rx="3.5" fill="url(#g)"/>
+        <path d="M41 52 V44 a9 9 0 0 1 18 0 V52" fill="none" stroke="url(#g)" stroke-width="4"/>
+        <circle cx="50" cy="62" r="3.4" fill="#0a0e0d"/><rect x="48.6" y="62" width="2.8" height="8" rx="1.2" fill="#0a0e0d"/>
+      </svg>
+    </div>
+    <div class="side ar" lang="ar">
+      <div class="who">محمد شرف</div>
+      <h1>اكتشف الثغرة <span class="hot">قبل أن يكتشفوها.</span></h1>
+      <div class="chips"><span class="chip">أمن معلومات</span><span class="chip">اختراق أخلاقي</span><span class="chip">ذكاء اصطناعي</span></div>
+    </div>
+  </div>
+
+  <div class="site">MOHAMEDSHARAF<span>.</span>COM</div>
+
+<script>
+  // Deterministic "network / neural net" constellation in the background
+  const c = document.getElementById('net'), x = c.getContext('2d');
+  let seed = 1996; const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
+  const pts = [];
+  for (let i = 0; i < 230; i++) {
+    const px = rnd() * 2560, py = rnd() * 1440;
+    // keep the very centre calmer so the text stays readable
+    const dx = (px - 1280) / 900, dy = (py - 720) / 260;
+    if (dx * dx + dy * dy < 1 && rnd() < .75) continue;
+    pts.push([px, py, rnd()]);
+  }
+  for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+    const a = pts[i], b = pts[j], d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+    if (d < 175) {
+      const hot = (a[2] > .86 || b[2] > .86);
+      x.strokeStyle = hot ? `rgba(232,85,50,${(1 - d / 175) * .55})` : `rgba(190,212,163,${(1 - d / 175) * .16})`;
+      x.lineWidth = hot ? 1.4 : 1;
+      x.beginPath(); x.moveTo(a[0], a[1]); x.lineTo(b[0], b[1]); x.stroke();
+    }
+  }
+  for (const [px, py, k] of pts) {
+    const hot = k > .86;
+    if (hot) { x.shadowColor = 'rgba(255,122,79,.9)'; x.shadowBlur = 18; }
+    x.fillStyle = hot ? '#ff7a4f' : 'rgba(190,212,163,.55)';
+    x.beginPath(); x.arc(px, py, hot ? 4 : 2.2, 0, 7); x.fill();
+    x.shadowBlur = 0;
+  }
+</script>
+</body>
+</html>

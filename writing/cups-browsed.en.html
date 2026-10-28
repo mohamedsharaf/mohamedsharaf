@@ -1,0 +1,17 @@
+<!--
+{"slug": "cups-browsed", "lang": "en", "pair": "cups-browsed", "status": "published",
+ "title": "CUPS bugs: your server doesn’t need a printer",
+ "description": "A chain of bugs in Linux printing lets an attacker add a fake printer and run code. On servers, just switch it off.",
+ "date": "2024-10-01", "topic": "Infrastructure"}
+-->
+<p>Last week a researcher published a chain of bugs in CUPS, the printing system on most Linux and Unix machines. The weak part is <code>cups-browsed</code>, which listens on UDP port 631 for printers announcing themselves, from anywhere.</p>
+<p>An attacker can send one packet that adds a fake printer. When someone prints to it, the attacker’s command runs. Scans found hundreds of thousands of machines with that port open to the internet.</p>
+<p>It needs a print job to trigger, so it’s not the end of the world. But the fix is so easy there’s no reason to wait:</p>
+<pre><code>sudo systemctl disable --now cups-browsed</code></pre>
+<p>Then:</p>
+<ul>
+  <li><strong>Servers almost never need CUPS.</strong> Remove the packages if nothing prints.</li>
+  <li><strong>Block UDP 631</strong> at the firewall, inbound from the internet.</li>
+  <li><strong>Install your distribution’s updates</strong> for cups-browsed, libcupsfilters and libppd as they arrive.</li>
+</ul>
+<p>The wider point: every service a server runs is something to patch. Default installs often include things you never asked for. Run <code>ss -tulpn</code> once in a while and ask “why is that listening?”</p>

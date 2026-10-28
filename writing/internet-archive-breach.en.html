@@ -1,0 +1,16 @@
+<!--
+{"slug": "internet-archive-breach", "lang": "en", "pair": "internet-archive-breach", "status": "published",
+ "title": "Internet Archive: the token nobody rotated",
+ "description": "31 million accounts leaked, then attackers came back. Reports point to an access token left unrotated for almost two years.",
+ "date": "2024-10-22", "topic": "Security"}
+-->
+<p>This month the Internet Archive, home of the Wayback Machine, had a rough few weeks: a defaced site, DDoS attacks and a leak of about 31 million user records, emails and hashed passwords. Then, after it came back online, the attackers showed they still had access to its support system.</p>
+<p>According to reports, the way back in was simple: an access token for its code platform that had been exposed since late 2022 and never rotated.</p>
+<p>If you have an account there, change that password, and anywhere else you used it.</p>
+<p>If you run systems, the lesson is about after the incident:</p>
+<ul>
+  <li><strong>Assume every secret the attacker could see is gone:</strong> API tokens, service keys, database passwords, cloud keys. Rotate all of them, not only the obvious one.</li>
+  <li><strong>Check the integrations,</strong> such as support desks, code platforms and CI tools. They often hold powerful tokens.</li>
+  <li><strong>Watch for the return visit.</strong> Attackers often keep a second way in.</li>
+</ul>
+<p>Cleaning up the website isn’t the end of an incident. Rotating the keys is.</p>

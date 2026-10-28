@@ -1,0 +1,16 @@
+<!--
+{"slug": "management-interfaces", "lang": "en", "pair": "management-interfaces", "status": "published",
+ "title": "Never put a management interface on the internet",
+ "description": "Palo Alto firewalls are being taken over through their admin web pages. The fix is the same one every time.",
+ "date": "2024-11-19", "topic": "Infrastructure"}
+-->
+<p>Yesterday Palo Alto Networks confirmed attackers are exploiting two bugs in the management web interface of its firewalls: one skips authentication, the other gives root. Thousands of these admin pages were reachable from the internet.</p>
+<p>Different vendor, same story every few months. The device is fine at its job. Its admin page is the hole.</p>
+<p>The rule I give every client:</p>
+<ul>
+  <li><strong>No admin interface on the internet.</strong> Firewall, VPN, router, switch, storage, hypervisor, printer. None.</li>
+  <li><strong>Reach them only from a management network</strong> or through a VPN, from a few named machines.</li>
+  <li><strong>Allow-list the source IPs</strong> on the device itself as a second layer.</li>
+  <li><strong>Check from outside.</strong> Scan your public IPs for ports 443, 8443, 4443 and the vendor’s admin ports. Search engines like Shodan already did.</li>
+</ul>
+<p>When the next bug comes, and it will, an interface nobody can reach turns an emergency into a normal patch day.</p>

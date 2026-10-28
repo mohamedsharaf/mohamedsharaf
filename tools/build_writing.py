@@ -351,11 +351,35 @@ for line in open(legacy, encoding='utf-8') if os.path.exists(legacy) else []:
     if line and not line.startswith('#'):
         src, dst = line.split()
         rules.append((src, resolve(dst)))
+
+
+def variants(src):
+    """Other spellings of an old address that WordPress also answered: both cases of the
+    percent-encoding, with and without the trailing slash, and a post's feed, AMP and comment pages."""
+    if '*' in src or ':' in src or src == '/' or not src.isascii():
+        return []
+    cases = {re.sub(r'%[0-9a-fA-F]{2}', lambda m: m.group(0).upper(), src),
+             re.sub(r'%[0-9a-fA-F]{2}', lambda m: m.group(0).lower(), src)}
+    out = []
+    for c in sorted(cases):
+        base = c.rstrip('/') + '/'
+        out += [base, base[:-1]]
+        if base.count('/') == 2:  # a top-level post or page
+            out += [base + 'feed/', base + 'feed', base + 'amp/', base + 'amp', base + 'comment-page-1/', base + 'comment-page-2/']
+    return out
+
+
+exact = [(s, d) for s, d in rules if '*' not in s]
+rules = exact + [(v, d) for s, d in exact for v in variants(s)] + [(s, d) for s, d in rules if '*' in s]
 lines = []
 for src, dst in rules:
     if src not in sources:
         sources.add(src)
         lines.append(f'{src} {dst} 301')
+# Cloudflare static assets limits (free and paid): 2,000 static + 100 dynamic rules, 1,000 characters each
+dynamic = sum('*' in l or '/:' in l for l in lines)
+assert len(lines) - dynamic <= 2000 and dynamic <= 100, f'_redirects over the limit: {len(lines) - dynamic} static, {dynamic} dynamic'
+assert all(len(l) <= 1000 for l in lines), '_redirects rule over 1,000 characters'
 if lines:
     with open(os.path.join(DIST, '_redirects'), 'a', encoding='utf-8') as f:
         f.write('\n'.join(lines) + '\n')

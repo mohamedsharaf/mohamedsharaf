@@ -270,7 +270,45 @@
 /tag/%D9%85%D8%AD%D9%85%D8%AF-%D8%A7%D8%AD%D9%85%D8%AF/ /ar
 /tag/%D9%85%D8%AD%D9%85%D8%AF-%D8%A7%D8%AD%D9%85%D8%AF /ar
 
+# The same posts written in capitals, as some old links have them
+/ODB-2-CODE-ARABIC-%D8%B4%D8%B1%D8%AD-%D8%A7%D9%83%D9%88%D8%A7%D8%AF-OBD-%D8%A8%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9/ /ar
+/%D9%83%D9%8A%D9%81-%D9%88%D8%A7%D8%AC%D9%87%D8%AA-%D8%B1%D9%88%D8%B3%D9%8A%D8%A7-%D9%81%D9%8A%D8%B1%D9%88%D8%B3-%D8%A7%D9%84%D9%81%D8%AF%D9%8A%D8%A9-WANNACRY-%D8%A7%D9%84%D8%B0%D9%8A-%D8%A7%D8%B1/ @article:ar:wannacry-russia-2017
+
+# Image attachment pages (/<post>/<image>/) go to the post they belonged to
+/%d8%a7%d9%84%d8%aa%d8%b7%d9%88%d9%8a%d8%b1-%d8%a7%d9%84%d8%a7%d8%b3%d8%aa%d8%ab%d9%85%d8%a7%d8%b1%d9%8a/logo/ /ar
+/%d9%83%d9%8a%d9%81-%d9%88%d8%a7%d8%ac%d9%87%d8%aa-%d8%b1%d9%88%d8%b3%d9%8a%d8%a7-%d9%81%d9%8a%d8%b1%d9%88%d8%b3-%d8%a7%d9%84%d9%81%d8%af%d9%8a%d8%a9-wannacry-%d8%a7%d9%84%d8%b0%d9%8a-%d8%a7%d8%b1/18449547_1534737329893975_4027483356535287647_o/ @article:ar:wannacry-russia-2017
+/%d9%83%d9%8a%d9%81-%d9%88%d8%a7%d8%ac%d9%87%d8%aa-%d8%b1%d9%88%d8%b3%d9%8a%d8%a7-%d9%81%d9%8a%d8%b1%d9%88%d8%b3-%d8%a7%d9%84%d9%81%d8%af%d9%8a%d8%a9-wannacry-%d8%a7%d9%84%d8%b0%d9%8a-%d8%a7%d8%b1/russia-orthodox-blessing-server-3/ @article:ar:wannacry-russia-2017
+/%d9%83%d9%8a%d9%81-%d9%88%d8%a7%d8%ac%d9%87%d8%aa-%d8%b1%d9%88%d8%b3%d9%8a%d8%a7-%d9%81%d9%8a%d8%b1%d9%88%d8%b3-%d8%a7%d9%84%d9%81%d8%af%d9%8a%d8%a9-wannacry-%d8%a7%d9%84%d8%b0%d9%8a-%d8%a7%d8%b1/russia-orthodox-patriarch-wannacry/ @article:ar:wannacry-russia-2017
+/mo/canvas/ /
+/order-ioncube-php-encoder-step-by-step/ion1/ /
+/order-ioncube-php-encoder-step-by-step/ion10-2/ /
+/order-ioncube-php-encoder-step-by-step/ion2/ /
+/order-ioncube-php-encoder-step-by-step/ion3/ /
+/order-ioncube-php-encoder-step-by-step/ion4/ /
+/order-ioncube-php-encoder-step-by-step/ion5/ /
+/order-ioncube-php-encoder-step-by-step/ion6/ /
+/order-ioncube-php-encoder-step-by-step/ion7/ /
+/order-ioncube-php-encoder-step-by-step/ion8-2/ /
+/order-ioncube-php-encoder-step-by-step/ion9-2/ /
+/zend-framework-mvc-request-lifecycle/zend-framework-mvc-request-lifecycle/ @article:en:zend-framework-request-lifecycle
+
+# WordPress sitemaps, feeds and other old system addresses
+/wp-sitemap.xml /sitemap.xml
+/sitemap_index.xml /sitemap.xml
+/wp-sitemap-posts-post-1.xml /sitemap.xml
+/wp-sitemap-posts-page-1.xml /sitemap.xml
+/wp-sitemap-taxonomies-category-1.xml /sitemap.xml
+/wp-sitemap-taxonomies-post_tag-1.xml /sitemap.xml
+/wp-sitemap-taxonomies-post_format-1.xml /sitemap.xml
+/wp-sitemap-users-1.xml /sitemap.xml
+/comments/feed/ /
+/comments/feed /
+/favicon.ico /favicon.svg
+/cv /
+/cv/ /
+
 # Families of old pages
+/type/* @writing:en
 /about/* /
 /contact-me/* /#contact
 /contact-us/* /#contact
@@ -282,3 +320,33 @@
 /writer/* /
 /feed /
 /feed/* /
+
+# Monthly and yearly archives (/2017/, /2017/05/)
+/2010 @writing:en
+/2010/* @writing:en
+/2011 @writing:en
+/2011/* @writing:en
+/2012 @writing:en
+/2012/* @writing:en
+/2013 @writing:en
+/2013/* @writing:en
+/2014 @writing:en
+/2014/* @writing:en
+/2015 @writing:en
+/2015/* @writing:en
+/2016 @writing:en
+/2016/* @writing:en
+/2017 @writing:en
+/2017/* @writing:en
+/2018 @writing:en
+/2018/* @writing:en
+/2019 @writing:en
+/2019/* @writing:en
+/2020 @writing:en
+/2020/* @writing:en
+/2021 @writing:en
+/2021/* @writing:en
+/2022 @writing:en
+/2022/* @writing:en
+/2023 @writing:en
+/2023/* @writing:en

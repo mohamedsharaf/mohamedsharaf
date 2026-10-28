@@ -9,3 +9,6 @@ wp-backup/
 # Local Worker settings and secrets for wrangler dev
 .dev.vars
 .dev.vars.*
+
+# Private notes, never pushed (the repo is public)
+docs/private/

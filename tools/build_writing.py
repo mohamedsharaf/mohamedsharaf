@@ -30,14 +30,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PREVIEW = os.environ.get('PREVIEW') == '1'
 
 TEXT = {
-    'en': dict(dir='ltr', share='Share', copy='Copy link', copied='Copied', share_native='Share…', which='Which Mohamed Sharaf?', writing='Writing', topics='Topics', all_topics='All', topic_intro='Everything I’ve written on {topic}, newest first.', home='Home', menu='Menu', hello='Say hello', other='عربي', other_lang='ar',
+    'en': dict(dir='ltr', share='Share', copy='Copy link', copied='Copied', share_native='Share…', which='Which Mohamed Sharaf?', writing='Writing', more_on='More on {topic}', older='← Older', newer='Newer →', topics='Topics', all_topics='All', topic_intro='Everything I’ve written on {topic}, newest first.', home='Home', menu='Menu', hello='Say hello', other='عربي', other_lang='ar',
                index_title='Writing', index_intro='Notes on security, infrastructure, software and AI. Written in plain words, from three decades of doing the work.',
                min_read='min read', back='All writing', cta_title='Want a second pair of eyes?',
                cta_text='If something here sounds like your system, write to me. I read everything.',
                cta_link='Say hello', draft='Draft: not published yet', empty='The first articles are on their way.',
                new_heading='New', archive_heading='From the archive', archive_intro='Notes from my old blog on mohamedsharaf.net (2010–2018), rewritten and checked. Some are dated; the dates tell you how much.',
                months=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']),
-    'ar': dict(dir='rtl', share='شارك', copy='انسخ الرابط', copied='تم النسخ', share_native='مشاركة…', which='أي محمد شرف؟', writing='كتابات', topics='المواضيع', all_topics='الكل', topic_intro='كل ما كتبته عن {topic}، الأحدث أولًا.', home='الرئيسية', menu='القائمة', hello='قل مرحبًا', other='English', other_lang='en',
+    'ar': dict(dir='rtl', share='شارك', copy='انسخ الرابط', copied='تم النسخ', share_native='مشاركة…', which='أي محمد شرف؟', writing='كتابات', more_on='المزيد عن {topic}', older='→ الأقدم', newer='الأحدث ←', topics='المواضيع', all_topics='الكل', topic_intro='كل ما كتبته عن {topic}، الأحدث أولًا.', home='الرئيسية', menu='القائمة', hello='قل مرحبًا', other='English', other_lang='en',
                index_title='كتابات', index_intro='ملاحظات عن الأمن والبنية التحتية والبرمجيات والذكاء الاصطناعي، بكلام واضح، من ثلاثة عقود من العمل.',
                min_read='دقائق قراءة', back='كل الكتابات', cta_title='تحتاج إلى نظرة ثانية؟',
                cta_text='إذا بدا لك شيء هنا مثل نظامك، اكتب لي. أقرأ كل شيء.',
@@ -105,6 +105,22 @@ a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
 .share a{color:var(--ink);text-underline-offset:4px;text-decoration-color:var(--orange)}
 .share button{font:inherit;color:var(--ink);background:none;border:1px solid var(--line);padding:5px 10px;cursor:pointer}
 .share button:hover,.share a:hover{color:var(--orange-ink)}
+.related{max-width:720px;margin:0 auto 34px}
+.related h2{font:12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+[dir=rtl] .related h2{font-family:var(--sans);letter-spacing:0;font-size:14px}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{border-bottom:1px solid var(--line)}
+.related li a{display:block;padding:13px 0;text-decoration:none;font-size:17px;font-weight:600;line-height:1.45}
+.related li a:hover{color:var(--orange-ink)}
+.related-date{display:block;font:12px var(--mono);letter-spacing:.04em;color:var(--muted);font-weight:400;margin-bottom:3px}
+[dir=rtl] .related-date{font-family:var(--sans);letter-spacing:0}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.pager a{display:block;padding:14px 16px;border:1px solid var(--line);background:var(--paper-card);text-decoration:none;font-size:15px;font-weight:600;line-height:1.4}
+.pager a:hover{border-color:var(--ink)}
+.pager span{display:block;font:12px var(--mono);color:var(--orange-ink);font-weight:400;margin-bottom:4px}
+[dir=rtl] .pager span{font-family:var(--sans)}
+.pager .newer{grid-column:2;text-align:end}
+@media(max-width:600px){.pager{grid-template-columns:1fr}.pager .newer{grid-column:auto}}
 .cta{max-width:720px;margin:10px auto 70px;padding:28px;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .cta h2{margin:0 0 6px;font-size:22px}
 .cta p{margin:0;color:#c9c6bd;font-size:15px}
@@ -250,6 +266,38 @@ def share_bar(a):
             '<script src="/assets/share.js?v=1" defer></script>')
 
 
+def related_block(a):
+    """End-of-article links: three more notes on the same topic, then the older and newer note."""
+    t = TEXT[a['lang']]
+    same_lang = sorted((b for b in articles if b['lang'] == a['lang']), key=lambda b: (b['date'], b['slug']))
+    i = same_lang.index(a)
+    older = same_lang[i - 1] if i > 0 else None
+    newer = same_lang[i + 1] if i + 1 < len(same_lang) else None
+    # Same topic, closest in date first, so old posts link to their own era and new ones to new ones
+    same_topic = [b for b in same_lang if b['topic'] == a['topic'] and b is not a and b is not older and b is not newer]
+    same_topic.sort(key=lambda b: abs(date.fromisoformat(b['date']) - date.fromisoformat(a['date'])))
+    picks = sorted(same_topic[:3], key=lambda b: b['date'], reverse=True)
+    items = ''.join(f'<li><a href="{url_for(b)}"><span class="related-date">{nice_date(b["date"], a["lang"])}</span>{html.escape(b["title"])}</a></li>'
+                    for b in picks)
+    more = t['more_on'].format(topic=html.escape(a['topic']))
+    block = f'<nav class="related" aria-label="{more}">\n      <h2>{more}</h2>\n      <ul>{items}</ul>\n' if picks else f'<nav class="related" aria-label="{t["writing"]}">\n'
+    pager = ''
+    if older:
+        pager += f'<a class="older" rel="prev" href="{url_for(older)}"><span>{t["older"]}</span>{html.escape(older["title"])}</a>'
+    if newer:
+        pager += f'<a class="newer" rel="next" href="{url_for(newer)}"><span>{t["newer"]}</span>{html.escape(newer["title"])}</a>'
+    return block + (f'      <div class="pager">{pager}</div>\n' if pager else '') + '    </nav>'
+
+
+def breadcrumbs_ld(a):
+    lang = a['lang']
+    trail = [('Mohamed Sharaf' if lang == 'en' else 'محمد شرف', '/' if lang == 'en' else '/ar'),
+             (TEXT[lang]['writing'], INDEX[lang]), (a['topic'], topic_url(lang, a['topic'])), (a['title'], url_for(a))]
+    return {'@context': 'https://schema.org', '@type': 'BreadcrumbList',
+            'itemListElement': [{'@type': 'ListItem', 'position': n, 'name': name, 'item': SITE + u}
+                                for n, (name, u) in enumerate(trail, 1)]}
+
+
 def article_page(a, pair):
     t = TEXT[a['lang']]
     canonical = url_for(a)
@@ -267,7 +315,8 @@ def article_page(a, pair):
         'publisher': {'@type': 'Person', '@id': f'{SITE}/#person', 'name': 'Mohamed Sharaf'},
         'isPartOf': {'@id': f'{SITE}/#site'},
     }
-    head = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>\n  '
+    head = (f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>\n  '
+            f'<script type="application/ld+json">{json.dumps(breadcrumbs_ld(a), ensure_ascii=False)}</script>\n  ')
     if a.get('status') != 'published':
         head += '<meta name="robots" content="noindex">\n  '
     draft = f'<div class="draft">{t["draft"]}</div>' if a.get('status') != 'published' else ''
@@ -282,6 +331,7 @@ def article_page(a, pair):
       </div>
     </article>
     {share_bar(a)}
+    {related_block(a)}
     <aside class="cta"><div><h2>{t['cta_title']}</h2><p>{t['cta_text']}</p></div><a href="{'/#contact' if a['lang'] == 'en' else '/ar#contact'}">{t['cta_link']}</a></aside>"""
     other = url_for(pair) if pair else other_index(a['lang'])
     return page(a['lang'], a['title'], a['description'], canonical, body, head, alternates, other, og_image_for(a))
@@ -463,10 +513,21 @@ for lang, n in NAME_PAGE.items():
 # Add the writing pages and published articles to the sitemap (never drafts)
 published = [a for a in articles if a.get('status') == 'published']
 public_urls = [u for u in index_urls if any(a['lang'] == ('en' if u == '/writing/' else 'ar') for a in published)]
-extra = ''.join(f"  <url>\n    <loc>{SITE}{u}</loc>\n  </url>\n" for u in public_urls + topic_urls + [url_for(a) for a in published] + list(NAME_URLS.values()))
+# lastmod for each page is the newest date (published or updated) of the articles it shows
+modified = lambda items: max((x.get('updated', x['date']) for x in items), default=None)
+pages = [(u, modified([x for x in published if x['lang'] == ('en' if u == '/writing/' else 'ar')])) for u in public_urls]
+pages += [(u, modified([x for x in published if topic_url(x['lang'], x['topic']) == u])) for u in topic_urls]
+pages += [(url_for(x), x.get('updated', x['date'])) for x in published]
+pages += [(u, None) for u in NAME_URLS.values()]
+extra = ''.join(f"  <url>\n    <loc>{SITE}{u}</loc>\n" + (f"    <lastmod>{m}</lastmod>\n" if m else '') + "  </url>\n" for u, m in pages)
 if extra:
     sitemap = os.path.join(DIST, 'sitemap.xml')
     s = open(sitemap, encoding='utf-8').read().replace('</urlset>', extra + '</urlset>')
+    # The homepages list the newest notes, so they change whenever a note is published
+    for lang, home in (('en', '/'), ('ar', '/ar')):
+        newest = modified([x for x in published if x['lang'] == lang])
+        s = re.sub(r'(<loc>' + re.escape(SITE + home) + r'</loc>\s*<lastmod>)([0-9-]+)',
+                   lambda m: m.group(1) + max(m.group(2), newest or m.group(2)), s)
     open(sitemap, 'w', encoding='utf-8').write(s)
 
 # Atom feeds, one per language, with the full text of the newest articles

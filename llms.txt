@@ -15,7 +15,8 @@
 
 - [mohamedsharaf.com (English)](https://mohamedsharaf.com/): who he is, his story since 1996, field notes, services and contact
 - [mohamedsharaf.com/ar (Arabic)](https://mohamedsharaf.com/ar): the same site in Arabic
-- [Writing (English)](https://mohamedsharaf.com/writing/) and [كتابات (Arabic)](https://mohamedsharaf.com/writing/ar/): notes on security, servers, databases, WordPress and PHP, including his old blog archive from 2010 onwards
+- [Writing (English)](https://mohamedsharaf.com/writing/) and [كتابات (Arabic)](https://mohamedsharaf.com/writing/ar/): more than 300 short, practical notes in both languages, from 2019 to today, on security incidents and what to do about them, infrastructure, software, privacy and AI, plus a rewritten archive of his old blog (2010–2018). Feeds: https://mohamedsharaf.com/writing/feed.xml and https://mohamedsharaf.com/writing/ar/feed.xml
+- Writing by topic: [Security](https://mohamedsharaf.com/writing/topic/security/), [Infrastructure](https://mohamedsharaf.com/writing/topic/infrastructure/), [Software](https://mohamedsharaf.com/writing/topic/software/), [Privacy](https://mohamedsharaf.com/writing/topic/privacy/), [AI](https://mohamedsharaf.com/writing/topic/ai/)
 - [Which Mohamed Sharaf?](https://mohamedsharaf.com/which-mohamed-sharaf/): which Mohamed Sharaf this site belongs to, and his only official profiles
 
 ## What he does

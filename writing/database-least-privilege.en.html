@@ -1,0 +1,17 @@
+<!--
+{"slug": "database-least-privilege", "lang": "en", "pair": "database-least-privilege", "status": "published",
+ "title": "Your web app doesn’t need the database root user",
+ "description": "If the app connects as root, one SQL injection owns everything. Give it its own small user.",
+ "date": "2024-03-19", "topic": "Software"}
+-->
+<p>I still find production apps connecting to MySQL or PostgreSQL as <code>root</code>. It works, so nobody changes it. But it means one SQL injection or one leaked <code>.env</code> file gives an attacker every database on the server, and sometimes files on disk too.</p>
+<p>The fix takes ten minutes:</p>
+<ol>
+  <li><strong>One user per app,</strong> with access only to that app’s database.</li>
+  <li><strong>Only the rights it uses at runtime:</strong> usually SELECT, INSERT, UPDATE, DELETE. No DROP, no GRANT, no FILE.</li>
+  <li><strong>A separate user for migrations,</strong> used during deploys, not by the running app.</li>
+  <li><strong>Limit where it can connect from</strong> (the app server, not <code>%</code>).</li>
+  <li><strong>Reporting and analytics get read-only users,</strong> ideally on a replica.</li>
+</ol>
+<p>In MySQL that’s a <code>CREATE USER</code> and a <code>GRANT</code> on <code>appdb.*</code>. In PostgreSQL, a role with privileges on one schema.</p>
+<p>Least privilege doesn’t stop the bug. It decides how bad the bug gets.</p>

@@ -1,0 +1,22 @@
+<!--
+{"slug": "old-test-accounts", "lang": "en", "pair": "old-test-accounts", "status": "published",
+ "title": "Old test accounts are open doors",
+ "description": "Microsoft’s own email was read through a forgotten test account without MFA. Go find yours.",
+ "date": "2024-02-06", "topic": "Security"}
+-->
+<p>In January Microsoft said attackers had read emails of some of its senior leaders. The way in wasn’t clever: password spraying against an old, non-production test account that didn’t have MFA. From there they used an app with too many permissions to reach real mailboxes.</p>
+<p>If it happens to Microsoft, it happens in your tenant too. Every company has these:</p>
+<ul>
+  <li>Test and demo accounts nobody owns.</li>
+  <li>Service accounts with passwords that never change.</li>
+  <li>Old apps and integrations still holding powerful access.</li>
+  <li>Former staff who “might need access again”.</li>
+</ul>
+<p>An hour to fix it:</p>
+<ol>
+  <li>Export all accounts and sort by last sign-in. Disable anything unused for 90 days.</li>
+  <li>Require MFA for every account that can sign in. No exceptions for “test”.</li>
+  <li>List the apps that have access to mail and files. Remove what you don’t recognise.</li>
+  <li>Block legacy sign-in methods that skip MFA.</li>
+</ol>
+<p>Attackers don’t need your best-protected account. They need your most forgotten one.</p>

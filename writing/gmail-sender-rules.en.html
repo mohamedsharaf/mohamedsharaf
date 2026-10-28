@@ -1,0 +1,16 @@
+<!--
+{"slug": "gmail-sender-rules", "lang": "en", "pair": "gmail-sender-rules", "status": "published",
+ "title": "Gmail and Yahoo’s new sender rules start in February",
+ "description": "From February 2024, mail without SPF, DKIM and DMARC starts landing in spam or bouncing. Check yours now.",
+ "date": "2024-01-09", "topic": "Infrastructure"}
+-->
+<p>From February, Gmail and Yahoo get strict about who is really sending your email. If your domain isn’t set up properly, invoices and password resets start going to spam, or get rejected.</p>
+<p>What everyone sending to Gmail needs:</p>
+<ul>
+  <li><strong>SPF or DKIM</strong> on your domain.</li>
+  <li><strong>Valid reverse DNS</strong> on your sending servers, and TLS.</li>
+  <li><strong>A low spam complaint rate.</strong></li>
+</ul>
+<p>If you send more than 5,000 messages a day to Gmail, you also need <strong>SPF and DKIM and DMARC</strong>, aligned with your From address, plus one-click unsubscribe on marketing mail.</p>
+<p>Don’t forget the other senders using your domain: your website’s contact form, the CRM, the newsletter tool, the invoicing system. Each one needs to be in SPF or sign with DKIM.</p>
+<p>Start DMARC at <code>p=none</code> with reports turned on. Read the reports for a few weeks, fix the senders you forgot, then move to <code>quarantine</code>. Bonus: it also stops people sending fake mail as you.</p>

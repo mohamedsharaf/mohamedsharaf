@@ -1,0 +1,19 @@
+<!--
+{"slug": "asset-list", "lang": "en", "pair": "asset-list", "status": "published",
+ "title": "You can’t protect what you don’t know you have",
+ "description": "Most security work starts with a list. A simple asset list you can make in a day.",
+ "date": "2024-04-16", "topic": "Infrastructure"}
+-->
+<p>When a new vulnerability comes out, the first question is “do we use that?”. Too many companies need a week to answer.</p>
+<p>You don’t need an expensive tool. A spreadsheet works if someone keeps it up to date. Columns I use:</p>
+<ul>
+  <li><strong>What it is:</strong> server, laptop, firewall, cloud service, domain, SaaS app.</li>
+  <li><strong>Owner:</strong> one named person.</li>
+  <li><strong>Faces the internet?</strong> Yes or no. These get patched first.</li>
+  <li><strong>Software and version,</strong> for the important pieces.</li>
+  <li><strong>What data it holds.</strong></li>
+  <li><strong>Who has admin access.</strong></li>
+  <li><strong>Renewal dates:</strong> licence, domain, certificate.</li>
+</ul>
+<p>Where to look so you don’t miss things: your DNS records, your cloud accounts, the firewall’s port list, the finance team’s list of subscriptions, and an outside scan of your public IPs. The surprises usually come from the subscriptions list.</p>
+<p>Update it when something is added or removed, and review it every quarter. Then the next “do we use that?” takes five minutes.</p>

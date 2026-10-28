@@ -1,0 +1,17 @@
+<!--
+{"slug": "database-least-privilege", "lang": "ar", "pair": "database-least-privilege", "status": "published",
+ "title": "تطبيقك لا يحتاج مستخدم root في قاعدة البيانات",
+ "description": "إذا اتصل التطبيق كـroot، فثغرة SQL injection واحدة تملك كل شيء. أعطه مستخدمًا صغيرًا خاصًا به.",
+ "date": "2024-03-19", "topic": "البرمجيات"}
+-->
+<p>ما زلت أجد تطبيقات في الإنتاج تتصل بـMySQL أو PostgreSQL كـ<code>root</code>. يعمل الأمر، فلا أحد يغيّره. لكن هذا يعني أن ثغرة SQL injection واحدة أو ملف <code>.env</code> مسرّب يعطي المهاجم كل قواعد البيانات على الخادم، وأحيانًا ملفات القرص أيضًا.</p>
+<p>الإصلاح يأخذ عشر دقائق:</p>
+<ol>
+  <li><strong>مستخدم لكل تطبيق،</strong> بصلاحية على قاعدة بيانات ذلك التطبيق فقط.</li>
+  <li><strong>الصلاحيات التي يستخدمها أثناء التشغيل فقط:</strong> غالبًا SELECT وINSERT وUPDATE وDELETE. لا DROP، ولا GRANT، ولا FILE.</li>
+  <li><strong>مستخدم منفصل للـmigrations،</strong> يُستخدم أثناء النشر، لا من التطبيق العامل.</li>
+  <li><strong>حدّد من أين يتصل</strong> (خادم التطبيق، لا <code>%</code>).</li>
+  <li><strong>التقارير والتحليلات تأخذ مستخدمين للقراءة فقط،</strong> ويفضّل على نسخة replica.</li>
+</ol>
+<p>في MySQL هذا يعني <code>CREATE USER</code> و<code>GRANT</code> على <code>appdb.*</code>. وفي PostgreSQL دور بصلاحيات على schema واحدة.</p>
+<p>مبدأ أقل صلاحية لا يمنع الخطأ، لكنه يحدد إلى أي حد يصبح الخطأ سيئًا.</p>

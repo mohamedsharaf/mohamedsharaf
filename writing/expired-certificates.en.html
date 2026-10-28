@@ -1,0 +1,17 @@
+<!--
+{"slug": "expired-certificates", "lang": "en", "pair": "expired-certificates", "status": "published",
+ "title": "Expired certificates still take sites down",
+ "description": "An expired TLS certificate is a full outage. Automate renewal and watch every certificate from outside.",
+ "date": "2024-02-20", "topic": "Infrastructure"}
+-->
+<p>Big companies still go down because a certificate expired. For the visitor it looks like a hacked site: a full-page browser warning. For an API it’s a hard failure.</p>
+<p>It happens because nobody owns the date. The person who installed it left, the reminder went to an old inbox, and the certificate on the load balancer was never part of the automation.</p>
+<p>How I avoid it:</p>
+<ul>
+  <li><strong>Automate renewal</strong> with ACME (Let’s Encrypt or your provider’s equivalent). Manual yearly renewals are where it goes wrong.</li>
+  <li><strong>Make a list</strong> of every certificate: websites, APIs, mail servers, VPN, load balancers, internal tools.</li>
+  <li><strong>Monitor from outside.</strong> A simple check that alerts 21 days before expiry catches what the automation missed.</li>
+  <li><strong>Test the renewal,</strong> not just the setup. A renewal that fails silently is the same as no renewal.</li>
+  <li><strong>Send expiry emails to a shared address,</strong> never a person.</li>
+</ul>
+<p>Certificate lifetimes are only getting shorter. If it isn’t automated now, it will hurt more next year.</p>

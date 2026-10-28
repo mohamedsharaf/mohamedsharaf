@@ -1,0 +1,17 @@
+<!--
+{"slug": "xz-backdoor", "lang": "en", "pair": "xz-backdoor", "status": "published",
+ "title": "The xz backdoor, in plain words",
+ "description": "A backdoor nearly reached millions of Linux servers through a compression library. What to check, and what it teaches.",
+ "date": "2024-04-02", "topic": "Security"}
+-->
+<p>On Friday, a developer noticed SSH logins on a test machine were half a second slower than usual, dug in, and found a backdoor in xz, a compression library almost every Linux system has. It was hidden in versions 5.6.0 and 5.6.1 and could let the attacker into SSH on affected systems.</p>
+<p>Check yours:</p>
+<pre><code>xz --version</code></pre>
+<p>If it says 5.6.0 or 5.6.1, update now using your distribution’s advice. The bad versions mainly reached rolling and testing releases such as Fedora 40 pre-release, Debian testing and unstable, Kali and Arch. Stable server releases like Debian stable, Ubuntu LTS and RHEL weren’t shipping them. Most production servers are fine.</p>
+<p>The scary part isn’t the code. Someone spent about two years becoming a trusted maintainer of the project, helping a tired volunteer, before slipping the backdoor in.</p>
+<p>Lessons for the rest of us:</p>
+<ul>
+  <li>Production runs stable releases, not the newest of everything.</li>
+  <li>Small open-source projects you depend on are part of your security. Know which ones they are.</li>
+  <li>“Something is slightly slower” is worth investigating.</li>
+</ul>

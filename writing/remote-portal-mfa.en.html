@@ -1,0 +1,17 @@
+<!--
+{"slug": "remote-portal-mfa", "lang": "en", "pair": "remote-portal-mfa", "status": "published",
+ "title": "One remote portal without MFA",
+ "description": "Change Healthcare’s attackers walked in through a remote-access portal with no MFA. Check every login page you expose.",
+ "date": "2024-05-07", "topic": "Security"}
+-->
+<p>Last week Change Healthcare’s CEO told the US Senate how the February attack started: stolen credentials used on a remote-access portal that didn’t have MFA. Nine days later came the ransomware. The outage hit pharmacies and hospitals across the country.</p>
+<p>One login page. No second factor.</p>
+<p>Most companies have a portal like that somewhere. Not the main email login, which IT protected years ago, but the forgotten ones:</p>
+<ul>
+  <li>An old Citrix or remote desktop gateway.</li>
+  <li>A VPN profile created for a vendor.</li>
+  <li>The admin panel of the website, the firewall or the backup system.</li>
+  <li>A web app for one department that still has its own logins.</li>
+</ul>
+<p>This week: list every page on the internet where someone can type a username and password. For each one, either put MFA in front of it or take it off the internet. If MFA really isn’t possible, restrict it to known IP addresses and watch its logins closely.</p>
+<p>MFA everywhere except one place is MFA nowhere, as far as the attacker is concerned.</p>

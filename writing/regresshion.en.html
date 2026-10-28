@@ -1,0 +1,13 @@
+<!--
+{"slug": "regresshion", "lang": "en", "pair": "regresshion", "status": "published",
+ "title": "regreSSHion: update OpenSSH on your Linux servers",
+ "description": "A critical OpenSSH bug can give root without a password on many Linux servers. Check your version.",
+ "date": "2024-07-09", "topic": "Security"}
+-->
+<p>Last week Qualys published regreSSHion (CVE-2024-6387): a bug in OpenSSH’s server that can let an attacker run code as root, without logging in, on Linux systems using glibc. It’s an old bug that came back in a 2020 change, hence the name.</p>
+<p>Affected: OpenSSH from 8.5p1 up to 9.7p1. Fixed in 9.8p1, and distributions have shipped patched packages.</p>
+<p>Check:</p>
+<pre><code>ssh -V</code></pre>
+<p>Then update through your package manager. Your distribution may backport the fix without changing the version number, so trust its security advisory over the number you see.</p>
+<p>The good news: exploiting it is slow and hard. It takes many hours of attempts, and it was only shown working on 32-bit systems. The bad news: attackers have time, and servers stay unpatched for years.</p>
+<p>If you can’t update today, setting <code>LoginGraceTime 0</code> in <code>sshd_config</code> blocks the attack, at the cost of making it easier to tie up connections. And better still: don’t leave SSH open to the whole internet in the first place.</p>

@@ -1,0 +1,16 @@
+<!--
+{"slug": "post-quantum", "lang": "en", "pair": "post-quantum", "status": "published",
+ "title": "Post-quantum cryptography: what to do now",
+ "description": "NIST published its first post-quantum standards this week. You don’t need to panic, but you do need a list.",
+ "date": "2024-08-20", "topic": "Security"}
+-->
+<p>On 13 August NIST published its first three post-quantum standards: ML-KEM for key exchange, and ML-DSA and SLH-DSA for signatures. They’re built to resist future quantum computers, which could break RSA and the elliptic-curve crypto we use everywhere today.</p>
+<p>Nobody has that quantum computer yet. So why care now? Because of “harvest now, decrypt later”: traffic recorded today can be decrypted in ten years. If your data still matters in ten years, such as health, legal or state data, the clock is already running.</p>
+<p>What I’d do this year:</p>
+<ul>
+  <li><strong>Make a list</strong> of where you use encryption: TLS, VPNs, signed software, stored data, partners’ APIs.</li>
+  <li><strong>Note what lives long.</strong> Data that must stay secret for years goes first.</li>
+  <li><strong>Ask your vendors</strong> about their post-quantum plans. Browsers and big CDNs are already testing hybrid key exchange.</li>
+  <li><strong>Avoid hardcoding algorithms</strong> in your own code, so you can swap them later.</li>
+</ul>
+<p>No rush to rip anything out. Just don’t be the company that discovers in 2030 it has no idea where its crypto is.</p>

@@ -1,0 +1,17 @@
+<!--
+{"slug": "third-party-scripts", "lang": "en", "pair": "third-party-scripts", "status": "published",
+ "title": "polyfill.io and the scripts you load from strangers",
+ "description": "Over 100,000 sites served malware because they loaded a script from a domain that changed owners. Check your pages.",
+ "date": "2024-06-27", "topic": "Software"}
+-->
+<p>This week, sites that loaded a script from polyfill.io started sending some mobile visitors to scam pages. The domain had been sold earlier this year, and the new owner changed the code. More than 100,000 websites were affected, and they changed nothing themselves.</p>
+<p>Every <code>&lt;script src="https://someone-else.com/..."&gt;</code> on your site lets that domain run code on your pages, with your visitors’ sessions. You’re trusting the domain owner today and whoever owns it next year.</p>
+<p>What I check:</p>
+<ol>
+  <li><strong>List every external script</strong> on your pages: analytics, chat widgets, fonts, CDNs, A/B testing.</li>
+  <li><strong>Remove what you don’t need.</strong> Old polyfills are rarely needed in modern browsers.</li>
+  <li><strong>Host the rest yourself</strong> where the licence allows. Then a version only changes when you change it.</li>
+  <li><strong>For scripts that must stay remote,</strong> add Subresource Integrity (the <code>integrity</code> attribute) so a changed file is blocked.</li>
+  <li><strong>Add a Content-Security-Policy</strong> that lists the domains allowed to run scripts.</li>
+</ol>
+<p>If you used polyfill.io, remove it today. Cloudflare and Fastly offer safe mirrors if you still need it.</p>

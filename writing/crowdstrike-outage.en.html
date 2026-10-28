@@ -1,0 +1,16 @@
+<!--
+{"slug": "crowdstrike-outage", "lang": "en", "pair": "crowdstrike-outage", "status": "published",
+ "title": "What the CrowdStrike outage taught us about recovery",
+ "description": "A bad update stopped millions of Windows PCs. The companies that recovered fast had one thing ready: their BitLocker keys.",
+ "date": "2024-07-23", "topic": "Infrastructure"}
+-->
+<p>On Friday a faulty CrowdStrike update made around 8.5 million Windows machines crash on boot. Airlines, banks and hospitals stopped. It wasn’t an attack. It was a bad file pushed to a security tool that runs deep inside Windows.</p>
+<p>The fix was simple and painful: boot each machine into safe mode and delete one file, by hand. Many companies then hit the real wall: the disks were encrypted with BitLocker, and the recovery keys were stored on servers that were also down.</p>
+<p>What to sort out now:</p>
+<ul>
+  <li><strong>Can you get your BitLocker recovery keys</strong> when every Windows server is down? Export them somewhere offline and safe.</li>
+  <li><strong>Who can visit each machine,</strong> and how fast? Remote sites and kiosks took the longest.</li>
+  <li><strong>Stage updates where the vendor lets you:</strong> a small group first, everyone later.</li>
+  <li><strong>Write the “all PCs won’t boot” plan</strong> now, including how staff talk to each other if email is down.</li>
+</ul>
+<p>Security tools need deep access to do their job. That’s exactly why a mistake in one can stop everything. Plan for the bad day, not only the attack.</p>

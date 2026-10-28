@@ -559,12 +559,27 @@ if lines:
     with open(os.path.join(DIST, '_redirects'), 'a', encoding='utf-8') as f:
         f.write('\n'.join(lines) + '\n')
 
+# Homepage: the three newest published articles at the end of Field notes, so the page shows the site is alive
+LATEST = {'en': ('Latest notes', 'All {n} notes <span aria-hidden="true">→</span>'),
+          'ar': ('أحدث الكتابات', 'كل الكتابات ({n}) <span aria-hidden="true">←</span>')}
+
+
+def latest_block(lang):
+    items = sorted((a for a in published if a['lang'] == lang), key=lambda a: a['date'], reverse=True)
+    title, more = LATEST[lang]
+    cards = ''.join(
+        f'          <li><a href="{url_for(a)}"><span class="latest-meta">{html.escape(a["topic"])} · {nice_date(a["date"], lang)}</span>'
+        f'<span class="latest-name">{html.escape(a["title"])}</span></a></li>\n'
+        for a in items[:3])
+    return (f'<div class="latest">\n        <div class="latest-head"><h3 class="latest-title">{title}</h3>'
+            f'<a class="notes-more" href="{INDEX[lang]}">{more.format(n=len(items))}</a></div>\n'
+            f'        <ol class="latest-list">\n{cards}        </ol>\n      </div>')
+
+
 # Homepage links to the writing section, only for a language that has published articles
 LINKS = {
-    'index.html': ('en', '<a class="nav-writing" href="/writing/">Writing</a>',
-                   '<a class="notes-more" href="/writing/">More writing <span aria-hidden="true">→</span></a>'),
-    'ar.html': ('ar', '<a class="nav-writing" href="/writing/ar/">كتابات</a>',
-                '<a class="notes-more" href="/writing/ar/">المزيد من الكتابات <span aria-hidden="true">←</span></a>'),
+    'index.html': ('en', '<a class="nav-writing" href="/writing/">Writing</a>', latest_block('en')),
+    'ar.html': ('ar', '<a class="nav-writing" href="/writing/ar/">كتابات</a>', latest_block('ar')),
 }
 for name, (lang, nav, more) in LINKS.items():
     path = os.path.join(DIST, name)

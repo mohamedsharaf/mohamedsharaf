@@ -1,0 +1,16 @@
+<!--
+{"slug": "libwebp", "lang": "en", "pair": "libwebp", "status": "published",
+ "title": "One image library, hundreds of apps to update",
+ "description": "The WebP bug was fixed in Chrome in days. The same code sits inside Slack, Teams and many other apps.",
+ "date": "2023-09-26", "topic": "Security"}
+-->
+<p>Two weeks ago Chrome shipped an emergency fix for CVE-2023-4863, a bug in libwebp, the library that decodes WebP images. A malicious image could run code, and it was already being exploited.</p>
+<p>Updating Chrome and Firefox was the easy part. libwebp is also inside many other apps: anything built on Electron (Slack, Teams, Discord, VS Code and plenty more), some Linux packages, mobile apps and container images. Each one needs its own update.</p>
+<p>What to do:</p>
+<ul>
+  <li><strong>Browsers:</strong> make sure they restarted after updating. A pending update protects nobody.</li>
+  <li><strong>Desktop apps:</strong> update chat, meeting and editor apps, and check their release notes for the WebP fix.</li>
+  <li><strong>Servers:</strong> update the libwebp package on Linux, and rebuild container images that include it.</li>
+  <li><strong>Your own software:</strong> check whether you bundle libwebp or an image library that does.</li>
+</ul>
+<p>This is what a shared library bug looks like: one fix upstream, then weeks of chasing every place it was copied. A software inventory makes that chase much shorter.</p>

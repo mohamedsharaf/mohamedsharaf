@@ -1,0 +1,20 @@
+<!--
+{"slug": "har-files", "lang": "en", "pair": "har-files", "status": "published",
+ "title": "Don’t send live session tokens to support",
+ "description": "The Okta support breach worked because customers uploaded HAR files with valid sessions inside. Clean them first.",
+ "date": "2023-11-07", "topic": "Security"}
+-->
+<p>Okta disclosed last month that an attacker got into its support case system and viewed files customers had uploaded. Many were HAR files, browser recordings that support teams ask for when debugging. HAR files include cookies and session tokens. The attacker used them to hijack sessions at some customers. Okta later said the way in was a service account whose credentials had been saved in an employee’s personal Google profile on a work laptop.</p>
+<p>Two lessons, one for each side.</p>
+<p>When you send a HAR file to any vendor:</p>
+<ul>
+  <li><strong>Remove cookies and authorization headers</strong> first. Several vendors offer HAR sanitizer tools.</li>
+  <li><strong>Or log out right after recording,</strong> so the session in the file is dead.</li>
+</ul>
+<p>When you run a support system:</p>
+<ul>
+  <li><strong>Treat uploaded files as secrets.</strong> Delete them when the case closes.</li>
+  <li><strong>Sanitize HAR files automatically</strong> on upload.</li>
+  <li><strong>Keep work credentials out of personal browser profiles</strong> on company devices.</li>
+</ul>
+<p>Some customers caught this early because they noticed sessions being used from strange places. That’s the logging paying off.</p>

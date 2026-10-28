@@ -1,0 +1,15 @@
+<!--
+{"slug": "terrapin-ssh", "lang": "en", "pair": "terrapin-ssh", "status": "published",
+ "title": "Terrapin: an SSH bug to fix calmly",
+ "description": "A new attack on the SSH protocol sounds scary. In practice it needs a man in the middle and does limited damage. Update anyway.",
+ "date": "2023-12-21", "topic": "Infrastructure"}
+-->
+<p>This week researchers published Terrapin (CVE-2023-48795), an attack on the SSH protocol itself. Headlines make it sound like all SSH is broken. It isn’t.</p>
+<p>What it does: an attacker who sits in the middle of the connection can quietly remove a few messages at the start, which can switch off some security extensions. It only works with certain cipher modes (ChaCha20-Poly1305, and CBC with encrypt-then-MAC). It doesn’t let anyone read your session or steal your password.</p>
+<p>What to do, without panic:</p>
+<ul>
+  <li><strong>Update servers and clients</strong> as your distribution releases fixes. OpenSSH 9.6 adds “strict key exchange”, and it needs both sides updated to work.</li>
+  <li><strong>Don’t forget other SSH software:</strong> PuTTY, libraries in your code, network devices.</li>
+  <li><strong>If you can’t update soon,</strong> you can disable the affected cipher modes in the server config, after checking your clients still connect.</li>
+</ul>
+<p>Good security news has a sense of proportion. This one is “update in your normal cycle”, not “stop everything”.</p>

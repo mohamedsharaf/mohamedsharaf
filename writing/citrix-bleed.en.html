@@ -1,0 +1,16 @@
+<!--
+{"slug": "citrix-bleed", "lang": "en", "pair": "citrix-bleed", "status": "published",
+ "title": "Citrix Bleed: patch, then kill the sessions",
+ "description": "The NetScaler bug leaks session tokens. If you patched without ending sessions, attackers may still be logged in.",
+ "date": "2023-10-31", "topic": "Security"}
+-->
+<p>Citrix Bleed (CVE-2023-4966) affects NetScaler ADC and Gateway. A request to the device makes it leak memory that contains valid session tokens. With a token, an attacker takes over a logged-in session, MFA already done.</p>
+<p>The patch came out on 10 October. Since then, mass exploitation has started, and some attacks began weeks before the patch.</p>
+<p>The catch: patching stops new leaks, but tokens already stolen keep working. So:</p>
+<ol>
+  <li><strong>Patch</strong> to the fixed version now.</li>
+  <li><strong>Then end every active and persistent session.</strong> Citrix lists the exact commands in its advisory. Everyone logs in again, and stolen tokens die.</li>
+  <li><strong>Look back</strong> at sessions from unusual IPs or with sudden IP changes since August.</li>
+  <li><strong>If you find signs of misuse,</strong> treat the internal systems those users could reach as possibly compromised.</li>
+</ol>
+<p>Remote access gateways are a favourite target. Any time one leaks sessions, “patch and move on” leaves the door half open.</p>

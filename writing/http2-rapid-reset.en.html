@@ -1,0 +1,16 @@
+<!--
+{"slug": "http2-rapid-reset", "lang": "en", "pair": "http2-rapid-reset", "status": "published",
+ "title": "HTTP/2 Rapid Reset: what to patch",
+ "description": "A flaw in HTTP/2 itself enabled the largest DDoS attacks ever seen. Update your web servers and load balancers.",
+ "date": "2023-10-17", "topic": "Infrastructure"}
+-->
+<p>Last week Google, Cloudflare and AWS described a new DDoS technique that broke every record. Google reported a peak of 398 million requests per second. It abuses HTTP/2 itself: open a request, cancel it immediately, repeat, very fast. The server does work for each one, the attacker almost none.</p>
+<p>It’s a protocol issue (CVE-2023-44487), so almost every HTTP/2 server was affected.</p>
+<p>What to do:</p>
+<ul>
+  <li><strong>Update your web servers and proxies:</strong> nginx, Apache, IIS, Envoy, HAProxy and others have released fixes or settings.</li>
+  <li><strong>Update load balancers and application gateways,</strong> including the ones from your cloud provider if you manage them.</li>
+  <li><strong>If you sit behind a CDN</strong> that has already mitigated this, you’re largely covered. Make sure your origin isn’t reachable directly.</li>
+  <li><strong>Check your limits:</strong> concurrent streams per connection, and request rates per client.</li>
+</ul>
+<p>The big providers absorbed this one. A small server facing the internet on its own wouldn’t have.</p>

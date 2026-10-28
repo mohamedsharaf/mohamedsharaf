@@ -17,6 +17,19 @@ cp -R assets dist/assets
 cp -R .well-known dist/.well-known
 find dist -name '.DS_Store' -delete
 
+# Turnstile sitekey for the contact form (public). Without TURNSTILE_SITEKEY the build uses
+# Cloudflare's test key, which only works locally; deploy.sh refuses to publish it.
+TURNSTILE_SITEKEY="${TURNSTILE_SITEKEY:-1x00000000000000000000AA}"
+python3 - "$TURNSTILE_SITEKEY" <<'PY'
+import re, sys
+key = sys.argv[1]
+assert re.fullmatch(r'[0-9A-Za-z_-]{10,64}', key), 'bad TURNSTILE_SITEKEY'
+for page in ('dist/index.html', 'dist/ar.html'):
+    html = open(page, encoding='utf-8').read()
+    assert '__TURNSTILE_SITEKEY__' in html, page
+    open(page, 'w', encoding='utf-8').write(html.replace('__TURNSTILE_SITEKEY__', key))
+PY
+
 # Articles in writing/ become /writing/... pages (drafts only with PREVIEW=1)
 python3 tools/build_writing.py dist
 
@@ -33,12 +46,13 @@ for page in ('dist/index.html', 'dist/ar.html', 'dist/404.html'):
         hashes.append(f"'sha256-{digest}'")
 csp = '; '.join([
     "default-src 'self'",
-    "script-src 'self' " + ' '.join(sorted(set(hashes))),
+    "script-src 'self' https://challenges.cloudflare.com " + ' '.join(sorted(set(hashes))),
+    "frame-src https://challenges.cloudflare.com",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data:",
     "font-src 'self'",
-    "connect-src 'self' https://formsubmit.co",
-    "form-action 'self' https://formsubmit.co",
+    "connect-src 'self'",
+    "form-action 'self'",
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "object-src 'none'",

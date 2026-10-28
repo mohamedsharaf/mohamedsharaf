@@ -5,3 +5,7 @@ wp-backup/
 *.sql
 *.sql.gz
 *.sql.zip
+
+# Local Worker settings and secrets for wrangler dev
+.dev.vars
+.dev.vars.*

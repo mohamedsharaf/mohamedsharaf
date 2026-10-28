@@ -405,6 +405,8 @@
     .field input:hover,.field select:hover,.field textarea:hover{border-color:#a9a89d}
     .field select:focus-visible{outline:3px solid var(--orange);outline-offset:5px}
     .honey{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+    .turnstile{grid-column:1 / -1}
+    .turnstile:empty{display:none}
     .form-actions{grid-column:1 / -1;display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:4px}
     .form-note{font-size:10px;color:#5f6059;margin:0;line-height:1.6}
     .form-note.ok{color:#3f7d48}
@@ -899,14 +901,10 @@
           <button class="copy-email mono" id="copy-email" aria-live="polite">انسخ البريد الإلكتروني</button>
         </div>
       </div>
-      <!-- FormSubmit: the first message triggers a one-time activation email to this address -->
-      <form class="contact-form" id="contact-form" action="https://formsubmit.co/hi@mohamedsharaf.com" method="POST">
-        <input type="hidden" name="_subject" value="New message from mohamedsharaf.com (Arabic)">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://mohamedsharaf.com/ar#contact">
-        <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="field"><label class="mono" for="f-name">اسمك</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
-        <div class="field"><label class="mono" for="f-email">بريدك الإلكتروني</label><input id="f-email" name="email" type="email" autocomplete="email" dir="ltr" required></div>
+      <form class="contact-form" id="contact-form" action="/api/contact" method="POST" data-sitekey="__TURNSTILE_SITEKEY__">
+        <input class="honey" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field"><label class="mono" for="f-name">اسمك</label><input id="f-name" name="name" type="text" autocomplete="name" maxlength="100" required></div>
+        <div class="field"><label class="mono" for="f-email">بريدك الإلكتروني</label><input id="f-email" name="email" type="email" autocomplete="email" maxlength="254" dir="ltr" required></div>
         <div class="field full"><label class="mono" for="f-topic">عن أي شيء؟</label>
           <select id="f-topic" name="topic">
             <option value="Just saying hello">مجرد تحية</option>
@@ -916,7 +914,8 @@
             <option value="Something else">شيء آخر</option>
           </select>
         </div>
-        <div class="field full"><label class="mono" for="f-message">رسالتك</label><textarea id="f-message" name="message" rows="5" dir="auto" required></textarea></div>
+        <div class="field full"><label class="mono" for="f-message">رسالتك</label><textarea id="f-message" name="message" rows="5" dir="auto" minlength="10" maxlength="5000" required></textarea></div>
+        <div class="turnstile" id="turnstile-box"></div>
         <div class="form-actions">
           <button class="book-button" type="submit" id="form-submit">أرسل الرسالة <span aria-hidden="true">↖</span></button>
           <p class="form-note mono" id="form-status" role="status" aria-live="polite">تصل مباشرة إلى بريدي. بلا نشرات بريدية، أبدًا.</p>
@@ -1162,32 +1161,78 @@
         });
       });
 
-      // CONTACT FORM (FormSubmit AJAX; the plain POST still works without JS)
+      // CONTACT FORM: posts to /api/contact (worker/index.js). Cloudflare Turnstile proves the sender is
+      // not a bot; it loads only once someone starts using the form, so the page stays fast.
       const form = $('contact-form'), formStatus = $('form-status'), formSubmit = $('form-submit');
       document.querySelectorAll('[data-topic]').forEach(link => {
         link.addEventListener('click', () => { $('f-topic').value = link.dataset.topic; });
       });
+      const formText = {
+        checking: 'نتحقق أنك لست روبوتًا…', sending: 'جارٍ الإرسال…', ok: 'شكرًا لك. وصلت رسالتك، وسأرد عليك قريبًا.',
+        rate: 'رسائل كثيرة متتالية. انتظر دقيقة ثم حاول مرة أخرى.',
+        verification: 'لم أتمكن من التأكد أنك لست روبوتًا. حاول مرة أخرى، أو راسلني على hi@mohamedsharaf.com',
+        invalid: 'تأكد من اسمك وبريدك، ومن أن الرسالة 10 أحرف على الأقل.',
+        fail: 'لم تُرسَل الرسالة. راسلني مباشرة على hi@mohamedsharaf.com'
+      };
+      const say = (text, kind) => {
+        formStatus.className = 'form-note mono' + (kind ? ' ' + kind : '');
+        formStatus.textContent = text;
+      };
+      let turnstileLoading, widgetId, turnstileToken = '', tokenWaiter = null;
+      const loadTurnstile = () => turnstileLoading ??= new Promise((resolve, reject) => {
+        window.onTurnstileLoad = () => {
+          widgetId = window.turnstile.render('#turnstile-box', {
+            sitekey: form.dataset.sitekey, action: 'contact', appearance: 'interaction-only', theme: 'light', language: 'ar',
+            callback: token => { turnstileToken = token; tokenWaiter?.resolve(token); },
+            'expired-callback': () => { turnstileToken = ''; },
+            'error-callback': () => { turnstileToken = ''; tokenWaiter?.reject(new Error('turnstile')); }
+          });
+          resolve();
+        };
+        const script = document.createElement('script');
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad';
+        script.async = true;
+        script.onerror = () => { turnstileLoading = null; reject(new Error('turnstile')); };
+        document.head.append(script);
+      });
+      const getToken = () => turnstileToken ? Promise.resolve(turnstileToken) : new Promise((resolve, reject) => {
+        const timer = setTimeout(() => reject(new Error('turnstile')), 20000);
+        tokenWaiter = {
+          resolve: token => { clearTimeout(timer); tokenWaiter = null; resolve(token); },
+          reject: error => { clearTimeout(timer); tokenWaiter = null; reject(error); }
+        };
+      });
+      form.addEventListener('focusin', () => { loadTurnstile().catch(() => {}); }, { once: true });
       form.addEventListener('submit', async event => {
         event.preventDefault();
-        if (form.elements._honey.value) return;
         formSubmit.disabled = true;
-        formStatus.className = 'form-note mono';
-        formStatus.textContent = 'جارٍ الإرسال…';
+        say(formText.checking);
         try {
-          const response = await fetch('https://formsubmit.co/ajax/hi@mohamedsharaf.com', {
+          await loadTurnstile();
+          const token = await getToken();
+          say(formText.sending);
+          const fields = form.elements;
+          const response = await fetch('/api/contact', {
             method: 'POST',
-            headers: { Accept: 'application/json' },
-            body: new FormData(form)
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: fields.name.value, email: fields.email.value, topic: fields.topic.value,
+              message: fields.message.value, website: fields.website.value, token, lang: 'ar'
+            })
           });
-          const result = await response.json();
-          if (!response.ok || String(result.success) !== 'true') throw new Error(result.message);
-          form.reset();
-          formStatus.className = 'form-note mono ok';
-          formStatus.textContent = 'شكرًا لك. وصلت رسالتك، وسأرد عليك قريبًا.';
-        } catch {
-          formStatus.className = 'form-note mono error';
-          formStatus.textContent = 'لم تُرسَل الرسالة. راسلني مباشرة على hi@mohamedsharaf.com';
+          const result = await response.json().catch(() => ({}));
+          if (response.ok && result.ok) {
+            form.reset();
+            say(formText.ok, 'ok');
+          } else {
+            say(formText[result.error] || formText.fail, 'error');
+          }
+        } catch (error) {
+          say(error.message === 'turnstile' ? formText.verification : formText.fail, 'error');
         } finally {
+          // Turnstile tokens work once: get a fresh one for the next message
+          turnstileToken = '';
+          if (widgetId !== undefined) window.turnstile.reset(widgetId);
           formSubmit.disabled = false;
         }
       });

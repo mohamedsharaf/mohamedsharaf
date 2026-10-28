@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!--
+  LinkedIn background banner, 1584x396.
+  The profile photo covers the lower left (roughly x 40-380), and phones trim a little off the sides,
+  so the text lives between x≈560 and x≈1520.
+  Render from this folder:
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --force-device-scale-factor=1 \
+    --window-size=1584,396 --virtual-time-budget=4000 --screenshot=linkedin-banner-1584x396.png "file://$PWD/banner-source.html"
+-->
+<style>
+  @font-face{font-family:Manrope;src:url('../../assets/manrope-latin.woff2') format('woff2');font-weight:200 800}
+  @font-face{font-family:'IBM Plex Sans Arabic';src:url('../../assets/plex-arabic-400.woff2') format('woff2');font-weight:400}
+  @font-face{font-family:Amiri;src:url('../../assets/amiri-arabic.woff2') format('woff2')}
+  :root{--bg:#0a0e0d;--text:#f3efe7;--muted:#9aa595;--orange:#e85532;--orange-hot:#ff7a4f;--green:#bed4a3;--mono:'SFMono-Regular',Menlo,monospace}
+  *{box-sizing:border-box;margin:0}
+  html,body{width:1584px;height:396px;overflow:hidden}
+  body{background:radial-gradient(ellipse 60% 90% at 62% 50%,#16201c 0%,#0d1311 55%,var(--bg) 100%);color:var(--text);font-family:Manrope,sans-serif;position:relative}
+  canvas{position:absolute;inset:0}
+  .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(190,212,163,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(190,212,163,.045) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 70% 100% at 62% 50%,#000 30%,transparent 85%)}
+
+  .mark{position:absolute;left:492px;top:150px;display:grid;grid-template-columns:repeat(2,34px);gap:8px;transform:rotate(-7deg);filter:drop-shadow(0 0 14px rgba(232,85,50,.7)) drop-shadow(0 0 40px rgba(232,85,50,.35))}
+  .mark i{width:34px;height:34px;background:linear-gradient(180deg,#ff7a4f,#d24a26)}
+  .mark i:last-child{opacity:.4}
+
+  .title{position:absolute;left:600px;top:96px;display:flex;flex-direction:column;gap:12px}
+  .who{font:600 14px var(--mono);letter-spacing:.32em;color:var(--green);text-transform:uppercase;opacity:.9}
+  h1{font-size:72px;line-height:1;letter-spacing:-.065em;font-weight:750;white-space:nowrap}
+  h1 .hot{color:var(--orange-hot);text-shadow:0 0 22px rgba(232,85,50,.55)}
+  .sub{font:600 14px var(--mono);letter-spacing:.14em;color:#d9d4ca;text-transform:uppercase}
+  .sub b{color:var(--orange-hot);font-weight:600}
+  .site{font:14px var(--mono);letter-spacing:.28em;color:var(--muted)}
+  .site span{color:var(--orange-hot)}
+
+  .verse{position:absolute;right:96px;top:118px;width:430px;display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right;padding-left:34px;border-left:1px solid rgba(190,212,163,.18)}
+  .verse p{font-family:Amiri,'Geeza Pro',serif;font-size:32px;line-height:1.5;direction:rtl;text-shadow:0 2px 14px rgba(0,0,0,.8)}
+  .verse em{font:italic 15px Manrope,sans-serif;color:#d9d4ca}
+  .verse small{font:12px var(--mono);letter-spacing:.12em;color:var(--muted);display:flex;align-items:center;gap:9px;text-transform:uppercase}
+  .verse small::before{content:"";width:34px;height:2px;background:var(--orange)}
+</style>
+</head>
+<body>
+  <canvas id="net" width="1584" height="396"></canvas>
+  <div class="grid"></div>
+
+  <div class="mark"><i></i><i></i><i></i><i></i></div>
+  <div class="title">
+    <div class="who">Mohamed Ahmed Sharaf</div>
+    <h1>Still <span class="hot">curious.</span></h1>
+    <div class="sub">Security <b>·</b> Infrastructure <b>·</b> Software <b>·</b> AI</div>
+    <div class="site">MOHAMEDSHARAF<span>.</span>COM</div>
+  </div>
+
+  <div class="verse">
+    <p lang="ar">﴿وَمَا أُوتِيتُمْ مِنَ الْعِلْمِ إِلَّا قَلِيلًا﴾</p>
+    <em>“And you have been given of knowledge only a little.”</em>
+    <small>Al-Isra 17:85</small>
+  </div>
+
+<script>
+  // Same deterministic constellation as the other banners, kept away from the text
+  const c = document.getElementById('net'), x = c.getContext('2d');
+  const W = 1584, H = 396;
+  let seed = 1996; const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
+  const pts = [];
+  for (let i = 0; i < 95; i++) {
+    const px = rnd() * W, py = rnd() * H;
+    const busy = (px > 470 && px < 1060 && py > 70 && py < 320) || (px > 1060 && px < 1550 && py > 100 && py < 300);
+    if (busy) continue;
+    pts.push([px, py, rnd()]);
+  }
+  for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+    const a = pts[i], b = pts[j], d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+    if (d < 120) {
+      const hot = (a[2] > .86 || b[2] > .86);
+      x.strokeStyle = hot ? `rgba(232,85,50,${(1 - d / 120) * .55})` : `rgba(190,212,163,${(1 - d / 120) * .16})`;
+      x.lineWidth = hot ? 1.2 : 1;
+      x.beginPath(); x.moveTo(a[0], a[1]); x.lineTo(b[0], b[1]); x.stroke();
+    }
+  }
+  for (const [px, py, k] of pts) {
+    const hot = k > .86;
+    if (hot) { x.shadowColor = 'rgba(255,122,79,.9)'; x.shadowBlur = 12; }
+    x.fillStyle = hot ? '#ff7a4f' : 'rgba(190,212,163,.55)';
+    x.beginPath(); x.arc(px, py, hot ? 3 : 1.7, 0, 7); x.fill();
+    x.shadowBlur = 0;
+  }
+</script>
+</body>
+</html>

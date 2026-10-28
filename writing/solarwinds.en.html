@@ -1,0 +1,19 @@
+<!--
+{"slug": "solarwinds", "lang": "en", "pair": "solarwinds", "status": "published",
+ "title": "SolarWinds: when the update is the attack",
+ "description": "Trojanised Orion updates reached thousands of networks. What to check if you run it, and what it means for everyone else.",
+ "date": "2021-01-05", "topic": "Security"}
+-->
+<p>The biggest security story of the holidays: attackers broke into SolarWinds’ build system and slipped a backdoor into updates for its Orion monitoring software, shipped between March and June 2020. Around 18,000 customers installed them. A much smaller number, including US government agencies and big tech companies, were then targeted further.</p>
+<p>If you run Orion:</p>
+<ul>
+  <li>Follow the SolarWinds and CISA guidance, and update to the clean versions.</li>
+  <li>Check whether the affected versions ever ran, and whether the server talked to the domains listed in the advisories.</li>
+  <li>If it did, assume the network is compromised, starting with your identity systems.</li>
+</ul>
+<p>For everyone else, the lesson is uncomfortable. Monitoring and management tools have admin rights everywhere. So:</p>
+<ul>
+  <li><strong>Limit where they can reach,</strong> including the internet. A monitoring server rarely needs to browse the web.</li>
+  <li><strong>Watch their behaviour,</strong> not just their files.</li>
+  <li><strong>Know which vendors push code</strong> into your core systems.</li>
+</ul>

@@ -1,0 +1,12 @@
+<!--
+{"slug": "confluence-2021", "lang": "en", "pair": "confluence-2021", "status": "published", "title": "Patch Confluence: exploitation started in days", "description": "A Confluence bug patched on 25 August is now under mass attack. Self-hosted servers on the internet are being taken over.", "date": "2021-09-07", "topic": "Infrastructure"}
+-->
+<p>On 25 August Atlassian fixed a critical bug in Confluence Server and Data Center (CVE-2021-26084). Within a week, attackers were mass-scanning for unpatched servers, mostly installing crypto miners so far. US Cyber Command posted a warning on Friday.</p>
+<p>The window between patch and attack keeps shrinking. A few days is now normal.</p>
+<ol>
+  <li><strong>Update Confluence</strong> to a fixed version, or apply Atlassian’s temporary script if you can’t today.</li>
+  <li><strong>Check for miners and new processes</strong> started by the Confluence user, and new files in its directories.</li>
+  <li><strong>If it was exposed and unpatched,</strong> check what credentials the server holds and rotate them.</li>
+  <li><strong>Put self-hosted tools behind a VPN</strong> or an authenticating proxy, so the next bug isn’t open to everyone.</li>
+</ol>
+<p>Confluence Cloud isn’t affected.</p>

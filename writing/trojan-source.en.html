@@ -1,0 +1,12 @@
+<!--
+{"slug": "trojan-source", "lang": "en", "pair": "trojan-source", "status": "published", "title": "Trojan Source: code that lies to reviewers", "description": "Hidden text-direction characters can make code look harmless to a reviewer while the compiler sees something else.", "date": "2021-11-09", "topic": "Software"}
+-->
+<p>Researchers at Cambridge published Trojan Source last week. They used Unicode direction control characters, the ones that let Arabic and Hebrew mix with English, to make source code display differently from how the compiler reads it. A reviewer sees a comment; the compiler sees code.</p>
+<p>As someone who writes in Arabic and English every day, I find this one fascinating. The same characters that make right-to-left text work can hide logic.</p>
+<p>What to do:</p>
+<ul>
+  <li><strong>Update your editors and code hosting.</strong> GitHub, GitLab and many editors now warn about these characters.</li>
+  <li><strong>Add a check in CI</strong> that rejects bidirectional control characters in source files, unless there’s a reason.</li>
+  <li><strong>Be extra careful with outside contributions</strong> and copied code.</li>
+</ul>
+<p>Real Arabic text belongs in translation files and strings, not in the middle of logic.</p>

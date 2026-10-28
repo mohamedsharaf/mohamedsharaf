@@ -1,0 +1,13 @@
+<!--
+{"slug": "fastly-outage", "lang": "en", "pair": "fastly-outage", "status": "published", "title": "Fastly’s outage: a big part of the web went dark", "description": "One customer setting triggered a bug that took down major websites for an hour. Know your single points of failure.", "date": "2021-06-10", "topic": "Infrastructure"}
+-->
+<p>On Tuesday, many big websites, news sites, government portals and online shops, showed errors for about an hour. The cause: Fastly, a content delivery network many of them use. A valid configuration change by one customer triggered a hidden bug, and most of Fastly’s network returned errors.</p>
+<p>Fastly fixed it fast and explained it clearly. The interesting part is how many sites depended on one company without thinking about it.</p>
+<p>Worth checking:</p>
+<ul>
+  <li><strong>What sits in front of your site</strong>: CDN, DNS provider, firewall service, load balancer?</li>
+  <li><strong>Can you switch</strong> to a second CDN or straight to your origin, and how long would it take?</li>
+  <li><strong>Is your status page</strong> hosted on the same provider? Many were.</li>
+  <li><strong>Do your monitoring alerts</strong> run from outside that provider?</li>
+</ul>
+<p>Not every company needs two CDNs. Every company should know it has one.</p>

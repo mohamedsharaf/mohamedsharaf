@@ -1,0 +1,16 @@
+<!--
+{"slug": "codecov", "lang": "en", "pair": "codecov", "status": "published", "title": "Codecov: when your CI script steals your secrets", "description": "A tampered Codecov upload script sent CI environment variables to attackers for months. Rotate, then verify what you run.", "date": "2021-04-27", "topic": "Software"}
+-->
+<p>Codecov disclosed this month that its Bash Uploader script, used in thousands of CI pipelines, had been modified by attackers since late January. The change sent the environment variables from customers’ CI runs to the attackers. Those variables often include cloud keys, API tokens and database passwords.</p>
+<p>If you used it:</p>
+<ol>
+  <li><strong>Rotate every secret</strong> that was available to those CI jobs. Assume they were copied.</li>
+  <li><strong>Check cloud and Git logs</strong> for use of those credentials since January.</li>
+  <li><strong>Re-check code and releases</strong> built in that period if your pipeline could push them.</li>
+</ol>
+<p>For everyone, the habit to drop is <code>curl ... | bash</code> in pipelines. Instead:</p>
+<ul>
+  <li>Pin tools to a version and verify their checksum or signature.</li>
+  <li>Give each CI job only the secrets it needs.</li>
+  <li>Prefer short-lived credentials over long-lived keys stored in CI settings.</li>
+</ul>

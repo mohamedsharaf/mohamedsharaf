@@ -1,0 +1,12 @@
+<!--
+{"slug": "facebook-outage", "lang": "en", "pair": "facebook-outage", "status": "published", "title": "Facebook vanished from the internet. Here’s how", "description": "A configuration change withdrew Facebook’s routes. DNS went with it, and so did its internal tools and door badges.", "date": "2021-10-05", "topic": "Infrastructure"}
+-->
+<p>Yesterday Facebook, Instagram and WhatsApp disappeared for about six hours. Facebook says a configuration change during maintenance withdrew the network routes (BGP) to its own data centres. Its DNS servers became unreachable, so the rest of the internet couldn’t even find facebook.com.</p>
+<p>The painful part: Facebook’s internal tools ran on the same infrastructure. Engineers reportedly had trouble getting into buildings because badge systems were affected too.</p>
+<p>Lessons any company can use:</p>
+<ul>
+  <li><strong>Can you fix things when your own systems are down?</strong> Out-of-band access, offline documentation, phone numbers on paper.</li>
+  <li><strong>Don’t host everything in one place,</strong> especially DNS, status pages and emergency communication.</li>
+  <li><strong>Network changes need a safe way back,</strong> such as automatic rollback if connectivity is lost.</li>
+</ul>
+<p>And make sure your company can talk when WhatsApp is down. Many found out yesterday they couldn’t.</p>

@@ -1,0 +1,17 @@
+<!--
+{"slug": "letsencrypt-root", "lang": "en", "pair": "letsencrypt-root", "status": "published", "title": "Let’s Encrypt’s old root expires on 30 September", "description": "When DST Root CA X3 expires, some older devices and software will stop trusting many websites. Test your clients now.", "date": "2021-09-21", "topic": "Infrastructure"}
+-->
+<p>On 30 September the old root certificate that many Let’s Encrypt certificates chain to, DST Root CA X3, expires. Modern browsers and phones already trust Let’s Encrypt’s own root, so most people will notice nothing.</p>
+<p>The trouble is with old things:</p>
+<ul>
+  <li>Servers and scripts using old OpenSSL 1.0.2 or outdated CA bundles.</li>
+  <li>Older macOS, iOS and Windows versions that haven’t updated their root stores.</li>
+  <li>Embedded devices, smart TVs and appliances that never get updates.</li>
+  <li>API clients built years ago in Java, Python or PHP with their own trust stores.</li>
+</ul>
+<p>What to do this week:</p>
+<ol>
+  <li>Update CA certificates and OpenSSL on your servers.</li>
+  <li>Test your integrations: anything of yours that calls a Let’s Encrypt-secured API, and partners that call you.</li>
+  <li>Know who to call if a payment terminal or device stops connecting on 1 October.</li>
+</ol>

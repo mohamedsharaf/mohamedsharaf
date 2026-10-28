@@ -1,0 +1,16 @@
+<!--
+{"slug": "dependency-confusion", "lang": "en", "pair": "dependency-confusion", "status": "published",
+ "title": "Dependency confusion: a package name is an attack",
+ "description": "A researcher got code running inside Apple, Microsoft and PayPal by publishing public packages with their internal names.",
+ "date": "2021-02-23", "topic": "Software"}
+-->
+<p>Earlier this month a security researcher showed a simple trick. Companies use internal packages with private names. If someone publishes a public package with the same name and a higher version number on npm, PyPI or RubyGems, some build tools install the public one instead. The researcher’s test packages ran inside dozens of big companies, including Apple, Microsoft and PayPal, and collected bug bounties.</p>
+<p>Check your setup:</p>
+<ul>
+  <li><strong>Use scoped or namespaced packages</strong> (like <code>@yourcompany/utils</code>) and own that scope on the public registry.</li>
+  <li><strong>Point package managers at one registry</strong> that proxies the public one, so internal names always win.</li>
+  <li><strong>Pin versions and use lock files.</strong></li>
+  <li><strong>Reserve your internal names</strong> on public registries with empty placeholder packages, if scopes aren’t possible.</li>
+  <li><strong>Watch build servers</strong> for unexpected outbound connections.</li>
+</ul>
+<p>Package managers do exactly what they’re told. Make sure you’re telling them the right thing.</p>

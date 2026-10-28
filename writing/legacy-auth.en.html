@@ -1,0 +1,13 @@
+<!--
+{"slug": "legacy-auth", "lang": "en", "pair": "legacy-auth", "status": "published", "title": "Turn off legacy authentication in Microsoft 365", "description": "Old mail protocols skip MFA, and password-spraying attacks love them. Most companies can block them in an afternoon.", "date": "2021-03-30", "topic": "Security"}
+-->
+<p>You turned on MFA for Microsoft 365. Good. But if legacy authentication is still allowed, attackers can skip it.</p>
+<p>Older protocols such as POP, IMAP, SMTP AUTH and old Exchange ActiveSync clients only send a username and password. No MFA prompt. Password-spraying attacks, trying a few common passwords against many accounts, target exactly these.</p>
+<p>Microsoft is phasing out basic authentication for Exchange Online. Don’t wait for it:</p>
+<ol>
+  <li><strong>Check the sign-in logs</strong> for legacy protocols. You’ll see which users and apps still use them.</li>
+  <li><strong>Move those to modern clients:</strong> current Outlook, the mail apps on phones, or OAuth for scanners and apps.</li>
+  <li><strong>Block legacy authentication</strong> with security defaults or a conditional access policy.</li>
+  <li><strong>Keep an exception list short,</strong> named, and with an end date.</li>
+</ol>
+<p>The old printer that sends scanned PDFs by email is usually the last one. Plan it, don’t let it keep the door open.</p>

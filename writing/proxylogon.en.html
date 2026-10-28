@@ -1,0 +1,16 @@
+<!--
+{"slug": "proxylogon", "lang": "en", "pair": "proxylogon", "status": "published",
+ "title": "ProxyLogon: patch Exchange, then look for web shells",
+ "description": "Four Exchange zero-days are being mass-exploited. Patching closes the door but doesn’t remove anyone already inside.",
+ "date": "2021-03-09", "topic": "Security"}
+-->
+<p>Last Tuesday Microsoft released emergency patches for four Exchange Server bugs, known as ProxyLogon. A state-backed group was using them first; now many groups are scanning the whole internet. Tens of thousands of servers have been hit.</p>
+<p>The attack drops a web shell, a small file that gives the attacker remote control, and that stays after you patch.</p>
+<p>If you run Exchange on your own servers:</p>
+<ol>
+  <li><strong>Patch now,</strong> or apply Microsoft’s interim mitigations if you truly can’t.</li>
+  <li><strong>Run Microsoft’s detection script and scanner</strong> to look for web shells and signs of exploitation.</li>
+  <li><strong>If you find anything,</strong> treat it as a breach: check for new accounts, stolen mail and spread to other servers.</li>
+  <li><strong>Limit who can reach Outlook on the web</strong> from the internet, for example through a VPN or reverse proxy with pre-authentication.</li>
+</ol>
+<p>Exchange 2013, 2016 and 2019 are affected. Exchange Online isn’t.</p>

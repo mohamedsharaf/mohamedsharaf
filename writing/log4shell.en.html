@@ -1,0 +1,14 @@
+<!--
+{"slug": "log4shell", "lang": "en", "pair": "log4shell", "status": "published", "title": "Log4Shell: what to do this week", "description": "A bug in the Log4j logging library lets attackers run code with a single line of text. Find every Java app you have.", "date": "2021-12-14", "topic": "Security"}
+-->
+<p>On Thursday a critical bug in Log4j 2, a Java logging library used almost everywhere, became public: CVE-2021-44228, Log4Shell. If an app logs a string an attacker controls, such as a username, a search term or a browser header, the attacker can make the server run their code.</p>
+<p>Mass scanning started within hours. This one will last.</p>
+<p>This week:</p>
+<ol>
+  <li><strong>Find every Java application,</strong> yours and your vendors’: web apps, VPNs, monitoring, backup, building systems.</li>
+  <li><strong>Upgrade Log4j to 2.16.0,</strong> released yesterday. 2.15.0 turned out not to be enough.</li>
+  <li><strong>Follow vendor advisories</strong> for products you can’t patch yourself.</li>
+  <li><strong>Block outbound internet access</strong> from servers that don’t need it. It stops the common attack even on systems you missed.</li>
+  <li><strong>Look at logs</strong> for <code>${jndi:</code> strings and unexpected outbound LDAP connections.</li>
+</ol>
+<p>Expect weeks of follow-up advisories. Keep the list you build; you’ll need it again.</p>

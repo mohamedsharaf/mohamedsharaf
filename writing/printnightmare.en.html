@@ -1,0 +1,12 @@
+<!--
+{"slug": "printnightmare", "lang": "en", "pair": "printnightmare", "status": "published", "title": "PrintNightmare: switch off the Print Spooler", "description": "A Windows print spooler bug lets attackers run code as SYSTEM, even on domain controllers. Disable it where nothing prints.", "date": "2021-07-06", "topic": "Security"}
+-->
+<p>Last week a proof-of-concept for a Windows Print Spooler bug was published by mistake, and Microsoft confirmed it as CVE-2021-34527, PrintNightmare. It lets an attacker with a normal account run code as SYSTEM. On a domain controller, that’s the whole domain. Microsoft has started releasing emergency updates.</p>
+<p>What to do:</p>
+<ol>
+  <li><strong>Install the out-of-band update</strong> as it arrives for your Windows versions.</li>
+  <li><strong>Disable the Print Spooler service</strong> on servers that don’t print, starting with domain controllers. Most of them never needed it.</li>
+  <li><strong>Where you must keep it,</strong> block inbound remote printing by Group Policy.</li>
+  <li><strong>Check the Point and Print settings</strong> Microsoft lists; some configurations stay vulnerable even after updating.</li>
+</ol>
+<p>The bigger lesson: Windows runs many services by default. On servers, turn off what the server’s job doesn’t need.</p>

@@ -1,0 +1,16 @@
+<!--
+{"slug": "optus-api", "lang": "en", "pair": "optus-api", "status": "published",
+ "title": "Optus and the API anyone could call",
+ "description": "Data on up to 9.8 million Australians leaked. Reports point to an API that didn’t check who was asking.",
+ "date": "2022-09-27", "topic": "Software"}
+-->
+<p>Optus, Australia’s second-largest telco, says personal data on up to 9.8 million current and former customers was taken, including passport and licence numbers for some. Reports say the data came through an internet-facing API that didn’t require any login. Optus disputes how simple it was. Either way, the question for the rest of us is the same.</p>
+<p>Do you know every API you expose, and what each one checks?</p>
+<p>Common problems I find:</p>
+<ul>
+  <li><strong>Test or partner APIs</strong> left open after a project ended.</li>
+  <li><strong>IDs you can count through:</strong> change <code>/customer/1001</code> to <code>/customer/1002</code> and get someone else.</li>
+  <li><strong>No rate limits,</strong> so one client can download millions of records.</li>
+  <li><strong>Returning everything,</strong> when the screen needs three fields.</li>
+</ul>
+<p>Fixes: an inventory of APIs, authentication on every endpoint, checks that the caller owns the record, rate limits, and alerts on unusual volume. And keep less data, especially ID numbers you don’t need after verifying someone.</p>

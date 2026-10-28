@@ -1,0 +1,17 @@
+<!--
+{"slug": "openssl-3-critical", "lang": "en", "pair": "openssl-3-critical", "status": "published",
+ "title": "OpenSSL critical fix: find your OpenSSL 3",
+ "description": "A critical OpenSSL 3.0 fix lands on 1 November. Use the days before to find where you run version 3.",
+ "date": "2022-10-27", "topic": "Infrastructure"}
+-->
+<p>The OpenSSL project announced it will release version 3.0.7 on 1 November with a fix for a “critical” bug. That’s only the second critical rating in its history; the first was Heartbleed. Details come with the release.</p>
+<p>Good news first: it only affects OpenSSL 3.0.x. Version 1.1.1, still the most common, isn’t affected.</p>
+<p>Use the days before the release to find where you run OpenSSL 3:</p>
+<ul>
+  <li><strong>Newer Linux releases</strong> such as Ubuntu 22.04 and RHEL 9 ship it.</li>
+  <li><strong>Runtimes that bundle it,</strong> such as recent Node.js versions.</li>
+  <li><strong>Container images</strong> built on those bases.</li>
+  <li><strong>Your own builds</strong> that statically link it.</li>
+</ul>
+<p>Check with <code>openssl version</code> on servers, and your software inventory for the rest. Then be ready to update on Tuesday, starting with anything facing the internet.</p>
+<p>It may turn out less severe than feared. Finding your OpenSSL 3 is still useful work either way.</p>

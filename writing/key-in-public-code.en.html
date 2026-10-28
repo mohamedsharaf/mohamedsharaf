@@ -1,0 +1,20 @@
+<!--
+{"slug": "key-in-public-code", "lang": "en", "pair": "key-in-public-code", "status": "published",
+ "title": "Toyota: an access key public on GitHub for five years",
+ "description": "Part of an app’s source code, with a server key inside, sat in a public repository since 2017. Check your contractors too.",
+ "date": "2022-10-18", "topic": "Software"}
+-->
+<p>Toyota said this month that part of the source code for its T-Connect app had been in a public GitHub repository since December 2017, uploaded by a subcontractor. Inside was an access key to a data server. Close to 300,000 customer email addresses and customer numbers may have been exposed.</p>
+<p>Five years. Nobody noticed until a researcher did.</p>
+<p>Two lessons:</p>
+<ul>
+  <li><strong>Secrets don’t belong in code,</strong> not even in private repos, because private doesn’t stay private. Use environment variables or a secrets manager.</li>
+  <li><strong>Your contractors’ habits are your risk.</strong> Their repos, laptops and accounts touch your systems.</li>
+</ul>
+<p>What to do:</p>
+<ol>
+  <li>Scan your own repositories, including history, for keys. Free tools like Gitleaks do it in minutes.</li>
+  <li>Search GitHub for your domain names, project names and internal hostnames. You might find code you didn’t know was public.</li>
+  <li>Put rules for code and secrets into contractor agreements, and give contractors repos you own.</li>
+  <li>Rotate keys on a schedule, so a forgotten leak has an expiry date.</li>
+</ol>

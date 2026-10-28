@@ -1,0 +1,16 @@
+<!--
+{"slug": "fortinet-sslvpn", "lang": "en", "pair": "fortinet-sslvpn", "status": "published",
+ "title": "Fortinet SSL-VPN bug: patch, then hunt",
+ "description": "A pre-login bug in FortiOS SSL-VPN is being exploited. Update, and look for the signs Fortinet published.",
+ "date": "2022-12-20", "topic": "Security"}
+-->
+<p>Last week Fortinet confirmed a critical bug in the SSL-VPN of FortiOS (CVE-2022-42475). Anyone who can reach the VPN login page can run code on the firewall, without logging in. It was already being exploited.</p>
+<p>A firewall is the one device every connection passes through. Owning it means owning the network.</p>
+<p>What to do:</p>
+<ol>
+  <li><strong>Update FortiOS</strong> to a fixed version for your branch, today.</li>
+  <li><strong>If you can’t,</strong> disable SSL-VPN until you can.</li>
+  <li><strong>Check for the indicators</strong> Fortinet published: certain files on the device, crash logs from the SSL-VPN process, and connections to the listed IP addresses.</li>
+  <li><strong>If anything matches,</strong> treat the firewall as compromised: rebuild it from a clean image, and change every password and key it stored.</li>
+</ol>
+<p>Before the holidays, make sure someone owns the firewall patches. Edge devices don’t wait for January.</p>

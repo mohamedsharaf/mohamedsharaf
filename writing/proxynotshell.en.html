@@ -1,0 +1,16 @@
+<!--
+{"slug": "proxynotshell", "lang": "en", "pair": "proxynotshell", "status": "published",
+ "title": "ProxyNotShell: Exchange zero-days, no patch",
+ "description": "On-premises Exchange servers are under attack again. Apply the mitigation, and plan your way off on-prem mail.",
+ "date": "2022-10-04", "topic": "Security"}
+-->
+<p>Last week Microsoft confirmed two Exchange Server zero-days (CVE-2022-41040 and CVE-2022-41082), already used in attacks. Together they can let an attacker run code on the server. They need an ordinary mailbox login first, which attackers can usually get through phishing.</p>
+<p>There’s no patch yet. Microsoft has published a mitigation, a URL rewrite rule, and has already had to update it once because researchers found ways around the first version.</p>
+<p>If you run Exchange on your own servers:</p>
+<ol>
+  <li><strong>Apply the latest mitigation</strong> (or let the Exchange Emergency Mitigation Service do it) and check again in a few days.</li>
+  <li><strong>Block remote PowerShell for normal users.</strong> It’s rarely needed.</li>
+  <li><strong>Look for web shells</strong> and odd processes started by IIS.</li>
+  <li><strong>Install the patch</strong> the day it ships.</li>
+</ol>
+<p>And the bigger question. After ProxyLogon, ProxyShell and now this, ask whether running Exchange yourself is still worth it. For most small and medium companies, hosted mail is now the safer choice.</p>

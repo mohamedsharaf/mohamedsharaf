@@ -1,0 +1,21 @@
+<!--
+{"slug": "uber-breach", "lang": "en", "pair": "uber-breach", "status": "published",
+ "title": "Uber’s breach: MFA spam and a password in a script",
+ "description": "A teenager got deep into Uber with stolen credentials, repeated MFA prompts and an admin password in a PowerShell file.",
+ "date": "2022-09-20", "topic": "Security"}
+-->
+<p>Last week Uber was breached, and the attacker posted about it in Uber’s own Slack. The chain, as reported:</p>
+<ol>
+  <li>A contractor’s password, probably bought from a criminal market.</li>
+  <li>Repeated MFA push prompts, plus a message on WhatsApp claiming to be Uber IT and asking to approve. Eventually it was approved.</li>
+  <li>Inside the network, a file share with a PowerShell script containing admin credentials for the company’s password vault system.</li>
+</ol>
+<p>From there, the keys to much of Uber.</p>
+<p>Each step has a known fix:</p>
+<ul>
+  <li><strong>Number matching or security keys</strong> instead of simple “Approve” prompts.</li>
+  <li><strong>A clear rule:</strong> IT never asks you to approve a login by chat or phone.</li>
+  <li><strong>Search your shares and repos for passwords</strong> in scripts. There are tools that do this.</li>
+  <li><strong>Protect the vault</strong> with the strongest MFA and the fewest admins you have.</li>
+</ul>
+<p>The attacker wasn’t sophisticated. The gaps were common. That should worry everyone a bit more than a fancy exploit would.</p>

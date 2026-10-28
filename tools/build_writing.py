@@ -462,28 +462,47 @@ for lang in ('en', 'ar'):
                 topic_urls.append(topic_url(lang, topic))
 
 # "Which Mohamed Sharaf?": the name is shared with others, including the late Egyptian actor.
-# A short page says who this site belongs to and where my real profiles are. It says nothing about him.
+# A short page says who this site belongs to, lists other namesakes in one neutral line each (no links,
+# no personal details), and gives my real profiles.
 NAME_URLS = {'en': '/which-mohamed-sharaf/', 'ar': '/which-mohamed-sharaf/ar/'}
 PROFILES = [('LinkedIn', 'https://www.linkedin.com/in/mohamed-ahmed-sharaf/'), ('GitHub', 'https://github.com/mohamedsharaf'),
             ('YouTube', 'https://www.youtube.com/@mohamedsharaf'), ('Facebook', 'https://www.facebook.com/Mohamed.Ahmed.Sharaf')]
 NAME_PAGE = {
     'en': dict(title='Which Mohamed Sharaf?', kicker='About the name',
-               description='This site belongs to Mohamed Sharaf, a security and technology consultant. Not the late Egyptian actor of the same name.',
+               description='This site belongs to Mohamed Ahmed Sharaf, a security and technology consultant in Riyadh. Not the late Egyptian actor, or anyone else with the same name.',
                body="""<p>Mohamed Sharaf is a common name, so here is which one this site belongs to.</p>
-<p>I am a security and technology consultant based in Riyadh. I have been with computers since 1996, in information security since 2000, and running my own company since 2002. I write here about security, infrastructure, software and AI.</p>
-<h2>Not the actor</h2>
-<p>If you are looking for the late Egyptian actor Mohamed Sharaf, may he rest in peace, this is not him. We only share a name. Nothing on this site is about him or his work.</p>
+<p>I am Mohamed Ahmed Sharaf, a security and technology consultant based in Riyadh. I have been with computers since 1996, in information security since 2000, and running my own company since 2002. I write here about security, infrastructure, software and AI.</p>
+<h2>Other people with this name</h2>
+<p>Several people share the name. None of them is me, and nothing on this site is about them or their work:</p>
+<ul>
+  <li>The late Egyptian actor Mohamed Sharaf (1963–2018), may he rest in peace.</li>
+  <li>An executive in Dubai’s economic development sector.</li>
+  <li>An associate professor of computer science at a university in the UAE.</li>
+  <li>An Egyptian professional squash player.</li>
+  <li>A product designer working in e-commerce.</li>
+  <li>Another cybersecurity consultant, with a separate website.</li>
+</ul>
+<p>There are surely others. If you are looking for one of them, adding their field or city to your search will find them faster.</p>
 <h2>Where to find me</h2>
 <p>These are my only profiles. Anything else under this name that isn’t linked from this site is not me.</p>
 <ul>
 {profiles}
 </ul>""", home='Back to the homepage', contact='Say hello'),
     'ar': dict(title='أي محمد شرف؟', kicker='عن الاسم',
-               description='هذا موقع محمد شرف، مستشار أمن المعلومات والتقنية، وليس الفنان المصري الراحل الذي يحمل الاسم نفسه.',
+               description='هذا موقع محمد أحمد شرف، مستشار أمن المعلومات والتقنية في الرياض، وليس الفنان المصري الراحل ولا أي شخص آخر يحمل الاسم نفسه.',
                body="""<p>اسم محمد شرف منتشر، لذلك أوضح هنا لمن يعود هذا الموقع.</p>
-<p>أنا مستشار في أمن المعلومات والتقنية، مقيم في الرياض. مع الكمبيوتر منذ 1996، وفي أمن المعلومات منذ 2000، وأدير شركتي الخاصة منذ 2002. أكتب هنا عن الأمن والبنية التحتية والبرمجيات والذكاء الاصطناعي.</p>
-<h2>لست الفنان</h2>
-<p>إذا كنت تبحث عن الفنان المصري الراحل محمد شرف، رحمه الله، فهذا ليس موقعه. نحن نشترك في الاسم فقط، ولا شيء في هذا الموقع عنه أو عن أعماله.</p>
+<p>أنا محمد أحمد شرف، مستشار في أمن المعلومات والتقنية، مقيم في الرياض. مع الكمبيوتر منذ 1996، وفي أمن المعلومات منذ 2000، وأدير شركتي الخاصة منذ 2002. أكتب هنا عن الأمن والبنية التحتية والبرمجيات والذكاء الاصطناعي.</p>
+<h2>آخرون يحملون الاسم نفسه</h2>
+<p>يحمل هذا الاسم أكثر من شخص. لا أحد منهم أنا، ولا شيء في هذا الموقع عنهم أو عن أعمالهم:</p>
+<ul>
+  <li>الفنان المصري الراحل محمد شرف (1963–2018)، رحمه الله.</li>
+  <li>مسؤول تنفيذي في قطاع التنمية الاقتصادية في دبي.</li>
+  <li>أستاذ مشارك في علوم الحاسب في جامعة بالإمارات.</li>
+  <li>لاعب إسكواش مصري محترف.</li>
+  <li>مصمم منتجات يعمل في التجارة الإلكترونية.</li>
+  <li>مستشار آخر في الأمن السيبراني، له موقع منفصل.</li>
+</ul>
+<p>وبالتأكيد هناك غيرهم. إن كنت تبحث عن أحدهم، فأضف مجاله أو مدينته إلى البحث لتجده أسرع.</p>
 <h2>أين تجدني</h2>
 <p>هذه حساباتي الوحيدة، وأي حساب آخر بهذا الاسم لا يوجد له رابط من هذا الموقع فهو ليس لي.</p>
 <ul>

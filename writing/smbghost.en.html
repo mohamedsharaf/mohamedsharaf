@@ -1,0 +1,11 @@
+<!--
+{"slug": "smbghost", "lang": "en", "pair": "smbghost", "status": "published", "title": "SMBGhost: patch Windows 10 file sharing today", "description": "A wormable bug in Windows 10’s SMBv3 compression leaked before a fix. Microsoft has now released the patch.", "date": "2020-03-12", "topic": "Security"}
+-->
+<p>On Tuesday details of a serious bug in SMBv3 leaked before a patch was ready. Today Microsoft released the fix for CVE-2020-0796, known as SMBGhost. It affects Windows 10 and Windows Server versions 1903 and 1909.</p>
+<p>It’s called wormable for a reason: a vulnerable machine could be attacked over the network without any login, and malware could spread from one PC to the next on its own, like WannaCry in 2017.</p>
+<ol>
+  <li><strong>Install today’s update</strong> on Windows 10 and Server 1903/1909.</li>
+  <li><strong>If you can’t yet,</strong> disable SMBv3 compression on servers with the PowerShell setting Microsoft published.</li>
+  <li><strong>Block TCP port 445</strong> at your internet edge. File sharing should never be open to the internet.</li>
+  <li><strong>Inside the network,</strong> limit which machines can reach each other on 445. Laptops rarely need to talk to other laptops.</li>
+</ol>

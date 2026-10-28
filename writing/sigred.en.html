@@ -1,0 +1,11 @@
+<!--
+{"slug": "sigred", "lang": "en", "pair": "sigred", "status": "published", "title": "SIGRed: patch your Windows DNS servers", "description": "A 17-year-old bug in Windows DNS Server is rated 10/10 and wormable. Domain controllers are usually DNS servers too.", "date": "2020-07-16", "topic": "Security"}
+-->
+<p>Tuesday’s Windows updates fixed CVE-2020-1350, called SIGRed: a bug in Windows DNS Server that has existed for 17 years. A malicious DNS response can let an attacker run code as SYSTEM. Microsoft rates it wormable and 10 out of 10.</p>
+<p>In most companies, the domain controllers are also the DNS servers. That makes this as serious as it gets.</p>
+<ol>
+  <li><strong>Install the July update</strong> on every Windows Server running the DNS role, starting with domain controllers.</li>
+  <li><strong>If you can’t patch today,</strong> apply Microsoft’s registry workaround that limits the size of DNS packets over TCP, then restart the DNS service.</li>
+  <li><strong>Check that internal DNS servers</strong> aren’t reachable from the internet.</li>
+</ol>
+<p>Windows clients aren’t affected, only servers running DNS Server. That makes the list short. Don’t let it wait.</p>

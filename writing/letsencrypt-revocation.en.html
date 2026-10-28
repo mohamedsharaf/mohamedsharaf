@@ -1,0 +1,13 @@
+<!--
+{"slug": "letsencrypt-revocation", "lang": "en", "pair": "letsencrypt-revocation", "status": "published", "title": "Let’s Encrypt is revoking 3 million certificates", "description": "A bug means millions of certificates will be revoked tomorrow. Check yours and renew today, or visitors will see errors.", "date": "2020-03-03", "topic": "Infrastructure"}
+-->
+<p>Let’s Encrypt found a bug in how it checked CAA records, a DNS setting that says which authorities may issue certificates for a domain. Because of it, about 3 million certificates will be revoked starting tomorrow, 4 March.</p>
+<p>A revoked certificate makes browsers show a security warning. For an online shop or a login page, that’s an outage.</p>
+<p>What to do today:</p>
+<ol>
+  <li><strong>Check your domains</strong> with the tool Let’s Encrypt published, or the list of affected serial numbers.</li>
+  <li><strong>Renew affected certificates now.</strong> With certbot, a forced renewal does it.</li>
+  <li><strong>Restart or reload</strong> web servers, mail servers and load balancers so they use the new certificate.</li>
+  <li><strong>Don’t forget the places nobody remembers:</strong> APIs, mail, internal tools with public certificates.</li>
+</ol>
+<p>This is also a good test of your automation. If renewing everything at short notice is hard, fix that next.</p>

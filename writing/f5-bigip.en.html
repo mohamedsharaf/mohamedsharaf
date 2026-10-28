@@ -1,0 +1,11 @@
+<!--
+{"slug": "f5-bigip", "lang": "en", "pair": "f5-bigip", "status": "published", "title": "F5 BIG-IP bug: patch and hide the admin page", "description": "A critical bug in the BIG-IP management interface is being exploited. It should never have been on the internet.", "date": "2020-07-07", "topic": "Security"}
+-->
+<p>Last week F5 disclosed a critical bug in the Traffic Management User Interface of BIG-IP (CVE-2020-5902), rated 10 out of 10. Over the US holiday weekend, exploit code appeared and attacks started.</p>
+<p>BIG-IP load balancers sit in front of many banks’ and governments’ websites. The bug lets anyone who can reach the admin interface run commands.</p>
+<ol>
+  <li><strong>Update to a fixed version</strong> now, or apply F5’s mitigation if you can’t.</li>
+  <li><strong>Check for compromise</strong> if the interface was exposed.</li>
+  <li><strong>Make sure the management interface isn’t reachable from the internet.</strong> Thousands were.</li>
+</ol>
+<p>The last point is the real lesson. Admin interfaces of network devices belong on a management network, never on the internet. That one rule would have saved most victims this weekend.</p>

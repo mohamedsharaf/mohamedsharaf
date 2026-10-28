@@ -1,0 +1,12 @@
+<!--
+{"slug": "zerologon", "lang": "en", "pair": "zerologon", "status": "published", "title": "Zerologon: patch your domain controllers now", "description": "A bug in Netlogon lets anyone on the network become domain admin in seconds. The August patch fixes it.", "date": "2020-09-15", "topic": "Security"}
+-->
+<p>Last week researchers published details of Zerologon (CVE-2020-1472), a flaw in the Netlogon protocol. Anyone who can reach a domain controller on the network can reset its machine account password and take over the domain. In seconds, with no login. Exploit code is now public.</p>
+<p>Microsoft fixed it in the August updates. If your domain controllers didn’t get those, this is the most urgent thing you’ll do this month.</p>
+<ol>
+  <li><strong>Install the August (or later) updates on every domain controller.</strong></li>
+  <li><strong>Check none were missed:</strong> old ones, DCs at branch offices, test domains.</li>
+  <li><strong>Watch the event logs</strong> Microsoft lists for vulnerable connections, and fix devices that need them.</li>
+  <li><strong>Plan for the enforcement phase</strong> Microsoft announced for next year, when old insecure connections will be refused.</li>
+</ol>
+<p>Ransomware groups will use this quickly. Anyone already inside your network can become the domain admin.</p>

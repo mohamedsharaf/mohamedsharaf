@@ -1,0 +1,12 @@
+<!--
+{"slug": "curveball", "lang": "en", "pair": "curveball", "status": "published", "title": "CurveBall: the Windows bug the NSA reported", "description": "A flaw in how Windows checks certificates could let fake software and websites look trusted. Patch it this week.", "date": "2020-01-21", "topic": "Security"}
+-->
+<p>Last Tuesday’s Windows updates fixed CVE-2020-0601, nicknamed CurveBall. The NSA found it and reported it to Microsoft, which is unusual by itself.</p>
+<p>The bug is in how Windows 10 and Server 2016/2019 check certain certificates. An attacker could make a fake certificate that Windows accepts as genuine. That means malware signed to look like it came from Microsoft, or a fake HTTPS website that shows no warning.</p>
+<p>What to do:</p>
+<ul>
+  <li><strong>Install the January updates</strong> on Windows 10 and Windows Server 2016 and 2019, starting with servers that handle TLS and machines that browse the web.</li>
+  <li><strong>Don’t forget proxies and appliances</strong> running Windows underneath.</li>
+  <li><strong>Check your antivirus</strong> has updates that detect files signed with spoofed certificates.</li>
+</ul>
+<p>Trust in certificates holds up the whole internet. When the checker has a bug, patching is not optional.</p>

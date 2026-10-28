@@ -1,0 +1,14 @@
+<!--
+{"slug": "open-databases", "lang": "en", "pair": "open-databases", "status": "published", "title": "The breach without a hacker: open databases", "description": "Researchers keep finding databases with millions of records and no password. Nobody broke in; the door was open.", "date": "2020-08-25", "topic": "Infrastructure"}
+-->
+<p>Almost every week this year, researchers have reported another database left open on the internet: Elasticsearch, MongoDB, storage buckets, with millions of customer records and no password at all. Often it was a copy made for testing or analytics, forgotten.</p>
+<p>No hacker needed. Search engines like Shodan index these within hours.</p>
+<p>How to make sure it isn’t you:</p>
+<ul>
+  <li><strong>Databases never listen on public IPs.</strong> Bind them to private networks and use firewall rules.</li>
+  <li><strong>Authentication on, always,</strong> even for “temporary” or test instances.</li>
+  <li><strong>Scan your own public IPs and cloud accounts</strong> for open database ports and public storage.</li>
+  <li><strong>No production data in test copies,</strong> or mask it first.</li>
+  <li><strong>Delete copies</strong> when the analysis or migration is finished.</li>
+</ul>
+<p>The fix is boring configuration. The breach notice is not.</p>

@@ -480,7 +480,6 @@ NAME_PAGE = {
   <li>An associate professor of computer science at a university in the UAE.</li>
   <li>An Egyptian professional squash player.</li>
   <li>A product designer working in e-commerce.</li>
-  <li>Another cybersecurity consultant, with a separate website.</li>
 </ul>
 <p>There are surely others. If you are looking for one of them, adding their field or city to your search will find them faster.</p>
 <h2>Where to find me</h2>
@@ -500,7 +499,6 @@ NAME_PAGE = {
   <li>أستاذ مشارك في علوم الحاسب في جامعة بالإمارات.</li>
   <li>لاعب إسكواش مصري محترف.</li>
   <li>مصمم منتجات يعمل في التجارة الإلكترونية.</li>
-  <li>مستشار آخر في الأمن السيبراني، له موقع منفصل.</li>
 </ul>
 <p>وبالتأكيد هناك غيرهم. إن كنت تبحث عن أحدهم، فأضف مجاله أو مدينته إلى البحث لتجده أسرع.</p>
 <h2>أين تجدني</h2>

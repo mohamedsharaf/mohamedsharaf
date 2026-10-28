@@ -1,0 +1,17 @@
+<!--
+{"slug": "data-minimisation", "lang": "en", "pair": "data-minimisation", "status": "published",
+ "title": "The data you don’t keep can’t leak",
+ "description": "Every field you collect is something to protect forever. Collect less, keep it shorter, delete on schedule.",
+ "date": "2022-02-01", "topic": "Privacy"}
+-->
+<p>Last week was Data Privacy Day, so here’s the cheapest security control I know: don’t keep data you don’t need.</p>
+<p>In almost every breach I’ve read about, a big part of the damage was old data. Customers from 2014. ID scans kept “just in case”. Full card numbers in a log file. A copy of production in a test database.</p>
+<p>Questions to ask about every form and table:</p>
+<ul>
+  <li><strong>Do we need this field at all?</strong> Date of birth, national ID, full address. If you can’t say why, don’t ask for it.</li>
+  <li><strong>How long do we need it?</strong> Set a period, then actually delete or anonymise after it.</li>
+  <li><strong>Who needs to see it?</strong> Mask it for everyone else.</li>
+  <li><strong>Where else does it end up?</strong> Logs, backups, exports, emails, test systems.</li>
+</ul>
+<p>Data protection laws such as the GDPR already require this. But the real reason is simpler: you can’t lose what you don’t have, and you don’t have to defend it either.</p>
+<p>Pick one table this month and set a deletion rule for it. Then the next one.</p>

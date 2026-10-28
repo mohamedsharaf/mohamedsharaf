@@ -1,0 +1,22 @@
+<!--
+{"slug": "spring4shell", "lang": "en", "pair": "spring4shell", "status": "published",
+ "title": "Spring4Shell: check your setup, then patch",
+ "description": "The new Spring Framework bug is serious but narrower than Log4Shell. Here’s how to know if you’re affected.",
+ "date": "2022-04-05", "topic": "Software"}
+-->
+<p>Last week a remote code execution bug in Spring Framework (CVE-2022-22965) leaked before a fix was ready, and the internet named it Spring4Shell. Coming four months after Log4Shell, people panicked. It’s serious, but it’s narrower.</p>
+<p>The known attack needs all of these:</p>
+<ul>
+  <li>JDK 9 or newer,</li>
+  <li>Spring MVC or Spring WebFlux,</li>
+  <li>Apache Tomcat as the servlet container,</li>
+  <li>the app packaged as a traditional WAR file.</li>
+</ul>
+<p>Spring Boot apps running as an executable JAR aren’t affected by the known exploit, though there may be other ways in.</p>
+<p>What to do:</p>
+<ol>
+  <li><strong>Upgrade to Spring Framework 5.3.18 or 5.2.20,</strong> or Spring Boot 2.6.6 / 2.5.12, which include the fix.</li>
+  <li><strong>If you can’t yet,</strong> upgrading Tomcat to its patched versions also blocks the known attack.</li>
+  <li><strong>Don’t confuse it</strong> with a separate Spring Cloud Function bug released the same week. Patch that too if you use it.</li>
+</ol>
+<p>After Log4Shell, many teams knew where their Java apps lived. If you didn’t, this is the week to start that list.</p>

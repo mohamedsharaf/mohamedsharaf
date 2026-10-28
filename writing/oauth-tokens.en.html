@@ -1,0 +1,17 @@
+<!--
+{"slug": "oauth-tokens", "lang": "en", "pair": "oauth-tokens", "status": "published",
+ "title": "Stolen OAuth tokens: review your GitHub apps",
+ "description": "Attackers used tokens stolen from Heroku and Travis CI to download private GitHub repos. Check who can read your code.",
+ "date": "2022-04-19", "topic": "Software"}
+-->
+<p>GitHub said last week that an attacker used stolen OAuth tokens, issued to Heroku and Travis CI, to download private repositories from dozens of organisations, including npm. GitHub itself wasn’t hacked. The keys came from apps that customers had connected to it.</p>
+<p>Every “Sign in with GitHub” or “Connect your repository” creates a token with access to your code. Those tokens live on someone else’s servers.</p>
+<p>What to do now:</p>
+<ol>
+  <li><strong>Review authorised OAuth apps and GitHub Apps</strong> for your account and organisation. Remove what you don’t use.</li>
+  <li><strong>Check the scopes.</strong> Does a deploy tool really need access to every private repo?</li>
+  <li><strong>Look at your organisation’s audit log</strong> for clones and downloads you can’t explain.</li>
+  <li><strong>Rotate secrets that live in your repositories.</strong> If private code was copied, keys inside it are exposed.</li>
+  <li><strong>Turn on organisation policies</strong> that require admin approval for new third-party apps.</li>
+</ol>
+<p>Your code is only as private as the least careful app you connected to it.</p>

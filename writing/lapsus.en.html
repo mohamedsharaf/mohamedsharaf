@@ -1,0 +1,23 @@
+<!--
+{"slug": "lapsus", "lang": "en", "pair": "lapsus", "status": "published",
+ "title": "Lapsus$: no zero-days, just people",
+ "description": "The group that hit Nvidia, Samsung, Microsoft and Okta used MFA spam, SIM swaps and paid insiders. Defend those.",
+ "date": "2022-03-29", "topic": "Security"}
+-->
+<p>In a few months, a young group called Lapsus$ got into Nvidia, Samsung, Microsoft and, last week, a support contractor working for Okta. Microsoft’s write-up of their methods is worth reading because there’s nothing exotic in it:</p>
+<ul>
+  <li>Buying passwords and session tokens from infostealer markets.</li>
+  <li>Spamming MFA prompts until someone approves.</li>
+  <li>SIM swapping to take over phone numbers used for codes.</li>
+  <li>Openly offering to pay employees for access.</li>
+  <li>Then joining the company’s own chat and calls to watch the response.</li>
+</ul>
+<p>The defences match:</p>
+<ol>
+  <li><strong>Phishing-resistant MFA</strong> such as security keys for admins and support staff. No prompts to spam, no codes to steal.</li>
+  <li><strong>Move away from SMS codes.</strong></li>
+  <li><strong>Strong checks for help desk resets</strong> and new MFA devices.</li>
+  <li><strong>Treat contractors’ access like your own staff’s:</strong> same MFA, same logging, least access.</li>
+  <li><strong>Run incident calls on a separate channel</strong> when you suspect your main one is watched.</li>
+</ol>
+<p>And tell your staff that anyone offering money for access should be reported. It sounds obvious. It worked for Lapsus$.</p>

@@ -1,0 +1,22 @@
+<!--
+{"slug": "log4shell-one-month", "lang": "en", "pair": "log4shell-one-month", "status": "published",
+ "title": "Log4Shell, one month on: where it still hides",
+ "description": "You patched the obvious Java apps in December. Log4j also hides in vendor products, fat JARs and old containers.",
+ "date": "2022-01-11", "topic": "Security"}
+-->
+<p>A month after Log4Shell, most teams have patched the Java apps they know about. The problem is the ones they don’t. Last week the US FTC even warned companies it may act against those that leave customer data exposed through this bug.</p>
+<p>Log4j is a logging library, so it’s everywhere, often inside other things. Where I still find it:</p>
+<ul>
+  <li><strong>Vendor products:</strong> VPNs, backup tools, monitoring, VMware, building systems. Check every vendor’s advisory, not just your own code.</li>
+  <li><strong>Fat JARs and WAR files</strong> where Log4j is bundled inside, invisible to a simple file search.</li>
+  <li><strong>Old container images</strong> still running, or about to be redeployed.</li>
+  <li><strong>Forgotten servers</strong> nobody owns: test systems, old intranets, that one Minecraft server.</li>
+</ul>
+<p>What to do:</p>
+<ol>
+  <li>Upgrade to Log4j 2.17.1 or later (Java 8+).</li>
+  <li>Scan with a tool that looks inside archives, such as the free scanners published by CISA and others.</li>
+  <li>Block outbound internet access from servers that don’t need it. That breaks the usual attack even on missed systems.</li>
+  <li>Check logs since early December for signs of exploitation.</li>
+</ol>
+<p>This one will be around for years. The inventory you build now will pay off the next time.</p>

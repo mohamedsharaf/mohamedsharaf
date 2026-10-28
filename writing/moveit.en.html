@@ -1,0 +1,15 @@
+<!--
+{"slug": "moveit", "lang": "en", "pair": "moveit", "status": "published",
+ "title": "MOVEit: patch, then look for the web shell",
+ "description": "A zero-day in MOVEit Transfer is being mass-exploited. Patching isn’t enough if they were already in.",
+ "date": "2023-06-06", "topic": "Infrastructure"}
+-->
+<p>Last week Progress disclosed a critical SQL injection bug in MOVEit Transfer, its file transfer product. Attackers were already exploiting it before the announcement, and the Cl0p ransomware gang has now claimed it. They aren’t encrypting anything. They’re stealing files, then demanding money.</p>
+<p>If you run MOVEit Transfer:</p>
+<ol>
+  <li><strong>Apply the patch</strong> for your version now. If you can’t, block HTTP and HTTPS traffic to it until you can, as Progress advises.</li>
+  <li><strong>Look for signs they got in first.</strong> The known sign is a web shell file named <code>human2.aspx</code> in the web folder, plus new or unexpected admin accounts.</li>
+  <li><strong>Check logs from late May onward</strong> for large downloads and unknown IPs.</li>
+  <li><strong>If you find anything,</strong> treat it as a data breach: work out which files were there, and get legal advice about who to tell.</li>
+</ol>
+<p>If you don’t run it yourself, ask your suppliers, payroll provider and partners whether they do. Many of the victims will be companies that never heard of MOVEit.</p>

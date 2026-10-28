@@ -1,0 +1,16 @@
+<!--
+{"slug": "windows-server-2012-eol", "lang": "en", "pair": "windows-server-2012-eol", "status": "published",
+ "title": "Windows Server 2012 support ends in October",
+ "description": "After 10 October 2023, Windows Server 2012 and 2012 R2 get no more security updates. Three months to plan.",
+ "date": "2023-07-11", "topic": "Infrastructure"}
+-->
+<p>On 10 October 2023, Windows Server 2012 and 2012 R2 reach the end of extended support. No more security updates after that. There are still a lot of them out there, quietly running file shares, old line-of-business apps and domain controllers.</p>
+<p>Three months is enough if you start now:</p>
+<ol>
+  <li><strong>Find them all.</strong> Ask Active Directory, not people’s memory. Include virtual machines nobody logs into anymore.</li>
+  <li><strong>Sort them:</strong> upgrade in place, move the role to a new server, move to the cloud, or switch off.</li>
+  <li><strong>Start with the riskiest:</strong> anything facing the internet, and domain controllers.</li>
+  <li><strong>For the ones that can’t move in time,</strong> Microsoft sells Extended Security Updates, and gives them free for servers moved to Azure. Treat that as a bridge.</li>
+  <li><strong>Isolate what remains:</strong> no internet access, tight firewall rules, extra monitoring.</li>
+</ol>
+<p>The old app that “only runs on 2012” is usually the real blocker. Talk to its vendor this month, not in September.</p>

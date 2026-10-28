@@ -1,0 +1,17 @@
+<!--
+{"slug": "cpu-microcode", "lang": "en", "pair": "cpu-microcode", "status": "published",
+ "title": "Zenbleed and Downfall: firmware updates count too",
+ "description": "Two new CPU bugs can leak data between programs. The fix is BIOS and microcode updates, which many teams skip.",
+ "date": "2023-08-29", "topic": "Infrastructure"}
+-->
+<p>Two serious CPU bugs this summer: Zenbleed in AMD’s Zen 2 processors, and Downfall in many Intel generations. Both can let one program read data it shouldn’t, such as passwords or keys from another program, or another virtual machine on the same server.</p>
+<p>Most teams patch Windows and Linux every month. Far fewer update BIOS and CPU microcode, and that’s where these fixes live.</p>
+<p>What to do:</p>
+<ul>
+  <li><strong>Servers first,</strong> especially hosts running virtual machines for different customers or teams. Check your vendor’s BIOS and firmware updates.</li>
+  <li><strong>Install OS updates too.</strong> Linux distributions and Windows ship microcode and workarounds.</li>
+  <li><strong>Cloud servers:</strong> the provider patches the physical hosts. You still update your own operating system.</li>
+  <li><strong>Watch performance</strong> after the Downfall fix on workloads that are heavy on certain instructions. Test before rolling out everywhere.</li>
+  <li><strong>Laptops and desktops:</strong> use the vendor’s update tool, or your device management, to push firmware.</li>
+</ul>
+<p>Firmware is software. It needs updates like everything else.</p>

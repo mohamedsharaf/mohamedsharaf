@@ -1,0 +1,16 @@
+<!--
+{"slug": "cloud-logging", "lang": "en", "pair": "cloud-logging", "status": "published",
+ "title": "The log that caught Storm-0558 was a paid extra",
+ "description": "Attackers read government email using forged Microsoft tokens. It was spotted thanks to a premium log most customers didn’t have.",
+ "date": "2023-07-25", "topic": "Security"}
+-->
+<p>This month Microsoft said a China-based group it calls Storm-0558 forged authentication tokens and read email at about 25 organisations, including government agencies. The interesting part is how it was found: a US agency noticed unusual mail access in its audit logs.</p>
+<p>That log, which records which mail items were accessed, was only available in Microsoft’s premium audit tier. Most customers couldn’t have seen the same thing. After criticism, Microsoft said it will make more of these logs available on standard plans.</p>
+<p>The lesson goes beyond Microsoft:</p>
+<ul>
+  <li><strong>Check which audit logs your cloud services actually keep</strong> on your plan, and for how long. Some are off by default.</li>
+  <li><strong>Turn on what’s free.</strong> Then decide if the paid tiers are worth it for your most sensitive mailboxes.</li>
+  <li><strong>Send logs to your own storage</strong> so they outlive the provider’s retention.</li>
+  <li><strong>Know what “normal” looks like</strong> for key accounts, so “unusual” stands out.</li>
+</ul>
+<p>When something goes wrong in the cloud, the logs are often all you have. Find out now what you’d be missing.</p>

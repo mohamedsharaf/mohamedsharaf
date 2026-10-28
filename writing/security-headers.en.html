@@ -1,44 +1,20 @@
 <!--
 {"slug": "security-headers", "lang": "en", "pair": "security-headers", "status": "published",
  "title": "Security headers in an afternoon",
- "description": "Six HTTP response headers that close whole classes of attacks for almost no effort. What each one does, sensible values, and the one to roll out carefully.",
+ "description": "Six response headers, copy-paste values, and the one to roll out slowly.",
  "date": "2025-05-13", "topic": "Security"}
 -->
-<p>Some security work takes months. This takes an afternoon. A handful of HTTP response headers tell the browser how to treat your site, and together they shut the door on clickjacking, protocol downgrades, content sniffing and a large share of cross-site scripting. You add them once, at the web server, the CDN or the framework, and every page benefits.</p>
-
-<h2>The six that matter</h2>
-
-<h3>Strict-Transport-Security (HSTS)</h3>
-<p>Tells browsers to use HTTPS only, even if someone types or clicks an <code>http://</code> link. That blocks downgrade tricks on public Wi-Fi.</p>
-<pre><code>Strict-Transport-Security: max-age=31536000</code></pre>
-<p>Add <code>includeSubDomains</code> only when every subdomain really serves HTTPS, and think twice before <code>preload</code>: it is easy to join the browsers’ preload list and slow to leave it.</p>
-
-<h3>Content-Security-Policy (CSP)</h3>
-<p>The most powerful one. It lists where scripts, styles, images and connections may come from, so an injected script from somewhere else simply doesn’t run.</p>
-<pre><code>Content-Security-Policy: default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'</code></pre>
-<p>It is also the one that can break your site, because real pages load things from many places. Roll it out in stages: start with <code>Content-Security-Policy-Report-Only</code>, watch what would have been blocked, adjust, then enforce. Avoid <code>'unsafe-inline'</code> for scripts; use hashes or nonces instead.</p>
-
-<h3>X-Content-Type-Options</h3>
-<pre><code>X-Content-Type-Options: nosniff</code></pre>
-<p>Stops the browser from guessing that an uploaded “image” is really HTML or JavaScript. One line, no downside.</p>
-
-<h3>Framing protection</h3>
-<pre><code>X-Frame-Options: DENY</code></pre>
-<p>Stops other sites from loading yours in an invisible frame to trick users into clicking. The modern equivalent is <code>frame-ancestors</code> in your CSP; sending both is fine.</p>
-
-<h3>Referrer-Policy</h3>
-<pre><code>Referrer-Policy: strict-origin-when-cross-origin</code></pre>
-<p>Keeps full URLs, which sometimes contain tokens or search terms, from being sent to other websites.</p>
-
-<h3>Permissions-Policy</h3>
-<pre><code>Permissions-Policy: camera=(), microphone=(), geolocation=()</code></pre>
-<p>Turns off browser features your site doesn’t use, so a compromised script can’t ask for them either.</p>
-
-<h2>Two to stop sending</h2>
+<p>Six headers, added once at the server or CDN. They block clickjacking, HTTPS downgrades, content sniffing and a lot of XSS. Start with these:</p>
+<pre><code>Strict-Transport-Security: max-age=31536000
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Content-Security-Policy: default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'</code></pre>
+<p>The first five rarely break anything. Two notes:</p>
 <ul>
-  <li><code>X-XSS-Protection</code> is obsolete; modern browsers removed the feature it controlled.</li>
-  <li><code>Server</code> and <code>X-Powered-By</code> with exact version numbers only help attackers pick an exploit. Remove the version, or the header.</li>
+  <li>Only add <code>includeSubDomains</code> to HSTS if every subdomain serves HTTPS. Be careful with <code>preload</code>; leaving the list is slow.</li>
+  <li>CSP is the strong one and the one that breaks pages. Ship it as <code>Content-Security-Policy-Report-Only</code> first, watch what it would block for a week, fix, then enforce. No <code>'unsafe-inline'</code> for scripts; use hashes or nonces.</li>
 </ul>
-
-<h2>Check your work</h2>
-<p>Open your browser’s developer tools, look at the response headers of a page, and test the site properly after each change, including login, payments and any embedded content. Free online header scanners will grade your site too. Aim for all six, and treat the CSP as a small project of its own.</p>
+<p>Also remove <code>X-XSS-Protection</code> (browsers dropped it) and the version numbers in <code>Server</code> and <code>X-Powered-By</code>.</p>
+<p>Check the result in your browser’s developer tools, then test login and payments before you call it done.</p>

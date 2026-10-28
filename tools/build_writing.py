@@ -30,14 +30,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PREVIEW = os.environ.get('PREVIEW') == '1'
 
 TEXT = {
-    'en': dict(dir='ltr', which='Which Mohamed Sharaf?', writing='Writing', home='Home', menu='Menu', hello='Say hello', other='عربي', other_lang='ar',
+    'en': dict(dir='ltr', share='Share', copy='Copy link', copied='Copied', share_native='Share…', which='Which Mohamed Sharaf?', writing='Writing', home='Home', menu='Menu', hello='Say hello', other='عربي', other_lang='ar',
                index_title='Writing', index_intro='Notes on security, infrastructure, software and AI. Written in plain words, from three decades of doing the work.',
                min_read='min read', back='All writing', cta_title='Want a second pair of eyes?',
                cta_text='If something here sounds like your system, write to me. I read everything.',
                cta_link='Say hello', draft='Draft: not published yet', empty='The first articles are on their way.',
                new_heading='New', archive_heading='From the archive', archive_intro='Notes from my old blog on mohamedsharaf.net (2010–2023), rewritten and checked. Some are dated; the dates tell you how much.',
                months=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']),
-    'ar': dict(dir='rtl', which='أي محمد شرف؟', writing='كتابات', home='الرئيسية', menu='القائمة', hello='قل مرحبًا', other='English', other_lang='en',
+    'ar': dict(dir='rtl', share='شارك', copy='انسخ الرابط', copied='تم النسخ', share_native='مشاركة…', which='أي محمد شرف؟', writing='كتابات', home='الرئيسية', menu='القائمة', hello='قل مرحبًا', other='English', other_lang='en',
                index_title='كتابات', index_intro='ملاحظات عن الأمن والبنية التحتية والبرمجيات والذكاء الاصطناعي، بكلام واضح، من ثلاثة عقود من العمل.',
                min_read='دقائق قراءة', back='كل الكتابات', cta_title='تحتاج إلى نظرة ثانية؟',
                cta_text='إذا بدا لك شيء هنا مثل نظامك، اكتب لي. أقرأ كل شيء.',
@@ -99,6 +99,12 @@ a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
 .body blockquote{margin:0 0 22px;padding:4px 20px;border-inline-start:3px solid var(--orange);color:var(--muted)}
 .body .note{background:var(--paper-card);border:1px solid var(--line);padding:18px 20px;margin:0 0 22px;font-size:16px}
 .archived{background:var(--paper-card);border:1px solid var(--line);border-inline-start:3px solid var(--orange);padding:12px 16px;margin:-8px 0 30px;font-size:14px;color:var(--muted)}
+.share{max-width:720px;margin:0 auto 34px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-size:14px}
+.share>span{font:12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-inline-end:4px}
+[dir=rtl] .share>span{font-family:var(--sans);letter-spacing:0;font-size:13px}
+.share a{color:var(--ink);text-underline-offset:4px;text-decoration-color:var(--orange)}
+.share button{font:inherit;color:var(--ink);background:none;border:1px solid var(--line);padding:5px 10px;cursor:pointer}
+.share button:hover,.share a:hover{color:var(--orange-ink)}
 .cta{max-width:720px;margin:10px auto 70px;padding:28px;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .cta h2{margin:0 0 6px;font-size:22px}
 .cta p{margin:0;color:#c9c6bd;font-size:15px}
@@ -219,6 +225,23 @@ def og_image_for(a):
     return f"{SITE}/assets/og-{'en' if a['lang'] == 'en' else 'ar'}.jpg"
 
 
+def share_bar(a):
+    """Plain share links (no third-party scripts); /assets/share.js adds copy link and the phone's share sheet."""
+    t = TEXT[a['lang']]
+    url = SITE + url_for(a)
+    u, ti = quote(url, safe=''), quote(a['title'], safe='')
+    links = [('WhatsApp', f'https://wa.me/?text={ti}%20{u}'),
+             ('LinkedIn', f'https://www.linkedin.com/sharing/share-offsite/?url={u}'),
+             ('X', f'https://x.com/intent/post?text={ti}&amp;url={u}'),
+             ('Telegram', f'https://t.me/share/url?url={u}&amp;text={ti}'),
+             ('Facebook', f'https://www.facebook.com/sharer/sharer.php?u={u}')]
+    items = ''.join(f'<a href="{href}" target="_blank" rel="noopener noreferrer" lang="en">{name}</a>' for name, href in links)
+    return (f'<div class="share" data-url="{html.escape(url)}" data-title="{html.escape(a["title"])}"><span>{t["share"]}</span>{items}'
+            f'<button type="button" class="share-copy" data-done="{t["copied"]}" hidden>{t["copy"]}</button>'
+            f'<button type="button" class="share-native" hidden>{t["share_native"]}</button></div>'
+            '<script src="/assets/share.js?v=1" defer></script>')
+
+
 def article_page(a, pair):
     t = TEXT[a['lang']]
     canonical = url_for(a)
@@ -250,6 +273,7 @@ def article_page(a, pair):
 {a['body']}
       </div>
     </article>
+    {share_bar(a)}
     <aside class="cta"><div><h2>{t['cta_title']}</h2><p>{t['cta_text']}</p></div><a href="{'/#contact' if a['lang'] == 'en' else '/ar#contact'}">{t['cta_link']}</a></aside>"""
     other = url_for(pair) if pair else other_index(a['lang'])
     return page(a['lang'], a['title'], a['description'], canonical, body, head, alternates, other, og_image_for(a))

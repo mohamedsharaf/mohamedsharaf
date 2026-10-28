@@ -1,25 +1,15 @@
 <!--
 {"slug": "mfa-fatigue", "lang": "en", "pair": "mfa-fatigue", "status": "published",
  "title": "MFA fatigue: when “Approve” becomes the attack",
- "description": "Attackers who already have a password can flood a user with login prompts until one gets approved. Why it works, and the settings that stop it.",
+ "description": "Someone with your password spams login prompts until you tap Approve. Four settings stop it.",
  "date": "2025-06-17", "topic": "Security"}
 -->
-<p>Multi-factor authentication is one of the best things you can turn on. But one popular form of it, the phone notification that asks “Is this you? Approve / Deny”, has a weak spot that attackers learned to use well.</p>
-
-<h2>How the attack works</h2>
-<p>The attacker already has the password, from a phishing page, an old breach or malware. They try to log in, and the user’s phone shows an approval prompt. They try again. And again, sometimes dozens of times, often late at night. Eventually a tired or confused person taps “Approve” just to make it stop, or because a message arrives from “IT support” saying it is a test. That is MFA fatigue, also called push bombing.</p>
-<p>It is not theoretical. It was part of several well-known breaches, including the one at Uber in 2022, where repeated prompts were combined with a message pretending to come from the company’s IT team.</p>
-
-<h2>What stops it</h2>
+<p>The attacker already has the password. They try to log in again and again, and your phone keeps asking “Approve?”, often late at night. Sooner or later someone taps Approve to make it stop. It was part of the Uber breach in 2022.</p>
+<p>What stops it:</p>
 <ol>
-  <li><strong>Number matching.</strong> The login screen shows a number, and the user must type it into the phone. Someone sitting at home in bed can’t see the attacker’s screen, so they can’t approve by accident. Microsoft made number matching mandatory for Authenticator push approvals in 2023, and most other providers offer it. Turn it on.</li>
-  <li><strong>Show context.</strong> Display the app name and the approximate location of the login in the prompt. “Login from another country” makes people stop and think.</li>
-  <li><strong>Limit and alert.</strong> Block or slow down after several denied prompts, and alert the security team. Many denials in a row mean the password is already known, so reset it.</li>
-  <li><strong>Move important accounts to phishing-resistant MFA.</strong> Passkeys and hardware security keys don’t have an approve button to abuse, and they don’t work on fake login pages either. Start with administrators and finance.</li>
-  <li><strong>Teach one simple rule.</strong> “If you get a prompt you didn’t ask for, press Deny and tell us. IT will never ask you to approve one.” Then make reporting easy and thank people who do it.</li>
+  <li><strong>Number matching.</strong> The user types the number shown on the login screen. You can’t approve by accident from bed. Microsoft made it mandatory in Authenticator in 2023; turn it on wherever you can.</li>
+  <li><strong>Show where the login comes from</strong> in the prompt. “Another country” makes people stop.</li>
+  <li><strong>Alert on repeated denials.</strong> Several in a row means the password is known. Reset it today.</li>
+  <li><strong>Passkeys or hardware keys</strong> for admins and finance. No Approve button to abuse.</li>
 </ol>
-
-<h2>Don’t stop at the prompt</h2>
-<p>A flood of prompts is a symptom: someone has the password. Reset it, check where else it was reused, and look at what else that account could reach. The prompt was just the last door.</p>
-
-<p>MFA is still essential. It just needs the right settings, and for the accounts that matter most, the right kind.</p>
+<p>And one sentence for the whole team: if you get a prompt you didn’t ask for, press Deny and tell IT. We will never ask you to approve one.</p>

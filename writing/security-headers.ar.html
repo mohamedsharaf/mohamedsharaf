@@ -1,44 +1,20 @@
 <!--
 {"slug": "security-headers", "lang": "ar", "pair": "security-headers", "status": "published",
  "title": "ترويسات الأمان في بعد ظهر واحد",
- "description": "ست ترويسات HTTP تغلق فئات كاملة من الهجمات بجهد شبه معدوم. ماذا تفعل كل واحدة، وقيم معقولة لها، والترويسة التي تحتاج حذرًا عند تفعيلها.",
+ "description": "ست ترويسات بقيم جاهزة للنسخ، والترويسة التي تحتاج تفعيلًا هادئًا.",
  "date": "2025-05-13", "topic": "أمن المعلومات"}
 -->
-<p>بعض أعمال الأمن تستغرق شهورًا، وهذا يستغرق بعد ظهر واحد. مجموعة صغيرة من ترويسات HTTP تخبر المتصفح كيف يتعامل مع موقعك، ومعًا تغلق الباب أمام خداع النقر، والرجوع إلى بروتوكول غير آمن، وتخمين نوع المحتوى، وجزء كبير من هجمات XSS. تضيفها مرة واحدة في خادم الويب أو شبكة CDN أو إطار العمل، فتستفيد كل الصفحات.</p>
-
-<h2>الست المهمة</h2>
-
-<h3>Strict-Transport-Security (HSTS)</h3>
-<p>تخبر المتصفحات باستخدام HTTPS فقط، حتى لو كتب أحدهم رابط <code>http://</code> أو ضغط عليه. هذا يمنع حيل الإرجاع على شبكات Wi-Fi العامة.</p>
-<pre><code>Strict-Transport-Security: max-age=31536000</code></pre>
-<p>أضف <code>includeSubDomains</code> فقط عندما تعمل كل النطاقات الفرعية بـHTTPS فعلًا، وفكّر مرتين قبل <code>preload</code>: الانضمام لقائمة المتصفحات سهل والخروج منها بطيء.</p>
-
-<h3>Content-Security-Policy (CSP)</h3>
-<p>أقواها. تحدد من أين يُسمح بتحميل السكربتات والأنماط والصور والاتصالات، فالسكربت المحقون من مكان آخر لا يعمل ببساطة.</p>
-<pre><code>Content-Security-Policy: default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'</code></pre>
-<p>وهي أيضًا التي قد تكسر موقعك، لأن الصفحات الحقيقية تحمّل أشياء من أماكن كثيرة. فعّلها على مراحل: ابدأ بـ<code>Content-Security-Policy-Report-Only</code>، وراقب ما كان سيُمنع، وعدّل، ثم طبّقها فعليًا. وتجنّب <code>'unsafe-inline'</code> للسكربتات؛ استخدم بدلًا منه البصمات (hashes) أو nonces.</p>
-
-<h3>X-Content-Type-Options</h3>
-<pre><code>X-Content-Type-Options: nosniff</code></pre>
-<p>تمنع المتصفح من تخمين أن «الصورة» المرفوعة هي في الحقيقة HTML أو JavaScript. سطر واحد، بلا أي عيب.</p>
-
-<h3>الحماية من التضمين</h3>
-<pre><code>X-Frame-Options: DENY</code></pre>
-<p>تمنع المواقع الأخرى من تحميل موقعك داخل إطار خفي لخداع المستخدمين بالنقر. المقابل الحديث هو <code>frame-ancestors</code> داخل CSP، وإرسال الاثنين معًا لا بأس به.</p>
-
-<h3>Referrer-Policy</h3>
-<pre><code>Referrer-Policy: strict-origin-when-cross-origin</code></pre>
-<p>تمنع إرسال الروابط الكاملة، التي تحتوي أحيانًا رموزًا أو كلمات بحث، إلى مواقع أخرى.</p>
-
-<h3>Permissions-Policy</h3>
-<pre><code>Permissions-Policy: camera=(), microphone=(), geolocation=()</code></pre>
-<p>تعطّل ميزات المتصفح التي لا يستخدمها موقعك، فلا يستطيع سكربت مخترق أن يطلبها هو أيضًا.</p>
-
-<h2>اثنتان توقف عن إرسالهما</h2>
+<p>ست ترويسات تُضاف مرة واحدة في الخادم أو الـCDN، فتمنع خداع النقر، والرجوع من HTTPS، وتخمين نوع المحتوى، وجزءًا كبيرًا من XSS. ابدأ بهذه:</p>
+<pre><code>Strict-Transport-Security: max-age=31536000
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Content-Security-Policy: default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'</code></pre>
+<p>الخمس الأولى نادرًا ما تكسر شيئًا. ملاحظتان:</p>
 <ul>
-  <li><code>X-XSS-Protection</code> قديمة؛ المتصفحات الحديثة أزالت الميزة التي كانت تتحكم بها.</li>
-  <li><code>Server</code> و<code>X-Powered-By</code> بأرقام إصدارات دقيقة تساعد المهاجم فقط على اختيار الثغرة. احذف رقم الإصدار، أو الترويسة كلها.</li>
+  <li>لا تضف <code>includeSubDomains</code> إلى HSTS إلا إذا كانت كل النطاقات الفرعية تعمل بـHTTPS. واحذر من <code>preload</code>؛ الخروج من القائمة بطيء.</li>
+  <li>CSP هي الأقوى، وهي التي تكسر الصفحات. فعّلها أولًا كـ<code>Content-Security-Policy-Report-Only</code>، وراقب ما كانت ستمنعه أسبوعًا، وأصلح، ثم طبّقها. ولا <code>'unsafe-inline'</code> للسكربتات؛ استخدم البصمات أو nonces.</li>
 </ul>
-
-<h2>تحقّق من عملك</h2>
-<p>افتح أدوات المطوّر في المتصفح، وانظر إلى ترويسات الاستجابة لأي صفحة، واختبر الموقع جيدًا بعد كل تغيير، بما في ذلك الدخول والدفع وأي محتوى مضمّن. وهناك أدوات فحص مجانية على الإنترنت تقيّم موقعك أيضًا. استهدف الست كلها، وتعامل مع CSP كمشروع صغير قائم بذاته.</p>
+<p>واحذف أيضًا <code>X-XSS-Protection</code> (أسقطتها المتصفحات)، وأرقام الإصدارات في <code>Server</code> و<code>X-Powered-By</code>.</p>
+<p>تحقّق من النتيجة في أدوات المطوّر بالمتصفح، ثم اختبر الدخول والدفع قبل أن تعتبر الأمر منتهيًا.</p>

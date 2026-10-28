@@ -1,0 +1,17 @@
+<!--
+{"slug": "dependencies", "lang": "en", "pair": "dependencies", "status": "published",
+ "title": "Your dependencies are code you didn’t review",
+ "description": "One phished maintainer can push malware into thousands of apps. Simple habits that limit the damage.",
+ "date": "2025-10-21", "topic": "Software"}
+-->
+<p>A typical web app pulls in hundreds of packages. Each one is code that runs with your app’s permissions, written by people you’ve never met.</p>
+<p>This September showed how fragile that is. An npm maintainer was phished, and malware went into some of the most downloaded JavaScript packages for a few hours. Anyone who installed fresh in that window got it.</p>
+<p>Habits that help:</p>
+<ul>
+  <li><strong>Commit the lock file</strong> and install with <code>npm ci</code> (or your ecosystem’s equivalent) in CI, so builds use exact versions.</li>
+  <li><strong>Don’t update the second a release appears.</strong> A few days’ delay lets others find the bad ones.</li>
+  <li><strong>Turn on dependency alerts</strong> (Dependabot or similar) and actually read them.</li>
+  <li><strong>Fewer packages.</strong> Ten lines you write beat a package with forty dependencies.</li>
+  <li><strong>Build servers get no production secrets</strong> they don’t need. Install scripts run there too.</li>
+</ul>
+<p>You can’t review every line. You can control when new code comes in and how much it can reach.</p>

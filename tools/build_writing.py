@@ -416,7 +416,7 @@ if extra:
 # Atom feeds, one per language, with the full text of the newest articles
 FEED_TITLE = {'en': 'Mohamed Sharaf — Writing', 'ar': 'محمد شرف — كتابات'}
 for lang in sorted({a['lang'] for a in published}):
-    items = sorted((a for a in published if a['lang'] == lang), key=lambda a: (a.get('updated', a['date']), a['date']), reverse=True)[:30]
+    items = sorted((a for a in published if a['lang'] == lang), key=lambda a: a['date'], reverse=True)[:30]
     stamp = lambda d: f'{d}T00:00:00Z'
     entries = ''.join(f"""  <entry>
     <title>{html.escape(a['title'])}</title>

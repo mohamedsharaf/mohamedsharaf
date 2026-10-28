@@ -1,0 +1,16 @@
+<!--
+{"slug": "rdp-ssh-exposed", "lang": "en", "pair": "rdp-ssh-exposed", "status": "published",
+ "title": "Stop exposing RDP and SSH to the internet",
+ "description": "Bots try your remote desktop and SSH ports all day. Put them behind a VPN and use keys.",
+ "date": "2025-09-09", "topic": "Infrastructure"}
+-->
+<p>Put a server online with remote desktop or SSH open to the world and the login attempts start within minutes. All day, every day, from bots trying leaked passwords.</p>
+<p>Exposed RDP is still one of the most common ways ransomware gets in. Here’s what I do instead:</p>
+<ul>
+  <li><strong>Close the ports to the internet.</strong> Reach servers through a VPN (WireGuard is quick to set up) or a zero-trust access service.</li>
+  <li><strong>If SSH must stay open,</strong> allow keys only (<code>PasswordAuthentication no</code>), no root login, and limit it to known IPs if you can.</li>
+  <li><strong>Turn on MFA</strong> for the VPN and remote desktop gateway.</li>
+  <li><strong>Add rate limiting</strong> such as fail2ban, so one IP can’t try forever.</li>
+  <li><strong>Check from the outside.</strong> Scan your own public IPs once a month. You’ll be surprised what someone opened “for a quick test”.</li>
+</ul>
+<p>Moving a port number from 22 to 2222 isn’t security. It just makes the log shorter.</p>

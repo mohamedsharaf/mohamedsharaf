@@ -1,0 +1,17 @@
+<!--
+{"slug": "domain-dns-hygiene", "lang": "en", "pair": "domain-dns-hygiene", "status": "published",
+ "title": "Your domain is the master key. Protect it",
+ "description": "Whoever controls your domain controls your email and your website. Six settings worth ten minutes.",
+ "date": "2025-12-02", "topic": "Infrastructure"}
+-->
+<p>Whoever controls your domain can read your email, reset your passwords and replace your website. Yet the registrar account is often protected by an old password and somebody’s personal email.</p>
+<p>Ten minutes, six settings:</p>
+<ol>
+  <li><strong>MFA on the registrar and DNS accounts.</strong></li>
+  <li><strong>The account email</strong> should be a company address you control, not a former employee’s Gmail.</li>
+  <li><strong>Auto-renew on,</strong> with a valid card and a reminder a month before expiry.</li>
+  <li><strong>Transfer lock on</strong> (registrar lock), so nobody can move the domain away quietly.</li>
+  <li><strong>Remove old DNS records</strong> pointing to services you no longer use. A forgotten record pointing at a deleted cloud resource can let someone else take over that subdomain.</li>
+  <li><strong>SPF, DKIM and DMARC</strong> for email, so others can’t send mail as you.</li>
+</ol>
+<p>If you have domains you don’t use, keep renewing the ones people know. An expired company domain can be bought by anyone, along with every password reset email that still goes there.</p>

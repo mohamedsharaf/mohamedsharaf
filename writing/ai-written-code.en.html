@@ -1,0 +1,16 @@
+<!--
+{"slug": "ai-written-code", "lang": "en", "pair": "ai-written-code", "status": "published",
+ "title": "Before you ship code an AI wrote",
+ "description": "AI coding tools are fast and often right. Five checks before that code goes live.",
+ "date": "2025-11-18", "topic": "AI"}
+-->
+<p>I use AI coding tools every day. They save real time. They also write code that looks finished and isn’t.</p>
+<p>Before AI-written code goes live, I check:</p>
+<ol>
+  <li><strong>Did I read every line?</strong> If I can’t explain it, it doesn’t ship. Same rule as code from a new hire.</li>
+  <li><strong>Inputs.</strong> AI loves the happy path. Look for missing validation, SQL built from strings, and file paths from user input.</li>
+  <li><strong>Secrets.</strong> It sometimes hardcodes keys from examples or asks you to paste yours into the chat. Neither is fine.</li>
+  <li><strong>Packages.</strong> It can suggest a library that doesn’t exist, and attackers register those names. Check every new dependency is real and maintained.</li>
+  <li><strong>Tests.</strong> Ask it to write tests too, then read the tests. A test that checks nothing passes very nicely.</li>
+</ol>
+<p>Treat the AI like a fast junior developer with a lot of confidence. Great for a first draft. You still own what ships.</p>

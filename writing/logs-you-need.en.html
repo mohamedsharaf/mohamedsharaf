@@ -1,0 +1,21 @@
+<!--
+{"slug": "logs-you-need", "lang": "en", "pair": "logs-you-need", "status": "published",
+ "title": "The logs you’ll wish you had",
+ "description": "When something goes wrong, the first question is “what happened?”. Keep these logs before you need them.",
+ "date": "2025-11-04", "topic": "Security"}
+-->
+<p>Every incident starts with the same question: what happened, and since when? Without logs, the honest answer is “we don’t know”, and that’s the worst answer to give a client.</p>
+<p>Keep at least these:</p>
+<ul>
+  <li><strong>Logins:</strong> success and failure, with IP and time, for email, VPN, admin panels and servers.</li>
+  <li><strong>Admin actions:</strong> who created users, changed permissions, deleted data.</li>
+  <li><strong>Web server and firewall logs</strong> for anything facing the internet.</li>
+  <li><strong>Cloud audit logs.</strong> Most providers have them; some are off by default.</li>
+</ul>
+<p>Three rules:</p>
+<ol>
+  <li><strong>Send them somewhere else.</strong> An attacker on the server can delete local logs.</li>
+  <li><strong>Keep them long enough.</strong> Break-ins are often found months later. 90 days is a minimum; a year is better.</li>
+  <li><strong>Sync the clocks.</strong> Logs with wrong times can’t be matched up.</li>
+</ol>
+<p>You don’t have to read them every day. Just alert on a few things: many failed logins, a new admin, logins from a new country.</p>

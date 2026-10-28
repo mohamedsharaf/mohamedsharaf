@@ -1,0 +1,12 @@
+<!--
+{"slug": "dns-hijacking", "lang": "en", "pair": "dns-hijacking", "status": "published", "title": "DNS hijacking: protect the account behind your domain", "description": "Attackers redirected government domains by logging into DNS accounts. A US emergency directive lists four steps anyone can take.", "date": "2019-01-29", "topic": "Infrastructure"}
+-->
+<p>Researchers have been tracking a campaign that hijacks organisations’ DNS: attackers log into the account that manages a domain’s records, point mail or web traffic to their own servers, get valid certificates, and quietly collect passwords. Last week the US government issued an emergency directive telling agencies to act.</p>
+<p>The four steps it lists are good for every company:</p>
+<ol>
+  <li><strong>Check your DNS records</strong> on every domain. Are they pointing where you expect?</li>
+  <li><strong>Change the passwords</strong> on accounts that can change DNS: registrar, DNS host, and anything with API access.</li>
+  <li><strong>Turn on MFA</strong> for those accounts.</li>
+  <li><strong>Monitor certificate transparency logs</strong> for certificates issued for your domains that you didn’t request.</li>
+</ol>
+<p>Whoever controls your DNS can read your email and impersonate your website. That account deserves the same protection as your bank.</p>

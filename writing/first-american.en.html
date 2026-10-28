@@ -1,0 +1,12 @@
+<!--
+{"slug": "first-american", "lang": "en", "pair": "first-american", "status": "published", "title": "885 million records, one changed number in a URL", "description": "First American exposed mortgage documents because anyone could change a document number in the link.", "date": "2019-06-04", "topic": "Software"}
+-->
+<p>Last week it emerged that First American, a big US title insurance company, had exposed about 885 million documents on its website: bank account numbers, Social Security numbers, mortgage records, going back to 2003. Anyone with a link to one document could change a number in the address and see someone else’s.</p>
+<p>No login. No hacking tool. Just counting.</p>
+<p>This kind of bug is called an insecure direct object reference, and it’s one of the most common ones I find:</p>
+<ul>
+  <li><strong>Every request must check</strong> that the logged-in user is allowed to see that specific record.</li>
+  <li><strong>Use random, unguessable IDs</strong> for documents and links, as an extra layer.</li>
+  <li><strong>Shared links should expire</strong> and require a login for sensitive files.</li>
+  <li><strong>Test it yourself:</strong> log in as user A and try to open user B’s things.</li>
+</ul>

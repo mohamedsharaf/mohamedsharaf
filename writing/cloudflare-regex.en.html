@@ -1,0 +1,11 @@
+<!--
+{"slug": "cloudflare-regex", "lang": "en", "pair": "cloudflare-regex", "status": "published", "title": "One bad regex took down Cloudflare", "description": "A new firewall rule with a costly regular expression maxed out CPUs worldwide for 27 minutes. Test the boring changes too.", "date": "2019-07-09", "topic": "Software"}
+-->
+<p>Last Tuesday, sites behind Cloudflare returned errors for about 27 minutes. Cloudflare explained it quickly: a new rule in its web application firewall included a regular expression that, on certain inputs, used huge amounts of CPU. It was deployed to every server at once, and CPUs everywhere hit 100%.</p>
+<p>Two lessons any team can use:</p>
+<ul>
+  <li><strong>Regexes can be slow in surprising ways.</strong> Patterns with nested repetition can take exponential time. Test regexes against long, hostile inputs, or use engines that guarantee linear time.</li>
+  <li><strong>Roll out gradually,</strong> even for configuration and rules, not only code. A change that reaches 1% of servers first fails small.</li>
+</ul>
+<p>And one more: have a fast way to switch a feature off globally. Cloudflare’s recovery started when they disabled the rule set.</p>
+<p>Their public write-up is a good model for how to explain an outage.</p>

@@ -1,0 +1,12 @@
+<!--
+{"slug": "sudo-bug", "lang": "en", "pair": "sudo-bug", "status": "published", "title": "sudo -u#-1: a bug in an unusual config", "description": "A sudo bug lets some users run commands as root. It only affects one kind of rule, but check yours.", "date": "2019-10-15", "topic": "Infrastructure"}
+-->
+<p>A bug in sudo (CVE-2019-14287) was disclosed yesterday. If your sudoers file lets a user run a command as any user <em>except</em> root, for example with <code>(ALL, !root)</code>, that user can still get root by asking for user ID -1: <code>sudo -u#-1 command</code>.</p>
+<p>Most systems don’t use that kind of rule, so most aren’t affected. But it shows why “everyone except root” rules are risky.</p>
+<p>What to do:</p>
+<ul>
+  <li><strong>Update sudo to 1.8.28</strong> or your distribution’s fixed package.</li>
+  <li><strong>Search your sudoers files</strong> and <code>/etc/sudoers.d/</code> for <code>!root</code>.</li>
+  <li><strong>Prefer allowlists:</strong> grant specific commands as specific users, instead of “all except”.</li>
+</ul>
+<p>Denylists in security rules tend to miss something. Allowlists fail safer.</p>

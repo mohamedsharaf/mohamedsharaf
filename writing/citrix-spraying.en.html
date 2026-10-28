@@ -1,0 +1,13 @@
+<!--
+{"slug": "citrix-spraying", "lang": "en", "pair": "citrix-spraying", "status": "published", "title": "Citrix was breached through password spraying", "description": "The FBI told Citrix attackers got in by trying common passwords against many accounts. Simple attack, simple defences.", "date": "2019-03-12", "topic": "Security"}
+-->
+<p>Citrix said last week that the FBI informed it of attackers inside its network. The likely method, according to the FBI: password spraying. That means trying a few common passwords, like Spring2019!, against many usernames, slowly enough to avoid lockouts.</p>
+<p>It works because in any large company, someone has a weak password, and some login page doesn’t require MFA.</p>
+<p>Defences:</p>
+<ul>
+  <li><strong>MFA on every external login:</strong> email, VPN, remote desktop, web apps.</li>
+  <li><strong>Block legacy protocols</strong> that skip MFA.</li>
+  <li><strong>Ban common and breached passwords</strong> when people set them.</li>
+  <li><strong>Alert on failed logins across many accounts</strong> from the same source, not just many failures on one account.</li>
+</ul>
+<p>Lockout policies alone don’t stop spraying. It’s designed to stay under them.</p>

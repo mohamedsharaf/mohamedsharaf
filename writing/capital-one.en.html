@@ -1,0 +1,11 @@
+<!--
+{"slug": "capital-one", "lang": "en", "pair": "capital-one", "status": "published", "title": "Capital One: a firewall setting and cloud credentials", "description": "Data on about 106 million people leaked through a misconfigured firewall that could reach cloud credentials.", "date": "2019-07-30", "topic": "Infrastructure"}
+-->
+<p>Yesterday Capital One announced a breach affecting about 100 million people in the US and 6 million in Canada, mostly credit card applications. Court papers describe the method: a misconfigured web application firewall could be tricked into making requests on the attacker’s behalf, which reached the cloud server’s metadata service and obtained credentials. Those credentials could read storage buckets full of data.</p>
+<p>This is called server-side request forgery, and in the cloud it can turn a small mistake into a big one.</p>
+<ul>
+  <li><strong>Give servers the smallest permissions.</strong> A firewall doesn’t need to read all your storage.</li>
+  <li><strong>Block or restrict access to the metadata service</strong> from applications that don’t need it.</li>
+  <li><strong>Validate outbound requests</strong> your apps make based on user input.</li>
+  <li><strong>Alert on unusual access</strong> to storage, like one role listing every bucket.</li>
+</ul>

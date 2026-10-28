@@ -1,0 +1,13 @@
+<!--
+{"slug": "docker-hub", "lang": "en", "pair": "docker-hub", "status": "published", "title": "Docker Hub breach: check your build tokens", "description": "Data on 190,000 Docker Hub accounts was exposed, including GitHub and Bitbucket tokens used for automated builds.", "date": "2019-04-30", "topic": "Software"}
+-->
+<p>Docker said on Friday that someone accessed a Docker Hub database with data on about 190,000 accounts: usernames, hashed passwords, and the GitHub and Bitbucket tokens used for automated builds. Docker revoked those tokens.</p>
+<p>Those tokens can read your source code, and sometimes write to it.</p>
+<p>What to do:</p>
+<ol>
+  <li><strong>Change your Docker Hub password,</strong> and anywhere else you used it.</li>
+  <li><strong>Check your GitHub and Bitbucket security logs</strong> for unexpected access or new deploy keys.</li>
+  <li><strong>Reconnect automated builds</strong> with fresh tokens, giving them the smallest permissions that work.</li>
+  <li><strong>Review which images</strong> you pull from Docker Hub, and pin them by digest.</li>
+</ol>
+<p>Every service connected to your code repositories is part of your security. Keep a list, and remove the ones you no longer use.</p>

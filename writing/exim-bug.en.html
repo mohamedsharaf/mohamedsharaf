@@ -1,0 +1,12 @@
+<!--
+{"slug": "exim-bug", "lang": "en", "pair": "exim-bug", "status": "published", "title": "Exim mail servers are being taken over", "description": "A critical Exim bug disclosed this month is now mass-exploited. Many cPanel and Linux mail servers run it.", "date": "2019-06-18", "topic": "Infrastructure"}
+-->
+<p>Earlier this month a critical bug in the Exim mail server was disclosed (CVE-2019-10149). It lets an attacker run commands as root by sending a crafted email. Within days, mass exploitation started.</p>
+<p>Exim is the default mail server on many Linux systems and on cPanel servers, so a lot of shared hosting runs it.</p>
+<ol>
+  <li><strong>Check your version</strong> with <code>exim -bV</code>. Versions 4.87 to 4.91 are affected.</li>
+  <li><strong>Update to 4.92 or later,</strong> or install your distribution’s patched package. cPanel has released updates.</li>
+  <li><strong>Look for signs of compromise:</strong> new cron jobs, new root SSH keys, unknown processes.</li>
+  <li><strong>If compromised,</strong> rebuild the server. Attackers install persistence quickly.</li>
+</ol>
+<p>Mail servers face the whole internet by design. They deserve the fastest patching you have.</p>

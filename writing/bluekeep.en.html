@@ -1,0 +1,12 @@
+<!--
+{"slug": "bluekeep", "lang": "en", "pair": "bluekeep", "status": "published", "title": "BlueKeep: patch Remote Desktop, even on Windows XP", "description": "Microsoft says this Remote Desktop bug is wormable, and patched even Windows XP. Close RDP to the internet now.", "date": "2019-05-21", "topic": "Security"}
+-->
+<p>Last week Microsoft fixed CVE-2019-0708, BlueKeep: a bug in Remote Desktop Services that lets an attacker run code on a machine without logging in. Microsoft warned it’s wormable, like WannaCry, and took the rare step of releasing patches for Windows XP and Server 2003.</p>
+<p>Affected: Windows 7, Server 2008 and 2008 R2, and the older systems. Windows 8 and 10 are not.</p>
+<ol>
+  <li><strong>Install the patch</strong> on every affected machine, including the unsupported ones that got a special update.</li>
+  <li><strong>Close RDP (port 3389) to the internet.</strong> Use a VPN or a remote desktop gateway instead.</li>
+  <li><strong>Turn on Network Level Authentication,</strong> which requires login before the vulnerable code is reached.</li>
+  <li><strong>Plan to retire Windows 7</strong> before its support ends next January.</li>
+</ol>
+<p>Hundreds of thousands of exposed machines are vulnerable. Don’t be one of them when the first worm appears.</p>

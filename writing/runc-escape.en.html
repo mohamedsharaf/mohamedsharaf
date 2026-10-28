@@ -1,0 +1,13 @@
+<!--
+{"slug": "runc-escape", "lang": "en", "pair": "runc-escape", "status": "published", "title": "runc bug: a container can take over its host", "description": "A flaw in runc, used by Docker and Kubernetes, lets a malicious container gain root on the host. Update this week.", "date": "2019-02-19", "topic": "Infrastructure"}
+-->
+<p>Last week a critical bug was disclosed in runc (CVE-2019-5736), the low-level tool that Docker, containerd, Kubernetes and others use to run containers. A malicious container, or a malicious image, can overwrite the runc binary on the host and get root access to the whole machine.</p>
+<p>Containers are often treated as a security boundary. This is a reminder that they share the host’s kernel and tools.</p>
+<p>What to do:</p>
+<ol>
+  <li><strong>Update Docker, containerd or runc</strong> through your distribution or vendor. Managed Kubernetes providers are rolling out fixes too.</li>
+  <li><strong>Run only images you trust,</strong> from your own registry or verified publishers.</li>
+  <li><strong>Don’t run containers as root</strong> inside the container. Use user namespaces where you can.</li>
+  <li><strong>Keep SELinux or AppArmor enabled.</strong> In some setups they block this attack.</li>
+</ol>
+<p>Separate workloads that need real isolation onto separate hosts or VMs.</p>

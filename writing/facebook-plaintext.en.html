@@ -1,0 +1,14 @@
+<!--
+{"slug": "facebook-plaintext", "lang": "en", "pair": "facebook-plaintext", "status": "published", "title": "Facebook kept passwords in plain text logs", "description": "Hundreds of millions of passwords were readable in internal logs. Logs need the same care as databases.", "date": "2019-03-28", "topic": "Security"}
+-->
+<p>Facebook confirmed last week that hundreds of millions of user passwords had been stored in plain text in internal logs, readable by employees, some for years. It says there’s no sign they were misused, and it will notify affected users.</p>
+<p>Facebook hashed passwords properly in its database. The leak was in logging, where nobody looked.</p>
+<p>This happens everywhere. Developers log whole requests to debug something, and the request contains a password, a card number or a token.</p>
+<p>Check your own systems:</p>
+<ul>
+  <li><strong>Search your logs</strong> for words like password, token, secret and card.</li>
+  <li><strong>Filter sensitive fields</strong> in the logging library before they’re written.</li>
+  <li><strong>Limit access to logs</strong> and keep them only as long as needed.</li>
+  <li><strong>Review debug logging</strong> before it reaches production.</li>
+</ul>
+<p>If you have a Facebook account, it doesn’t hurt to change the password and turn on two-factor authentication.</p>

@@ -1,0 +1,11 @@
+<!--
+{"slug": "avast-vpn", "lang": "en", "pair": "avast-vpn", "status": "published", "title": "Avast: a forgotten VPN profile without MFA", "description": "Avast was breached through a temporary VPN profile that was left enabled and didn’t require two-factor authentication.", "date": "2019-10-22", "topic": "Security"}
+-->
+<p>Avast said yesterday that an attacker got into its internal network through a temporary VPN profile that had been left enabled by mistake and didn’t require two-factor authentication. The company believes the target was CCleaner, whose updates were hijacked by a different attack in 2017. As a precaution, it paused CCleaner updates and re-signed its software with a new certificate.</p>
+<p>“Temporary” access that never gets removed is one of the most common findings in any audit.</p>
+<ul>
+  <li><strong>Give every temporary account an expiry date</strong> when you create it.</li>
+  <li><strong>Require MFA for all VPN profiles,</strong> with no exceptions for tests.</li>
+  <li><strong>Review VPN and remote access accounts monthly,</strong> and disable unused ones.</li>
+  <li><strong>Protect your code-signing keys and build servers</strong> separately from the rest of the network.</li>
+</ul>

@@ -1,0 +1,16 @@
+<!--
+{"slug": "vpn-scanning", "lang": "en", "pair": "vpn-scanning", "status": "published", "title": "Your VPN is being scanned: Pulse and Fortinet", "description": "Attackers are scanning for Pulse Secure and Fortinet VPN bugs that leak passwords. The patches have been out for months.", "date": "2019-08-27", "topic": "Security"}
+-->
+<p>After a talk at Black Hat this month showed how to break several corporate VPNs, attackers started scanning the internet for two of the bugs:</p>
+<ul>
+  <li><strong>Pulse Secure (CVE-2019-11510):</strong> read any file on the device without logging in, including cached passwords.</li>
+  <li><strong>Fortinet FortiGate (CVE-2018-13379):</strong> read the file that holds active VPN sessions, with usernames and passwords in plain text.</li>
+</ul>
+<p>Both vendors released fixes in the spring. Thousands of devices still aren’t patched.</p>
+<p>What to do:</p>
+<ol>
+  <li><strong>Patch the VPN today.</strong> It’s the front door to your network.</li>
+  <li><strong>If it was exposed unpatched,</strong> assume passwords leaked: reset them, and check the logs for logins from strange places.</li>
+  <li><strong>Require MFA on the VPN,</strong> so a stolen password isn’t enough.</li>
+</ol>
+<p>Edge devices rarely get the same patching attention as servers. They need more, not less.</p>

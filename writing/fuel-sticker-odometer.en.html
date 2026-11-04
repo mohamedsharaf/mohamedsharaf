@@ -1,16 +1,60 @@
 <!--
-{"slug": "fuel-sticker-odometer", "lang": "en", "pair": "fuel-sticker-odometer", "status": "published", "title": "The fuel sticker needs an odometer photo too", "description": "Egypt’s new fuel tracking proves which car is filling up, not that it burned the fuel. Add an odometer photo, and make it hard to cheat.", "date": "2026-11-04", "topic": "Security"}
+{"slug": "fuel-sticker-odometer", "lang": "en", "pair": "fuel-sticker-odometer", "status": "published", "title": "The fuel e-sticker: how do we stop fuel siphoning?", "description": "The sticker proves which car it is, not that it used the fuel. My proposal: scan the sticker, photograph the odometer, and make cheating hard.", "date": "2026-11-04", "topic": "Security"}
 -->
 <p>On 1 November Egypt’s Ministry of Petroleum <a href="https://www.cnbcarabia.com/159036/2026/31/10/مصر-تطلق-منظومة-إلكترونية-جديدة-لمراقبة-توزيع-الوقود">started a one-month trial</a> in Port Said of a system that tracks fuel through each car’s electronic traffic sticker. Stations read the sticker to log every fill-up, and one <a href="https://egyptoil-gas.com/news/egypt-to-pilot-digital-fuel-tracking-system-to-curb-smuggling/">stated goal</a> is spotting unusual consumption. The ministry says it won’t limit quantities or touch prices.</p>
-<p>Someone asked me a fair question: what stops a driver filling up, siphoning the fuel out, selling it and coming back? The sticker proves which car it is. It doesn’t prove the car burned the fuel.</p>
-<p>My answer: scan the sticker and photograph the odometer. Fuel taken against kilometres driven, checked over several fill-ups, shows who takes far more than their car could use. 50 km since the last visit and 40 litres requested is worth a look.</p>
-<p>The idea is simple. Making it hard to cheat is the real work:</p>
+<p>I got a strange but fair question: what if someone fills the tank, siphons the fuel out, sells it and comes back to fill up again? Then the sticker becomes a way to profit instead of a control.</p>
+<p>In this article I propose a simple solution, then test it with a security mindset: how could it be fooled, and how do we close each gap?</p>
+
+<h2>The proposed solution: sticker + odometer</h2>
+<p>Two steps: scan the sticker to identify the car, and photograph the odometer to see how far it has driven since the last refuel.</p>
+<p>The system knows the car’s model and its typical consumption, so it calculates the expected amount:</p>
+<pre><code>L_expected = (km_now − km_last) ÷ 100 × L100</code></pre>
+<p>Here <code>L100</code> is the model’s consumption in litres per 100 km.</p>
+<p>Example: a car that uses 8 litres per 100 km has driven only 50 km and asks for 40 litres. The expected amount is about 4 litres, so the gap is large and worth a review.</p>
+<p>A more accurate check is cumulative across several refuels, because drivers don’t always fill the tank. The total fuel a car has taken should never exceed what it actually burned by more than one tank’s capacity.</p>
+<p>The car is refuelled either way. An anomaly is simply logged for a later human review.</p>
+
+<h2>Threats and controls</h2>
+<p>Any control system will attract people trying to game it. These are the most likely attacks, each with its matching control. No single control is enough on its own (defence in depth).</p>
+
+<h3>1. Fuel siphoning</h3>
+<p>The driver fills the tank, drains and sells the fuel, then comes back to refuel. The control is a cumulative comparison of fuel dispensed against distance driven.</p>
+
+<h3>2. Spoofed or replayed photo</h3>
+<p>Someone submits an old odometer photo or an edited one. So the photo is a live capture from the station’s device only, with a signed timestamp and device ID. No uploads from the driver’s phone.</p>
+
+<h3>3. Sticker transfer or cloning</h3>
+<p>A parked car’s sticker gets used on another car. Automatic plate reading (ANPR) matched to the sticker stops this, along with a tamper-evident sticker that breaks when removed.</p>
+
+<h3>4. Odometer rollback</h3>
+<p>The odometer is tampered with so the distance looks longer or shorter. Any reading lower than the previous one triggers an instant alert.</p>
+
+<h3>5. Insider threat</h3>
+<p>A station attendant records a fake reading for a bribe. Every transaction is tied to the attendant’s identity and device, with anomaly detection per attendant and station, and an append-only audit log.</p>
+<p>This is the most dangerous gap, because the attendant controls both the device and the camera. Technology alone can’t stop it, but it ties every transaction to a specific person. An attendant whose pattern differs from their colleagues’ will stand out quickly.</p>
+
+<h3>6. Double dipping</h3>
+<p>The driver refuels at several stations within a short time. The answer is one central record per car, visible to every station in real time.</p>
+
+<h2>Flag, don’t block</h2>
+<p>The system flags unusual cases for review. It does not block refuelling automatically.</p>
+<p>The reason is false positives: a broken odometer, a long road trip, or a car that spends hours in traffic and burns more than average. Automatic blocking would punish innocent drivers and create queues.</p>
 <ul>
-  <li>Take the photo live on the station’s device, with a signed time and device ID. Never accept an upload from the driver’s phone.</li>
-  <li>Read the number plate automatically and match it to the sticker, so a sticker can’t move to another car.</li>
-  <li>Treat any odometer reading lower than the last one as an instant alert.</li>
-  <li>Tie every transaction to the attendant who made it. Colluding staff are the biggest risk, and their patterns stand out.</li>
-  <li>Flag, don’t block. Broken odometers and long trips are real, so a person makes the call.</li>
-  <li>Keep the reading, delete the photo.</li>
+  <li>Every transaction gets a risk score instead of a yes/no decision.</li>
+  <li>The final call is made by a person (human in the loop), and action follows a repeated pattern, not a single event.</li>
+  <li>A car with a broken odometer is registered as a special case with a grace period to fix it.</li>
 </ul>
-<p class="note">This is my own proposal, not a description of how the official system works.</p>
+
+<h2>Privacy</h2>
+<p>The system needs the number, not the photo, so it shouldn’t keep what it doesn’t need (data minimisation):</p>
+<ul>
+  <li><strong>Photo:</strong> the reading is extracted, then the photo is deleted, unless it is flagged and kept for review only.</li>
+  <li><strong>Stored:</strong> sticker number, odometer reading, amount, station and time. No tracking of the car’s location outside stations.</li>
+  <li><strong>Access:</strong> encrypted data, least-privilege permissions, and a log of everyone who views a car’s records.</li>
+  <li><strong>Retention:</strong> a fixed, published retention period, after which old records are deleted.</li>
+</ul>
+
+<h2>Conclusion</h2>
+<p>“Sticker scan + odometer photo” is a simple idea. Its real value is in the security details around it: who takes the photo, how we prove it’s genuine, and what we do when something looks off. The idea is simple, but the devil is always in the security.</p>
+<p>See a gap I missed? Let me know.</p>
+<p class="note">This is my personal take on solving the problem, not a description of the official system or how it is built.</p>
